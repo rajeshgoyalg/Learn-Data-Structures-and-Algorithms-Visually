@@ -11,6 +11,7 @@ A GitHub-native course that teaches data structures the way the video does: one 
 [![Blueprints](https://img.shields.io/badge/blueprints-18-c084fc?style=flat-square)](assets/blueprint/)
 [![Flashcards](https://img.shields.io/badge/flashcards-108-34d399?style=flat-square)](docs/flashcards.md)
 [![Quiz](https://img.shields.io/badge/quiz-45_questions-fb7185?style=flat-square)](docs/quiz.md)
+[![Verify](https://github.com/rajeshgoyalg/Learn-Data-Structures-and-Algorithms-Visually/actions/workflows/verify.yml/badge.svg)](https://github.com/rajeshgoyalg/Learn-Data-Structures-and-Algorithms-Visually/actions/workflows/verify.yml)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-64748b?style=flat-square)](#no-dependencies)
 [![License](https://img.shields.io/badge/license-MIT-94a3b8?style=flat-square)](LICENSE)
 
@@ -239,6 +240,8 @@ This repo has no build step, no package manager, no JavaScript and no external a
 - They render identically on GitHub, in an offline clone, and in the Pages gallery.
 - Mermaid diagrams use `flowchart` syntax, which GitHub renders natively.
 - Clone it and open `index.html` in any browser — or just read the markdown.
+
+Sixteen repository invariants are checked by `tools/verify.py` (stdlib only, no install) and run in CI on every push — see [CONTRIBUTING](CONTRIBUTING.md).
 
 ```bash
 git clone <this-repo>

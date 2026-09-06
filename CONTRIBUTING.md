@@ -57,24 +57,23 @@ Analogy → animation → mental model → blueprint → mindmap → operations 
 ## Before you open a PR
 
 ```bash
-# 1. every SVG is well-formed XML
-find assets -name '*.svg' -exec xmllint --noout {} \;
-
-# 2. no SVG contains a script
-grep -rl '<script' assets/ && echo "FAIL: scripts found" || echo "OK"
-
-# 3. no unsupported mermaid diagram types
-grep -rn '```mermaid' -A1 docs/ README.md | grep -i 'mindmap' && echo "FAIL" || echo "OK"
-
-# 4. every <details> is closed
-for f in docs/*.md; do
-  o=$(grep -c '<details>' "$f"); c=$(grep -c '</details>' "$f")
-  [ "$o" = "$c" ] || echo "MISMATCH in $f: $o open, $c closed"
-done
-
-# 5. look at it
-python3 -m http.server 8000    # then open http://localhost:8000
+python3 tools/verify.py
 ```
+
+Sixteen checks, stdlib only — no install, no build step. CI runs the identical
+file on every push and pull request, so a green local run means a green PR.
+
+It covers: SVG well-formedness, no `<script>` and no external references, the
+`viewBox`/`<title>`/`aria-label` trio, text running past a canvas edge, legend
+swatch alignment, blueprint title-block anchoring, frame animations showing two
+frames at once, internal links and anchors, the eleven-block module template,
+unsupported Mermaid `mindmap` blocks, unclosed `<details>`, duplicate
+flashcards, stated counts drifting from reality, orphaned assets, and gallery
+links reverting to raw markdown.
+
+The text-overflow check models the monospace advance at `0.60 × font-size` —
+the same estimate the generator wraps with — so it catches text that never went
+through the wrapper. It is not a rasterisation; exact metrics need a browser.
 
 Then open `index.html` and confirm your animation actually plays and does not collide with any text at its edges. The validators check structure, not layout — only your eyes catch a caption overlapping a node.
 
