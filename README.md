@@ -36,25 +36,35 @@ A GitHub-native course that teaches data structures the way the video does: one 
 ## The learning path
 
 ```mermaid
-flowchart LR
-  F["01 Foundations<br/>complexity"] --> A["02 Arrays"]
-  A --> L["03 Linked lists"]
-  L --> V["04 Doubly &<br/>circular"]
-  V --> S["05 Stacks"]
-  S --> Q["06 Queues"]
-  Q --> H["07 Hash tables"]
-  H --> E["08 Sets"]
-  E --> P["09 Heaps"]
-  P --> B["10 BSTs"]
-  B --> T["11 Balanced trees"]
-  T --> R["12 Tries"]
-  R --> G["13 Graphs"]
+flowchart TD
+  F["01 · Foundations — complexity"]
 
-  G --> SE["14 Searching"]
-  SE --> SO["15 Sorting"]
-  SO --> RE["16 Recursion &<br/>backtracking"]
-  RE --> PA["17 Paradigms"]
-  PA --> DJ["18 Dijkstra"]
+  subgraph LIN["Linear structures"]
+    direction LR
+    A["02 Arrays"] --> L["03 Linked lists"] --> V["04 Doubly & circular"]
+  end
+
+  subgraph RES["Restricted access"]
+    direction LR
+    S["05 Stacks"] --> Q["06 Queues"]
+  end
+
+  subgraph KEY["Keyed structures"]
+    direction LR
+    H["07 Hash tables"] --> E["08 Sets"]
+  end
+
+  subgraph HIER["Hierarchical structures"]
+    direction LR
+    P["09 Heaps"] --> B["10 BSTs"] --> T["11 Balanced trees"] --> R["12 Tries"] --> G["13 Graphs"]
+  end
+
+  subgraph ALGO["Algorithms & paradigms"]
+    direction LR
+    SE["14 Searching"] --> SO["15 Sorting"] --> RE["16 Recursion"] --> PA["17 Paradigms"] --> DJ["18 Dijkstra"]
+  end
+
+  F --> LIN --> RES --> KEY --> HIER --> ALGO
 
   classDef found fill:#0f2438,stroke:#e2e8f0,stroke-width:2px,color:#e2e8f0
   classDef lin fill:#0f2438,stroke:#38bdf8,color:#38bdf8
