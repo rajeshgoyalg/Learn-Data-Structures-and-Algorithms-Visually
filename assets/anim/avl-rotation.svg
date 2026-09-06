@@ -50,7 +50,7 @@
     <text x="386" y="156" font-size="12" fill="#fb7185" text-anchor="middle">bf +2</text>
     <text x="266.0" y="240" font-size="12" fill="#fbbf24" text-anchor="middle">bf +1</text>
     <text x="570" y="186" font-size="13" fill="#fb7185">left-heavy by 2: illegal</text>
-    <text class="step" x="24" y="134">10, 20, 30 inserted in ascending order - the tree has degenerated into a list</text>
+    <text class="step" x="24" y="134">30, 20, 10 inserted in descending order - the tree has degenerated into a list</text>
   </g>
   <g id="fr1" class="frm">
     <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -60,7 +60,7 @@
     <g><circle cx="240.0" cy="354.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="240.0" y="355.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
     <path d="M460 180 A 60 60 0 0 1 340.0 260" stroke="#fbbf24" stroke-width="2.4" fill="none" marker-end="url(#ara)"/>
     <text x="570" y="186" font-size="13" fill="#fbbf24">rotate right about 30</text>
-    <text class="step" x="24" y="134">the balance factor at 30 is +2, so AVL performs a single right rotation</text>
+    <text class="step" x="24" y="134">the balance factor at 30 is +2 (left-heavy), so AVL performs a single right rotation</text>
   </g>
   <g id="fr2" class="frm">
     <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>

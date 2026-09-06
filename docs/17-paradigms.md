@@ -129,6 +129,7 @@ Two lines added to the naive version take it from `O(2ⁿ)` to `O(n)`. Each dist
 
 ```text
 function fib(n)
+    if n ≤ 1 then return n end                          n = 0 has no table[1] to seed
     table ← array of size n+1
     table[0] ← 0
     table[1] ← 1                                        the base cases, seeded
@@ -144,6 +145,7 @@ And once you see that only the last two entries are ever read, the table collaps
 
 ```text
 function fib(n)                                         O(1) space
+    if n ≤ 1 then return n end                          without this, fib(0) returns 1
     a ← 0; b ← 1
     for i ← 2 to n do
         a, b ← b, a + b
@@ -210,7 +212,7 @@ greedy loses. Same algorithm, different coin set, wrong answer.
 | DP (tabulated) | O(states) | O(states), often reducible | you must know the fill order |
 | greedy | O(n) or O(n log n) | O(1) | **silently returns a wrong answer** |
 
-**Fibonacci, three ways:**
+**Fibonacci, four ways:**
 
 | Approach | Time | Space |
 |:--|:--:|:--:|

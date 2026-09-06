@@ -67,9 +67,9 @@
     <circle cx="120" cy="290" r="25" fill="#12303f" stroke="#fbbf24" stroke-width="2.4"/><text x="120" y="291" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">A</text>
     <text x="120" y="253" font-size="12" fill="#fbbf24" text-anchor="middle">0</text>
     <circle cx="270" cy="212" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="270" y="213" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">B</text>
-    <text x="270" y="175" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
+    <text x="270" y="175" font-size="12" fill="#94a3b8" text-anchor="middle">4</text>
     <circle cx="270" cy="380" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="270" y="381" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">C</text>
-    <text x="270" y="343" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
+    <text x="270" y="343" font-size="12" fill="#94a3b8" text-anchor="middle">2</text>
     <circle cx="430" cy="172" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="430" y="173" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">D</text>
     <text x="430" y="135" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
     <circle cx="430" cy="296" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="430" y="297" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">E</text>
@@ -78,7 +78,7 @@
     <text x="430" y="383" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
     <circle cx="590" cy="296" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="590" y="297" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">G</text>
     <text x="590" y="259" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
-    <text class="step" x="24" y="118">every distance starts at infinity except the source. Settle A and relax its edges.</text>
+    <text class="step" x="24" y="118">every distance starts at infinity except the source. Settle A, then relax its edges: B = 4, C = 2.</text>
   </g>
   <g id="fr1" class="frm">
     <line x1="142.2" y1="278.5" x2="247.8" y2="223.5" stroke="#38bdf8" stroke-width="1.5" opacity="0.4"/>
@@ -108,9 +108,9 @@
     <circle cx="430" cy="172" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="430" y="173" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">D</text>
     <text x="430" y="135" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
     <circle cx="430" cy="296" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="430" y="297" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">E</text>
-    <text x="430" y="259" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
+    <text x="430" y="259" font-size="12" fill="#94a3b8" text-anchor="middle">5</text>
     <circle cx="430" cy="420" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="430" y="421" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">F</text>
-    <text x="430" y="383" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
+    <text x="430" y="383" font-size="12" fill="#94a3b8" text-anchor="middle">10</text>
     <circle cx="590" cy="296" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="590" y="297" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">G</text>
     <text x="590" y="259" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
     <text class="step" x="24" y="118">pick the cheapest unsettled node - C at 2, not B at 4. Relax: E = 2+3 = 5, F = 2+8 = 10.</text>
@@ -148,7 +148,7 @@
     <text x="430" y="383" font-size="12" fill="#94a3b8" text-anchor="middle">10</text>
     <circle cx="590" cy="296" r="25" fill="#0f2438" stroke="#38bdf8" stroke-width="2.4"/><text x="590" y="297" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">G</text>
     <text x="590" y="259" font-size="12" fill="#94a3b8" text-anchor="middle">&#8734;</text>
-    <text class="step" x="24" y="118">settle B at 4. Through B, E would cost 4+10 = 14 - worse than 5, so the old value stands.</text>
+    <text class="step" x="24" y="118">settle B at 4 and relax D = 9. Through B, E would cost 4+10 = 14 - worse than 5, so 5 stands.</text>
   </g>
   <g id="fr3" class="frm">
     <line x1="142.2" y1="278.5" x2="247.8" y2="223.5" stroke="#34d399" stroke-width="2.8" opacity="1"/>

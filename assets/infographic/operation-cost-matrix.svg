@@ -51,7 +51,7 @@
   <rect x="328" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="384.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
   <rect x="444" y="202" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="500.0" y="225.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="500.0" y="225.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="560" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="616.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
   <rect x="676" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
@@ -66,9 +66,9 @@
   <rect x="444" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="500.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
   <rect x="560" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="616.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="616.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="676" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="732.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="732.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="792" y="252" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="848.0" y="275.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
   <text x="194" y="325.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Stack / Queue</text>
@@ -88,13 +88,13 @@
   <rect x="212" y="352" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="268.0" y="375.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
   <rect x="328" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="384.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="384.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="444" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="500.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="500.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="560" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="616.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="616.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="676" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
-  <text x="732.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="732.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)*</text>
   <rect x="792" y="352" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="848.0" y="375.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
   <text x="194" y="425.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Balanced BST</text>

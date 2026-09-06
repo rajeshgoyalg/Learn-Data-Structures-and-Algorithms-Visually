@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 557" width="700" height="557" role="img" aria-label="Animation: solving the four queens problem by placing queens and backtracking from dead ends">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 575" width="700" height="575" role="img" aria-label="Animation: solving the four queens problem by placing queens and backtracking from dead ends">
   <title>Animation: solving the four queens problem by placing queens and backtracking from dead ends</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -26,21 +26,25 @@
   .step{fill:#fbbf24;font-size:12px;font-weight:700}
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
   .frm{opacity:0}
-  #fr0{animation:fk0 13s infinite}
-  @keyframes fk0{0%{opacity:1} 20.39%{opacity:1} 20.4%{opacity:0} 100%{opacity:0}}
-  #fr1{animation:fk1 13s infinite}
-  @keyframes fk1{0%{opacity:0} 20.39%{opacity:0} 20.4%{opacity:1} 36.79%{opacity:1} 36.8%{opacity:0} 100%{opacity:0}}
-  #fr2{animation:fk2 13s infinite}
-  @keyframes fk2{0%{opacity:0} 36.79%{opacity:0} 36.8%{opacity:1} 53.19%{opacity:1} 53.199999999999996%{opacity:0} 100%{opacity:0}}
-  #fr3{animation:fk3 13s infinite}
-  @keyframes fk3{0%{opacity:0} 53.19%{opacity:0} 53.199999999999996%{opacity:1} 69.59%{opacity:1} 69.6%{opacity:0} 100%{opacity:0}}
-  #fr4{animation:fk4 13s infinite}
-  @keyframes fk4{0%{opacity:0} 69.59%{opacity:0} 69.6%{opacity:1} 100%{opacity:1}}
+  #fr0{animation:fk0 17s infinite}
+  @keyframes fk0{0%{opacity:1} 15.7%{opacity:1} 15.714285714285714%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 17s infinite}
+  @keyframes fk1{0%{opacity:0} 15.7%{opacity:0} 15.714285714285714%{opacity:1} 27.42%{opacity:1} 27.428571428571427%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 17s infinite}
+  @keyframes fk2{0%{opacity:0} 27.42%{opacity:0} 27.428571428571427%{opacity:1} 39.13%{opacity:1} 39.14285714285714%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 17s infinite}
+  @keyframes fk3{0%{opacity:0} 39.13%{opacity:0} 39.14285714285714%{opacity:1} 50.85%{opacity:1} 50.857142857142854%{opacity:0} 100%{opacity:0}}
+  #fr4{animation:fk4 17s infinite}
+  @keyframes fk4{0%{opacity:0} 50.85%{opacity:0} 50.857142857142854%{opacity:1} 62.56%{opacity:1} 62.57142857142857%{opacity:0} 100%{opacity:0}}
+  #fr5{animation:fk5 17s infinite}
+  @keyframes fk5{0%{opacity:0} 62.56%{opacity:0} 62.57142857142857%{opacity:1} 74.28%{opacity:1} 74.28571428571428%{opacity:0} 100%{opacity:0}}
+  #fr6{animation:fk6 17s infinite}
+  @keyframes fk6{0%{opacity:0} 74.28%{opacity:0} 74.28571428571428%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="700" height="557" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="700" height="557" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="698.5" height="555.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="700" height="575" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="700" height="575" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="698.5" height="573.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Backtracking - N queens</text>
   <text class="sub" x="24" y="54">Try, fail, undo, try the next - and never revisit a branch you have disproved</text>
   <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">try a choice, recurse, and the moment it cannot work, undo it and try the next - pruning whole</tspan><tspan x="24" dy="17">branches unexplored</tspan></text>
@@ -62,7 +66,7 @@
     <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
-    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="215" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
     <text class="step" x="24" y="122">place a queen in row 0. Any column will do for now - pick the first.</text>
   </g>
   <g id="fr1" class="frm">
@@ -82,10 +86,10 @@
     <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
-    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="215" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="380.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="271" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <text x="268.0" y="271" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text x="324.0" y="271" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="380.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="289" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text x="268.0" y="289" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="324.0" y="289" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
     <text class="step" x="24" y="122">row 1: columns 0 and 1 are attacked, so the first legal square is column 2</text>
   </g>
   <g id="fr2" class="frm">
@@ -105,13 +109,13 @@
     <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
-    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="215" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="380.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="271" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <text x="268.0" y="327" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text x="324.0" y="327" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text x="380.0" y="327" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text x="436.0" y="327" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text class="step" x="24" y="122"><tspan x="24" dy="0">row 2: every column is attacked. This branch is dead - and we found out without exploring</tspan><tspan x="24" dy="18">it further.</tspan></text>
+    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="380.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="289" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text x="268.0" y="345" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="324.0" y="345" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="380.0" y="345" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="436.0" y="345" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text class="step" x="24" y="122"><tspan x="24" dy="0">row 2: every column is attacked. Dead end - abandon this branch without exploring it</tspan><tspan x="24" dy="18">further.</tspan></text>
   </g>
   <g id="fr3" class="frm">
     <rect x="240" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
@@ -130,10 +134,10 @@
     <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
-    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="215" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="436.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="436.0" y="271" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <text x="380.0" y="271" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
-    <text class="step" x="24" y="122">backtrack: undo row 1, try the next column there instead</text>
+    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="436.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="436.0" y="289" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text x="380.0" y="289" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text class="step" x="24" y="122">backtrack one level: undo row 1 and try its next legal column instead</text>
   </g>
   <g id="fr4" class="frm">
     <rect x="240" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
@@ -152,17 +156,64 @@
     <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
     <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
-    <circle cx="324.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="324.0" y="215" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="436.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="436.0" y="271" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="268.0" cy="290.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="327" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <circle cx="380.0" cy="346.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="383" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
-    <text class="step" x="24" y="122"><tspan x="24" dy="0">continue from the new branch until all four queens stand safely. Backtracking = DFS that</tspan><tspan x="24" dy="18">undoes its moves.</tspan></text>
+    <circle cx="268.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="436.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="436.0" y="289" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="324.0" cy="290.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="324.0" y="345" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text x="268.0" y="401" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="324.0" y="401" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="380.0" y="401" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text x="436.0" y="401" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text class="step" x="24" y="122">row 2 has exactly one legal square, but then row 3 has none. Dead end again.</text>
   </g>
-  <text class="lbl-l" x="24" y="454" style="fill:#94a3b8"><tspan x="24" dy="0">brute force explores every arrangement. Backtracking abandons a branch the instant it becomes</tspan><tspan x="24" dy="17">illegal, which is what makes it tractable.</tspan></text>
+  <g id="fr5" class="frm">
+    <rect x="240" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="150" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="150" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="206" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="206" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="206" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="206" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="262" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="262" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="262" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="262" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <circle cx="324.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="324.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text x="268.0" y="233" font-size="20" fill="#fb7185" text-anchor="middle" dominant-baseline="middle" opacity="0.75">x</text>
+    <text class="step" x="24" y="122"><tspan x="24" dy="0">every branch under row 0 = column 0 has now failed, so backtrack all the way and move the</tspan><tspan x="24" dy="18">FIRST queen</tspan></text>
+  </g>
+  <g id="fr6" class="frm">
+    <rect x="240" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="150" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="150" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="150" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="206" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="206" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="206" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="206" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="262" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="262" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="262" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="262" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="240" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="296" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="352" y="318" width="56" height="56" fill="#0d1f2f" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <rect x="408" y="318" width="56" height="56" fill="#13293c" stroke="#38bdf8" stroke-width="0.8" opacity="0.9"/>
+    <circle cx="324.0" cy="178.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="324.0" y="233" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="436.0" cy="234.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="436.0" y="289" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="268.0" cy="290.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="268.0" y="345" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <circle cx="380.0" cy="346.0" r="17" fill="#0f2438" stroke="#34d399" stroke-width="2.4"/><text x="380.0" y="401" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">Q</text>
+    <text class="step" x="24" y="122"><tspan x="24" dy="0">from column 1 the search completes: all four queens stand safely. Backtracking = DFS that</tspan><tspan x="24" dy="18">undoes its moves.</tspan></text>
+  </g>
+  <text class="lbl-l" x="24" y="472" style="fill:#94a3b8"><tspan x="24" dy="0">brute force explores every arrangement. Backtracking abandons a branch the instant it becomes</tspan><tspan x="24" dy="17">illegal, which is what makes it tractable.</tspan></text>
   <rect x="24" y="442" width="11" height="11" rx="2" fill="#34d399"/>
-  <text class="lbl-l" x="41" y="501">placed safely</text>
+  <text class="lbl-l" x="41" y="519">placed safely</text>
   <rect x="133.2" y="442" width="11" height="11" rx="2" fill="#fb7185"/>
-  <text class="lbl-l" x="150.2" y="501">attacked / rejected</text>
+  <text class="lbl-l" x="150.2" y="519">attacked / rejected</text>
   </g>
 
 </svg>

@@ -247,7 +247,7 @@ DFS's exploration order is exactly the call stack's order — recursion gives yo
 
 <details><summary>Answer</summary>
 
-**No progress.** Something like `f(n)` calling `f(n)` — or `f(n/2)` with integer division when `n = 1` and `n/2` is again `1`. A base case is only reachable if every call strictly moves toward it.
+**No progress.** Something like `f(n)` calling `f(n)` unchanged, or recursing on `n/2` with *floating-point* division — `n` halves forever, gets arbitrarily small, and never actually reaches the `n = 0` base case. A base case is only reachable if every call strictly moves toward it.
 </details>
 
 **3.** In N queens, you find that no column in row 2 is safe. What happens next?

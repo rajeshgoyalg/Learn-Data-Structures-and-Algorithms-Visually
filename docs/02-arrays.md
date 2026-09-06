@@ -194,7 +194,7 @@ No. It is one flat block, with the rows laid end to end (row-major) or the colum
 
 <details><summary>Answer</summary>
 
-**999,999** — every single one except the new value's slot. Index 0 is the worst possible insertion point. Inserting at the *end* moves none, which is why appending is the only cheap insertion.
+**All 1,000,000.** Inserting at index `i` shifts `n − i` elements, and `i = 0` shifts every one of them. Index 0 is the worst possible insertion point. Inserting at the *end* moves none, which is why appending is the only cheap insertion.
 </details>
 
 **2.** An array holds 4 items in a capacity of 4. You append 5 more, one at a time, with doubling. How many resizes happen, and how many elements are copied?

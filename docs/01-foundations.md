@@ -8,7 +8,7 @@
 
 ![Growth rate comparison](../assets/infographic/big-o-growth.svg)
 
-Each curve is labelled at the point it leaves the chart. That exit point *is* the algorithm's practical ceiling.
+The three fast curves are labelled at the right edge; the steep ones are labelled where they leave the chart, and that exit point is a fair picture of where each stops being usable.
 
 ---
 

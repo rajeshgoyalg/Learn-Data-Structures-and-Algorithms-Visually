@@ -14,7 +14,7 @@ Colour means the same thing in all 62 diagrams. Nothing is decorative.
 | 🟨 **Amber** `#fbbf24` | active right now | the cursor, the current comparison, the pivot, the item in flight |
 | 🟩 **Green** `#34d399` | settled or succeeded | found, sorted, visited, final position, a new correct link |
 | 🟥 **Rose** `#fb7185` | rejected or removed | failed comparison, deleted node, illegal state, the expensive case |
-| 🟪 **Violet** `#c084fc` | a secondary pointer | `prev` in a doubly linked list, the hash function, the DFS stack |
+| 🟪 **Violet** `#c084fc` | a secondary pointer or marker | `prev` in a doubly linked list, the hash function, the DFS stack, values smaller than a pivot |
 | ⬜ **Slate** `#94a3b8` | labels, dimensions, notes | axis text, callouts, free slots |
 
 Two shape conventions:
