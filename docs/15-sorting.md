@@ -28,6 +28,28 @@
 
 ---
 
+## 🧠 Mental model
+
+Each sort is a different person's instinct for tidying the same shuffled hand of cards.
+
+| How a person would do it | The algorithm | What it costs them |
+|:--|:--|:--|
+| keep swapping any two neighbours that are the wrong way round, sweeping over and over | **bubble sort** | touches everything repeatedly — `O(n²)` |
+| scan the whole remaining pile for the lowest card, put it down, repeat | **selection sort** | always `O(n²)` looks, but only `n` moves |
+| hold a sorted run in your left hand and slide each new card into place | **insertion sort** | `O(n)` if the hand is nearly sorted already |
+| split the deck until each pile is one card, then merge piles in order | **merge sort** | needs table space for the merge — `O(n)` |
+| pick a card, throw everything smaller left and larger right, repeat on each side | **quicksort** | in place, but a bad pick costs `O(n²)` |
+
+Three words decide between them, and they appear in every table below:
+
+| Term | What it means | Why you would care |
+|:--|:--|:--|
+| **stable** | equal elements keep their original relative order | lets you sort by one key, then another, without losing the first |
+| **in place** | needs only `O(1)` extra memory | matters when the data barely fits in memory as it is |
+| **adaptive** | faster when the input is already nearly sorted | real-world data very often is |
+
+---
+
 ## 📐 Blueprint
 
 ![Sorting comparison table](../assets/blueprint/15-sorting.svg)

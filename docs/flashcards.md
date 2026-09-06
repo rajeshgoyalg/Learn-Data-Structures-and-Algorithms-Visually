@@ -347,8 +347,8 @@ Consistently extreme pivots. A sorted array with a last-element pivot does it ex
 <details><summary>Why is insertion sort still used in production?</summary>
 `O(n)` on nearly-sorted data with tiny constants. Hybrids switch to it below ~16–32 elements.</details>
 
-<details><summary>Why is O(n log n) the comparison-sort floor?</summary>
-`n!` orderings, one bit per comparison, so at least `log₂(n!) = Θ(n log n)` comparisons are required.</details>
+<details><summary>Merge sort and quicksort are both O(n log n) on average. Why is one usually faster?</summary>
+Constant factors. Quicksort partitions **in place** with excellent cache locality; merge sort allocates and copies through an `O(n)` buffer at every level. Same Big-O, very different real-world speed — which is exactly what Big-O is designed not to tell you.</details>
 
 <details><summary>How can counting sort be O(n)?</summary>
 It never compares. It counts occurrences and rebuilds the output — only possible for integer keys in a bounded range, at a cost of `O(n + k)`.</details>
