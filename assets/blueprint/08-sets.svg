@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 600" width="880" height="600" role="img" aria-label="Set - anatomy and operations">
+  <title>Set - anatomy and operations</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="600" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="600" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Set - anatomy and operations</text>
+  <text class="sub" x="24" y="54">Membership, not storage</text>
+  <text class="lbl-l" x="24" y="96">a set is a hash table that threw away the values - all it remembers is which keys exist</text>
+  <text x="150" y="132" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">UNION</text>
+  <text x="150" y="150" font-size="11" fill="#94a3b8" text-anchor="middle">A or B</text>
+  <circle cx="116" cy="250" r="74" fill="#34d399" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.8"/>
+  <circle cx="184" cy="250" r="74" fill="#34d399" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="116" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">A</text>
+  <text x="184" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">B</text>
+  <text x="400" y="132" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">INTERSECTION</text>
+  <text x="400" y="150" font-size="11" fill="#94a3b8" text-anchor="middle">A and B</text>
+  <circle cx="366" cy="250" r="74" fill="#38bdf8" fill-opacity="0.06" stroke="#38bdf8" stroke-width="1.8"/>
+  <circle cx="434" cy="250" r="74" fill="#38bdf8" fill-opacity="0.06" stroke="#38bdf8" stroke-width="1.8"/>
+  <path d="M400 192.28 A 74 74 0 0 1 400 307.72 A 74 74 0 0 1 400 192.28 Z" fill="#34d399" fill-opacity="0.3" stroke="#34d399" stroke-width="1.6"/>
+  <text x="366" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">A</text>
+  <text x="434" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">B</text>
+  <text x="650" y="132" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">DIFFERENCE</text>
+  <text x="650" y="150" font-size="11" fill="#94a3b8" text-anchor="middle">A not B</text>
+  <circle cx="616" cy="250" r="74" fill="#34d399" fill-opacity="0.22" stroke="#38bdf8" stroke-width="1.8"/>
+  <circle cx="684" cy="250" r="74" fill="#38bdf8" fill-opacity="0.06" stroke="#38bdf8" stroke-width="1.8"/>
+  <circle cx="684" cy="250" r="74" fill="#0b1c2c" fill-opacity="0.92" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="616" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">A</text>
+  <text x="684" y="346" font-size="12" fill="#94a3b8" text-anchor="middle">B</text>
+  <text x="50" y="400" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHAT A SET GIVES YOU</text>
+  <path d="M50 408 L850 408" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="430" font-size="12" fill="#94a3b8">contains(x)  O(1) average  - the only question a set is designed to answer fast</text>
+  <text x="50" y="451" font-size="12" fill="#94a3b8">add / remove O(1) average  - adding an element that is already there is a no-op</text>
+  <text x="50" y="472" font-size="12" fill="#94a3b8">de-duplication for free: build a set from a list and the duplicates simply never appear twice</text>
+  <text x="50" y="500" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHAT IT COSTS YOU</text>
+  <path d="M50 508 L850 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="530" font-size="12" fill="#94a3b8">no order, no indexing, no duplicates - if you need any of those, a set is the wrong tool</text>
+  <text x="50" y="551" font-size="12" fill="#94a3b8">a sorted set (backed by a balanced tree) trades O(1) for O(log n) and gives ordering back</text>
+  <rect x="558" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 544 L858 544 M744 544 L744 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="564" font-size="10" fill="#fbbf24">SHEET 08 / 18</text>
+
+</svg>

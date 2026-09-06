@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-label="Animation: a priority queue reordering four arrivals so the most urgent is served first">
+  <title>Animation: a priority queue reordering four arrivals so the most urgent is served first</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.oi{opacity:0}
+#o0{animation:oi0 8s infinite}
+  @keyframes oi0{0%{opacity:0;transform:translateY(-18px)} 10%{opacity:0;transform:translateY(-18px)} 18%{opacity:1;transform:translateY(0)} 94%{opacity:1;transform:translateY(0)} 99%{opacity:0;transform:translateY(-18px)}}
+#o1{animation:oi1 8s infinite}
+  @keyframes oi1{0%{opacity:0;transform:translateY(-18px)} 28%{opacity:0;transform:translateY(-18px)} 36%{opacity:1;transform:translateY(0)} 94%{opacity:1;transform:translateY(0)} 99%{opacity:0;transform:translateY(-18px)}}
+#o2{animation:oi2 8s infinite}
+  @keyframes oi2{0%{opacity:0;transform:translateY(-18px)} 46%{opacity:0;transform:translateY(-18px)} 54%{opacity:1;transform:translateY(0)} 94%{opacity:1;transform:translateY(0)} 99%{opacity:0;transform:translateY(-18px)}}
+#o3{animation:oi3 8s infinite}
+  @keyframes oi3{0%{opacity:0;transform:translateY(-18px)} 64%{opacity:0;transform:translateY(-18px)} 72%{opacity:1;transform:translateY(0)} 94%{opacity:1;transform:translateY(0)} 99%{opacity:0;transform:translateY(-18px)}}
+
+  </style>
+  <rect x="0" y="0" width="800" height="400" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="800" height="400" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="798.5" height="398.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Priority queue</text>
+  <text class="sub" x="24" y="54">Order of arrival does not decide order of service - urgency does</text>
+  <text class="lbl-l" x="24" y="96">hospital triage: arrival order is irrelevant - the most urgent case is always served next</text>
+  <text class="lbl-l" x="46" y="144" style="fill:#94a3b8">arrival order</text>
+  <rect class="cell" x="46" y="160" width="104" height="52" style="stroke:#38bdf8"/>
+  <text class="val" x="86" y="187" style="font-size:14">Ann</text>
+  <circle cx="128" cy="186" r="13" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <text class="val" x="128" y="187" style="fill:#94a3b8;font-size:13">5</text>
+  <rect class="cell" x="166" y="160" width="104" height="52" style="stroke:#38bdf8"/>
+  <text class="val" x="206" y="187" style="font-size:14">Bo</text>
+  <circle cx="248" cy="186" r="13" fill="none" stroke="#fb7185" stroke-width="2"/>
+  <text class="val" x="248" y="187" style="fill:#fb7185;font-size:13">1</text>
+  <rect class="cell" x="286" y="160" width="104" height="52" style="stroke:#38bdf8"/>
+  <text class="val" x="326" y="187" style="font-size:14">Cy</text>
+  <circle cx="368" cy="186" r="13" fill="none" stroke="#94a3b8" stroke-width="2"/>
+  <text class="val" x="368" y="187" style="fill:#94a3b8;font-size:13">4</text>
+  <rect class="cell" x="406" y="160" width="104" height="52" style="stroke:#38bdf8"/>
+  <text class="val" x="446" y="187" style="font-size:14">Di</text>
+  <circle cx="488" cy="186" r="13" fill="none" stroke="#fbbf24" stroke-width="2"/>
+  <text class="val" x="488" y="187" style="fill:#fbbf24;font-size:13">2</text>
+  <text class="lbl-l" x="536" y="188" style="fill:#94a3b8">priority (1 = most urgent)</text>
+  <text class="lbl-l" x="46" y="284" style="fill:#34d399">service order</text>
+  <g id="o0" class="oi"><rect class="cell" x="46" y="300" width="104" height="52" style="stroke:#34d399"/>
+  <text class="val" x="86" y="327" style="fill:#34d399;font-size:14">Bo</text>
+  <circle cx="128" cy="326" r="13" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="128" y="327" style="fill:#34d399;font-size:13">1</text></g>
+  <g id="o1" class="oi"><rect class="cell" x="166" y="300" width="104" height="52" style="stroke:#34d399"/>
+  <text class="val" x="206" y="327" style="fill:#34d399;font-size:14">Di</text>
+  <circle cx="248" cy="326" r="13" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="248" y="327" style="fill:#34d399;font-size:13">2</text></g>
+  <g id="o2" class="oi"><rect class="cell" x="286" y="300" width="104" height="52" style="stroke:#34d399"/>
+  <text class="val" x="326" y="327" style="fill:#34d399;font-size:14">Cy</text>
+  <circle cx="368" cy="326" r="13" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="368" y="327" style="fill:#34d399;font-size:13">4</text></g>
+  <g id="o3" class="oi"><rect class="cell" x="406" y="300" width="104" height="52" style="stroke:#34d399"/>
+  <text class="val" x="446" y="327" style="fill:#34d399;font-size:14">Ann</text>
+  <circle cx="488" cy="326" r="13" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="488" y="327" style="fill:#34d399;font-size:13">5</text></g>
+  <text class="lbl-l" x="24" y="396" style="fill:#94a3b8">backed by a heap: insert O(log n), extract-min O(log n), peek O(1)</text>
+
+</svg>

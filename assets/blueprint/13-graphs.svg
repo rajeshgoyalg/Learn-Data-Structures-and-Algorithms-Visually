@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660" width="900" height="660" role="img" aria-label="Graph - taxonomy and storage">
+  <title>Graph - taxonomy and storage</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="658.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Graph - taxonomy and storage</text>
+  <text class="sub" x="24" y="54">Nodes and edges with no rules attached - and two very different ways to write them down</text>
+  <text class="lbl-l" x="24" y="96">a graph is the most general structure here: nodes plus edges, with no constraint on shape. Every tree is a graph; almost no graph is a tree.</text>
+  <rect x="50" y="160" width="190" height="42" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="145.0" y="181.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">UNDIRECTED</text>
+  <text x="258" y="182" font-size="12" fill="#94a3b8" dominant-baseline="middle">friendship, roads both ways</text>
+  <rect x="50" y="214" width="190" height="42" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="145.0" y="235.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">DIRECTED</text>
+  <text x="258" y="236" font-size="12" fill="#94a3b8" dominant-baseline="middle">follows, dependencies, one-way streets</text>
+  <rect x="50" y="268" width="190" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="145.0" y="289.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">WEIGHTED</text>
+  <text x="258" y="290" font-size="12" fill="#94a3b8" dominant-baseline="middle">distance, cost, capacity on each edge</text>
+  <rect x="50" y="322" width="190" height="42" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="145.0" y="343.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">CYCLIC / ACYCLIC</text>
+  <text x="258" y="344" font-size="12" fill="#94a3b8" dominant-baseline="middle">a DAG has no cycle - build orders, schedules</text>
+  <text x="50" y="386" font-size="12" font-weight="700" fill="#38bdf8">TWO WAYS TO STORE THE SAME GRAPH</text>
+  <rect x="50" y="400" width="380" height="96" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="66" y="424" font-size="12" font-weight="700" fill="#fbbf24">ADJACENCY LIST</text>
+  <text x="66" y="444" font-size="11" fill="#e2e8f0">A: [B, C]   B: [D]   C: [D]   D: []</text>
+  <text x="66" y="464" font-size="11" fill="#94a3b8">space O(V+E) - the default for sparse graphs</text>
+  <text x="66" y="482" font-size="11" fill="#94a3b8">"is A next to D?" costs O(degree of A)</text>
+  <rect x="470" y="400" width="380" height="96" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="486" y="424" font-size="12" font-weight="700" fill="#fbbf24">ADJACENCY MATRIX</text>
+  <text x="486" y="444" font-size="11" fill="#e2e8f0">V x V grid of 0/1 (or weights)</text>
+  <text x="486" y="464" font-size="11" fill="#94a3b8">space O(V^2) - wasteful unless the graph is dense</text>
+  <text x="486" y="482" font-size="11" fill="#94a3b8">"is A next to D?" costs O(1)</text>
+  <text x="50" y="540" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">THE TWO TRAVERSALS</text>
+  <path d="M50 548 L850 548" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="570" font-size="12" fill="#94a3b8">BFS (queue)  - visits by distance in edges; finds the shortest unweighted path; O(V+E)</text>
+  <text x="50" y="591" font-size="12" fill="#94a3b8">DFS (stack)  - dives deep then backtracks; used for cycle detection, topological sort, components; O(V+E)</text>
+  <rect x="578" y="578" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 604 L878 604 M764 604 L764 640" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="590" y="595" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="590" y="624" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="776" y="624" font-size="10" fill="#fbbf24">SHEET 13 / 18</text>
+
+</svg>

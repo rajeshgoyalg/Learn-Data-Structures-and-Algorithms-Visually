@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" width="920" height="360" role="img" aria-label="Animation: a double ended queue accepting pushes and pops at the front and the rear">
+  <title>Animation: a double ended queue accepting pushes and pops at the front and the rear</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+#lin{opacity:0;animation:lf 7s infinite}
+#rin{opacity:0;animation:rf 7s infinite}
+  @keyframes lf{0%{opacity:0;transform:translateX(-30px)} 10%{opacity:0;transform:translateX(-30px)} 22%{opacity:1;transform:translateX(0)} 62%{opacity:1;transform:translateX(0)} 74%{opacity:0;transform:translateX(-30px)} 100%{opacity:0;transform:translateX(-30px)}}
+  @keyframes rf{0%{opacity:0;transform:translateX(30px)} 34%{opacity:0;transform:translateX(30px)} 46%{opacity:1;transform:translateX(0)} 82%{opacity:1;transform:translateX(0)} 92%{opacity:0;transform:translateX(30px)} 100%{opacity:0;transform:translateX(30px)}}
+
+  </style>
+  <rect x="0" y="0" width="920" height="360" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="920" height="360" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="918.5" height="358.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Deque - both ends open</text>
+  <text class="sub" x="24" y="54">Browser history, sliding-window maxima, work-stealing schedulers</text>
+  <text class="lbl-l" x="24" y="96">a double-ended queue: push and pop are both legal at the front and at the rear</text>
+  <rect class="cell" x="252" y="190" width="72" height="56"/><text class="val" x="288" y="219">B</text>
+  <rect class="cell" x="340" y="190" width="72" height="56"/><text class="val" x="376" y="219">C</text>
+  <rect class="cell" x="428" y="190" width="72" height="56"/><text class="val" x="464" y="219">D</text>
+  <rect class="cell" x="516" y="190" width="72" height="56"/><text class="val" x="552" y="219">E</text>
+  <g id="lin"><rect class="cell" x="164" y="190" width="72" height="56" style="stroke:#fbbf24"/><text class="val" x="200" y="219" style="fill:#fbbf24">A</text></g>
+  <g id="rin"><rect class="cell" x="604" y="190" width="72" height="56" style="stroke:#fbbf24"/><text class="val" x="640" y="219" style="fill:#fbbf24">F</text></g>
+  <path d="M68 196 L152 196" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#ara)"/>
+  <text class="lbl-l" x="56" y="180" style="fill:#fbbf24;text-anchor:start">pushFront</text>
+  <path d="M152 242 L68 242" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
+  <text class="lbl-l" x="56" y="226" style="fill:#34d399;text-anchor:start">popFront</text>
+  <path d="M776 196 L692 196" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#ara)"/>
+  <text class="lbl-l" x="688" y="180" style="fill:#fbbf24">pushBack</text>
+  <path d="M692 242 L776 242" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
+  <text class="lbl-l" x="688" y="226" style="fill:#34d399">popBack</text>
+  <text class="lbl-l" x="24" y="316" style="fill:#94a3b8">a deque is a stack and a queue at the same time - all four operations are O(1)</text>
+
+</svg>

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 488" width="820" height="488" role="img" aria-label="Animation: inserting a value into a binary search tree by walking to an empty slot">
+  <title>Animation: inserting a value into a binary search tree by walking to an empty slot</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 9s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 9s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 9s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 9s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="820" height="488" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="488" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="486.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Binary search tree - insertion</text>
+  <text class="sub" x="24" y="54">Walk until you fall off the tree, then plant yourself there</text>
+  <g id="fr0" class="frm">
+    <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="249.2" y1="274.7" x2="203.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="280.8" y1="274.7" x2="326.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="559.2" y1="274.7" x2="513.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="590.8" y1="274.7" x2="636.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="176.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="420.0" y="177.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">50</text></g>
+    <g><circle cx="265.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="265.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="575.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="575.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">70</text></g>
+    <g><circle cx="187.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="187.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="342.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="342.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">40</text></g>
+    <g><circle cx="497.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="497.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">60</text></g>
+    <g><circle cx="652.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="652.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">80</text></g>
+    <text class="step" x="24" y="128">insert 45: at the root 45 &lt; 50  ->  go left</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="249.2" y1="274.7" x2="203.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="280.8" y1="274.7" x2="326.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="559.2" y1="274.7" x2="513.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="590.8" y1="274.7" x2="636.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="176.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="177.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">50</text></g>
+    <g><circle cx="265.0" cy="258.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="265.0" y="259.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="575.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="575.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">70</text></g>
+    <g><circle cx="187.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="187.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="342.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="342.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">40</text></g>
+    <g><circle cx="497.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="497.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">60</text></g>
+    <g><circle cx="652.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="652.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">80</text></g>
+    <text class="step" x="24" y="128">45 &gt; 30  ->  go right</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="249.2" y1="274.7" x2="203.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="280.8" y1="274.7" x2="326.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="559.2" y1="274.7" x2="513.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="590.8" y1="274.7" x2="636.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="176.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="177.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">50</text></g>
+    <g><circle cx="265.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="265.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="575.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="575.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">70</text></g>
+    <g><circle cx="187.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="187.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="342.5" cy="340.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="342.5" y="341.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">40</text></g>
+    <g><circle cx="497.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="497.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">60</text></g>
+    <g><circle cx="652.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="652.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">80</text></g>
+    <text class="step" x="24" y="128">45 &gt; 40  ->  go right, and that slot is empty</text>
+  </g>
+  <g id="fr3" class="frm">
+    <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="249.2" y1="274.7" x2="203.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="280.8" y1="274.7" x2="326.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="559.2" y1="274.7" x2="513.3" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="590.8" y1="274.7" x2="636.7" y2="323.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="352.3" y1="360.8" x2="371.4" y2="401.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="176.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="177.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">50</text></g>
+    <g><circle cx="265.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="265.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="575.0" cy="258.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="575.0" y="259.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">70</text></g>
+    <g><circle cx="187.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="187.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="342.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="342.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">40</text></g>
+    <g><circle cx="497.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="497.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">60</text></g>
+    <g><circle cx="652.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="652.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">80</text></g>
+    <g><circle cx="381.2" cy="422.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="381.2" y="423.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">45</text></g>
+    <text class="step" x="24" y="128">attach 45 as the right child of 40. Insertion is just a failed search that stops and plants a node.</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">a new value never displaces an existing one - it walks down until it falls off the tree, and that empty slot is its home</text>
+  <text class="lbl-l" x="24" y="456" style="fill:#94a3b8">insert O(log n) when balanced. In-order traversal of any BST always yields the values in sorted order.</text>
+
+</svg>

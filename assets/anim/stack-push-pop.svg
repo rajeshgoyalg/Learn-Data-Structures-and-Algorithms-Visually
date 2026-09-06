@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" role="img" aria-label="Animation: pushing two plates onto a stack and popping them back off, last in first out">
+  <title>Animation: pushing two plates onto a stack and popping them back off, last in first out</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  .pl{opacity:0}
+  #p0{animation:pl0 9s infinite}
+  #p1{animation:pl1 9s infinite}
+  #tp{animation:top 9s infinite}
+    @keyframes pl0{0%{opacity:0;transform:translateY(-90px)} 6%{opacity:0;transform:translateY(-90px)} 14%{opacity:1;transform:translateY(0)} 76%{opacity:1;transform:translateY(0)} 84%{opacity:0;transform:translateY(-90px)} 100%{opacity:0;transform:translateY(-90px)}}
+  @keyframes pl1{0%{opacity:0;transform:translateY(-90px)} 26%{opacity:0;transform:translateY(-90px)} 34%{opacity:1;transform:translateY(0)} 56%{opacity:1;transform:translateY(0)} 64%{opacity:0;transform:translateY(-90px)} 100%{opacity:0;transform:translateY(-90px)}}
+  @keyframes top{0%{transform:translateY(0)} 10%{transform:translateY(0)} 16%{transform:translateY(-46px)} 30%{transform:translateY(-46px)} 36%{transform:translateY(-92px)} 58%{transform:translateY(-92px)} 64%{transform:translateY(-46px)} 80%{transform:translateY(-46px)} 86%{transform:translateY(0)} 100%{transform:translateY(0)}}
+  @keyframes opl{0%{opacity:0} 6%{opacity:1} 24%{opacity:1} 25%{opacity:0} 100%{opacity:0}}
+#cap0{animation:cp0 9s infinite}
+  @keyframes cp0{0%{opacity:0} 7%{opacity:0} 8%{opacity:1} 24%{opacity:1} 25%{opacity:0} 100%{opacity:0}}
+#cap1{animation:cp1 9s infinite}
+  @keyframes cp1{0%{opacity:0} 27%{opacity:0} 28%{opacity:1} 52%{opacity:1} 53%{opacity:0} 100%{opacity:0}}
+#cap2{animation:cp2 9s infinite}
+  @keyframes cp2{0%{opacity:0} 57%{opacity:0} 58%{opacity:1} 76%{opacity:1} 77%{opacity:0} 100%{opacity:0}}
+#cap3{animation:cp3 9s infinite}
+  @keyframes cp3{0%{opacity:0} 79%{opacity:0} 80%{opacity:1} 96%{opacity:1} 97%{opacity:0} 100%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="420" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="420" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="418.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Stack - push and pop</text>
+  <text class="sub" x="24" y="54">LIFO: undo history, the call stack, matching brackets</text>
+  <text class="lbl-l" x="24" y="96">a pile of plates: you can only touch the top one - Last In, First Out</text>
+  <path d="M250 120 L250 358 L440 358 L440 120" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.85"/>
+  <text class="lbl" x="345.0" y="106" style="fill:#94a3b8">open at the top only</text>
+  <g><rect class="cell" x="262" y="304" width="166" height="40" style="stroke:#38bdf8"/><text class="val" x="345.0" y="325.0">A</text></g>
+  <g><rect class="cell" x="262" y="258" width="166" height="40" style="stroke:#38bdf8"/><text class="val" x="345.0" y="279.0">B</text></g>
+  <g><rect class="cell" x="262" y="212" width="166" height="40" style="stroke:#38bdf8"/><text class="val" x="345.0" y="233.0">C</text></g>
+  <g id="p0" class="pl"><rect class="cell" x="262" y="166" width="166" height="40" style="stroke:#fbbf24"/><text class="val" x="345.0" y="187.0" style="fill:#fbbf24">D</text></g>
+  <g id="p1" class="pl"><rect class="cell" x="262" y="120" width="166" height="40" style="stroke:#fbbf24"/><text class="val" x="345.0" y="141.0" style="fill:#fbbf24">E</text></g>
+  <g id="tp"><path d="M492 232 L452 232" stroke="#34d399" stroke-width="2.2" fill="none" marker-end="url(#arg)"/><text class="lbl-l" x="498" y="232" style="fill:#34d399">top</text></g>
+  <rect x="24" y="144" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <text class="lbl-l" x="41" y="150">resting</text>
+  <rect x="94.80000000000001" y="144" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="111.80000000000001" y="150">moving</text>
+  <rect x="159.20000000000002" y="144" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="176.20000000000002" y="150">top pointer</text>
+  <text id="cap0" class="step cap" x="24" y="396">push D</text>
+  <text id="cap1" class="step cap" x="24" y="396">push E</text>
+  <text id="cap2" class="step cap" x="24" y="396">pop -> E</text>
+  <text id="cap3" class="step cap" x="24" y="396">pop -> D</text>
+  <text class="lbl-l" x="24" y="426" style="fill:#94a3b8">push and pop both touch one end: O(1)</text>
+
+</svg>

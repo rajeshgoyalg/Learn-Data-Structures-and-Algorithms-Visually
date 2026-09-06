@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 660" width="940" height="660" role="img" aria-label="A map of all eighteen modules grouped into linear, restricted-access, keyed and hierarchical families">
+  <title>A map of all eighteen modules grouped into linear, restricted-access, keyed and hierarchical families</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="940" height="660" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="940" height="660" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="938.5" height="658.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">The whole course on one sheet</text>
+  <text class="sub" x="24" y="54">Four structure families, one algorithms row, eighteen modules</text>
+  <text class="lbl-l" x="24" y="96">the whole course on one sheet - eighteen modules, four families, one recommended path through them</text>
+  <text x="60" y="176" font-size="12" font-weight="700" fill="#38bdf8">LINEAR</text>
+  <path d="M60 184 L240 184" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <rect x="60" y="196" width="180" height="36" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="150.0" y="214.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">02 Arrays</text>
+  <rect x="60" y="242" width="180" height="36" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="150.0" y="260.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">03 Linked lists</text>
+  <rect x="60" y="288" width="180" height="36" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="150.0" y="306.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">04 Doubly / circular</text>
+  <text x="285" y="176" font-size="12" font-weight="700" fill="#fbbf24">RESTRICTED ACCESS</text>
+  <path d="M285 184 L465 184" stroke="#fbbf24" stroke-width="1" opacity="0.45"/>
+  <rect x="285" y="196" width="180" height="36" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="375.0" y="214.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">05 Stacks</text>
+  <rect x="285" y="242" width="180" height="36" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="375.0" y="260.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">06 Queues</text>
+  <text x="510" y="176" font-size="12" font-weight="700" fill="#34d399">KEYED</text>
+  <path d="M510 184 L690 184" stroke="#34d399" stroke-width="1" opacity="0.45"/>
+  <rect x="510" y="196" width="180" height="36" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="600.0" y="214.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">07 Hash tables</text>
+  <rect x="510" y="242" width="180" height="36" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="600.0" y="260.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">08 Sets</text>
+  <text x="735" y="176" font-size="12" font-weight="700" fill="#c084fc">HIERARCHICAL</text>
+  <path d="M735 184 L915 184" stroke="#c084fc" stroke-width="1" opacity="0.45"/>
+  <rect x="735" y="196" width="180" height="36" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="825.0" y="214.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">09 Heaps</text>
+  <rect x="735" y="242" width="180" height="36" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="825.0" y="260.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">10 BSTs</text>
+  <rect x="735" y="288" width="180" height="36" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="825.0" y="306.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">11 Balanced trees</text>
+  <rect x="735" y="334" width="180" height="36" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="825.0" y="352.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">12 Tries</text>
+  <rect x="735" y="380" width="180" height="36" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="825.0" y="398.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">13 Graphs</text>
+  <text x="60" y="416" font-size="12" font-weight="700" fill="#fb7185">ALGORITHMS &amp; PARADIGMS</text>
+  <path d="M60 424 L880 424" stroke="#fb7185" stroke-width="1" opacity="0.45"/>
+  <rect x="60" y="436" width="152" height="38" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="136.0" y="455.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">14 Searching</text>
+  <rect x="228" y="436" width="152" height="38" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="304.0" y="455.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">15 Sorting</text>
+  <rect x="396" y="436" width="152" height="38" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="472.0" y="455.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">16 Recursion</text>
+  <rect x="564" y="436" width="152" height="38" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="640.0" y="455.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">17 Paradigms</text>
+  <rect x="732" y="436" width="152" height="38" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="808.0" y="455.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">18 Dijkstra</text>
+  <rect x="60" y="506" width="300" height="38" rx="6" fill="#0f2438" stroke="#e2e8f0" stroke-width="1.8"/>
+  <text x="210.0" y="525.0" font-size="12" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">01 Foundations - start here</text>
+  <path d="M370 525 L410 525" stroke="#94a3b8" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
+  <text x="424" y="525" font-size="12" fill="#94a3b8" dominant-baseline="middle">then left to right across the families above, then the algorithms row</text>
+
+</svg>

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 500" width="780" height="500" role="img" aria-label="Animation: a circular queue rear pointer advancing past the last slot and wrapping round to index zero">
+  <title>Animation: a circular queue rear pointer advancing past the last slot and wrapping round to index zero</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.cqv{opacity:0}
+#rear{animation:spin 8s infinite;transform-origin:390px 258px}
+  @keyframes spin{0%{transform:rotate(180deg)} 10%{transform:rotate(180deg)} 26%{transform:rotate(225deg)} 42%{transform:rotate(270deg)} 58%{transform:rotate(315deg)} 74%{transform:rotate(360deg)} 94%{transform:rotate(360deg)} 99%{transform:rotate(180deg)}}
+#cs5{animation:cf5 8s infinite}
+#ct5{animation:cv5 8s infinite}
+  @keyframes cf5{0%{stroke:#94a3b8;stroke-dasharray:4 4} 25%{stroke:#94a3b8;stroke-dasharray:4 4} 26%{stroke:#fbbf24;stroke-dasharray:0} 94%{stroke:#fbbf24;stroke-dasharray:0} 99%{stroke:#94a3b8;stroke-dasharray:4 4}}
+  @keyframes cv5{0%{opacity:0} 25%{opacity:0} 26%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+#cs6{animation:cf6 8s infinite}
+#ct6{animation:cv6 8s infinite}
+  @keyframes cf6{0%{stroke:#94a3b8;stroke-dasharray:4 4} 41%{stroke:#94a3b8;stroke-dasharray:4 4} 42%{stroke:#fbbf24;stroke-dasharray:0} 94%{stroke:#fbbf24;stroke-dasharray:0} 99%{stroke:#94a3b8;stroke-dasharray:4 4}}
+  @keyframes cv6{0%{opacity:0} 41%{opacity:0} 42%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+#cs7{animation:cf7 8s infinite}
+#ct7{animation:cv7 8s infinite}
+  @keyframes cf7{0%{stroke:#94a3b8;stroke-dasharray:4 4} 57%{stroke:#94a3b8;stroke-dasharray:4 4} 58%{stroke:#fbbf24;stroke-dasharray:0} 94%{stroke:#fbbf24;stroke-dasharray:0} 99%{stroke:#94a3b8;stroke-dasharray:4 4}}
+  @keyframes cv7{0%{opacity:0} 57%{opacity:0} 58%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+#cs0{animation:cf0 8s infinite}
+#ct0{animation:cv0 8s infinite}
+  @keyframes cf0{0%{stroke:#94a3b8;stroke-dasharray:4 4} 73%{stroke:#94a3b8;stroke-dasharray:4 4} 74%{stroke:#fbbf24;stroke-dasharray:0} 94%{stroke:#fbbf24;stroke-dasharray:0} 99%{stroke:#94a3b8;stroke-dasharray:4 4}}
+  @keyframes cv0{0%{opacity:0} 73%{opacity:0} 74%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+#wrap{opacity:0;animation:wf 8s infinite}
+  @keyframes wf{0%{opacity:0} 66%{opacity:0} 74%{opacity:1} 92%{opacity:1} 98%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="780" height="500" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="780" height="500" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="778.5" height="498.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Circular queue - the wrap</text>
+  <text class="sub" x="24" y="54">A linear queue leaks capacity at the front; a ring hands it back</text>
+  <text class="lbl-l" x="24" y="96">a fixed ring of slots: when rear reaches the last slot it wraps back to 0, so space freed at the front is reused</text>
+  <circle cx="390" cy="258" r="112" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.25" stroke-dasharray="4 7"/>
+  <rect id="cs0" class="cq" x="363.0" y="124.0" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
+  <text id="ct0" class="cqv val" x="390.0" y="147.0" style="fill:#fbbf24">I</text>
+  <text class="idx" x="390.0" y="88.0" style="font-size:12">0</text>
+  <rect id="cs1" class="cq" x="442.2" y="156.8" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
+  <text class="idx" x="510.2" y="137.8" style="font-size:12">1</text>
+  <rect x="475.0" y="236.0" width="54" height="44" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="502.0" y="259.0">C</text>
+  <text class="idx" x="560.0" y="258.0" style="font-size:12">2</text>
+  <rect x="442.2" y="315.2" width="54" height="44" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="469.2" y="338.2">D</text>
+  <text class="idx" x="510.2" y="378.2" style="font-size:12">3</text>
+  <rect x="363.0" y="348.0" width="54" height="44" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <text class="val" x="390.0" y="371.0">E</text>
+  <text class="idx" x="390.0" y="428.0" style="font-size:12">4</text>
+  <rect id="cs5" class="cq" x="283.8" y="315.2" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
+  <text id="ct5" class="cqv val" x="310.8" y="338.2" style="fill:#fbbf24">F</text>
+  <text class="idx" x="269.8" y="378.2" style="font-size:12">5</text>
+  <rect id="cs6" class="cq" x="251.0" y="236.0" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
+  <text id="ct6" class="cqv val" x="278.0" y="259.0" style="fill:#fbbf24">G</text>
+  <text class="idx" x="220.0" y="258.0" style="font-size:12">6</text>
+  <rect id="cs7" class="cq" x="283.8" y="156.8" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
+  <text id="ct7" class="cqv val" x="310.8" y="179.8" style="fill:#fbbf24">H</text>
+  <text class="idx" x="269.8" y="137.8" style="font-size:12">7</text>
+  <g id="rear"><path d="M390 212 L390 180" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#ara)"/></g>
+  <text class="lbl" x="390" y="244" style="fill:#94a3b8">capacity 8</text>
+  <text class="lbl" x="390" y="264" style="fill:#94a3b8">never resized</text>
+  <text id="wrap" class="step" x="390" y="292" style="text-anchor:middle">rear: 7 -&gt; 0 (wrap)</text>
+  <rect x="24" y="464" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="41" y="470">already queued</text>
+  <rect x="139.60000000000002" y="464" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="156.60000000000002" y="470">rear pointer / newly filled</text>
+  <rect x="338.40000000000003" y="464" width="11" height="11" rx="2" fill="#94a3b8"/>
+  <text class="lbl-l" x="355.40000000000003" y="470">free slot</text>
+
+</svg>

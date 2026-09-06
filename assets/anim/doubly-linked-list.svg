@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" width="780" height="340" role="img" aria-label="Animation: a cursor walking a doubly linked list forwards and then backwards">
+  <title>Animation: a cursor walking a doubly linked list forwards and then backwards</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+    <marker id="arv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#c084fc"/></marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+#cur2{animation:bidi 8s infinite}
+  @keyframes bidi{0%{transform:translateX(0)} 6%{transform:translateX(0)} 18%{transform:translateX(150px)} 30%{transform:translateX(300px)} 42%{transform:translateX(450px)} 52%{transform:translateX(450px)} 64%{transform:translateX(300px)} 76%{transform:translateX(150px)} 88%{transform:translateX(0)} 100%{transform:translateX(0)}}
+
+  </style>
+  <rect x="0" y="0" width="780" height="340" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="780" height="340" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="778.5" height="338.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Doubly linked list</text>
+  <text class="sub" x="24" y="54">Two pointers per node buys you reverse traversal and O(1) deletion by reference</text>
+  <text class="lbl-l" x="24" y="96">every node stores prev and next, so the walk works in both directions - at the cost of one extra pointer per node</text>
+  <g>
+    <rect class="cell" x="60" y="170" width="116" height="54"/>
+    <line x1="90" y1="170" x2="90" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <line x1="146" y1="170" x2="146" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="75" cy="197.0" r="4" fill="#c084fc"/>
+    <text class="val" x="118.0" y="198.0">A</text>
+    <circle cx="161" cy="197.0" r="4" fill="#38bdf8"/>
+  </g>
+  <path d="M176 186 L206 186" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <path d="M208 210 L180 210" stroke="#c084fc" stroke-width="1.8" fill="none" marker-end="url(#arv)"/>
+  <g>
+    <rect class="cell" x="210" y="170" width="116" height="54"/>
+    <line x1="240" y1="170" x2="240" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <line x1="296" y1="170" x2="296" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="225" cy="197.0" r="4" fill="#c084fc"/>
+    <text class="val" x="268.0" y="198.0">B</text>
+    <circle cx="311" cy="197.0" r="4" fill="#38bdf8"/>
+  </g>
+  <path d="M326 186 L356 186" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <path d="M358 210 L330 210" stroke="#c084fc" stroke-width="1.8" fill="none" marker-end="url(#arv)"/>
+  <g>
+    <rect class="cell" x="360" y="170" width="116" height="54"/>
+    <line x1="390" y1="170" x2="390" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <line x1="446" y1="170" x2="446" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="375" cy="197.0" r="4" fill="#c084fc"/>
+    <text class="val" x="418.0" y="198.0">C</text>
+    <circle cx="461" cy="197.0" r="4" fill="#38bdf8"/>
+  </g>
+  <path d="M476 186 L506 186" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <path d="M508 210 L480 210" stroke="#c084fc" stroke-width="1.8" fill="none" marker-end="url(#arv)"/>
+  <g>
+    <rect class="cell" x="510" y="170" width="116" height="54"/>
+    <line x1="540" y1="170" x2="540" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <line x1="596" y1="170" x2="596" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <circle cx="525" cy="197.0" r="4" fill="#c084fc"/>
+    <text class="val" x="568.0" y="198.0">D</text>
+    <circle cx="611" cy="197.0" r="4" fill="#38bdf8"/>
+  </g>
+  <text class="lbl-l" x="30" y="186" style="fill:#94a3b8">null</text>
+  <text class="lbl-l" x="652" y="186" style="fill:#94a3b8">null</text>
+  <rect id="cur2" x="55" y="165" width="126" height="64" rx="7" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+  <rect x="24" y="286" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <text class="lbl-l" x="41" y="292">next</text>
+  <rect x="75.6" y="286" width="11" height="11" rx="2" fill="#c084fc"/>
+  <text class="lbl-l" x="92.6" y="292">prev</text>
+  <rect x="127.19999999999999" y="286" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="144.2" y="292">cursor</text>
+
+</svg>

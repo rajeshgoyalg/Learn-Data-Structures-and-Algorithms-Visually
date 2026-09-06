@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 600" width="880" height="600" role="img" aria-label="Trie - anatomy">
+  <title>Trie - anatomy</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="600" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="600" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Trie - anatomy</text>
+  <text class="sub" x="24" y="54">Letters on the edges, words along the paths</text>
+  <text class="lbl-l" x="24" y="96">a trie moves the information from the nodes onto the edges - the path spells the word, so shared prefixes are stored once</text>
+  <line x1="130.9" y1="243.0" x2="209.1" y2="217.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="170" y="222" font-size="12" fill="#fbbf24" text-anchor="middle">c</text>
+  <line x1="252.0" y1="210.0" x2="318.0" y2="210.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="285" y="202" font-size="12" fill="#fbbf24" text-anchor="middle">a</text>
+  <line x1="361.0" y1="203.5" x2="429.0" y2="182.5" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="395" y="185" font-size="12" fill="#fbbf24" text-anchor="middle">t</text>
+  <line x1="360.9" y1="216.8" x2="429.1" y2="239.2" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="395" y="220" font-size="12" fill="#fbbf24" text-anchor="middle">r</text>
+  <line x1="129.0" y1="261.1" x2="211.0" y2="308.9" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="170" y="277" font-size="12" fill="#fbbf24" text-anchor="middle">d</text>
+  <line x1="252.0" y1="320.0" x2="318.0" y2="320.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="285" y="312" font-size="12" fill="#fbbf24" text-anchor="middle">o</text>
+  <line x1="362.0" y1="320.0" x2="428.0" y2="320.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.7"/>
+  <text x="395" y="312" font-size="12" fill="#fbbf24" text-anchor="middle">g</text>
+  <circle cx="110" cy="250" r="22" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/>
+  <text x="110" y="251" font-size="13" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text>
+  <circle cx="230" cy="210" r="22" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/>
+  <text x="230" y="211" font-size="13" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">c</text>
+  <circle cx="340" cy="210" r="22" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/>
+  <text x="340" y="211" font-size="13" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">a</text>
+  <circle cx="450" cy="176" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <circle cx="450" cy="176" r="27" fill="none" stroke="#34d399" stroke-width="1.2"/>
+  <text x="450" y="177" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">t</text>
+  <circle cx="450" cy="246" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <circle cx="450" cy="246" r="27" fill="none" stroke="#34d399" stroke-width="1.2"/>
+  <text x="450" y="247" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">r</text>
+  <circle cx="230" cy="320" r="22" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/>
+  <text x="230" y="321" font-size="13" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">d</text>
+  <circle cx="340" cy="320" r="22" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/>
+  <text x="340" y="321" font-size="13" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">o</text>
+  <circle cx="450" cy="320" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+  <circle cx="450" cy="320" r="27" fill="none" stroke="#34d399" stroke-width="1.2"/>
+  <text x="450" y="321" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">g</text>
+  <text x="110" y="212" font-size="11" fill="#94a3b8" text-anchor="middle">root</text>
+  <text x="540" y="180" font-size="12" fill="#34d399">cat</text>
+  <text x="540" y="250" font-size="12" fill="#34d399">car</text>
+  <text x="540" y="324" font-size="12" fill="#34d399">dog</text>
+  <text x="620" y="200" font-size="11" fill="#94a3b8">double ring = end of a real word,</text>
+  <text x="620" y="218" font-size="11" fill="#94a3b8">so "ca" is a prefix but not a word</text>
+  <text x="50" y="400" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">COSTS</text>
+  <path d="M50 408 L850 408" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="430" font-size="12" fill="#94a3b8">search / insert / delete   O(L) in the length of the key - independent of how many words are stored</text>
+  <text x="50" y="451" font-size="12" fill="#94a3b8">listing every word with a given prefix is just a walk of that subtree - this is autocomplete</text>
+  <text x="50" y="472" font-size="12" fill="#94a3b8">memory is the price: one node per character position, per branch</text>
+  <text x="50" y="500" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHEN TO REACH FOR ONE</text>
+  <path d="M50 508 L850 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="530" font-size="12" fill="#94a3b8">autocomplete, spell-checking, IP routing tables, dictionary and word-game engines</text>
+  <text x="50" y="551" font-size="12" fill="#94a3b8">if you only ever need exact-match lookup and never prefixes, a hash table is smaller and faster</text>
+  <rect x="558" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 544 L858 544 M744 544 L744 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="564" font-size="10" fill="#fbbf24">SHEET 12 / 18</text>
+
+</svg>

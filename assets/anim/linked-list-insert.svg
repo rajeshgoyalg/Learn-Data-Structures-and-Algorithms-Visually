@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" role="img" aria-label="Animation: a new node is spliced into a linked list by rewriting two next pointers">
+  <title>Animation: a new node is spliced into a linked list by rewriting two next pointers</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  #newn{opacity:0;animation:pop 8s infinite}
+  #l1{opacity:0;animation:f1 8s infinite}
+  #l2{opacity:0;animation:f2 8s infinite}
+  #s1{opacity:0;animation:f1 8s infinite}
+  #s2{opacity:0;animation:f2 8s infinite}
+  #s3{opacity:0;animation:f3 8s infinite}
+  #oldlink{animation:cut 8s infinite}
+  @keyframes pop{0%{opacity:0} 12%{opacity:0} 20%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+  @keyframes f1{0%{opacity:0} 28%{opacity:0} 36%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+  @keyframes f2{0%{opacity:0} 48%{opacity:0} 56%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+  @keyframes f3{0%{opacity:0} 62%{opacity:0} 70%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+  @keyframes cut{0%{opacity:1;stroke:#38bdf8} 44%{opacity:1;stroke:#38bdf8} 52%{opacity:1;stroke:#fb7185} 60%{opacity:0} 94%{opacity:0} 99%{opacity:1;stroke:#38bdf8}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="400" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="400" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="398.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Singly linked list - insertion</text>
+  <text class="sub" x="24" y="54">Inserting is re-pointing, not re-packing</text>
+  <text class="lbl-l" x="24" y="96">splice C between B and D - the neighbours never move, only two pointers are rewritten</text>
+  <g>
+    <rect class="cell" x="70" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="142" y1="170" x2="142" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="106.0" y="198.0" style="fill:#e2e8f0">A</text>
+    <circle cx="160.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M178 197.0 L214 197.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="218" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="290" y1="170" x2="290" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="254.0" y="198.0" style="fill:#e2e8f0">B</text>
+    <circle cx="308.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <g>
+    <rect class="cell" x="366" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="438" y1="170" x2="438" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="402.0" y="198.0" style="fill:#e2e8f0">D</text>
+    <circle cx="456.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M474 197.0 L510 197.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="514" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="586" y1="170" x2="586" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="550.0" y="198.0" style="fill:#e2e8f0">E</text>
+    <circle cx="604.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path id="oldlink" d="M326 197.0 L362 197.0" stroke="#fb7185" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g id="newn">
+    <rect class="cell" x="286.0" y="278" width="108" height="54" style="stroke:#fbbf24"/>
+    <line x1="358.0" y1="278" x2="358.0" y2="332" stroke="#fbbf24" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="322.0" y="306.0" style="fill:#fbbf24">C</text>
+    <circle cx="376.0" cy="305.0" r="4.5" fill="#fbbf24"/>
+  </g>
+  <path id="l1" d="M376.0 278 C 394.0 238, 336 290, 362 218" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
+  <path id="l2" d="M308.0 224 C 326 248, 256.0 288, 282.0 305.0" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
+  <text id="s1" class="step" x="434.0" y="294">1. C.next = D</text>
+  <text id="s2" class="step" x="434.0" y="316">2. B.next = C</text>
+  <text id="s3" class="step" x="24" y="374" style="fill:#34d399">2 writes. No shifting. O(1) once you hold B.</text>
+
+</svg>

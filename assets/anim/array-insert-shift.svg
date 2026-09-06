@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="720" height="330" role="img" aria-label="Animation: inserting into the middle of an array shifts every later element right, O(n)">
+  <title>Animation: inserting into the middle of an array shifts every later element right, O(n)</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  .shift{animation:shiftr 6s infinite}
+  #newv{animation:drop 6s infinite}
+  #drop{opacity:0;animation:dropa 6s infinite}
+  #cost{opacity:0;animation:costa 6s infinite}
+  @keyframes shiftr{0%{transform:translateX(0)} 26%{transform:translateX(0)} 48%{transform:translateX(82px)} 88%{transform:translateX(82px)} 96%{transform:translateX(0)}}
+  @keyframes drop{0%{transform:translateY(0);opacity:1} 50%{transform:translateY(0);opacity:1} 66%{transform:translateY(96px);opacity:1} 90%{transform:translateY(96px);opacity:1} 96%{transform:translateY(0);opacity:0}}
+  @keyframes dropa{0%{opacity:0} 48%{opacity:0} 52%{opacity:1} 62%{opacity:1} 64%{opacity:0}}
+  @keyframes costa{0%{opacity:0} 44%{opacity:0} 52%{opacity:1} 90%{opacity:1} 96%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="330" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="330" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="328.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Array - insert in the middle</text>
+  <text class="sub" x="24" y="54">The slot is cheap; making room for it is not</text>
+  <g id="s0" class="fixed">
+    <rect class="cell" x="60" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="91" y="189">10</text>
+  </g>
+  <text class="idx" x="91" y="232">0</text>
+  <g id="s1" class="fixed">
+    <rect class="cell" x="142" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="173" y="189">20</text>
+  </g>
+  <text class="idx" x="173" y="232">1</text>
+  <g id="s2" class="shift">
+    <rect class="cell" x="224" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="255" y="189">30</text>
+  </g>
+  <text class="idx" x="255" y="232">2</text>
+  <g id="s3" class="shift">
+    <rect class="cell" x="306" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="337" y="189">40</text>
+  </g>
+  <text class="idx" x="337" y="232">3</text>
+  <g id="s4" class="shift">
+    <rect class="cell" x="388" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="419" y="189">50</text>
+  </g>
+  <text class="idx" x="419" y="232">4</text>
+  <g id="s5" class="shift">
+    <rect class="cell" x="470" y="160" width="62" height="56" style="stroke:#38bdf8"/>
+    <text class="val" x="501" y="189">60</text>
+  </g>
+  <text class="idx" x="501" y="232">5</text>
+  <g id="s6" class="fixed">
+    <rect class="cell" x="552" y="160" width="62" height="56" style="stroke:#94a3b8;stroke-dasharray:4 4"/>
+    <text class="val" x="583" y="189"></text>
+  </g>
+  <text class="idx" x="583" y="232">6</text>
+
+  <g id="newv">
+    <rect class="cell" x="224" y="64" width="62" height="56" style="stroke:#fbbf24"/>
+    <text class="val" x="255" y="93" style="fill:#fbbf24">25</text>
+  </g>
+  <path id="drop" d="M255 126 L255 150" stroke="#fbbf24" stroke-width="2.5" fill="none" marker-end="url(#ara)"/>
+  <text class="lbl-l" x="24" y="96">insert 25 at index 2  ->  every element to the right shifts one slot: O(n)</text>
+  <text id="cost" class="step" x="374" y="264">4 elements moved</text>
+
+</svg>

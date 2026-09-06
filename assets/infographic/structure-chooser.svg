@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 700" width="940" height="700" role="img" aria-label="Decision infographic mapping common programming questions to the data structure that answers them">
+  <title>Decision infographic mapping common programming questions to the data structure that answers them</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="940" height="700" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="940" height="700" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="938.5" height="698.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Which structure?</text>
+  <text class="sub" x="24" y="54">Nine questions, nine answers - the decision table before the theory</text>
+  <text class="lbl-l" x="24" y="96">start from the question your code actually asks most often - that single question picks the structure</text>
+  <text x="50" y="176" font-size="12" fill="#e2e8f0">"is this value present?"</text>
+  <path d="M410 172 L444 172" stroke="#34d399" stroke-width="1.6" fill="none" marker-end="url(#arg)" opacity="0.8"/>
+  <rect x="456" y="156" width="210" height="32" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="561.0" y="172.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">HASH SET</text>
+  <text x="684" y="174" font-size="11" fill="#94a3b8">O(1) membership, no order</text>
+  <text x="50" y="224" font-size="12" fill="#e2e8f0">"what is the value for this key?"</text>
+  <path d="M410 220 L444 220" stroke="#34d399" stroke-width="1.6" fill="none" marker-end="url(#arg)" opacity="0.8"/>
+  <rect x="456" y="204" width="210" height="32" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="561.0" y="220.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">HASH MAP</text>
+  <text x="684" y="222" font-size="11" fill="#94a3b8">O(1) lookup, no order</text>
+  <text x="50" y="272" font-size="12" fill="#e2e8f0">"give me these keys in sorted order"</text>
+  <path d="M410 268 L444 268" stroke="#38bdf8" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="252" width="210" height="32" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="561.0" y="268.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">BALANCED BST</text>
+  <text x="684" y="270" font-size="11" fill="#94a3b8">O(log n) ops + ordered traversal</text>
+  <text x="50" y="320" font-size="12" fill="#e2e8f0">"what is the most urgent item?"</text>
+  <path d="M410 316 L444 316" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="300" width="210" height="32" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="561.0" y="316.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">HEAP / PRIORITY QUEUE</text>
+  <text x="684" y="318" font-size="11" fill="#94a3b8">O(1) peek, O(log n) extract</text>
+  <text x="50" y="368" font-size="12" fill="#e2e8f0">"who is next in line?"</text>
+  <path d="M410 364 L444 364" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="348" width="210" height="32" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="561.0" y="364.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">QUEUE</text>
+  <text x="684" y="366" font-size="11" fill="#94a3b8">FIFO, O(1) both ends</text>
+  <text x="50" y="416" font-size="12" fill="#e2e8f0">"what did I do last?"</text>
+  <path d="M410 412 L444 412" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="396" width="210" height="32" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="561.0" y="412.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">STACK</text>
+  <text x="684" y="414" font-size="11" fill="#94a3b8">LIFO, O(1)</text>
+  <text x="50" y="464" font-size="12" fill="#e2e8f0">"which words start with these letters?"</text>
+  <path d="M410 460 L444 460" stroke="#c084fc" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="444" width="210" height="32" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="561.0" y="460.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">TRIE</text>
+  <text x="684" y="462" font-size="11" fill="#94a3b8">O(L) prefix walk</text>
+  <text x="50" y="512" font-size="12" fill="#e2e8f0">"how are these things connected?"</text>
+  <path d="M410 508 L444 508" stroke="#fb7185" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="492" width="210" height="32" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="561.0" y="508.0" font-size="12" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">GRAPH + BFS / DFS</text>
+  <text x="684" y="510" font-size="11" fill="#94a3b8">O(V+E) traversal</text>
+  <text x="50" y="560" font-size="12" fill="#e2e8f0">"give me item number 7"</text>
+  <path d="M410 556 L444 556" stroke="#38bdf8" stroke-width="1.6" fill="none" marker-end="url(#ara)" opacity="0.8"/>
+  <rect x="456" y="540" width="210" height="32" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="561.0" y="556.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">ARRAY</text>
+  <text x="684" y="558" font-size="11" fill="#94a3b8">O(1) index, O(n) reshape</text>
+  <text x="50" y="626" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHEN TWO FIT</text>
+  <path d="M50 634 L890 634" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="656" font-size="12" fill="#94a3b8">prefer the one whose worst case you can live with, not the one with the better average</text>
+
+</svg>

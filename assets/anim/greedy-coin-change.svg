@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 416" width="720" height="416" role="img" aria-label="Animation: a greedy algorithm making change by repeatedly taking the largest coin that fits">
+  <title>Animation: a greedy algorithm making change by repeatedly taking the largest coin that fits</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 10s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 10s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 10s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 10s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="416" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="416" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="414.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Greedy - coin change</text>
+  <text class="sub" x="24" y="54">Take the biggest bite that fits, and never look back</text>
+  <g id="fr0" class="frm">
+    <text x="24" y="150" font-size="12" fill="#94a3b8">available coins</text>
+    <circle cx="94" cy="210" r="30" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="94" y="211" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="190" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="190" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">10</text>
+    <circle cx="286" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="286" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">5</text>
+    <circle cx="382" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="382" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">1</text>
+    <text x="470" y="200" font-size="13" fill="#94a3b8">remaining to make</text>
+    <text x="470" y="232" font-size="26" font-weight="700" fill="#fbbf24">38</text>
+    <text x="24" y="298" font-size="12" fill="#94a3b8">coins taken</text>
+    <circle cx="130" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="130" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <text class="step" x="24" y="124">make 63 cents. Take the largest coin that still fits: 25.</text>
+  </g>
+  <g id="fr1" class="frm">
+    <text x="24" y="150" font-size="12" fill="#94a3b8">available coins</text>
+    <circle cx="94" cy="210" r="30" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="94" y="211" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="190" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="190" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">10</text>
+    <circle cx="286" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="286" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">5</text>
+    <circle cx="382" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="382" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">1</text>
+    <text x="470" y="200" font-size="13" fill="#94a3b8">remaining to make</text>
+    <text x="470" y="232" font-size="26" font-weight="700" fill="#fbbf24">13</text>
+    <text x="24" y="298" font-size="12" fill="#94a3b8">coins taken</text>
+    <circle cx="130" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="130" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="192" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="192" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <text class="step" x="24" y="124">25 fits again - take it. Greedy never looks ahead and never reconsiders.</text>
+  </g>
+  <g id="fr2" class="frm">
+    <text x="24" y="150" font-size="12" fill="#94a3b8">available coins</text>
+    <circle cx="94" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="94" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="190" cy="210" r="30" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="190" y="211" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">10</text>
+    <circle cx="286" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="286" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">5</text>
+    <circle cx="382" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="382" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">1</text>
+    <text x="470" y="200" font-size="13" fill="#94a3b8">remaining to make</text>
+    <text x="470" y="232" font-size="26" font-weight="700" fill="#fbbf24">3</text>
+    <text x="24" y="298" font-size="12" fill="#94a3b8">coins taken</text>
+    <circle cx="130" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="130" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="192" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="192" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="254" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="254" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">10</text>
+    <text class="step" x="24" y="124">25 is now too big, so drop to 10</text>
+  </g>
+  <g id="fr3" class="frm">
+    <text x="24" y="150" font-size="12" fill="#94a3b8">available coins</text>
+    <circle cx="94" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="94" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="190" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="190" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">10</text>
+    <circle cx="286" cy="210" r="30" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="286" y="211" font-size="15" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">5</text>
+    <circle cx="382" cy="210" r="30" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="382" y="211" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">1</text>
+    <text x="470" y="200" font-size="13" fill="#94a3b8">remaining to make</text>
+    <text x="470" y="232" font-size="26" font-weight="700" fill="#34d399">0</text>
+    <text x="24" y="298" font-size="12" fill="#94a3b8">coins taken</text>
+    <circle cx="130" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="130" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="192" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="192" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">25</text>
+    <circle cx="254" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="254" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">10</text>
+    <circle cx="316" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="316" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text>
+    <circle cx="378" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="378" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text>
+    <circle cx="440" cy="292" r="22" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="440" y="293" font-size="13" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text>
+    <text class="step" x="24" y="124">three pennies finish it: 6 coins, and for this coin system that really is optimal</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">greedy takes the best-looking option right now and never revisits it - fast, simple, and only sometimes correct</text>
+  <text class="lbl-l" x="24" y="360" style="fill:#94a3b8">with coins 1, 5, 10, 25 greedy is provably optimal. With coins 1, 3, 4 it makes 6 as 4+1+1 when 3+3 is better.</text>
+  <text class="lbl-l" x="24" y="386" style="fill:#94a3b8">the burden of proof is on you: greedy needs the greedy-choice property, otherwise reach for DP</text>
+
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320" role="img" aria-label="Animation: reading arr[5] from an array resolves in a single jump, O(1)">
+  <title>Animation: reading arr[5] from an array resolves in a single jump, O(1)</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  #c5{animation:hitc 6s infinite}
+  #ix{animation:blink 6s infinite}
+  .beam{opacity:0;animation:beam 6s infinite}
+  #ring{opacity:0;animation:ring 6s infinite}
+  #out{opacity:0;animation:fade 6s infinite}
+  @keyframes blink{0%{fill:#94a3b8} 14%{fill:#94a3b8} 20%{fill:#fbbf24} 100%{fill:#fbbf24}}
+  @keyframes beam{0%{opacity:0;transform:translateY(-14px)} 24%{opacity:0;transform:translateY(-14px)} 38%{opacity:1;transform:translateY(0)} 86%{opacity:1} 94%{opacity:0}}
+  @keyframes ring{0%{opacity:0} 42%{opacity:0} 50%{opacity:1} 90%{opacity:1} 96%{opacity:0}}
+  @keyframes hitc{0%{stroke:#38bdf8;fill:#0f2438} 42%{stroke:#38bdf8;fill:#0f2438} 50%{stroke:#34d399;fill:#0d2f2a} 90%{stroke:#34d399;fill:#0d2f2a} 97%{stroke:#38bdf8;fill:#0f2438}}
+  @keyframes fade{0%{opacity:0} 52%{opacity:0} 60%{opacity:1} 90%{opacity:1} 97%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="320" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="320" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="318.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Array - index lookup</text>
+  <text class="sub" x="24" y="54">Contiguous memory means any index is one address calculation away</text>
+  <rect id="c0" class="cell" x="48" y="150" width="60" height="54"/>
+  <text class="val" x="78.0" y="178.0">12</text>
+  <text class="idx" x="78.0" y="218">0</text>
+  <rect id="c1" class="cell" x="126" y="150" width="60" height="54"/>
+  <text class="val" x="156.0" y="178.0">7</text>
+  <text class="idx" x="156.0" y="218">1</text>
+  <rect id="c2" class="cell" x="204" y="150" width="60" height="54"/>
+  <text class="val" x="234.0" y="178.0">41</text>
+  <text class="idx" x="234.0" y="218">2</text>
+  <rect id="c3" class="cell" x="282" y="150" width="60" height="54"/>
+  <text class="val" x="312.0" y="178.0">3</text>
+  <text class="idx" x="312.0" y="218">3</text>
+  <rect id="c4" class="cell" x="360" y="150" width="60" height="54"/>
+  <text class="val" x="390.0" y="178.0">90</text>
+  <text class="idx" x="390.0" y="218">4</text>
+  <rect id="c5" class="cell" x="438" y="150" width="60" height="54"/>
+  <text class="val" x="468.0" y="178.0">55</text>
+  <text class="idx" x="468.0" y="218">5</text>
+  <rect id="c6" class="cell" x="516" y="150" width="60" height="54"/>
+  <text class="val" x="546.0" y="178.0">18</text>
+  <text class="idx" x="546.0" y="218">6</text>
+  <rect id="c7" class="cell" x="594" y="150" width="60" height="54"/>
+  <text class="val" x="624.0" y="178.0">64</text>
+  <text class="idx" x="624.0" y="218">7</text>
+
+  <text class="lbl-l" x="24" y="92">arr[5] = memory[ base + <tspan id="ix" fill="#fbbf24">5</tspan> x itemSize ]   ->   one jump, never a scan</text>
+  <path id="beam" class="beam" d="M468 104 L468 140" marker-end="url(#ara)" style="stroke:#fbbf24;stroke-width:2.5"/>
+  <rect id="ring" x="434" y="146" width="68" height="62" rx="6" fill="none" stroke="#34d399" stroke-width="2.5"/>
+  <text id="out" class="step" x="468" y="242" style="text-anchor:middle">found 55 in O(1)</text>
+  <rect x="24" y="272" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="41" y="278">cursor</text>
+  <rect x="88.4" y="272" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="105.4" y="278">resolved</text>
+
+</svg>

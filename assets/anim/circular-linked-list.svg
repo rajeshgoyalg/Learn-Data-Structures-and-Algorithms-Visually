@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" width="760" height="440" role="img" aria-label="Animation: a token circulating endlessly around a circular linked list">
+  <title>Animation: a token circulating endlessly around a circular linked list</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.ncell{fill:#0f2438;stroke:#38bdf8;stroke-width:2}
+
+  </style>
+  <rect x="0" y="0" width="760" height="440" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="760" height="440" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="758.5" height="438.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Circular linked list</text>
+  <text class="sub" x="24" y="54">Round-robin scheduling, turn order, a playlist on repeat</text>
+  <text class="lbl-l" x="24" y="96">the tail points back at the head, so there is no null - the walk never ends, it only comes round again</text>
+  <circle cx="380" cy="248" r="100" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.35" stroke-dasharray="5 6"/>
+  <path d="M407.1 153.8 Q 438.0 147.5 446.6 176.1" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <path d="M475.1 224.4 Q 496.0 248.0 475.6 269.7" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <path d="M448.0 318.5 Q 438.0 348.5 409.0 341.6" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <path d="M352.9 342.2 Q 322.0 348.5 313.4 319.9" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <path d="M284.9 271.6 Q 264.0 248.0 284.4 226.3" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <path d="M312.0 177.5 Q 322.0 147.5 351.0 154.4" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
+  <circle id="cn0" class="ncell" cx="380.0" cy="148.0" r="26"/>
+  <text class="val" x="380.0" y="149.0">A</text>
+  <circle id="cn1" class="ncell" cx="466.6025403784439" cy="198.0" r="26"/>
+  <text class="val" x="466.6025403784439" y="199.0">B</text>
+  <circle id="cn2" class="ncell" cx="466.6025403784439" cy="298.0" r="26"/>
+  <text class="val" x="466.6025403784439" y="299.0">C</text>
+  <circle id="cn3" class="ncell" cx="380.0" cy="348.0" r="26"/>
+  <text class="val" x="380.0" y="349.0">D</text>
+  <circle id="cn4" class="ncell" cx="293.3974596215561" cy="298.0" r="26"/>
+  <text class="val" x="293.3974596215561" y="299.0">E</text>
+  <circle id="cn5" class="ncell" cx="293.39745962155615" cy="198.0" r="26"/>
+  <text class="val" x="293.39745962155615" y="199.0">F</text>
+  <text class="lbl-l" x="380.0" y="108.0" style="fill:#fbbf24">head</text>
+  <circle id="tok" r="10" fill="none" stroke="#fbbf24" stroke-width="3">
+    <animateMotion dur="7.2s" repeatCount="indefinite" path="M 380.0 148.0 L 466.6 198.0 L 466.6 298.0 L 380.0 348.0 L 293.4 298.0 L 293.4 198.0 L 380.0 148.0" calcMode="linear"/>
+  </circle>
+  <text class="lbl-l" x="380" y="240" style="fill:#94a3b8">no null</text>
+  <text class="lbl-l" x="380" y="260" style="fill:#94a3b8">terminator</text>
+
+</svg>

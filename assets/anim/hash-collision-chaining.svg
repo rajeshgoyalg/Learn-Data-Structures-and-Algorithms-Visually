@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 450" width="880" height="450" role="img" aria-label="Animation: three colliding keys forming a chain inside a single hash bucket">
+  <title>Animation: three colliding keys forming a chain inside a single hash bucket</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.chn{opacity:0}
+.chl{opacity:0}
+#ch0{animation:cn0 8s infinite}
+#cl0{animation:cn0 8s infinite}
+  @keyframes cn0{0%{opacity:0;transform:translateX(24px)} 10%{opacity:0;transform:translateX(24px)} 18%{opacity:1;transform:translateX(0)} 94%{opacity:1;transform:translateX(0)} 99%{opacity:0;transform:translateX(24px)}}
+#ch1{animation:cn1 8s infinite}
+#cl1{animation:cn1 8s infinite}
+  @keyframes cn1{0%{opacity:0;transform:translateX(24px)} 30%{opacity:0;transform:translateX(24px)} 38%{opacity:1;transform:translateX(0)} 94%{opacity:1;transform:translateX(0)} 99%{opacity:0;transform:translateX(24px)}}
+#ch2{animation:cn2 8s infinite}
+#cl2{animation:cn2 8s infinite}
+  @keyframes cn2{0%{opacity:0;transform:translateX(24px)} 50%{opacity:0;transform:translateX(24px)} 58%{opacity:1;transform:translateX(0)} 94%{opacity:1;transform:translateX(0)} 99%{opacity:0;transform:translateX(24px)}}
+#lf{opacity:0;animation:lff 8s infinite}
+  @keyframes lff{0%{opacity:0} 72%{opacity:0} 80%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="880" height="450" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="450" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="448.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Hash collision - separate chaining</text>
+  <text class="sub" x="24" y="54">Same bucket, different keys: hang them in a list and keep going</text>
+  <text class="lbl-l" x="24" y="96">two different keys can hash to the same index - that is a collision, not a bug. Chaining hangs both off one bucket.</text>
+  <rect x="120" y="130" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
+  <text class="idx" x="104" y="147.0" style="font-size:12">0</text>
+  <rect x="120" y="172" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
+  <text class="idx" x="104" y="189.0" style="font-size:12">1</text>
+  <rect x="120" y="214" width="150" height="34" rx="5" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2" opacity="1"/>
+  <text class="idx" x="104" y="231.0" style="font-size:12">2</text>
+  <rect x="120" y="256" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
+  <text class="idx" x="104" y="273.0" style="font-size:12">3</text>
+  <rect x="120" y="298" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
+  <text class="idx" x="104" y="315.0" style="font-size:12">4</text>
+  <g id="ch0" class="chn">
+    <rect x="316" y="207.0" width="112" height="48" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+    <line x1="396" y1="207.0" x2="396" y2="255.0" stroke="#34d399" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="356" y="232.0" style="fill:#e2e8f0;font-size:14">cat</text>
+    <circle cx="412" cy="231.0" r="4" fill="#34d399"/>
+  </g>
+  <path id="cl0" class="chl" d="M274 231.0 L312 231.0" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:1.8"/>
+  <g id="ch1" class="chn">
+    <rect x="468" y="207.0" width="112" height="48" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+    <line x1="548" y1="207.0" x2="548" y2="255.0" stroke="#34d399" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="508" y="232.0" style="fill:#e2e8f0;font-size:14">act</text>
+    <circle cx="564" cy="231.0" r="4" fill="#34d399"/>
+  </g>
+  <path id="cl1" class="chl" d="M428 231.0 L464 231.0" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:1.8"/>
+  <g id="ch2" class="chn">
+    <rect x="620" y="207.0" width="112" height="48" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="2"/>
+    <line x1="700" y1="207.0" x2="700" y2="255.0" stroke="#34d399" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="660" y="232.0" style="fill:#e2e8f0;font-size:14">tac</text>
+    <circle cx="716" cy="231.0" r="4" fill="#34d399"/>
+  </g>
+  <path id="cl2" class="chl" d="M580 231.0 L616 231.0" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:1.8"/>
+  <text class="lbl-l" x="316" y="185.0" style="fill:#94a3b8">all three hash to index 2</text>
+  <text class="lbl-l" x="24" y="380" style="fill:#94a3b8">short chains keep lookups at O(1). If the table gets crowded, chains grow and lookups drift toward O(n).</text>
+  <text id="lf" class="step" x="24" y="408">load factor = entries / buckets  ->  above ~0.75, resize and rehash</text>
+
+</svg>

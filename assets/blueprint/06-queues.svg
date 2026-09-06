@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660" width="900" height="660" role="img" aria-label="Queue family - comparison">
+  <title>Queue family - comparison</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="658.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Queue family - comparison</text>
+  <text class="sub" x="24" y="54">The container is the same; the admission policy is what differs</text>
+  <text class="lbl-l" x="24" y="96">four queues, four different answers to the question 'who goes next?'</text>
+  <rect x="50" y="160" width="190" height="48" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="145.0" y="184.0" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">LINEAR QUEUE</text>
+  <text x="262" y="186" font-size="12" fill="#94a3b8" dominant-baseline="middle">front and rear both move right; space at the front is stranded once used</text>
+  <rect x="50" y="238" width="190" height="48" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="145.0" y="262.0" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">CIRCULAR QUEUE</text>
+  <text x="262" y="264" font-size="12" fill="#94a3b8" dominant-baseline="middle">indices wrap with modulo, so freed front slots are reused - fixed capacity, no waste</text>
+  <rect x="50" y="316" width="190" height="48" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="145.0" y="340.0" font-size="12" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">DEQUE</text>
+  <text x="262" y="342" font-size="12" fill="#94a3b8" dominant-baseline="middle">push and pop are legal at both ends: a stack and a queue in one structure</text>
+  <rect x="50" y="394" width="190" height="48" rx="6" fill="#0f2438" stroke="#c084fc" stroke-width="1.8"/>
+  <text x="145.0" y="418.0" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle" dominant-baseline="middle">PRIORITY QUEUE</text>
+  <text x="262" y="420" font-size="12" fill="#94a3b8" dominant-baseline="middle">order of service is decided by a key, not by arrival - normally backed by a heap</text>
+  <text x="50" y="500" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">COMMON GROUND</text>
+  <path d="M50 508 L830 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="530" font-size="12" fill="#94a3b8">enqueue and dequeue are O(1) in every variant above (extract in a priority queue is O(log n))</text>
+  <text x="50" y="551" font-size="12" fill="#94a3b8">a queue is what makes breadth-first search breadth-first - swap it for a stack and you get DFS</text>
+  <rect x="578" y="578" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 604 L878 604 M764 604 L764 640" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="590" y="595" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="590" y="624" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="776" y="624" font-size="10" fill="#fbbf24">SHEET 06 / 18</text>
+
+</svg>

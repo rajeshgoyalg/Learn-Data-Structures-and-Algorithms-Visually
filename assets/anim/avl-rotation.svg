@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 456" width="820" height="456" role="img" aria-label="Animation: an AVL tree performing a right rotation to restore balance">
+  <title>Animation: an AVL tree performing a right rotation to restore balance</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 8.5s infinite}
+  @keyframes fk0{0%{opacity:1} 31.32%{opacity:1} 31.333333333333332%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 8.5s infinite}
+  @keyframes fk1{0%{opacity:0} 31.32%{opacity:0} 31.333333333333332%{opacity:1} 58.66%{opacity:1} 58.666666666666664%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 8.5s infinite}
+  @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="820" height="456" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="456" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="454.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">AVL tree - rotation</text>
+  <text class="sub" x="24" y="54">The tree straightens its own spine before it can lean too far</text>
+  <g id="fr0" class="frm">
+    <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="286.6" y1="288.7" x2="253.4" y2="335.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="300.0" cy="270.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="300.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="240.0" cy="354.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="240.0" y="355.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <text x="386" y="156" font-size="12" fill="#fb7185" text-anchor="middle">bf +2</text>
+    <text x="266.0" y="240" font-size="12" fill="#fbbf24" text-anchor="middle">bf +1</text>
+    <text x="570" y="186" font-size="13" fill="#fb7185">left-heavy by 2: illegal</text>
+    <text class="step" x="24" y="134">10, 20, 30 inserted in ascending order - the tree has degenerated into a list</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="286.6" y1="288.7" x2="253.4" y2="335.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="300.0" cy="270.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="300.0" y="271.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="240.0" cy="354.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="240.0" y="355.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <path d="M460 180 A 60 60 0 0 1 340.0 260" stroke="#fbbf24" stroke-width="2.4" fill="none" marker-end="url(#ara)"/>
+    <text x="570" y="186" font-size="13" fill="#fbbf24">rotate right about 30</text>
+    <text class="step" x="24" y="134">the balance factor at 30 is +2, so AVL performs a single right rotation</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="438.8" y1="199.2" x2="521.2" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="300.0" cy="270.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="300.0" y="271.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="540.0" cy="270.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="540.0" y="271.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <text x="386" y="156" font-size="12" fill="#34d399" text-anchor="middle">bf 0</text>
+    <text x="570" y="186" font-size="13" fill="#34d399">balanced: height 2, not 3</text>
+    <text class="step" x="24" y="134">20 becomes the root. Same values, same ordering, one level shallower - and searches stay O(log n).</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">balance factor = height(left) - height(right). AVL keeps it in (-1, 0, 1) at every node, rotating the moment it drifts.</text>
+  <text class="lbl-l" x="24" y="426" style="fill:#94a3b8">four cases: LL and RR need one rotation, LR and RL need two. Every rotation is O(1) and touches at most three pointers.</text>
+
+</svg>

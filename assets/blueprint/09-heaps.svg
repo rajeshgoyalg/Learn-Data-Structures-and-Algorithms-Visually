@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="Heap - anatomy">
+  <title>Heap - anatomy</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Heap - anatomy</text>
+  <text class="sub" x="24" y="54">A complete tree that lives inside a flat array</text>
+  <text class="lbl-l" x="24" y="96">a heap is a complete binary tree with one rule - and because it is complete, it needs no pointers at all</text>
+  <line x1="281.4" y1="203.5" x2="213.6" y2="252.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <line x1="318.6" y1="203.5" x2="386.4" y2="252.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <line x1="181.9" y1="284.9" x2="155.6" y2="323.1" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <line x1="208.1" y1="284.9" x2="234.4" y2="323.1" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <line x1="391.9" y1="284.9" x2="365.6" y2="323.1" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <line x1="418.1" y1="284.9" x2="444.4" y2="323.1" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+  <g><circle cx="300.0" cy="190.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="300.0" y="191.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">2</text></g>
+  <g><circle cx="195.0" cy="266.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="195.0" y="267.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+  <g><circle cx="405.0" cy="266.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="405.0" y="267.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text></g>
+  <g><circle cx="142.5" cy="342.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="142.5" y="343.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+  <g><circle cx="247.5" cy="342.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="247.5" y="343.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+  <g><circle cx="352.5" cy="342.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="352.5" y="343.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+  <g><circle cx="457.5" cy="342.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="457.5" y="343.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">12</text></g>
+  <rect x="560" y="178" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="586.0" y="198.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">2</text>
+  <text x="586" y="232" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+  <rect x="622" y="178" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="648.0" y="198.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">5</text>
+  <text x="648" y="232" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+  <rect x="684" y="178" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="710.0" y="198.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">8</text>
+  <text x="710" y="232" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+  <rect x="746" y="178" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="772.0" y="198.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">9</text>
+  <text x="772" y="232" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+  <rect x="560" y="240" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="586.0" y="260.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">7</text>
+  <text x="586" y="294" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+  <rect x="622" y="240" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="648.0" y="260.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">10</text>
+  <text x="648" y="294" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+  <rect x="684" y="240" width="52" height="40" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="710.0" y="260.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">12</text>
+  <text x="710" y="294" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+  <text x="560" y="162" font-size="12" font-weight="700" fill="#38bdf8">SAME HEAP, STORED AS AN ARRAY</text>
+  <text x="560" y="308" font-size="12" fill="#fbbf24">parent(i) = (i-1)/2</text>
+  <text x="560" y="328" font-size="12" fill="#fbbf24">left(i)   = 2i+1</text>
+  <text x="560" y="348" font-size="12" fill="#fbbf24">right(i)  = 2i+2</text>
+  <text x="50" y="400" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">THE HEAP PROPERTY</text>
+  <path d="M50 408 L850 408" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="430" font-size="12" fill="#94a3b8">min-heap: every parent &lt;= both children.  max-heap: every parent &gt;= both children.</text>
+  <text x="50" y="451" font-size="12" fill="#94a3b8">nothing is said about left versus right - a heap is NOT sorted, and NOT a search tree</text>
+  <text x="50" y="472" font-size="12" fill="#94a3b8">the tree is always complete (filled left to right), which is what makes the array mapping exact</text>
+  <text x="50" y="500" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">COSTS</text>
+  <path d="M50 508 L850 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="530" font-size="12" fill="#94a3b8">peek O(1)   insert O(log n)   extract-min O(log n)   build-heap from n items O(n)</text>
+  <text x="50" y="551" font-size="12" fill="#94a3b8">heapsort = build a heap, then extract n times: O(n log n) time in O(1) extra space</text>
+  <text x="50" y="572" font-size="12" fill="#94a3b8">this is the engine inside a priority queue, and inside Dijkstra's next-node choice</text>
+  <rect x="578" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 564 L878 564 M764 564 L764 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 09 / 18</text>
+
+</svg>

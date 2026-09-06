@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" role="img" aria-label="Searching - the decision">
+  <title>Searching - the decision</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="560" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="560" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="558.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Searching - the decision</text>
+  <text class="sub" x="24" y="54">Sorted or not is the whole question</text>
+  <text class="lbl-l" x="24" y="96">only two questions matter before you search: is the data sorted, and how many times will you search it?</text>
+  <rect x="60" y="170" width="340" height="190" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="80" y="200" font-size="14" font-weight="700" fill="#fbbf24">LINEAR SEARCH</text>
+  <text x="80" y="226" font-size="12" fill="#94a3b8">works on anything, sorted or not</text>
+  <text x="80" y="252" font-size="12" fill="#94a3b8">no preprocessing, no extra memory</text>
+  <text x="80" y="278" font-size="12" fill="#94a3b8">O(n) - n/2 comparisons on average</text>
+  <text x="80" y="304" font-size="12" fill="#94a3b8">the only option on a linked list</text>
+  <text x="80" y="330" font-size="12" fill="#94a3b8">fine for small or one-off searches</text>
+  <rect x="460" y="170" width="340" height="190" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="480" y="200" font-size="14" font-weight="700" fill="#34d399">BINARY SEARCH</text>
+  <text x="480" y="226" font-size="12" fill="#94a3b8">requires sorted, index-addressable data</text>
+  <text x="480" y="252" font-size="12" fill="#94a3b8">halves the range at every comparison</text>
+  <text x="480" y="278" font-size="12" fill="#94a3b8">O(log n) - about 20 steps for a million</text>
+  <text x="480" y="304" font-size="12" fill="#94a3b8">useless on a linked list (no random access)</text>
+  <text x="480" y="330" font-size="12" fill="#94a3b8">worth sorting for only if you search often</text>
+  <text x="60" y="400" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">THE BREAK-EVEN CALCULATION</text>
+  <path d="M60 408 L820 408" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="60" y="430" font-size="12" fill="#94a3b8">sorting costs O(n log n) once; each binary search then costs O(log n) instead of O(n)</text>
+  <text x="60" y="451" font-size="12" fill="#94a3b8">for k searches: linear = k x n,  sort-then-binary = n log n + k log n</text>
+  <text x="60" y="472" font-size="12" fill="#94a3b8">one search on unsorted data -&gt; scan it. Many searches -&gt; sort once (or build a hash table for O(1)).</text>
+  <text x="60" y="490" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">OFF-BY-ONE TRAP</text>
+  <path d="M60 498 L820 498" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="60" y="520" font-size="12" fill="#94a3b8">use mid = lo + (hi - lo) / 2, never (lo + hi) / 2 - the latter can overflow on large ranges</text>
+  <rect x="558" y="478" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 504 L858 504 M744 504 L744 540" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="495" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="524" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="524" font-size="10" fill="#fbbf24">SHEET 14 / 18</text>
+
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 490" width="880" height="490" role="img" aria-label="Animation: three keys passing through a hash function and landing in their bucket slots">
+  <title>Animation: three keys passing through a hash function and landing in their bucket slots</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="490" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="490" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="488.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Hash table - key to bucket</text>
+  <text class="sub" x="24" y="54">A cloakroom ticket: the ticket number is computed from the coat, not searched for</text>
+  <text class="lbl-l" x="24" y="96">the key itself is not the address - a hash function turns it into one, in constant time</text>
+  <rect x="250" y="190" width="190" height="66" rx="8" fill="#10263c" stroke="#c084fc" stroke-width="2"/>
+  <text class="val" x="345.0" y="216" style="fill:#c084fc;font-size:14">hash(key)</text>
+  <text class="lbl" x="345.0" y="238" style="fill:#94a3b8">mod 8  ->  bucket index</text>
+  <rect id="b0" class="bkt" x="588" y="108" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="123.0" style="font-size:12">0</text>
+  <rect id="b1" class="bkt" x="588" y="144" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="159.0" style="font-size:12">1</text>
+  <rect id="b2" class="bkt" x="588" y="180" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="195.0" style="font-size:12">2</text>
+  <rect id="b3" class="bkt" x="588" y="216" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="231.0" style="font-size:12">3</text>
+  <rect id="b4" class="bkt" x="588" y="252" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="267.0" style="font-size:12">4</text>
+  <rect id="b5" class="bkt" x="588" y="288" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="303.0" style="font-size:12">5</text>
+  <rect id="b6" class="bkt" x="588" y="324" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="339.0" style="font-size:12">6</text>
+  <rect id="b7" class="bkt" x="588" y="360" width="168" height="30" rx="5" style="fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;opacity:0.75"/>
+  <text class="idx" x="572" y="375.0" style="font-size:12">7</text>
+  <g id="k0">
+    <rect x="46" y="148" width="98" height="30" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/>
+    <text class="val" x="95.0" y="164.0" style="fill:#fbbf24;font-size:14">apple</text>
+    <animateMotion dur="9s" begin="0.00s" repeatCount="indefinite" calcMode="linear"
+      keyTimes="0;0.08;0.30;0.48;1" keyPoints="0;0;0.5;1;1" path="M0 0 L200 60.0 L552 -4.0 L576 -4.0"/>
+  </g>
+  <text class="lbl-l" x="770" y="159.0" style="fill:#94a3b8">bucket 1</text>
+  <g id="k1">
+    <rect x="46" y="210" width="98" height="30" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/>
+    <text class="val" x="95.0" y="226.0" style="fill:#fbbf24;font-size:14">kiwi</text>
+    <animateMotion dur="9s" begin="3.06s" repeatCount="indefinite" calcMode="linear"
+      keyTimes="0;0.08;0.30;0.48;1" keyPoints="0;0;0.5;1;1" path="M0 0 L200 -2.0 L552 78.0 L576 78.0"/>
+  </g>
+  <text class="lbl-l" x="770" y="303.0" style="fill:#94a3b8">bucket 5</text>
+  <g id="k2">
+    <rect x="46" y="272" width="98" height="30" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/>
+    <text class="val" x="95.0" y="288.0" style="fill:#fbbf24;font-size:14">fig</text>
+    <animateMotion dur="9s" begin="6.03s" repeatCount="indefinite" calcMode="linear"
+      keyTimes="0;0.08;0.30;0.48;1" keyPoints="0;0;0.5;1;1" path="M0 0 L200 -64.0 L552 -56.0 L576 -56.0"/>
+  </g>
+  <text class="lbl-l" x="770" y="231.0" style="fill:#94a3b8">bucket 3</text>
+  <text class="lbl-l" x="24" y="438" style="fill:#94a3b8">same key in, same bucket out, every time: lookup, insert and delete are O(1) on average</text>
+  <rect x="24" y="460" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="41" y="466">key in flight</text>
+  <rect x="133.2" y="460" width="11" height="11" rx="2" fill="#c084fc"/>
+  <text class="lbl-l" x="150.2" y="466">hash function</text>
+  <rect x="242.39999999999998" y="460" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <text class="lbl-l" x="259.4" y="466">bucket array</text>
+
+</svg>

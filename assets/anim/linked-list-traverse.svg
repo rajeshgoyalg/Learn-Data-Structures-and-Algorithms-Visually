@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300" role="img" aria-label="Animation: a cursor walks a singly linked list node by node following next pointers">
+  <title>Animation: a cursor walks a singly linked list node by node following next pointers</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+#cur{animation:walk 7.5s infinite}
+  .hop{opacity:0}
+  @keyframes walk{0%{transform:translateX(0px)} 14.99%{transform:translateX(0px)} 15%{transform:translateX(132px)} 28.99%{transform:translateX(132px)} 29%{transform:translateX(264px)} 42.99%{transform:translateX(264px)} 43%{transform:translateX(396px)} 56.99%{transform:translateX(396px)} 57%{transform:translateX(528px)} 100%{transform:translateX(528px)}}
+  #hp0{animation:hk0 7.5s infinite}
+  @keyframes hk0{0%{opacity:1} 14.99%{opacity:1} 15%{opacity:0} 100%{opacity:0}}
+  #hp1{animation:hk1 7.5s infinite}
+  @keyframes hk1{0%{opacity:0} 14.99%{opacity:0} 15%{opacity:1} 28.99%{opacity:1} 29%{opacity:0} 100%{opacity:0}}
+  #hp2{animation:hk2 7.5s infinite}
+  @keyframes hk2{0%{opacity:0} 28.99%{opacity:0} 29%{opacity:1} 42.99%{opacity:1} 43%{opacity:0} 100%{opacity:0}}
+  #hp3{animation:hk3 7.5s infinite}
+  @keyframes hk3{0%{opacity:0} 42.99%{opacity:0} 43%{opacity:1} 56.99%{opacity:1} 57%{opacity:0} 100%{opacity:0}}
+  #hp4{animation:hk4 7.5s infinite}
+  @keyframes hk4{0%{opacity:0} 56.99%{opacity:0} 57%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="780" height="300" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="780" height="300" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="778.5" height="298.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Singly linked list - traversal</text>
+  <text class="sub" x="24" y="54">Random access is impossible: reaching position k costs k hops, O(n)</text>
+  <text class="lbl-l" x="24" y="96">find the 5th value: there is no arr[4] here - you must follow every next pointer, one hop at a time</text>
+  <text class="lbl-l" x="46" y="136" style="fill:#fbbf24">head</text>
+  <g>
+    <rect class="cell" x="46" y="150" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="118" y1="150" x2="118" y2="204" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="82.0" y="178.0" style="fill:#e2e8f0">A</text>
+    <circle cx="136.0" cy="177.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M154 177.0 L174 177.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="178" y="150" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="250" y1="150" x2="250" y2="204" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="214.0" y="178.0" style="fill:#e2e8f0">B</text>
+    <circle cx="268.0" cy="177.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M286 177.0 L306 177.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="310" y="150" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="382" y1="150" x2="382" y2="204" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="346.0" y="178.0" style="fill:#e2e8f0">C</text>
+    <circle cx="400.0" cy="177.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M418 177.0 L438 177.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="442" y="150" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="514" y1="150" x2="514" y2="204" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="478.0" y="178.0" style="fill:#e2e8f0">D</text>
+    <circle cx="532.0" cy="177.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M550 177.0 L570 177.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="574" y="150" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="646" y1="150" x2="646" y2="204" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="610.0" y="178.0" style="fill:#e2e8f0">E</text>
+    <circle cx="664.0" cy="177.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <text class="lbl-l" x="698" y="177.0" style="fill:#94a3b8">null</text>
+  <rect id="cur" x="41" y="145" width="118" height="64" rx="7" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+  <text id="hp0" class="step hop" x="100.0" y="244" style="text-anchor:middle">hop 1 of 5</text>
+  <text id="hp1" class="step hop" x="232.0" y="244" style="text-anchor:middle">hop 2 of 5</text>
+  <text id="hp2" class="step hop" x="364.0" y="244" style="text-anchor:middle">hop 3 of 5</text>
+  <text id="hp3" class="step hop" x="496.0" y="244" style="text-anchor:middle">hop 4 of 5</text>
+  <text id="hp4" class="step hop" x="628.0" y="244" style="text-anchor:middle">hop 5 of 5</text>
+
+</svg>

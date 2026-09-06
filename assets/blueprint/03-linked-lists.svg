@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" role="img" aria-label="Singly linked list - anatomy">
+  <title>Singly linked list - anatomy</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="560" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="560" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="558.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Singly linked list - anatomy</text>
+  <text class="sub" x="24" y="54">Nodes scattered across memory, stitched together by pointers</text>
+  <text class="lbl-l" x="24" y="96">a linked list gives up contiguity and buys flexibility with it - nodes live wherever the allocator put them</text>
+  <rect x="60" y="200" width="96" height="52" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <line x1="122" y1="200" x2="122" y2="252" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+  <text x="91" y="227" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">A</text>
+  <circle cx="139" cy="226" r="4.5" fill="#38bdf8"/>
+  <text x="91" y="190" font-size="10" fill="#94a3b8" text-anchor="middle">0x8C</text>
+  <text x="139" y="268" font-size="10" fill="#94a3b8" text-anchor="middle">next</text>
+  <path d="M156 226 C 188 226, 208 252, 236 252" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <rect x="240" y="226" width="96" height="52" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <line x1="302" y1="226" x2="302" y2="278" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+  <text x="271" y="253" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">B</text>
+  <circle cx="319" cy="252" r="4.5" fill="#38bdf8"/>
+  <text x="271" y="216" font-size="10" fill="#94a3b8" text-anchor="middle">0x14</text>
+  <text x="319" y="294" font-size="10" fill="#94a3b8" text-anchor="middle">next</text>
+  <path d="M336 252 C 368 252, 388 212, 416 212" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <rect x="420" y="186" width="96" height="52" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <line x1="482" y1="186" x2="482" y2="238" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+  <text x="451" y="213" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">C</text>
+  <circle cx="499" cy="212" r="4.5" fill="#38bdf8"/>
+  <text x="451" y="176" font-size="10" fill="#94a3b8" text-anchor="middle">0xF0</text>
+  <text x="499" y="254" font-size="10" fill="#94a3b8" text-anchor="middle">next</text>
+  <path d="M516 212 C 548 212, 568 244, 596 244" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <rect x="600" y="218" width="96" height="52" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <line x1="662" y1="218" x2="662" y2="270" stroke="#38bdf8" stroke-width="1.2" opacity="0.6"/>
+  <text x="631" y="245" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">D</text>
+  <circle cx="679" cy="244" r="4.5" fill="#38bdf8"/>
+  <text x="631" y="208" font-size="10" fill="#94a3b8" text-anchor="middle">0x62</text>
+  <text x="679" y="286" font-size="10" fill="#94a3b8" text-anchor="middle">next</text>
+  <text x="712" y="244" font-size="12" fill="#94a3b8">null</text>
+  <text x="60" y="154" font-size="12" fill="#fbbf24">head</text>
+  <path d="M74 162 L74 194" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#ara)"/>
+  <text x="60" y="350" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">NODE = PAYLOAD + POINTER</text>
+  <path d="M60 358 L820 358" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="60" y="380" font-size="12" fill="#94a3b8">the addresses above are deliberately out of order: nodes need no spatial relationship at all</text>
+  <text x="60" y="401" font-size="12" fill="#94a3b8">+ insert / delete at a known position is O(1) - only pointers are rewritten, nothing shifts</text>
+  <text x="60" y="422" font-size="12" fill="#94a3b8">- no index arithmetic is possible, so reaching position k costs k hops: O(n)</text>
+  <text x="60" y="443" font-size="12" fill="#94a3b8">- every node pays a pointer of overhead, and scattered nodes defeat the CPU cache</text>
+  <rect x="558" y="478" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 504 L858 504 M744 504 L744 540" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="495" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="524" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="524" font-size="10" fill="#fbbf24">SHEET 03 / 18</text>
+
+</svg>

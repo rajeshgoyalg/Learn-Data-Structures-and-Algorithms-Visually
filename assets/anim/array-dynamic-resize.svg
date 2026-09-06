@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" role="img" aria-label="Animation: a full dynamic array allocates a double-size block and copies its elements across">
+  <title>Animation: a full dynamic array allocates a double-size block and copies its elements across</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.old{animation:dim 7s infinite}
+.nv{opacity:0}
+.cp{opacity:0}
+#amort{opacity:0;animation:af 7s infinite}
+#cp0{animation:cpa 7s infinite;animation-delay:1.40s}
+#n0{animation:nva 7s infinite;animation-delay:1.40s}
+#cp1{animation:cpa 7s infinite;animation-delay:2.03s}
+#n1{animation:nva 7s infinite;animation-delay:2.03s}
+#cp2{animation:cpa 7s infinite;animation-delay:2.66s}
+#n2{animation:nva 7s infinite;animation-delay:2.66s}
+#cp3{animation:cpa 7s infinite;animation-delay:3.29s}
+#n3{animation:nva 7s infinite;animation-delay:3.29s}
+  @keyframes cpa{0%{opacity:0} 6%{opacity:1} 18%{opacity:1} 24%{opacity:0} 100%{opacity:0}}
+  @keyframes nva{0%{opacity:0} 10%{opacity:1} 100%{opacity:1}}
+  @keyframes dim{0%{opacity:1} 60%{opacity:1} 76%{opacity:0.25} 94%{opacity:0.25} 99%{opacity:1}}
+  @keyframes af{0%{opacity:0} 68%{opacity:0} 76%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="380" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="380" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="378.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Dynamic array - growing</text>
+  <text class="sub" x="24" y="54">A full array does not stretch. It is replaced by a bigger one.</text>
+  <text class="lbl-l" x="24" y="96">capacity 4 is full  ->  allocate 8, copy everything across, free the old block</text>
+  <text class="lbl-l" x="48" y="136" style="fill:#94a3b8">old block (cap 4)</text>
+  <g id="o0" class="old">
+    <rect class="cell" x="48" y="150" width="52" height="48"/>
+    <text class="val" x="74" y="175">5</text>
+  </g>
+  <g id="o1" class="old">
+    <rect class="cell" x="114" y="150" width="52" height="48"/>
+    <text class="val" x="140" y="175">9</text>
+  </g>
+  <g id="o2" class="old">
+    <rect class="cell" x="180" y="150" width="52" height="48"/>
+    <text class="val" x="206" y="175">2</text>
+  </g>
+  <g id="o3" class="old">
+    <rect class="cell" x="246" y="150" width="52" height="48"/>
+    <text class="val" x="272" y="175">7</text>
+  </g>
+  <text class="lbl-l" x="48" y="244" style="fill:#34d399">new block (cap 8)</text>
+  <rect class="cell" x="48" y="258" width="52" height="48" style="stroke:#34d399"/>
+  <rect class="cell" x="114" y="258" width="52" height="48" style="stroke:#34d399"/>
+  <rect class="cell" x="180" y="258" width="52" height="48" style="stroke:#34d399"/>
+  <rect class="cell" x="246" y="258" width="52" height="48" style="stroke:#34d399"/>
+  <rect class="cell" x="312" y="258" width="52" height="48" style="stroke:#94a3b8;stroke-dasharray:4 4"/>
+  <rect class="cell" x="378" y="258" width="52" height="48" style="stroke:#94a3b8;stroke-dasharray:4 4"/>
+  <rect class="cell" x="444" y="258" width="52" height="48" style="stroke:#94a3b8;stroke-dasharray:4 4"/>
+  <rect class="cell" x="510" y="258" width="52" height="48" style="stroke:#94a3b8;stroke-dasharray:4 4"/>
+  <text id="n0" class="val nv" x="74" y="283">5</text>
+  <text id="n1" class="val nv" x="140" y="283">9</text>
+  <text id="n2" class="val nv" x="206" y="283">2</text>
+  <text id="n3" class="val nv" x="272" y="283">7</text>
+  <path id="cp0" class="cp" d="M74 206 L74 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
+  <path id="cp1" class="cp" d="M140 206 L140 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
+  <path id="cp2" class="cp" d="M206 206 L206 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
+  <path id="cp3" class="cp" d="M272 206 L272 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
+  <text id="amort" class="step" x="440" y="344">O(n) once, but amortised O(1) per append</text>
+
+</svg>

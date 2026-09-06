@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" width="720" height="360" role="img" aria-label="Animation: deleting a linked list node by pointing its predecessor at its successor">
+  <title>Animation: deleting a linked list node by pointing its predecessor at its successor</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  #bypass{opacity:0;animation:bp 7s infinite}
+  #bl{opacity:0;animation:bp 7s infinite}
+  #gone{opacity:0;animation:gn 7s infinite}
+  #dead{animation:die 7s infinite}
+  #cut1{animation:cut 7s infinite}
+  #cut2{animation:cut 7s infinite}
+  @keyframes bp{0%{opacity:0} 20%{opacity:0} 30%{opacity:1} 92%{opacity:1} 98%{opacity:0}}
+  @keyframes cut{0%{opacity:1} 32%{opacity:1} 42%{opacity:1;stroke:#fb7185} 50%{opacity:0.12} 92%{opacity:0.12} 98%{opacity:1}}
+  @keyframes die{0%{opacity:1} 40%{opacity:1} 56%{opacity:0.28} 92%{opacity:0.28} 98%{opacity:1}}
+  @keyframes gn{0%{opacity:0} 52%{opacity:0} 62%{opacity:1} 92%{opacity:1} 98%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="360" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="360" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="358.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Singly linked list - deletion</text>
+  <text class="sub" x="24" y="54">Nothing is erased - the node is simply routed around</text>
+  <text class="lbl-l" x="24" y="96">delete C - B simply points past it, and C becomes unreachable garbage</text>
+  <g>
+    <rect class="cell" x="46" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="118" y1="170" x2="118" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="82.0" y="198.0" style="fill:#e2e8f0">A</text>
+    <circle cx="136.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path d="M154 197.0 L190 197.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="194" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="266" y1="170" x2="266" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="230.0" y="198.0" style="fill:#e2e8f0">B</text>
+    <circle cx="284.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path id="cut1" d="M302 197.0 L338 197.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g id="dead">
+    <rect class="cell" x="342" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="414" y1="170" x2="414" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="378.0" y="198.0" style="fill:#e2e8f0">C</text>
+    <circle cx="432.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path id="cut2" d="M450 197.0 L486 197.0" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <g>
+    <rect class="cell" x="490" y="170" width="108" height="54" style="stroke:#38bdf8"/>
+    <line x1="562" y1="170" x2="562" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
+    <text class="val" x="526.0" y="198.0" style="fill:#e2e8f0">D</text>
+    <circle cx="580.0" cy="197.0" r="4.5" fill="#38bdf8"/>
+  </g>
+  <path id="bypass" d="M284.0 170 C 302 100, 450 100, 486 189.0" stroke="#34d399" stroke-width="2.2" fill="none" marker-end="url(#arg)"/>
+  <text id="bl" class="step" x="318" y="112" style="fill:#34d399">B.next = C.next</text>
+  <text id="gone" class="step" x="348" y="258" style="fill:#fb7185">freed</text>
+  <rect x="24" y="294" width="11" height="11" rx="2" fill="#fb7185"/>
+  <text class="lbl-l" x="41" y="300">removed</text>
+  <rect x="94.80000000000001" y="294" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="111.80000000000001" y="300">new link</text>
+
+</svg>

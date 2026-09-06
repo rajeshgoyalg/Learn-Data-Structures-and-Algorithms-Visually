@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 620" width="880" height="620" role="img" aria-label="Stack - anatomy">
+  <title>Stack - anatomy</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="620" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="620" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Stack - anatomy</text>
+  <text class="sub" x="24" y="54">One open end, two operations, LIFO order</text>
+  <text class="lbl-l" x="24" y="96">a stack is a discipline imposed on a container: only one end is reachable, and that restriction is the whole point</text>
+  <path d="M90 160 L90 400 L280 400 L280 160" fill="none" stroke="#38bdf8" stroke-width="2.4"/>
+  <rect x="102" y="358" width="166" height="38" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="185.0" y="377.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">A</text>
+  <rect x="102" y="312" width="166" height="38" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="185.0" y="331.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">B</text>
+  <rect x="102" y="266" width="166" height="38" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="185.0" y="285.0" font-size="14" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">C</text>
+  <path d="M306 282 L340 282" stroke="#fbbf24" stroke-width="1" opacity="0.6" stroke-dasharray="3 3"/>
+  <circle cx="306" cy="282" r="10" fill="#0b1c2c" stroke="#fbbf24" stroke-width="1.6"/>
+  <text x="306" y="283" font-size="11" font-weight="700" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">1</text>
+  <text x="348" y="282" font-size="12" fill="#e2e8f0" text-anchor="start" dominant-baseline="middle">top - the only reachable element</text>
+  <path d="M306 386 L340 386" stroke="#94a3b8" stroke-width="1" opacity="0.6" stroke-dasharray="3 3"/>
+  <circle cx="306" cy="386" r="10" fill="#0b1c2c" stroke="#94a3b8" stroke-width="1.6"/>
+  <text x="306" y="387" font-size="11" font-weight="700" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">2</text>
+  <text x="348" y="386" font-size="12" fill="#e2e8f0" text-anchor="start" dominant-baseline="middle">base - never touched until the stack empties</text>
+  <path d="M185.0 108 L185.0 146" stroke="#fbbf24" stroke-width="2.2" fill="none" marker-end="url(#ara)"/>
+  <text x="185.0" y="98" font-size="12" fill="#fbbf24" text-anchor="middle">push / pop</text>
+  <text x="400" y="180" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">OPERATIONS</text>
+  <path d="M400 188 L820 188" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="400" y="210" font-size="12" fill="#94a3b8">push(x)   O(1)   put x on the top</text>
+  <text x="400" y="231" font-size="12" fill="#94a3b8">pop()     O(1)   remove and return the top</text>
+  <text x="400" y="252" font-size="12" fill="#94a3b8">peek()    O(1)   read the top without removing</text>
+  <text x="400" y="273" font-size="12" fill="#94a3b8">isEmpty() O(1)   nothing below the top</text>
+  <text x="400" y="300" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHERE IT SHOWS UP</text>
+  <path d="M400 308 L820 308" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="400" y="330" font-size="12" fill="#94a3b8">the call stack itself - one frame per paused function</text>
+  <text x="400" y="351" font-size="12" fill="#94a3b8">undo / redo history in every editor you have used</text>
+  <text x="400" y="372" font-size="12" fill="#94a3b8">bracket and tag matching in parsers and compilers</text>
+  <text x="400" y="393" font-size="12" fill="#94a3b8">the explicit stack inside an iterative DFS</text>
+  <text x="400" y="414" font-size="12" fill="#94a3b8">expression evaluation (infix to postfix)</text>
+  <text x="400" y="452" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">FAILURE MODES</text>
+  <path d="M400 460 L820 460" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="400" y="482" font-size="12" fill="#94a3b8">overflow  - pushing past a fixed capacity (or infinite recursion)</text>
+  <text x="400" y="503" font-size="12" fill="#94a3b8">underflow - popping an empty stack</text>
+  <rect x="558" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 564 L858 564 M744 564 L744 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="584" font-size="10" fill="#fbbf24">SHEET 05 / 18</text>
+
+</svg>

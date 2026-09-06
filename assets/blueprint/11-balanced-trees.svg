@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="AVL and red-black - comparison">
+  <title>AVL and red-black - comparison</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">AVL and red-black - comparison</text>
+  <text class="sub" x="24" y="54">Two contracts for keeping a search tree short</text>
+  <text class="lbl-l" x="24" y="96">both keep height at O(log n); they disagree about how much work to spend keeping it there</text>
+  <text x="50" y="160" font-size="13" font-weight="700" fill="#38bdf8">AVL - the four rebalance cases</text>
+  <rect x="50" y="184" width="62" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="81.0" y="205.0" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">LL</text>
+  <text x="128" y="201" font-size="12" fill="#e2e8f0">heavy on the left of the left</text>
+  <text x="128" y="218" font-size="11" fill="#34d399">1 right rotation</text>
+  <rect x="50" y="240" width="62" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="81.0" y="261.0" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">RR</text>
+  <text x="128" y="257" font-size="12" fill="#e2e8f0">heavy on the right of the right</text>
+  <text x="128" y="274" font-size="11" fill="#34d399">1 left rotation</text>
+  <rect x="50" y="296" width="62" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="81.0" y="317.0" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">LR</text>
+  <text x="128" y="313" font-size="12" fill="#e2e8f0">heavy on the right of the left</text>
+  <text x="128" y="330" font-size="11" fill="#34d399">left, then right</text>
+  <rect x="50" y="352" width="62" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="81.0" y="373.0" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">RL</text>
+  <text x="128" y="369" font-size="12" fill="#e2e8f0">heavy on the left of the right</text>
+  <text x="128" y="386" font-size="11" fill="#34d399">right, then left</text>
+  <text x="480" y="160" font-size="13" font-weight="700" fill="#fb7185">RED-BLACK - the five rules</text>
+  <text x="480" y="190" font-size="12" fill="#e2e8f0">1. every node is red or black</text>
+  <text x="480" y="216" font-size="12" fill="#94a3b8">2. the root is black</text>
+  <text x="480" y="242" font-size="12" fill="#94a3b8">3. all leaves (nulls) count as black</text>
+  <text x="480" y="268" font-size="12" fill="#94a3b8">4. a red node never has a red child</text>
+  <text x="480" y="294" font-size="12" fill="#94a3b8">5. every path from a node down to its leaves</text>
+  <text x="480" y="320" font-size="12" fill="#94a3b8">    passes the same number of black nodes</text>
+  <text x="50" y="420" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">CHOOSING BETWEEN THEM</text>
+  <path d="M50 428 L850 428" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="450" font-size="12" fill="#94a3b8">AVL is more strictly balanced, so lookups are slightly faster - pay for it with more rotations on write</text>
+  <text x="50" y="471" font-size="12" fill="#94a3b8">red-black rebalances less aggressively, so writes are cheaper - height can reach 2x the ideal</text>
+  <text x="50" y="492" font-size="12" fill="#94a3b8">read-heavy workload -&gt; AVL.  write-heavy workload -&gt; red-black (which is why most language libraries use it)</text>
+  <text x="50" y="520" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHAT YOU GET EITHER WAY</text>
+  <path d="M50 528 L850 528" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="550" font-size="12" fill="#94a3b8">search / insert / delete guaranteed O(log n), even on sorted input</text>
+  <text x="50" y="571" font-size="12" fill="#94a3b8">rotations are O(1) and touch at most three pointers - rebalancing is cheap, detecting the need is the work</text>
+  <rect x="578" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 564 L878 564 M764 564 L764 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 11 / 18</text>
+
+</svg>

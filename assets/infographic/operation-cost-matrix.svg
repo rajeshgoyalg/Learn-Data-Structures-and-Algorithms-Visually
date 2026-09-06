@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 700" width="940" height="700" role="img" aria-label="A grid comparing the time complexity of every data structure against every common operation">
+  <title>A grid comparing the time complexity of every data structure against every common operation</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="940" height="700" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="940" height="700" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="938.5" height="698.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">The cost matrix</text>
+  <text class="sub" x="24" y="54">Every structure against every operation, on one grid</text>
+  <text class="lbl-l" x="24" y="96">one grid, every structure in the course - read down a column to choose a structure, read across a row to know what you signed up for</text>
+  <text x="268.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">access by</text>
+  <text x="268.0" y="175" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">index</text>
+  <text x="384.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">search by</text>
+  <text x="384.0" y="175" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">value</text>
+  <text x="500.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">insert at</text>
+  <text x="500.0" y="175" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">end</text>
+  <text x="616.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">insert in</text>
+  <text x="616.0" y="175" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">middle</text>
+  <text x="732.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">delete</text>
+  <text x="848.0" y="160" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">ordered</text>
+  <text x="848.0" y="175" font-size="11" font-weight="600" fill="#38bdf8" text-anchor="middle">traversal</text>
+  <text x="194" y="225.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Array</text>
+  <rect x="212" y="202" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="225.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="328" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="444" y="202" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="225.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="560" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="676" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="792" y="202" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="225.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="194" y="275.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Linked list</text>
+  <rect x="212" y="252" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="275.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="328" y="252" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="275.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="444" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="560" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="676" y="252" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="275.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="792" y="252" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="275.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="194" y="325.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Stack / Queue</text>
+  <rect x="212" y="302" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="325.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="328" y="302" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="325.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="444" y="302" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="325.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="560" y="302" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="325.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="676" y="302" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="325.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="792" y="302" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="325.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="194" y="375.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Hash table</text>
+  <rect x="212" y="352" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="375.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="328" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="444" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="560" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="676" y="352" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="375.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <rect x="792" y="352" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="375.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <text x="194" y="425.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Balanced BST</text>
+  <rect x="212" y="402" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="425.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="328" y="402" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="425.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="444" y="402" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="425.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="560" y="402" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="425.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="676" y="402" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="425.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="792" y="402" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="425.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="194" y="475.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Heap</text>
+  <rect x="212" y="452" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="475.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="328" y="452" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="475.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <rect x="444" y="452" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="475.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="560" y="452" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="475.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="676" y="452" width="110" height="44" rx="4" fill="#34d399" fill-opacity="0.16" stroke="#34d399" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="475.0" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <rect x="792" y="452" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="475.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <text x="194" y="525.0" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="end" dominant-baseline="middle">Trie</text>
+  <rect x="212" y="502" width="110" height="44" rx="4" fill="#334155" fill-opacity="0.16" stroke="#334155" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="268.0" y="525.0" font-size="13" font-weight="600" fill="#475569" text-anchor="middle" dominant-baseline="middle">n/a</text>
+  <rect x="328" y="502" width="110" height="44" rx="4" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="384.0" y="525.0" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">O(L)</text>
+  <rect x="444" y="502" width="110" height="44" rx="4" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="500.0" y="525.0" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">O(L)</text>
+  <rect x="560" y="502" width="110" height="44" rx="4" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="616.0" y="525.0" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">O(L)</text>
+  <rect x="676" y="502" width="110" height="44" rx="4" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="732.0" y="525.0" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">O(L)</text>
+  <rect x="792" y="502" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
+  <text x="848.0" y="525.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="210" y="578" font-size="11" fill="#94a3b8">* amortised, or given a reference to the position - see the module for the exact condition. L = length of the key.</text>
+  <rect x="210" y="600" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="227" y="606">cheap</text>
+  <rect x="268.0" y="600" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <text class="lbl-l" x="285.0" y="606">depends on key length</text>
+  <rect x="428.4" y="600" width="11" height="11" rx="2" fill="#fb7185"/>
+  <text class="lbl-l" x="445.4" y="606">linear - avoid on the hot path</text>
+  <rect x="646.4" y="600" width="11" height="11" rx="2" fill="#334155"/>
+  <text class="lbl-l" x="663.4" y="606">not supported</text>
+
+</svg>

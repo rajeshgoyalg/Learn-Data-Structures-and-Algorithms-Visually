@@ -1,0 +1,102 @@
+# Contributing
+
+Corrections, clearer analogies and new modules are all welcome. The bar is: **does this make the concept land faster?**
+
+---
+
+## The rules that keep the repo coherent
+
+### 1. No dependencies, ever
+
+No build step, no package manager, no JavaScript, no CDN links, no external fonts. Every asset must render from a fresh `git clone` with nothing installed. This is not minimalism for its own sake — it is what lets the animations work identically on GitHub, offline and on Pages.
+
+### 2. Animations are CSS inside the SVG
+
+- Motion goes in a `<style>` block **inside the `.svg` file**, using `@keyframes` (or SMIL `<animate>`).
+- **No `<script>`.** It will not run — GitHub renders SVGs in an `<img>` context, where scripts are inert.
+- No external references of any kind: no webfonts, no linked images, no imported stylesheets.
+- Give every file a `viewBox`, explicit `width`/`height`, a `<title>`, and an `aria-label`.
+- Paint the panel background inside the file so it reads correctly in both GitHub themes.
+- Keep files under ~30 KB.
+
+### 3. The colour legend is a contract
+
+Defined in [`docs/00-how-to-read-this.md`](docs/00-how-to-read-this.md) and used identically in all 62 assets:
+
+| Colour | Meaning |
+|:--|:--|
+| `#38bdf8` cyan | the structure at rest |
+| `#fbbf24` amber | active right now |
+| `#34d399` green | settled / succeeded |
+| `#fb7185` rose | rejected / removed |
+| `#c084fc` violet | a secondary pointer |
+| `#94a3b8` slate | labels and notes |
+
+Do not introduce a new colour without also updating the legend and every asset that would now be inconsistent with it.
+
+### 4. Frames must hard-cut, never cross-fade
+
+Multi-step animations show one frame at a time. Two frames visible simultaneously produces unreadable double-exposed text. Keyframes should take a frame from opacity 1 straight to 0 at the exact percentage the next one appears.
+
+Every loop also holds at its first and last frame so a reader can take in the start and end state.
+
+### 5. Mermaid must be `flowchart`, not `mindmap`
+
+**GitHub does not render Mermaid `mindmap` diagrams.** Mindmaps in this repo are written as `flowchart LR` with `classDef` styling, which renders everywhere. Do not "fix" them to `mindmap` syntax — it will silently produce a broken code block on GitHub.
+
+### 6. Pseudocode only
+
+No real programming language anywhere in `docs/`. The dialect is defined in [`docs/00-how-to-read-this.md`](docs/00-how-to-read-this.md): `←` for assignment, `function`/`end`, `for each … in`, 0-based indexing. Keeping it language-neutral is the point — the video teaches the idea, not the syntax.
+
+### 7. Every module has the same eleven blocks
+
+Analogy → animation → mental model → blueprint → mindmap → operations → complexity → trade-offs → flashcards → quiz → navigation. A module missing a block will feel wrong next to the others. Copy the shape from [`docs/05-stacks.md`](docs/05-stacks.md) if you are starting a new one.
+
+---
+
+## Before you open a PR
+
+```bash
+# 1. every SVG is well-formed XML
+find assets -name '*.svg' -exec xmllint --noout {} \;
+
+# 2. no SVG contains a script
+grep -rl '<script' assets/ && echo "FAIL: scripts found" || echo "OK"
+
+# 3. no unsupported mermaid diagram types
+grep -rn '```mermaid' -A1 docs/ README.md | grep -i 'mindmap' && echo "FAIL" || echo "OK"
+
+# 4. every <details> is closed
+for f in docs/*.md; do
+  o=$(grep -c '<details>' "$f"); c=$(grep -c '</details>' "$f")
+  [ "$o" = "$c" ] || echo "MISMATCH in $f: $o open, $c closed"
+done
+
+# 5. look at it
+python3 -m http.server 8000    # then open http://localhost:8000
+```
+
+Then open `index.html` and confirm your animation actually plays and does not collide with any text at its edges. The validators check structure, not layout — only your eyes catch a caption overlapping a node.
+
+---
+
+## Writing style
+
+- **Analogy first.** If you cannot state the concept as something physical in one sentence, the module is not ready.
+- **Say why, not just what.** "Insert is `O(n)`" is a fact; "insert is `O(n)` *because the block has no gaps, so everything to the right must shift*" is an explanation.
+- **Name the trap.** Every structure has one — the circular-list `null` check, the binary-search overflow, the greedy coin system. Those are the parts people actually get wrong.
+- **Be honest about trade-offs.** Arrays often beat linked lists in practice despite worse Big-O. Say so.
+
+---
+
+## Adding a new module
+
+1. Write `docs/NN-name.md` using the eleven-block template.
+2. Add at least one animation to `assets/anim/` and one blueprint to `assets/blueprint/`.
+3. Wire up the navigation footer in your module **and in its two neighbours**.
+4. Add rows to the README module table and the animation gallery.
+5. Add its cards to [`docs/flashcards.md`](docs/flashcards.md) and update the count in its index table.
+6. Add its rows to [`docs/cheatsheet-complexity.md`](docs/cheatsheet-complexity.md).
+7. Add the card to `index.html`.
+
+Run the checks above, and thank you.

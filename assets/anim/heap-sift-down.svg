@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 508" width="820" height="508" role="img" aria-label="Animation: extracting the minimum from a heap and sifting the replacement root downwards">
+  <title>Animation: extracting the minimum from a heap and sifting the replacement root downwards</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 10s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 10s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 10s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 10s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="820" height="508" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="508" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="506.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Min-heap - extract-min and sift down</text>
+  <text class="sub" x="24" y="54">The manager leaves; the last hire takes the chair and sinks to their real level</text>
+  <g id="fr0" class="frm">
+    <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="263.8" y1="270.4" x2="221.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="296.2" y1="270.4" x2="338.8" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="563.8" y1="270.4" x2="521.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="596.2" y1="270.4" x2="638.8" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="430.0" cy="178.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="430.0" y="179.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <g><circle cx="280.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="280.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text></g>
+    <g><circle cx="580.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="580.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text></g>
+    <g><circle cx="205.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="205.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <g><circle cx="355.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="355.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <g><circle cx="505.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="505.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="655.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="655.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">12</text></g>
+    <text class="lbl-l" x="24" y="414">array view</text>
+    <rect x="90" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="1.6"/><text x="114" y="416" font-size="14" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">2</text><text x="114" y="446" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <rect x="146" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="170" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text><text x="170" y="446" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <rect x="202" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="226" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text><text x="226" y="446" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <rect x="258" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="282" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text><text x="282" y="446" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <rect x="314" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="338" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text><text x="338" y="446" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <rect x="370" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="394" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text><text x="394" y="446" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+    <rect x="426" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="450" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">12</text><text x="450" y="446" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+    <text class="step" x="24" y="132">extract-min returns 2 - the root is the answer</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="263.8" y1="270.4" x2="221.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="296.2" y1="270.4" x2="338.8" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="563.8" y1="270.4" x2="521.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="430.0" cy="178.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="430.0" y="179.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">12</text></g>
+    <g><circle cx="280.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="280.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text></g>
+    <g><circle cx="580.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="580.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text></g>
+    <g><circle cx="205.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="205.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <g><circle cx="355.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="355.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <g><circle cx="505.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="505.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <text class="lbl-l" x="24" y="414">array view</text>
+    <rect x="90" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="1.6"/><text x="114" y="416" font-size="14" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">12</text><text x="114" y="446" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <rect x="146" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="170" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text><text x="170" y="446" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <rect x="202" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="226" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text><text x="226" y="446" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <rect x="258" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="282" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text><text x="282" y="446" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <rect x="314" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="338" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text><text x="338" y="446" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <rect x="370" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="394" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text><text x="394" y="446" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+    <rect x="426" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="450" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text><text x="450" y="446" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+    <text class="step" x="24" y="132">move the last leaf 12 into the root to keep the shape complete</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="263.8" y1="270.4" x2="221.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="296.2" y1="270.4" x2="338.8" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="563.8" y1="270.4" x2="521.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="430.0" cy="178.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="430.0" y="179.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">3</text></g>
+    <g><circle cx="280.0" cy="254.0" r="23" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="280.0" y="255.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">12</text></g>
+    <g><circle cx="580.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="580.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text></g>
+    <g><circle cx="205.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="205.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <g><circle cx="355.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="355.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <g><circle cx="505.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="505.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <text class="lbl-l" x="24" y="414">array view</text>
+    <rect x="90" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="1.6"/><text x="114" y="416" font-size="14" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">3</text><text x="114" y="446" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <rect x="146" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="1.6"/><text x="170" y="416" font-size="14" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">12</text><text x="170" y="446" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <rect x="202" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="226" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text><text x="226" y="446" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <rect x="258" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="282" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text><text x="282" y="446" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <rect x="314" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="338" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text><text x="338" y="446" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <rect x="370" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="394" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text><text x="394" y="446" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+    <rect x="426" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="450" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text><text x="450" y="446" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+    <text class="step" x="24" y="132">12 &gt; smaller child 3  ->  sink</text>
+  </g>
+  <g id="fr3" class="frm">
+    <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="263.8" y1="270.4" x2="221.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="296.2" y1="270.4" x2="338.8" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="563.8" y1="270.4" x2="521.2" y2="313.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="430.0" cy="178.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="430.0" y="179.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text></g>
+    <g><circle cx="280.0" cy="254.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="280.0" y="255.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <g><circle cx="580.0" cy="254.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="580.0" y="255.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text></g>
+    <g><circle cx="205.0" cy="330.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="205.0" y="331.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">12</text></g>
+    <g><circle cx="355.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="355.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <g><circle cx="505.0" cy="330.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="505.0" y="331.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <text class="lbl-l" x="24" y="414">array view</text>
+    <rect x="90" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="114" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text><text x="114" y="446" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <rect x="146" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="1.6"/><text x="170" y="416" font-size="14" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text><text x="170" y="446" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <rect x="202" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="226" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">8</text><text x="226" y="446" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <rect x="258" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="1.6"/><text x="282" y="416" font-size="14" fill="#34d399" text-anchor="middle" dominant-baseline="middle">12</text><text x="282" y="446" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <rect x="314" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="338" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text><text x="338" y="446" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <rect x="370" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="394" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text><text x="394" y="446" font-size="10" fill="#64748b" text-anchor="middle">5</text>
+    <rect x="426" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="450" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text><text x="450" y="446" font-size="10" fill="#64748b" text-anchor="middle">6</text>
+    <text class="step" x="24" y="132">12 &gt; smaller child 5  ->  sink. Heap restored in log n steps.</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">removing the minimum is not removing a node - it is replacing the root and letting it sink back into place</text>
+  <text class="lbl-l" x="24" y="480" style="fill:#94a3b8">peek O(1)  -  extract-min O(log n)  -  insert O(log n)  -  build-heap from n items O(n)</text>
+
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 600" width="940" height="600" role="img" aria-label="Greedy, divide and conquer, dynamic programming">
+  <title>Greedy, divide and conquer, dynamic programming</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="940" height="600" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="940" height="600" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="938.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Greedy, divide and conquer, dynamic programming</text>
+  <text class="sub" x="24" y="54">Three strategies and the question that picks between them</text>
+  <text class="lbl-l" x="24" y="96">three strategies for problems too big to attack directly - the trick is recognising which one your problem admits</text>
+  <rect x="50" y="160" width="250" height="210" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="66" y="190" font-size="13" font-weight="700" fill="#38bdf8">DIVIDE &amp; CONQUER</text>
+  <text x="66" y="218" font-size="11" fill="#94a3b8">split into INDEPENDENT subproblems</text>
+  <text x="66" y="248" font-size="11" fill="#94a3b8">solve each, then combine</text>
+  <text x="66" y="278" font-size="11" fill="#94a3b8">merge sort, quicksort, binary search</text>
+  <text x="66" y="308" font-size="11" fill="#94a3b8">cost: usually O(n log n)</text>
+  <rect x="350" y="160" width="250" height="210" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="366" y="190" font-size="13" font-weight="700" fill="#34d399">DYNAMIC PROGRAMMING</text>
+  <text x="366" y="218" font-size="11" fill="#94a3b8">subproblems OVERLAP, so cache them</text>
+  <text x="366" y="248" font-size="11" fill="#94a3b8">solve each distinct one exactly once</text>
+  <text x="366" y="278" font-size="11" fill="#94a3b8">fibonacci, knapsack, edit distance</text>
+  <text x="366" y="308" font-size="11" fill="#94a3b8">cost: trades memory for time</text>
+  <rect x="650" y="160" width="250" height="210" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="666" y="190" font-size="13" font-weight="700" fill="#fbbf24">GREEDY</text>
+  <text x="666" y="218" font-size="11" fill="#94a3b8">take the best local choice, never revisit</text>
+  <text x="666" y="248" font-size="11" fill="#94a3b8">no cache, no backtracking</text>
+  <text x="666" y="278" font-size="11" fill="#94a3b8">coin change, Huffman, Dijkstra</text>
+  <text x="666" y="308" font-size="11" fill="#94a3b8">cost: fastest - when it is even correct</text>
+  <text x="50" y="420" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">HOW TO TELL THEM APART</text>
+  <path d="M50 428 L890 428" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="450" font-size="12" fill="#94a3b8">do the subproblems repeat?   no -&gt; divide and conquer.   yes -&gt; dynamic programming.</text>
+  <text x="50" y="471" font-size="12" fill="#94a3b8">can you prove that the locally best choice is globally safe?   yes -&gt; greedy.   no -&gt; DP.</text>
+  <text x="50" y="492" font-size="12" fill="#94a3b8">greedy that cannot be proved is just a guess: it will be fast and it will sometimes be wrong</text>
+  <text x="50" y="520" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">TWO FLAVOURS OF DP</text>
+  <path d="M50 528 L890 528" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="550" font-size="12" fill="#94a3b8">top-down (memoisation)  - write it recursively, cache each answer as it is computed</text>
+  <text x="50" y="571" font-size="12" fill="#94a3b8">bottom-up (tabulation)  - fill a table in dependency order; no recursion, no stack depth risk</text>
+  <rect x="618" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M618 544 L918 544 M804 544 L804 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="630" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="630" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="816" y="564" font-size="10" fill="#fbbf24">SHEET 17 / 18</text>
+
+</svg>

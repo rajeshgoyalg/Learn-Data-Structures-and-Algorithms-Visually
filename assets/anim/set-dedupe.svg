@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 400" width="840" height="400" role="img" aria-label="Animation: a stream of values entering a set where duplicates are rejected">
+  <title>Animation: a stream of values entering a set where duplicates are rejected</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+.inc{opacity:0}
+.verdict{opacity:0}
+.mem{opacity:0}
+#s0{animation:in0 12s infinite}
+#v0{animation:vv0 12s infinite}
+  @keyframes in0{0%{opacity:0;transform:translate(0,0)} 2%{opacity:0;transform:translate(0,0)} 4%{opacity:1;transform:translate(0,0)} 10%{opacity:1;transform:translate(0,0)} 17%{transform:translate(390px,-6px);opacity:0} 100%{opacity:0}}
+  @keyframes vv0{0%{opacity:0} 6%{opacity:0} 8%{opacity:1} 18%{opacity:1} 20%{opacity:0} 100%{opacity:0}}
+#s1{animation:in1 12s infinite}
+#v1{animation:vv1 12s infinite}
+  @keyframes in1{0%{opacity:0;transform:translate(0,0)} 22%{opacity:0;transform:translate(0,0)} 24%{opacity:1;transform:translate(0,0)} 30%{opacity:1;transform:translate(0,0)} 37%{transform:translate(490px,-6px);opacity:0} 100%{opacity:0}}
+  @keyframes vv1{0%{opacity:0} 26%{opacity:0} 28%{opacity:1} 38%{opacity:1} 40%{opacity:0} 100%{opacity:0}}
+#s2{animation:in2 12s infinite}
+#v2{animation:vv2 12s infinite}
+  @keyframes in2{0%{opacity:0;transform:translate(0,0)} 42%{opacity:0;transform:translate(0,0)} 44%{opacity:1;transform:translate(0,0)} 50%{opacity:1;transform:translate(0,0)} 57%{transform:translate(60px,-46px);opacity:0} 100%{opacity:0}}
+  @keyframes vv2{0%{opacity:0} 46%{opacity:0} 48%{opacity:1} 58%{opacity:1} 60%{opacity:0} 100%{opacity:0}}
+#s3{animation:in3 12s infinite}
+#v3{animation:vv3 12s infinite}
+  @keyframes in3{0%{opacity:0;transform:translate(0,0)} 62%{opacity:0;transform:translate(0,0)} 64%{opacity:1;transform:translate(0,0)} 70%{opacity:1;transform:translate(0,0)} 77%{transform:translate(590px,-6px);opacity:0} 100%{opacity:0}}
+  @keyframes vv3{0%{opacity:0} 66%{opacity:0} 68%{opacity:1} 78%{opacity:1} 80%{opacity:0} 100%{opacity:0}}
+#s4{animation:in4 12s infinite}
+#v4{animation:vv4 12s infinite}
+  @keyframes in4{0%{opacity:0;transform:translate(0,0)} 82%{opacity:0;transform:translate(0,0)} 84%{opacity:1;transform:translate(0,0)} 90%{opacity:1;transform:translate(0,0)} 97%{transform:translate(60px,-46px);opacity:0} 100%{opacity:0}}
+  @keyframes vv4{0%{opacity:0} 86%{opacity:0} 88%{opacity:1} 98%{opacity:1} 100%{opacity:0} 100%{opacity:0}}
+#m0{animation:mm0 12s infinite}
+  @keyframes mm0{0%{opacity:0} 17%{opacity:0} 19%{opacity:1} 96%{opacity:1} 99%{opacity:0}}
+#m1{animation:mm1 12s infinite}
+  @keyframes mm1{0%{opacity:0} 37%{opacity:0} 39%{opacity:1} 96%{opacity:1} 99%{opacity:0}}
+#m2{animation:mm2 12s infinite}
+  @keyframes mm2{0%{opacity:0} 77%{opacity:0} 79%{opacity:1} 96%{opacity:1} 99%{opacity:0}}
+
+  </style>
+  <rect x="0" y="0" width="840" height="400" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="840" height="400" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="838.5" height="398.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Set - membership and de-duplication</text>
+  <text class="sub" x="24" y="54">A guest list: your name is on it or it is not, and adding it twice changes nothing</text>
+  <text class="lbl-l" x="24" y="96">a set answers exactly one question: have I seen this before? Duplicates are refused at the door.</text>
+  <rect x="430" y="130" width="330" height="190" rx="12" fill="#0d2230" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6"/>
+  <text class="lbl" x="595.0" y="116" style="fill:#38bdf8">the set (no duplicates, no order)</text>
+  <g id="m0" class="mem"><circle cx="490" cy="194" r="27" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="490" y="195" style="fill:#34d399">7</text></g>
+  <g id="m1" class="mem"><circle cx="590" cy="194" r="27" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="590" y="195" style="fill:#34d399">3</text></g>
+  <g id="m2" class="mem"><circle cx="690" cy="194" r="27" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="690" y="195" style="fill:#34d399">9</text></g>
+  <text class="lbl-l" x="60" y="160" style="fill:#94a3b8">incoming stream</text>
+  <g id="s0" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#34d399">7</text></g>
+  <text id="v0" class="verdict step" x="156" y="262" style="fill:#34d399">added</text>
+  <g id="s1" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#34d399">3</text></g>
+  <text id="v1" class="verdict step" x="156" y="262" style="fill:#34d399">added</text>
+  <g id="s2" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#fb7185" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#fb7185">7</text></g>
+  <text id="v2" class="verdict step" x="156" y="262" style="fill:#fb7185">already present - rejected</text>
+  <g id="s3" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#34d399">9</text></g>
+  <text id="v3" class="verdict step" x="156" y="262" style="fill:#34d399">added</text>
+  <g id="s4" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#fb7185" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#fb7185">3</text></g>
+  <text id="v4" class="verdict step" x="156" y="262" style="fill:#fb7185">already present - rejected</text>
+  <text class="lbl-l" x="24" y="360" style="fill:#94a3b8">membership test is O(1) on average - a set is a hash table that stores keys and nothing else</text>
+
+</svg>

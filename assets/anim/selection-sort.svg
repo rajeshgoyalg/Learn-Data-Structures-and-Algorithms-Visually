@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 350" width="660" height="350" role="img" aria-label="Animation: selection sort scanning for the minimum and swapping it into place">
+  <title>Animation: selection sort scanning for the minimum and swapping it into place</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 9s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 9s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 9s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 9s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="660" height="350" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="660" height="350" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="658.5" height="348.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Selection sort</text>
+  <text class="sub" x="24" y="54">Pick the smallest card left, place it, repeat</text>
+  <g id="fr0" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">scan the whole unsorted region for the smallest value</text>
+  </g>
+  <g id="fr1" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">the minimum is 1 at index 3</text>
+  </g>
+  <g id="fr2" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">swap it into position 0 - exactly one swap for the whole pass</text>
+  </g>
+  <g id="fr3" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">repeat on the rest. n passes, n^2/2 comparisons, but only n swaps.</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">find the minimum of what is left, put it where it belongs, shrink the problem by one</text>
+  <text class="lbl-l" x="24" y="322" style="fill:#94a3b8">O(n^2) comparisons but only O(n) writes - useful when writing is far more expensive than reading. Not stable.</text>
+
+</svg>

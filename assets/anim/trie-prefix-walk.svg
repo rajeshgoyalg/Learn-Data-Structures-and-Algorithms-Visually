@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 508" width="780" height="508" role="img" aria-label="Animation: walking a trie letter by letter to match the word cat">
+  <title>Animation: walking a trie letter by letter to match the word cat</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 8s infinite}
+  @keyframes fk0{0%{opacity:1} 31.32%{opacity:1} 31.333333333333332%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 8s infinite}
+  @keyframes fk1{0%{opacity:0} 31.32%{opacity:0} 31.333333333333332%{opacity:1} 58.66%{opacity:1} 58.666666666666664%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 8s infinite}
+  @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="780" height="508" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="780" height="508" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="778.5" height="506.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Trie - prefix walk</text>
+  <text class="sub" x="24" y="54">A phone book where the shared spelling is written once</text>
+  <g id="fr0" class="frm">
+    <line x1="132.2" y1="264.8" x2="207.8" y2="233.2" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="170.0" y="241.0" font-size="12" fill="#34d399" text-anchor="middle">c</text>
+    <line x1="254.0" y1="224.0" x2="326.0" y2="224.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="290.0" y="216.0" font-size="12" fill="#38bdf8" text-anchor="middle">a</text>
+    <line x1="372.8" y1="216.4" x2="447.2" y2="191.6" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="196.0" font-size="12" fill="#38bdf8" text-anchor="middle">t</text>
+    <line x1="372.2" y1="233.2" x2="447.8" y2="264.8" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="241.0" font-size="12" fill="#38bdf8" text-anchor="middle">r</text>
+    <line x1="130.0" y1="287.3" x2="210.0" y2="340.7" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="170.0" y="306.0" font-size="12" fill="#38bdf8" text-anchor="middle">d</text>
+    <line x1="254.0" y1="354.0" x2="326.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="290.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">o</text>
+    <line x1="374.0" y1="354.0" x2="446.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">g</text>
+    <circle cx="110" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="110" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text>
+    <circle cx="230" cy="224" r="24" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="230" y="225" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">c</text>
+    <circle cx="350" cy="224" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="350" y="225" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">a</text>
+    <circle cx="470" cy="184" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="185" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">t</text>
+    <circle cx="470" cy="184" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="470" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">r</text>
+    <circle cx="470" cy="274" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="230" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="230" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">d</text>
+    <circle cx="350" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="350" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">o</text>
+    <circle cx="470" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">g</text>
+    <circle cx="470" cy="354" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <text x="110" y="232" font-size="11" fill="#94a3b8" text-anchor="middle">root</text>
+    <text x="600" y="150" font-size="22" font-weight="700" fill="#fbbf24">c</text>
+    <text class="step" x="24" y="128">type 'c' - one edge from the root</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="132.2" y1="264.8" x2="207.8" y2="233.2" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="170.0" y="241.0" font-size="12" fill="#34d399" text-anchor="middle">c</text>
+    <line x1="254.0" y1="224.0" x2="326.0" y2="224.0" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="290.0" y="216.0" font-size="12" fill="#34d399" text-anchor="middle">a</text>
+    <line x1="372.8" y1="216.4" x2="447.2" y2="191.6" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="196.0" font-size="12" fill="#38bdf8" text-anchor="middle">t</text>
+    <line x1="372.2" y1="233.2" x2="447.8" y2="264.8" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="241.0" font-size="12" fill="#38bdf8" text-anchor="middle">r</text>
+    <line x1="130.0" y1="287.3" x2="210.0" y2="340.7" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="170.0" y="306.0" font-size="12" fill="#38bdf8" text-anchor="middle">d</text>
+    <line x1="254.0" y1="354.0" x2="326.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="290.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">o</text>
+    <line x1="374.0" y1="354.0" x2="446.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">g</text>
+    <circle cx="110" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="110" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text>
+    <circle cx="230" cy="224" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="230" y="225" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">c</text>
+    <circle cx="350" cy="224" r="24" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="350" y="225" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">a</text>
+    <circle cx="470" cy="184" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="185" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">t</text>
+    <circle cx="470" cy="184" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="470" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">r</text>
+    <circle cx="470" cy="274" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="230" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="230" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">d</text>
+    <circle cx="350" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="350" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">o</text>
+    <circle cx="470" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">g</text>
+    <circle cx="470" cy="354" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <text x="110" y="232" font-size="11" fill="#94a3b8" text-anchor="middle">root</text>
+    <text x="600" y="150" font-size="22" font-weight="700" fill="#fbbf24">ca</text>
+    <text class="step" x="24" y="128">type 'a' - the prefix is now fixed and only 'cat' and 'car' remain reachable</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="132.2" y1="264.8" x2="207.8" y2="233.2" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="170.0" y="241.0" font-size="12" fill="#34d399" text-anchor="middle">c</text>
+    <line x1="254.0" y1="224.0" x2="326.0" y2="224.0" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="290.0" y="216.0" font-size="12" fill="#34d399" text-anchor="middle">a</text>
+    <line x1="372.8" y1="216.4" x2="447.2" y2="191.6" stroke="#34d399" stroke-width="2.4" opacity="1"/>
+    <text x="410.0" y="196.0" font-size="12" fill="#34d399" text-anchor="middle">t</text>
+    <line x1="372.2" y1="233.2" x2="447.8" y2="264.8" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="241.0" font-size="12" fill="#38bdf8" text-anchor="middle">r</text>
+    <line x1="130.0" y1="287.3" x2="210.0" y2="340.7" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="170.0" y="306.0" font-size="12" fill="#38bdf8" text-anchor="middle">d</text>
+    <line x1="254.0" y1="354.0" x2="326.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="290.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">o</text>
+    <line x1="374.0" y1="354.0" x2="446.0" y2="354.0" stroke="#38bdf8" stroke-width="1.5" opacity="0.55"/>
+    <text x="410.0" y="346.0" font-size="12" fill="#38bdf8" text-anchor="middle">g</text>
+    <circle cx="110" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="110" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text>
+    <circle cx="230" cy="224" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="230" y="225" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">c</text>
+    <circle cx="350" cy="224" r="24" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="350" y="225" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">a</text>
+    <circle cx="470" cy="184" r="24" fill="#0f2438" stroke="#fbbf24" stroke-width="2.2"/><text x="470" y="185" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">t</text>
+    <circle cx="470" cy="184" r="29" fill="none" stroke="#fbbf24" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="470" cy="274" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="275" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">r</text>
+    <circle cx="470" cy="274" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <circle cx="230" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="230" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">d</text>
+    <circle cx="350" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="350" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">o</text>
+    <circle cx="470" cy="354" r="24" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="470" y="355" font-size="15" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">g</text>
+    <circle cx="470" cy="354" r="29" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.8"/>
+    <text x="110" y="232" font-size="11" fill="#94a3b8" text-anchor="middle">root</text>
+    <text x="600" y="150" font-size="22" font-weight="700" fill="#fbbf24">cat</text>
+    <text class="step" x="24" y="128">type 't' - a double ring marks the end of a real word</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">a trie stores the letters on the edges, so every shared prefix is stored exactly once - "cat" and "car" share c-a</text>
+  <text class="lbl-l" x="24" y="444" style="fill:#94a3b8">lookup costs O(L) in the length of the word, not O(n) in the number of words - which is why autocomplete uses one</text>
+  <rect x="24" y="468" width="11" height="11" rx="2" fill="#34d399"/>
+  <text class="lbl-l" x="41" y="474">matched prefix</text>
+  <rect x="139.60000000000002" y="468" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="156.60000000000002" y="474">current letter</text>
+  <rect x="255.20000000000005" y="468" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <text class="lbl-l" x="272.20000000000005" y="474">unexplored branch</text>
+
+</svg>

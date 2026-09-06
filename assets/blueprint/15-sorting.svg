@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 600" width="940" height="600" role="img" aria-label="Sorting - the comparison table">
+  <title>Sorting - the comparison table</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="940" height="600" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="940" height="600" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="938.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Sorting - the comparison table</text>
+  <text class="sub" x="24" y="54">The five classics side by side, with the trade-off that picks between them</text>
+  <text class="lbl-l" x="24" y="96">five sorts, ranked by the only thing that matters in practice: what they cost on the input you actually have</text>
+  <text x="50" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">ALGORITHM</text>
+  <text x="250" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">BEST</text>
+  <text x="350" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">AVERAGE</text>
+  <text x="470" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">WORST</text>
+  <text x="600" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">SPACE</text>
+  <text x="700" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">STABLE</text>
+  <text x="790" y="170" font-size="11" font-weight="700" fill="#38bdf8" letter-spacing="0.5">USE IT WHEN</text>
+  <path d="M50 178 L890 178" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="208" font-size="13" font-weight="600" fill="#fb7185">Bubble</text>
+  <text x="250" y="208" font-size="12" fill="#e2e8f0">n</text>
+  <text x="350" y="208" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="470" y="208" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="600" y="208" font-size="12" fill="#e2e8f0">1</text>
+  <text x="700" y="208" font-size="12" fill="#34d399">yes</text>
+  <text x="790" y="208" font-size="11" fill="#94a3b8">teaching only</text>
+  <text x="50" y="252" font-size="13" font-weight="600" fill="#fb7185">Selection</text>
+  <text x="250" y="252" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="350" y="252" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="470" y="252" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="600" y="252" font-size="12" fill="#e2e8f0">1</text>
+  <text x="700" y="252" font-size="12" fill="#94a3b8">no</text>
+  <text x="790" y="252" font-size="11" fill="#94a3b8">writes are costly</text>
+  <text x="50" y="296" font-size="13" font-weight="600" fill="#fbbf24">Insertion</text>
+  <text x="250" y="296" font-size="12" fill="#e2e8f0">n</text>
+  <text x="350" y="296" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="470" y="296" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="600" y="296" font-size="12" fill="#e2e8f0">1</text>
+  <text x="700" y="296" font-size="12" fill="#34d399">yes</text>
+  <text x="790" y="296" font-size="11" fill="#94a3b8">small or nearly sorted</text>
+  <text x="50" y="340" font-size="13" font-weight="600" fill="#34d399">Merge</text>
+  <text x="250" y="340" font-size="12" fill="#e2e8f0">n log n</text>
+  <text x="350" y="340" font-size="12" fill="#e2e8f0">n log n</text>
+  <text x="470" y="340" font-size="12" fill="#e2e8f0">n log n</text>
+  <text x="600" y="340" font-size="12" fill="#e2e8f0">n</text>
+  <text x="700" y="340" font-size="12" fill="#34d399">yes</text>
+  <text x="790" y="340" font-size="11" fill="#94a3b8">stability required</text>
+  <text x="50" y="384" font-size="13" font-weight="600" fill="#34d399">Quick</text>
+  <text x="250" y="384" font-size="12" fill="#e2e8f0">n log n</text>
+  <text x="350" y="384" font-size="12" fill="#e2e8f0">n log n</text>
+  <text x="470" y="384" font-size="12" fill="#e2e8f0">n^2</text>
+  <text x="600" y="384" font-size="12" fill="#e2e8f0">log n</text>
+  <text x="700" y="384" font-size="12" fill="#94a3b8">no</text>
+  <text x="790" y="384" font-size="11" fill="#94a3b8">general purpose, in place</text>
+  <text x="50" y="450" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHAT 'STABLE' MEANS AND WHY YOU CARE</text>
+  <path d="M50 458 L890 458" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="480" font-size="12" fill="#94a3b8">a stable sort keeps equal elements in their original relative order</text>
+  <text x="50" y="501" font-size="12" fill="#94a3b8">sort by name, then stably by department, and you get departments each holding a name-sorted list</text>
+  <text x="50" y="530" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHAT REAL LIBRARIES ACTUALLY DO</text>
+  <path d="M50 538 L890 538" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="560" font-size="12" fill="#94a3b8">they hybridise: quicksort or mergesort for the bulk, insertion sort once a run is small (Timsort, introsort)</text>
+  <rect x="618" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M618 544 L918 544 M804 544 L804 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="630" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="630" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="816" y="564" font-size="10" fill="#fbbf24">SHEET 15 / 18</text>
+
+</svg>

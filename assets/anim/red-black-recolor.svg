@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 496" width="820" height="496" role="img" aria-label="Animation: a red-black tree repairing itself by recolouring after an insertion">
+  <title>Animation: a red-black tree repairing itself by recolouring after an insertion</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 11s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 11s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 11s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 11s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="820" height="496" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="496" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="494.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Red-black tree - recolouring</text>
+  <text class="sub" x="24" y="54">Cheaper to maintain than AVL: recolour first, rotate only when you must</text>
+  <g id="fr0" class="frm">
+    <line x1="400.9" y1="198.8" x2="314.1" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="439.1" y1="198.8" x2="525.9" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="295.0" cy="270.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="295.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="545.0" cy="270.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="545.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <text class="step" x="24" y="134">a legal red-black tree: the root is black and every root-to-leaf path passes the same number of black nodes</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="400.9" y1="198.8" x2="314.1" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="439.1" y1="198.8" x2="525.9" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="308.7" y1="288.5" x2="343.8" y2="335.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="295.0" cy="270.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="295.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="545.0" cy="270.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="545.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="357.5" cy="354.0" r="23" fill="#7f1d2e" stroke="#fbbf24" stroke-width="2.2"/><text x="357.5" y="355.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">15</text></g>
+    <text class="step" x="24" y="134">insert 15. New nodes always arrive red, so the black-height is not disturbed.</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="400.9" y1="198.8" x2="314.1" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="439.1" y1="198.8" x2="525.9" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="308.7" y1="288.5" x2="343.8" y2="335.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="295.0" cy="270.0" r="23" fill="#111f30" stroke="#fbbf24" stroke-width="2.2"/><text x="295.0" y="271.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="545.0" cy="270.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="545.0" y="271.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="357.5" cy="354.0" r="23" fill="#7f1d2e" stroke="#fbbf24" stroke-width="2.2"/><text x="357.5" y="355.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">15</text></g>
+    <text class="step" x="24" y="134">but 15's parent 10 is black here, so nothing is violated - when the parent is red instead, a red-red conflict appears</text>
+  </g>
+  <g id="fr3" class="frm">
+    <line x1="400.9" y1="198.8" x2="314.1" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="439.1" y1="198.8" x2="525.9" y2="257.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <line x1="308.7" y1="288.5" x2="343.8" y2="335.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
+    <g><circle cx="420.0" cy="186.0" r="23" fill="#111f30" stroke="#fbbf24" stroke-width="2.2"/><text x="420.0" y="187.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">20</text></g>
+    <g><circle cx="295.0" cy="270.0" r="23" fill="#7f1d2e" stroke="#fbbf24" stroke-width="2.2"/><text x="295.0" y="271.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">10</text></g>
+    <g><circle cx="545.0" cy="270.0" r="23" fill="#7f1d2e" stroke="#fbbf24" stroke-width="2.2"/><text x="545.0" y="271.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">30</text></g>
+    <g><circle cx="357.5" cy="354.0" r="23" fill="#111f30" stroke="#38bdf8" stroke-width="2.2"/><text x="357.5" y="355.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">15</text></g>
+    <text class="step" x="24" y="134">the fix is recolouring first (repaint parent and uncle black, grandparent red) and rotating only if recolouring is not enough</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">red-black trees trade AVL's strict balance for cheaper maintenance: never perfectly balanced, but never worse than twice the ideal height</text>
+  <text class="lbl-l" x="24" y="430" style="fill:#94a3b8">rules: root black - no red node has a red child - every path from a node to its leaves holds the same number of black nodes</text>
+  <rect x="24" y="454" width="11" height="11" rx="2" fill="#fb7185"/>
+  <text class="lbl-l" x="41" y="460">red node</text>
+  <rect x="101.2" y="454" width="11" height="11" rx="2" fill="#111f30"/>
+  <text class="lbl-l" x="118.2" y="460">black node</text>
+  <rect x="191.2" y="454" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <text class="lbl-l" x="208.2" y="460">being repaired</text>
+
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="Infographic comparing contiguous, linked and hierarchical memory layouts">
+  <title>Infographic comparing contiguous, linked and hierarchical memory layouts</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Three physical layouts</text>
+  <text class="sub" x="24" y="54">Contiguous, linked, hierarchical - every structure here is one of these</text>
+  <text class="lbl-l" x="24" y="96">three physical arrangements underlie everything in this repo - and each one decides what is cheap and what is not</text>
+  <text x="50" y="164" font-size="13" font-weight="700" fill="#34d399">1. CONTIGUOUS</text>
+  <rect x="50" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="112" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="174" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="236" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="298" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="360" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <rect x="422" y="180" width="54" height="40" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="500" y="202" font-size="12" fill="#94a3b8">arrays, heaps, hash buckets</text>
+  <text x="500" y="220" font-size="11" fill="#94a3b8">-&gt; O(1) indexing, cache-friendly, expensive to reshape</text>
+  <text x="50" y="264" font-size="13" font-weight="700" fill="#fbbf24">2. LINKED</text>
+  <rect x="50" y="280" width="54" height="40" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <path d="M104 300 L146 316" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)"/>
+  <rect x="150" y="296" width="54" height="40" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <path d="M204 316 L246 290" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)"/>
+  <rect x="250" y="270" width="54" height="40" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <path d="M304 290 L346 308" stroke="#fbbf24" stroke-width="1.6" fill="none" marker-end="url(#ara)"/>
+  <rect x="350" y="288" width="54" height="40" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="500" y="302" font-size="12" fill="#94a3b8">linked lists, chained buckets, tree nodes</text>
+  <text x="500" y="320" font-size="11" fill="#94a3b8">-&gt; O(1) reshaping, no indexing, pointer overhead, cache-hostile</text>
+  <text x="50" y="374" font-size="13" font-weight="700" fill="#c084fc">3. HIERARCHICAL</text>
+  <rect x="210" y="390" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <line x1="232" y1="420" x2="152" y2="448" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
+  <rect x="130" y="442" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <line x1="232" y1="420" x2="312" y2="448" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
+  <rect x="290" y="442" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <line x1="152" y1="472" x2="112" y2="496" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
+  <rect x="90" y="490" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <line x1="152" y1="472" x2="192" y2="496" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
+  <rect x="170" y="490" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <line x1="312" y1="472" x2="352" y2="496" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
+  <rect x="330" y="490" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
+  <text x="500" y="442" font-size="12" fill="#94a3b8">trees, tries, heaps viewed logically</text>
+  <text x="500" y="460" font-size="11" fill="#94a3b8">-&gt; O(log n) by discarding branches, as long as the tree stays balanced</text>
+
+</svg>

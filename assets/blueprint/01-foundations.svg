@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 680" width="880" height="680" role="img" aria-label="Complexity - the growth ladder">
+  <title>Complexity - the growth ladder</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="880" height="680" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="680" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="678.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Complexity - the growth ladder</text>
+  <text class="sub" x="24" y="54">Every structure in this repo is a bet about which row of this table your workload lands in</text>
+  <text class="lbl-l" x="24" y="96">complexity describes the SHAPE of the growth curve, not the speed on your laptop - constants and hardware are deliberately thrown away</text>
+  <rect x="40" y="140" width="128" height="44" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="104.0" y="162.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(1)</text>
+  <text x="190" y="157" font-size="13" fill="#e2e8f0">hash lookup, array index, stack push</text>
+  <text x="190" y="175" font-size="11" fill="#94a3b8">flat - size does not matter</text>
+  <rect x="630" y="153" width="10" height="18" rx="3" fill="#34d399" opacity="0.65"/>
+  <rect x="40" y="198" width="128" height="44" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="104.0" y="220.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">O(log n)</text>
+  <text x="190" y="215" font-size="13" fill="#e2e8f0">binary search, balanced tree ops</text>
+  <text x="190" y="233" font-size="11" fill="#94a3b8">doubling the data adds one step</text>
+  <rect x="630" y="211" width="26" height="18" rx="3" fill="#34d399" opacity="0.65"/>
+  <rect x="40" y="256" width="128" height="44" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="104.0" y="278.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">O(n)</text>
+  <text x="190" y="273" font-size="13" fill="#e2e8f0">linear scan, linked-list traversal</text>
+  <text x="190" y="291" font-size="11" fill="#94a3b8">twice the data, twice the work</text>
+  <rect x="630" y="269" width="62" height="18" rx="3" fill="#fbbf24" opacity="0.65"/>
+  <rect x="40" y="314" width="128" height="44" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
+  <text x="104.0" y="336.0" font-size="15" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">O(n log n)</text>
+  <text x="190" y="331" font-size="13" fill="#e2e8f0">merge sort, quicksort, heapsort</text>
+  <text x="190" y="349" font-size="11" fill="#94a3b8">the practical floor for comparison sorting</text>
+  <rect x="630" y="327" width="96" height="18" rx="3" fill="#fbbf24" opacity="0.65"/>
+  <rect x="40" y="372" width="128" height="44" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="104.0" y="394.0" font-size="15" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n^2)</text>
+  <text x="190" y="389" font-size="13" fill="#e2e8f0">bubble / selection / insertion sort</text>
+  <text x="190" y="407" font-size="11" fill="#94a3b8">10x the data, 100x the work</text>
+  <rect x="630" y="385" width="140" height="18" rx="3" fill="#fb7185" opacity="0.65"/>
+  <rect x="40" y="430" width="128" height="44" rx="6" fill="#0f2438" stroke="#fb7185" stroke-width="1.8"/>
+  <text x="104.0" y="452.0" font-size="15" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(2^n)</text>
+  <text x="190" y="447" font-size="13" fill="#e2e8f0">naive recursive fibonacci, subsets</text>
+  <text x="190" y="465" font-size="11" fill="#94a3b8">one more item doubles the runtime</text>
+  <rect x="630" y="443" width="186" height="18" rx="3" fill="#fb7185" opacity="0.65"/>
+  <text x="630" y="130" font-size="11" fill="#94a3b8">relative work at n = 1000</text>
+  <text x="40" y="500" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">HOW TO READ ANY COMPLEXITY</text>
+  <path d="M40 508 L600 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="40" y="530" font-size="12" fill="#94a3b8">1. count the operation that dominates - usually a comparison, a swap or a visit</text>
+  <text x="40" y="551" font-size="12" fill="#94a3b8">2. drop constants and lower-order terms: 3n^2 + 90n + 7 is simply O(n^2)</text>
+  <text x="40" y="572" font-size="12" fill="#94a3b8">3. state which case you mean - best, average or worst - and the space cost separately</text>
+  <rect x="558" y="598" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 624 L858 624 M744 624 L744 660" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="570" y="615" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="570" y="644" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="756" y="644" font-size="10" fill="#fbbf24">SHEET 01 / 18</text>
+
+</svg>

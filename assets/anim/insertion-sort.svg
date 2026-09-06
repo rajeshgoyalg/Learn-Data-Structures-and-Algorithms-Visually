@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 350" width="660" height="350" role="img" aria-label="Animation: insertion sort growing a sorted prefix by inserting each next element">
+  <title>Animation: insertion sort growing a sorted prefix by inserting each next element</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 10s infinite}
+  @keyframes fk0{0%{opacity:1} 20.39%{opacity:1} 20.4%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 10s infinite}
+  @keyframes fk1{0%{opacity:0} 20.39%{opacity:0} 20.4%{opacity:1} 36.79%{opacity:1} 36.8%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 10s infinite}
+  @keyframes fk2{0%{opacity:0} 36.79%{opacity:0} 36.8%{opacity:1} 53.19%{opacity:1} 53.199999999999996%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 10s infinite}
+  @keyframes fk3{0%{opacity:0} 53.19%{opacity:0} 53.199999999999996%{opacity:1} 69.59%{opacity:1} 69.6%{opacity:0} 100%{opacity:0}}
+  #fr4{animation:fk4 10s infinite}
+  @keyframes fk4{0%{opacity:0} 69.59%{opacity:0} 69.6%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="660" height="350" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="660" height="350" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="658.5" height="348.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Insertion sort</text>
+  <text class="sub" x="24" y="54">Sorting a hand of cards: each new card slides into place</text>
+  <g id="fr0" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">the first card is trivially sorted. Pick up 2.</text>
+  </g>
+  <g id="fr1" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">2 belongs before 5 - slide 5 right and drop 2 in</text>
+  </g>
+  <g id="fr2" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">9 is already bigger than 5 - it stays where it is, no work done</text>
+  </g>
+  <g id="fr3" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">1 slides all the way to the front - the expensive case</text>
+  </g>
+  <g id="fr4" class="frm">
+    <g opacity="1"><rect x="140" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="169.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text></g>
+    <text x="169.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">0</text>
+    <g opacity="1"><rect x="216" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="245.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text></g>
+    <text x="245.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">1</text>
+    <g opacity="1"><rect x="292" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="321.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text></g>
+    <text x="321.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">2</text>
+    <g opacity="1"><rect x="368" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="397.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">7</text></g>
+    <text x="397.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">3</text>
+    <g opacity="1"><rect x="444" y="200" width="58" height="52" rx="5" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="473.0" y="226.0" font-size="16" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">9</text></g>
+    <text x="473.0" y="268" font-size="10" fill="#64748b" text-anchor="middle">4</text>
+    <text class="step" x="24" y="140">7 slots between 5 and 9. Nearly sorted input makes this O(n).</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">exactly how you sort a hand of cards: hold a sorted run on the left and insert each new card into it</text>
+  <text class="lbl-l" x="24" y="322" style="fill:#94a3b8">O(n^2) worst case but O(n) on nearly sorted data, stable and in place - which is why real sorts fall back to it for small runs.</text>
+
+</svg>

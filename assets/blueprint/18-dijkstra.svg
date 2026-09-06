@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="Dijkstra - anatomy">
+  <title>Dijkstra - anatomy</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+
+  </style>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Dijkstra - anatomy</text>
+  <text class="sub" x="24" y="54">Two tables, one priority queue, one repeated move</text>
+  <text class="lbl-l" x="24" y="96">Dijkstra keeps two tables and one priority queue, and repeats a single move until the queue empties</text>
+  <rect x="50" y="165" width="250" height="100" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="66" y="192" font-size="12" font-weight="700" fill="#fbbf24">dist[v]</text>
+  <text x="66" y="214" font-size="11" fill="#94a3b8">best known cost from the source</text>
+  <text x="66" y="234" font-size="11" fill="#94a3b8">starts at infinity for every node</text>
+  <text x="66" y="254" font-size="11" fill="#94a3b8">except the source itself, which is 0</text>
+  <rect x="325" y="165" width="250" height="100" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="341" y="192" font-size="12" font-weight="700" fill="#fbbf24">prev[v]</text>
+  <text x="341" y="214" font-size="11" fill="#94a3b8">which node we arrived from</text>
+  <text x="341" y="234" font-size="11" fill="#94a3b8">walk it backwards from the target</text>
+  <text x="341" y="254" font-size="11" fill="#94a3b8">to reconstruct the actual path</text>
+  <rect x="600" y="165" width="250" height="100" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
+  <text x="616" y="192" font-size="12" font-weight="700" fill="#fbbf24">priority queue</text>
+  <text x="616" y="214" font-size="11" fill="#94a3b8">unsettled nodes, keyed by dist</text>
+  <text x="616" y="234" font-size="11" fill="#94a3b8">always hands back the cheapest</text>
+  <text x="616" y="254" font-size="11" fill="#94a3b8">normally a binary heap</text>
+  <text x="50" y="320" font-size="13" font-weight="700" fill="#34d399">THE RELAXATION STEP - this is the entire algorithm</text>
+  <rect x="50" y="336" width="800" height="74" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
+  <text x="70" y="366" font-size="14" fill="#e2e8f0">if dist[u] + weight(u, v) &lt; dist[v]:</text>
+  <text x="94" y="392" font-size="14" fill="#34d399">dist[v] = dist[u] + weight(u, v)   and   prev[v] = u</text>
+  <text x="50" y="450" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHY IT IS CORRECT, AND WHERE IT BREAKS</text>
+  <path d="M50 458 L850 458" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="480" font-size="12" fill="#94a3b8">pull the cheapest unsettled node and its distance is already final - no later path can undercut it</text>
+  <text x="50" y="501" font-size="12" fill="#94a3b8">that argument needs non-negative weights. One negative edge and a settled node can turn out wrong.</text>
+  <text x="50" y="522" font-size="12" fill="#94a3b8">negative weights -&gt; Bellman-Ford.   all-pairs -&gt; Floyd-Warshall.   a good heuristic available -&gt; A*.</text>
+  <text x="50" y="550" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">COST</text>
+  <path d="M50 558 L850 558" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="50" y="580" font-size="12" fill="#94a3b8">O((V + E) log V) with a binary heap - the log V is the heap operation on every settle and every relax</text>
+  <rect x="578" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 564 L878 564 M764 564 L764 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
+  <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
+  <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 18 / 18</text>
+
+</svg>

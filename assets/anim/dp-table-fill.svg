@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 396" width="720" height="396" role="img" aria-label="Animation: replacing an exponential recursive call tree with a linear dynamic programming table">
+  <title>Animation: replacing an exponential recursive call tree with a linear dynamic programming table</title>
+  <defs>
+    <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.09"/>
+    </pattern>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="ara" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fbbf24"/>
+    </marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+  <style>
+  text{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;dominant-baseline:middle}
+  .title{fill:#e2e8f0;font-size:17px;font-weight:700;dominant-baseline:auto}
+  .sub{fill:#94a3b8;font-size:12px;dominant-baseline:auto}
+  .lbl{fill:#94a3b8;font-size:11px;text-anchor:middle}
+  .lbl-l{fill:#94a3b8;font-size:11px}
+  .val{fill:#e2e8f0;font-size:16px;text-anchor:middle;font-weight:600}
+  .idx{fill:#64748b;font-size:10px;text-anchor:middle}
+  .cell{fill:#0f2438;stroke:#38bdf8;stroke-width:1.5;rx:4}
+  .step{fill:#fbbf24;font-size:12px;font-weight:700}
+  .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
+  .frm{opacity:0}
+  #fr0{animation:fk0 11s infinite}
+  @keyframes fk0{0%{opacity:1} 24.49%{opacity:1} 24.5%{opacity:0} 100%{opacity:0}}
+  #fr1{animation:fk1 11s infinite}
+  @keyframes fk1{0%{opacity:0} 24.49%{opacity:0} 24.5%{opacity:1} 44.99%{opacity:1} 45.0%{opacity:0} 100%{opacity:0}}
+  #fr2{animation:fk2 11s infinite}
+  @keyframes fk2{0%{opacity:0} 44.99%{opacity:0} 45.0%{opacity:1} 65.49%{opacity:1} 65.5%{opacity:0} 100%{opacity:0}}
+  #fr3{animation:fk3 11s infinite}
+  @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
+
+  </style>
+  <rect x="0" y="0" width="720" height="396" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="396" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="394.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <text class="title" x="24" y="34">Dynamic programming - tabulation</text>
+  <text class="sub" x="24" y="54">Never solve the same subproblem twice: write the answer down</text>
+  <g id="fr0" class="frm">
+    <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="390" y1="154" x2="480" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="250" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="350" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="440" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="530" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <text x="390" y="140" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(5)</text>
+    <text x="300" y="190" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(4)</text>
+    <text x="480" y="190" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="250" y="240" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="350" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="440" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="530" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="24" y="140" font-size="12" fill="#94a3b8">naive recursion</text>
+    <text x="620" y="212" font-size="12" fill="#fb7185">recomputed</text>
+    <text class="step" x="24" y="112">naive fib(5) recomputes the same subproblems again and again - the call tree grows exponentially</text>
+  </g>
+  <g id="fr1" class="frm">
+    <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="390" y1="154" x2="480" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="250" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="350" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="440" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="530" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <text x="390" y="140" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(5)</text>
+    <text x="300" y="190" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(4)</text>
+    <text x="480" y="190" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="250" y="240" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="350" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="440" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="530" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="24" y="140" font-size="12" fill="#94a3b8">naive recursion</text>
+    <text x="620" y="212" font-size="12" fill="#fb7185">recomputed</text>
+    <text x="24" y="234" font-size="12" fill="#94a3b8">memo table</text>
+    <rect x="120" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="149.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">0</text><text x="149.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(0)</text>
+    <rect x="186" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="215.0" y="270.0" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">1</text><text x="215.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(1)</text>
+    <rect x="252" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="281.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="281.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(2)</text>
+    <rect x="318" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="347.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="347.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(3)</text>
+    <rect x="384" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="413.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="413.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(4)</text>
+    <rect x="450" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="479.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="479.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(5)</text>
+    <rect x="516" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="545.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="545.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(6)</text>
+    <text class="step" x="24" y="112">dynamic programming stores each answer once. Seed the base cases f(0) and f(1).</text>
+  </g>
+  <g id="fr2" class="frm">
+    <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="390" y1="154" x2="480" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="250" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="350" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="440" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="530" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <text x="390" y="140" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(5)</text>
+    <text x="300" y="190" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(4)</text>
+    <text x="480" y="190" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="250" y="240" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="350" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="440" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="530" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="24" y="140" font-size="12" fill="#94a3b8">naive recursion</text>
+    <text x="620" y="212" font-size="12" fill="#fb7185">recomputed</text>
+    <text x="24" y="234" font-size="12" fill="#94a3b8">memo table</text>
+    <rect x="120" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="149.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">0</text><text x="149.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(0)</text>
+    <rect x="186" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="215.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text><text x="215.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(1)</text>
+    <rect x="252" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="281.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text><text x="281.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(2)</text>
+    <rect x="318" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="347.0" y="270.0" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">2</text><text x="347.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(3)</text>
+    <rect x="384" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="413.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="413.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(4)</text>
+    <rect x="450" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="479.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="479.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(5)</text>
+    <rect x="516" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/><text x="545.0" y="270.0" font-size="15" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle"></text><text x="545.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(6)</text>
+    <text class="step" x="24" y="112">every later cell is just the sum of the two before it - one addition, no recursion</text>
+  </g>
+  <g id="fr3" class="frm">
+    <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="390" y1="154" x2="480" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="250" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="300" y1="204" x2="350" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="440" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <line x1="480" y1="204" x2="530" y2="226" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
+    <text x="390" y="140" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(5)</text>
+    <text x="300" y="190" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(4)</text>
+    <text x="480" y="190" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="250" y="240" font-size="13" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">f(3)</text>
+    <text x="350" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="440" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="530" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
+    <text x="24" y="140" font-size="12" fill="#94a3b8">naive recursion</text>
+    <text x="620" y="212" font-size="12" fill="#fb7185">recomputed</text>
+    <text x="24" y="234" font-size="12" fill="#94a3b8">memo table</text>
+    <rect x="120" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="149.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">0</text><text x="149.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(0)</text>
+    <rect x="186" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="215.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text><text x="215.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(1)</text>
+    <rect x="252" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="281.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">1</text><text x="281.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(2)</text>
+    <rect x="318" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="347.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">2</text><text x="347.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(3)</text>
+    <rect x="384" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="413.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">3</text><text x="413.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(4)</text>
+    <rect x="450" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text x="479.0" y="270.0" font-size="15" fill="#34d399" text-anchor="middle" dominant-baseline="middle">5</text><text x="479.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(5)</text>
+    <rect x="516" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="545.0" y="270.0" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">8</text><text x="545.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(6)</text>
+    <text class="step" x="24" y="112">fill left to right and the answer falls out. Exponential time becomes O(n), for O(n) memory.</text>
+  </g>
+  <text class="lbl-l" x="24" y="96">the same subproblem answered twice is wasted work. DP answers it once and writes the answer down.</text>
+  <text class="lbl-l" x="24" y="360" style="fill:#94a3b8">two conditions make DP apply: overlapping subproblems and optimal substructure. Top-down = memoisation; bottom-up = tabulation.</text>
+
+</svg>
