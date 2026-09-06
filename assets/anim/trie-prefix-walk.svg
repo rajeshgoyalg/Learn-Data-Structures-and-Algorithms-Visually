@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 513" width="780" height="513" role="img" aria-label="Animation: walking a trie letter by letter to match the word cat">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 547" width="780" height="547" role="img" aria-label="Animation: walking a trie letter by letter to match the word cat">
   <title>Animation: walking a trie letter by letter to match the word cat</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -34,13 +34,13 @@
   @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="780" height="513" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="780" height="513" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="778.5" height="511.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="780" height="547" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="780" height="547" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="778.5" height="545.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Trie - prefix walk</text>
   <text class="sub" x="24" y="54">A phone book where the shared spelling is written once</text>
   <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">a trie stores the letters on the edges, so every shared prefix is stored exactly once - "cat" and "car" share</tspan><tspan x="24" dy="17">c-a</tspan></text>
-  <g transform="translate(0,17.4)">
+  <g transform="translate(0,34.4)">
   <g id="fr0" class="frm">
     <line x1="132.2" y1="264.8" x2="207.8" y2="233.2" stroke="#34d399" stroke-width="2.4" opacity="1"/>
     <text x="170.0" y="241.0" font-size="12" fill="#34d399" text-anchor="middle">c</text>
@@ -133,11 +133,11 @@
   </g>
   <text class="lbl-l" x="24" y="444" style="fill:#94a3b8"><tspan x="24" dy="0">lookup costs O(L) in the length of the word, not O(n) in the number of words - which is why autocomplete uses</tspan><tspan x="24" dy="17">one</tspan></text>
   <rect x="24" y="468" width="11" height="11" rx="2" fill="#34d399"/>
-  <text class="lbl-l" x="41" y="474">matched prefix</text>
+  <text class="lbl-l" x="41" y="491">matched prefix</text>
   <rect x="139.60000000000002" y="468" width="11" height="11" rx="2" fill="#fbbf24"/>
-  <text class="lbl-l" x="156.60000000000002" y="474">current letter</text>
+  <text class="lbl-l" x="156.60000000000002" y="491">current letter</text>
   <rect x="255.20000000000005" y="468" width="11" height="11" rx="2" fill="#38bdf8"/>
-  <text class="lbl-l" x="272.20000000000005" y="474">unexplored branch</text>
+  <text class="lbl-l" x="272.20000000000005" y="491">unexplored branch</text>
   </g>
 
 </svg>

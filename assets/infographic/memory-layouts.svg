@@ -54,7 +54,7 @@
   <rect x="350" y="288" width="54" height="40" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
   <text x="500" y="302" font-size="12" fill="#94a3b8">linked lists, chained buckets, tree nodes</text>
   <text x="500" y="320" font-size="11" fill="#94a3b8"><tspan x="500" dy="0">-&gt; O(1) reshaping, no indexing, pointer overhead,</tspan><tspan x="500" dy="17.0">cache-hostile</tspan></text>
-  <text x="50" y="374" font-size="13" font-weight="700" fill="#c084fc">3. HIERARCHICAL</text>
+  <text x="50" y="391" font-size="13" font-weight="700" fill="#c084fc">3. HIERARCHICAL</text>
   <rect x="210" y="390" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
   <line x1="232" y1="420" x2="152" y2="448" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
   <rect x="130" y="442" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
@@ -66,8 +66,8 @@
   <rect x="170" y="490" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
   <line x1="312" y1="472" x2="352" y2="496" stroke="#c084fc" stroke-width="1.4" opacity="0.7"/>
   <rect x="330" y="490" width="44" height="30" rx="5" fill="#0f2438" stroke="#c084fc" stroke-width="1.6"/>
-  <text x="500" y="442" font-size="12" fill="#94a3b8">trees, tries, heaps viewed logically</text>
-  <text x="500" y="460" font-size="11" fill="#94a3b8"><tspan x="500" dy="0">-&gt; O(log n) by discarding branches, as long as the tree</tspan><tspan x="500" dy="17.0">stays balanced</tspan></text>
+  <text x="500" y="459" font-size="12" fill="#94a3b8">trees, tries, heaps viewed logically</text>
+  <text x="500" y="477" font-size="11" fill="#94a3b8"><tspan x="500" dy="0">-&gt; O(log n) by discarding branches, as long as the tree</tspan><tspan x="500" dy="17.0">stays balanced</tspan></text>
   </g>
 
 </svg>

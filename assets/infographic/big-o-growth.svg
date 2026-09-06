@@ -33,7 +33,7 @@
   <text class="title" x="24" y="34">How the curves actually diverge</text>
   <text class="sub" x="24" y="54">Five growth rates on one pair of axes, each labelled where it exits</text>
   <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">the same axes for every curve: how many operations as the input grows. Where a curve leaves the box, that algorithm has left</tspan><tspan x="24" dy="17">the building.</tspan></text>
-  <g transform="translate(0,17.4)">
+  <g transform="translate(0,34.4)">
   <clipPath id="pc"><rect x="96" y="160" width="604" height="280"/></clipPath>
   <line x1="96" y1="216.0" x2="700" y2="216.0" stroke="#38bdf8" stroke-width="0.8" opacity="0.13"/>
   <line x1="96" y1="272.0" x2="700" y2="272.0" stroke="#38bdf8" stroke-width="0.8" opacity="0.13"/>

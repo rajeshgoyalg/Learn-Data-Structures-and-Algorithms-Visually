@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 361" width="620" height="361" role="img" aria-label="Animation: linear search stepping through an unsorted array one element at a time">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 378" width="620" height="378" role="img" aria-label="Animation: linear search stepping through an unsorted array one element at a time">
   <title>Animation: linear search stepping through an unsorted array one element at a time</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -40,9 +40,9 @@
   @keyframes fk5{0%{opacity:0} 72.32%{opacity:0} 72.33333333333333%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="620" height="361" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="620" height="361" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="618.5" height="359.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="620" height="378" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="620" height="378" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="618.5" height="376.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Linear search</text>
   <text class="sub" x="24" y="54">Reading a shopping list top to bottom until you hit the item</text>
   <text class="lbl-l hdrline" x="24" y="96">unsorted data gives you no shortcut: check the first, then the next, then the next</text>
