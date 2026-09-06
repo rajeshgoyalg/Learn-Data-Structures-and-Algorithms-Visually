@@ -59,12 +59,17 @@ flowchart TD
     P["09 Heaps"] --> B["10 BSTs"] --> T["11 Balanced trees"] --> R["12 Tries"] --> G["13 Graphs"]
   end
 
-  subgraph ALGO["Algorithms & paradigms"]
+  subgraph ALGO["Searching & sorting"]
     direction LR
-    SE["14 Searching"] --> SO["15 Sorting"] --> RE["16 Recursion"] --> PA["17 Paradigms"] --> DJ["18 Dijkstra"]
+    SE["14 Searching"] --> SO["15 Sorting"]
   end
 
-  F --> LIN --> RES --> KEY --> HIER --> ALGO
+  subgraph TECH["Techniques & paradigms"]
+    direction LR
+    RE["16 Recursion"] --> PA["17 Paradigms"] --> DJ["18 Dijkstra"]
+  end
+
+  F --> LIN --> RES --> KEY --> HIER --> ALGO --> TECH
 
   classDef found fill:#0f2438,stroke:#e2e8f0,stroke-width:2px,color:#e2e8f0
   classDef lin fill:#0f2438,stroke:#38bdf8,color:#38bdf8
