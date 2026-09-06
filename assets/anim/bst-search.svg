@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 448" width="820" height="448" role="img" aria-label="Animation: searching a binary search tree, discarding half the tree at every comparison">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 476" width="820" height="476" role="img" aria-label="Animation: searching a binary search tree, discarding half the tree at every comparison">
   <title>Animation: searching a binary search tree, discarding half the tree at every comparison</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -34,11 +34,13 @@
   @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="820" height="448" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="820" height="448" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="818.5" height="446.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="820" height="476" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="476" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="474.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Binary search tree - search</text>
   <text class="sub" x="24" y="54">Twenty questions: each answer throws away half of what is left</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">BST rule: everything in the left subtree is smaller, everything in the right subtree is larger. Every comparison</tspan><tspan x="24" dy="17">halves the search space.</tspan></text>
+  <g transform="translate(0,17.4)">
   <g id="fr0" class="frm">
     <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
     <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -87,7 +89,7 @@
     <g opacity="0.32"><circle cx="652.5" cy="340.0" r="23" fill="#0f2438" stroke="#38bdf8" stroke-width="2.2"/><text x="652.5" y="341.0" font-size="15" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">80</text></g>
     <text class="step" x="24" y="128">at 40: found. Three comparisons in a tree of seven - that is log n.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">BST rule: everything in the left subtree is smaller, everything in the right subtree is larger. Every comparison halves the search space.</text>
-  <text class="lbl-l" x="24" y="420" style="fill:#94a3b8">balanced: O(log n).  Degenerate (values inserted in sorted order): the tree becomes a linked list and search falls to O(n).</text>
+  <text class="lbl-l" x="24" y="420" style="fill:#94a3b8"><tspan x="24" dy="0">balanced: O(log n).  Degenerate (values inserted in sorted order): the tree becomes a linked list and search falls to</tspan><tspan x="24" dy="17">O(n).</tspan></text>
+  </g>
 
 </svg>

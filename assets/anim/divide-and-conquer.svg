@@ -41,6 +41,8 @@
   <rect x="0.75" y="0.75" width="718.5" height="464.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Divide and conquer</text>
   <text class="sub" x="24" y="54">Divide, conquer, combine - the three-line recipe behind half of all fast algorithms</text>
+  <text class="lbl-l hdrline" x="24" y="96">the pattern behind merge sort, quicksort, binary search and fast matrix multiplication</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <rect x="100" y="150" width="544" height="46" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="372" y="174" font-size="12" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">problem</text>
     <rect x="100" y="236" width="264" height="46" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="232" y="260" font-size="12" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">half</text>
@@ -101,8 +103,8 @@
     <path d="M582 316 L582 288" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
     <text class="step" x="24" y="118">3. COMBINE - merge the partial answers back up into the answer for the whole</text>
   </g>
-  <text class="lbl-l" x="24" y="96">the pattern behind merge sort, quicksort, binary search and fast matrix multiplication</text>
-  <text class="lbl-l" x="24" y="410" style="fill:#94a3b8">the subproblems must be independent - when they overlap instead, you want dynamic programming, not divide and conquer</text>
+  <text class="lbl-l" x="24" y="410" style="fill:#94a3b8"><tspan x="24" dy="0">the subproblems must be independent - when they overlap instead, you want dynamic programming, not</tspan><tspan x="24" dy="17">divide and conquer</tspan></text>
   <text class="lbl-l" x="24" y="436" style="fill:#94a3b8">splitting in half and doing O(n) work per level gives the familiar O(n log n)</text>
+  </g>
 
 </svg>

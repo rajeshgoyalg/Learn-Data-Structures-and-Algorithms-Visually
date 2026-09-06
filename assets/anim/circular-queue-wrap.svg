@@ -53,7 +53,8 @@
   <rect x="0.75" y="0.75" width="778.5" height="498.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Circular queue - the wrap</text>
   <text class="sub" x="24" y="54">A linear queue leaks capacity at the front; a ring hands it back</text>
-  <text class="lbl-l" x="24" y="96">a fixed ring of slots: when rear reaches the last slot it wraps back to 0, so space freed at the front is reused</text>
+  <text class="lbl-l hdrline" x="24" y="96">a fixed ring of slots: when rear reaches the last slot it wraps back to 0, so space freed at the front is reused</text>
+  <g transform="translate(0,0.4)">
   <circle cx="390" cy="258" r="112" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.25" stroke-dasharray="4 7"/>
   <rect id="cs0" class="cq" x="363.0" y="124.0" width="54" height="44" rx="6" style="fill:#0f2438;stroke:#94a3b8;stroke-width:2;stroke-dasharray:4 4"/>
   <text id="ct0" class="cqv val" x="390.0" y="147.0" style="fill:#fbbf24">I</text>
@@ -88,5 +89,6 @@
   <text class="lbl-l" x="156.60000000000002" y="470">rear pointer / newly filled</text>
   <rect x="338.40000000000003" y="464" width="11" height="11" rx="2" fill="#94a3b8"/>
   <text class="lbl-l" x="355.40000000000003" y="470">free slot</text>
+  </g>
 
 </svg>

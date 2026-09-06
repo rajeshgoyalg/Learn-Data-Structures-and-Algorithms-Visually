@@ -39,7 +39,8 @@
   <rect x="0.75" y="0.75" width="758.5" height="338.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Queue - enqueue and dequeue</text>
   <text class="sub" x="24" y="54">FIFO: print jobs, request handling, BFS frontiers</text>
-  <text class="lbl-l" x="24" y="96">a checkout line: you join at the back, you are served from the front - First In, First Out</text>
+  <text class="lbl-l hdrline" x="24" y="96">a checkout line: you join at the back, you are served from the front - First In, First Out</text>
+  <g transform="translate(0,0.4)">
   <g id="q0" class="qi"><rect class="cell" x="120" y="170" width="76" height="56"/><text class="val" x="158" y="199">A</text></g>
   <g id="q1" class="qi"><rect class="cell" x="212" y="170" width="76" height="56"/><text class="val" x="250" y="199">B</text></g>
   <g id="q2" class="qi"><rect class="cell" x="304" y="170" width="76" height="56"/><text class="val" x="342" y="199">C</text></g>
@@ -52,5 +53,6 @@
   <path d="M638 198 L578 198" stroke="#fbbf24" stroke-width="2.2" fill="none" marker-end="url(#ara)"/>
   <text class="lbl-l" x="586" y="182" style="fill:#fbbf24">enqueue</text>
   <text class="lbl-l" x="24" y="298" style="fill:#94a3b8">both ends are O(1) - nobody in the middle is ever touched</text>
+  </g>
 
 </svg>

@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="878.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">List variants - comparison</text>
   <text class="sub" x="24" y="54">Same node, different wiring, different guarantees</text>
-  <text class="lbl-l" x="24" y="96">three variants, one idea: change what the pointers are allowed to reference and the structure's abilities change with it</text>
+  <text class="lbl-l hdrline" x="24" y="96">three variants, one idea: change what the pointers are allowed to reference and the structure's abilities change with it</text>
+  <g transform="translate(0,0.4)">
   <text x="60" y="159" font-size="12" font-weight="700" fill="#38bdf8">SINGLY</text>
   <rect x="60" y="175" width="150" height="46" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
   <text x="135.0" y="198.0" font-size="13" font-weight="600" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">data | next</text>
@@ -56,5 +57,6 @@
   <text x="570" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="570" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="756" y="564" font-size="10" fill="#fbbf24">SHEET 04 / 18</text>
+  </g>
 
 </svg>

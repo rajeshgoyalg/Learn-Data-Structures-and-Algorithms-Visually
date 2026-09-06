@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 488" width="820" height="488" role="img" aria-label="Animation: inserting a value into a binary search tree by walking to an empty slot">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 495" width="820" height="495" role="img" aria-label="Animation: inserting a value into a binary search tree by walking to an empty slot">
   <title>Animation: inserting a value into a binary search tree by walking to an empty slot</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -36,11 +36,13 @@
   @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="820" height="488" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="820" height="488" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="818.5" height="486.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="820" height="495" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="495" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="493.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Binary search tree - insertion</text>
   <text class="sub" x="24" y="54">Walk until you fall off the tree, then plant yourself there</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">a new value never displaces an existing one - it walks down until it falls off the tree, and that empty slot is its</tspan><tspan x="24" dy="17">home</tspan></text>
+  <g transform="translate(0,17.4)">
   <g id="fr0" class="frm">
     <line x1="399.7" y1="186.8" x2="285.3" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
     <line x1="440.3" y1="186.8" x2="554.7" y2="247.2" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -107,7 +109,7 @@
     <g><circle cx="381.2" cy="422.0" r="23" fill="#0f2438" stroke="#34d399" stroke-width="2.2"/><text x="381.2" y="423.0" font-size="15" font-weight="600" fill="#34d399" text-anchor="middle" dominant-baseline="middle">45</text></g>
     <text class="step" x="24" y="128">attach 45 as the right child of 40. Insertion is just a failed search that stops and plants a node.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">a new value never displaces an existing one - it walks down until it falls off the tree, and that empty slot is its home</text>
   <text class="lbl-l" x="24" y="456" style="fill:#94a3b8">insert O(log n) when balanced. In-order traversal of any BST always yields the values in sorted order.</text>
+  </g>
 
 </svg>

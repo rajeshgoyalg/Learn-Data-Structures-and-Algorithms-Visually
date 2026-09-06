@@ -36,7 +36,8 @@
   <rect x="0.75" y="0.75" width="918.5" height="358.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Deque - both ends open</text>
   <text class="sub" x="24" y="54">Browser history, sliding-window maxima, work-stealing schedulers</text>
-  <text class="lbl-l" x="24" y="96">a double-ended queue: push and pop are both legal at the front and at the rear</text>
+  <text class="lbl-l hdrline" x="24" y="96">a double-ended queue: push and pop are both legal at the front and at the rear</text>
+  <g transform="translate(0,0.4)">
   <rect class="cell" x="252" y="190" width="72" height="56"/><text class="val" x="288" y="219">B</text>
   <rect class="cell" x="340" y="190" width="72" height="56"/><text class="val" x="376" y="219">C</text>
   <rect class="cell" x="428" y="190" width="72" height="56"/><text class="val" x="464" y="219">D</text>
@@ -52,5 +53,6 @@
   <path d="M692 242 L776 242" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arg)"/>
   <text class="lbl-l" x="688" y="226" style="fill:#34d399">popBack</text>
   <text class="lbl-l" x="24" y="316" style="fill:#94a3b8">a deque is a stack and a queue at the same time - all four operations are O(1)</text>
+  </g>
 
 </svg>

@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="878.5" height="698.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">How the curves actually diverge</text>
   <text class="sub" x="24" y="54">Five growth rates on one pair of axes, each labelled where it exits</text>
-  <text class="lbl-l" x="24" y="96">the same axes for every curve: how many operations as the input grows. Where a curve leaves the box, that algorithm has left the building.</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">the same axes for every curve: how many operations as the input grows. Where a curve leaves the box, that algorithm has left</tspan><tspan x="24" dy="17">the building.</tspan></text>
+  <g transform="translate(0,17.4)">
   <clipPath id="pc"><rect x="96" y="160" width="604" height="280"/></clipPath>
   <line x1="96" y1="216.0" x2="700" y2="216.0" stroke="#38bdf8" stroke-width="0.8" opacity="0.13"/>
   <line x1="96" y1="272.0" x2="700" y2="272.0" stroke="#38bdf8" stroke-width="0.8" opacity="0.13"/>
@@ -73,5 +74,6 @@
   <text x="96" y="554" font-size="12" fill="#94a3b8">O(2^n) is vertical by n=7 and O(n^2) is gone by n=10 - both are unusable at any real scale</text>
   <text x="96" y="575" font-size="12" fill="#94a3b8">the gap between O(n) and O(n log n) is small; the gap between O(n log n) and O(n^2) is the whole chart</text>
   <text x="96" y="596" font-size="12" fill="#94a3b8">constants are invisible here on purpose: a 'slow' O(n) beats a 'fast' O(n^2) once n is large enough</text>
+  </g>
 
 </svg>

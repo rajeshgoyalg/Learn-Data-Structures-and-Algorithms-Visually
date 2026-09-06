@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" width="620" height="360" role="img" aria-label="Animation: binary search halving the search range at each comparison">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 386" width="620" height="386" role="img" aria-label="Animation: binary search halving the search range at each comparison">
   <title>Animation: binary search halving the search range at each comparison</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -34,11 +34,13 @@
   @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="620" height="360" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="620" height="360" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="618.5" height="358.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="620" height="386" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="620" height="386" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="618.5" height="384.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Binary search</text>
   <text class="sub" x="24" y="54">Opening a dictionary in the middle, then halving again</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">each guess is the middle, and each wrong guess deletes half of what is left - 1000</tspan><tspan x="24" dy="17">items need about 10 comparisons</tspan></text>
+  <g transform="translate(0,17.4)">
   <g id="fr0" class="frm">
     <g opacity="1"><rect x="60" y="190" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="89.0" y="216.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">3</text></g>
     <text x="89.0" y="258" font-size="10" fill="#64748b" text-anchor="middle">0</text>
@@ -98,7 +100,7 @@
     <path d="M429.0 130 L429.0 154" stroke="#34d399" stroke-width="2.2" fill="none" marker-end="url(#arg)"/><text x="429.0" y="120" font-size="12" fill="#34d399" text-anchor="middle">mid</text>
     <text class="step" x="24" y="134">lo=4 hi=6, mid=5 -> 55 = 55, found</text>
   </g>
-  <text class="lbl-l" x="24" y="96">each guess is the middle, and each wrong guess deletes half of what is left - 1000 items need about 10 comparisons</text>
-  <text class="lbl-l" x="24" y="330" style="fill:#94a3b8">O(log n), but only on sorted data. Sorting first costs O(n log n) - worth it only if you will search many times.</text>
+  <text class="lbl-l" x="24" y="330" style="fill:#94a3b8"><tspan x="24" dy="0">O(log n), but only on sorted data. Sorting first costs O(n log n) - worth it only if</tspan><tspan x="24" dy="17">you will search many times.</tspan></text>
+  </g>
 
 </svg>

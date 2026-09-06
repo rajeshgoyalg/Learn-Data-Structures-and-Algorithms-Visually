@@ -41,6 +41,8 @@
   <rect x="0.75" y="0.75" width="718.5" height="328.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Array - insert in the middle</text>
   <text class="sub" x="24" y="54">The slot is cheap; making room for it is not</text>
+  <text class="lbl-l hdrline" x="24" y="96">insert 25 at index 2  ->  every element to the right shifts one slot: O(n)</text>
+  <g transform="translate(0,0.4)">
   <g id="s0" class="fixed">
     <rect class="cell" x="60" y="160" width="62" height="56" style="stroke:#38bdf8"/>
     <text class="val" x="91" y="189">10</text>
@@ -82,7 +84,7 @@
     <text class="val" x="255" y="93" style="fill:#fbbf24">25</text>
   </g>
   <path id="drop" d="M255 126 L255 150" stroke="#fbbf24" stroke-width="2.5" fill="none" marker-end="url(#ara)"/>
-  <text class="lbl-l" x="24" y="96">insert 25 at index 2  ->  every element to the right shifts one slot: O(n)</text>
   <text id="cost" class="step" x="374" y="264">4 elements moved</text>
+  </g>
 
 </svg>

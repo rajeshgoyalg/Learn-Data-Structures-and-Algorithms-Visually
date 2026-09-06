@@ -45,7 +45,8 @@
   <rect x="0.75" y="0.75" width="718.5" height="398.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Singly linked list - insertion</text>
   <text class="sub" x="24" y="54">Inserting is re-pointing, not re-packing</text>
-  <text class="lbl-l" x="24" y="96">splice C between B and D - the neighbours never move, only two pointers are rewritten</text>
+  <text class="lbl-l hdrline" x="24" y="96">splice C between B and D - the neighbours never move, only two pointers are rewritten</text>
+  <g transform="translate(0,0.4)">
   <g>
     <rect class="cell" x="70" y="170" width="108" height="54" style="stroke:#38bdf8"/>
     <line x1="142" y1="170" x2="142" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
@@ -84,5 +85,6 @@
   <text id="s1" class="step" x="434.0" y="294">1. C.next = D</text>
   <text id="s2" class="step" x="434.0" y="316">2. B.next = C</text>
   <text id="s3" class="step" x="24" y="374" style="fill:#34d399">2 writes. No shifting. O(1) once you hold B.</text>
+  </g>
 
 </svg>

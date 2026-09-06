@@ -41,6 +41,8 @@
   <rect x="0.75" y="0.75" width="818.5" height="506.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Min-heap - insert and sift up</text>
   <text class="sub" x="24" y="54">A new arrival keeps swapping with its manager until nobody above it is smaller</text>
+  <text class="lbl-l hdrline" x="24" y="96">min-heap rule: every parent is smaller than both of its children (nothing is said about left vs right)</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
     <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -149,7 +151,7 @@
     <rect x="482" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="506" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">9</text><text x="506" y="446" font-size="10" fill="#64748b" text-anchor="middle">7</text>
     <text class="step" x="24" y="132">2 &lt; its parent 3  ->  swap up. Root reached: log n swaps at most.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">min-heap rule: every parent is smaller than both of its children (nothing is said about left vs right)</text>
   <text class="lbl-l" x="24" y="480" style="fill:#94a3b8">parent(i) = (i-1)/2   left(i) = 2i+1   right(i) = 2i+2   - a heap needs no pointers at all</text>
+  </g>
 
 </svg>

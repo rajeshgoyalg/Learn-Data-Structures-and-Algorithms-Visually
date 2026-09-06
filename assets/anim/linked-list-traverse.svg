@@ -45,7 +45,8 @@
   <rect x="0.75" y="0.75" width="778.5" height="298.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Singly linked list - traversal</text>
   <text class="sub" x="24" y="54">Random access is impossible: reaching position k costs k hops, O(n)</text>
-  <text class="lbl-l" x="24" y="96">find the 5th value: there is no arr[4] here - you must follow every next pointer, one hop at a time</text>
+  <text class="lbl-l hdrline" x="24" y="96">find the 5th value: there is no arr[4] here - you must follow every next pointer, one hop at a time</text>
+  <g transform="translate(0,0.4)">
   <text class="lbl-l" x="46" y="136" style="fill:#fbbf24">head</text>
   <g>
     <rect class="cell" x="46" y="150" width="108" height="54" style="stroke:#38bdf8"/>
@@ -88,5 +89,6 @@
   <text id="hp2" class="step hop" x="364.0" y="244" style="text-anchor:middle">hop 3 of 5</text>
   <text id="hp3" class="step hop" x="496.0" y="244" style="text-anchor:middle">hop 4 of 5</text>
   <text id="hp4" class="step hop" x="628.0" y="244" style="text-anchor:middle">hop 5 of 5</text>
+  </g>
 
 </svg>

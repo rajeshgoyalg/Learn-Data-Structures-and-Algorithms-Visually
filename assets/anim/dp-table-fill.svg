@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 396" width="720" height="396" role="img" aria-label="Animation: replacing an exponential recursive call tree with a linear dynamic programming table">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 399" width="720" height="399" role="img" aria-label="Animation: replacing an exponential recursive call tree with a linear dynamic programming table">
   <title>Animation: replacing an exponential recursive call tree with a linear dynamic programming table</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -36,11 +36,13 @@
   @keyframes fk3{0%{opacity:0} 65.49%{opacity:0} 65.5%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="720" height="396" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="720" height="396" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="718.5" height="394.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="720" height="399" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="399" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="397.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Dynamic programming - tabulation</text>
   <text class="sub" x="24" y="54">Never solve the same subproblem twice: write the answer down</text>
+  <text class="lbl-l hdrline" x="24" y="96">the same subproblem answered twice is wasted work. DP answers it once and writes the answer down.</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
     <line x1="390" y1="154" x2="480" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
@@ -57,7 +59,7 @@
     <text x="530" y="240" font-size="13" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">f(2)</text>
     <text x="24" y="140" font-size="12" fill="#94a3b8">naive recursion</text>
     <text x="620" y="212" font-size="12" fill="#fb7185">recomputed</text>
-    <text class="step" x="24" y="112">naive fib(5) recomputes the same subproblems again and again - the call tree grows exponentially</text>
+    <text class="step" x="24" y="112"><tspan x="24" dy="0">naive fib(5) recomputes the same subproblems again and again - the call tree grows</tspan><tspan x="24" dy="18">exponentially</tspan></text>
   </g>
   <g id="fr1" class="frm">
     <line x1="390" y1="154" x2="300" y2="176" stroke="#38bdf8" stroke-width="1.3" opacity="0.5"/>
@@ -137,7 +139,7 @@
     <rect x="516" y="250" width="58" height="40" rx="4" fill="#0f2438" stroke="#fbbf24" stroke-width="2"/><text x="545.0" y="270.0" font-size="15" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">8</text><text x="545.0" y="306" font-size="10" fill="#64748b" text-anchor="middle">f(6)</text>
     <text class="step" x="24" y="112">fill left to right and the answer falls out. Exponential time becomes O(n), for O(n) memory.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">the same subproblem answered twice is wasted work. DP answers it once and writes the answer down.</text>
-  <text class="lbl-l" x="24" y="360" style="fill:#94a3b8">two conditions make DP apply: overlapping subproblems and optimal substructure. Top-down = memoisation; bottom-up = tabulation.</text>
+  <text class="lbl-l" x="24" y="360" style="fill:#94a3b8"><tspan x="24" dy="0">two conditions make DP apply: overlapping subproblems and optimal substructure. Top-down = memoisation;</tspan><tspan x="24" dy="17">bottom-up = tabulation.</tspan></text>
+  </g>
 
 </svg>

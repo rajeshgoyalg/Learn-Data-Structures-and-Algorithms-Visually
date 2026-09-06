@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="898.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Four ways to read one tree</text>
   <text class="sub" x="24" y="54">Move a single line of code and the output order changes completely</text>
-  <text class="lbl-l" x="24" y="96">one tree, four reading orders - and the order you pick is the algorithm</text>
+  <text class="lbl-l hdrline" x="24" y="96">one tree, four reading orders - and the order you pick is the algorithm</text>
+  <g transform="translate(0,0.4)">
   <line x1="232.2" y1="194.6" x2="177.8" y2="239.4" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
   <line x1="267.8" y1="194.6" x2="322.2" y2="239.4" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
   <line x1="148.0" y1="273.7" x2="127.0" y2="308.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -66,5 +67,6 @@
   <path d="M50 492 L850 492" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="514" font-size="12" fill="#94a3b8">all four visit every node exactly once, so all four are O(n)</text>
   <text x="50" y="535" font-size="12" fill="#94a3b8">the first three are one recursive function with the visit line moved; the fourth needs an explicit queue</text>
+  </g>
 
 </svg>

@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">AVL and red-black - comparison</text>
   <text class="sub" x="24" y="54">Two contracts for keeping a search tree short</text>
-  <text class="lbl-l" x="24" y="96">both keep height at O(log n); they disagree about how much work to spend keeping it there</text>
+  <text class="lbl-l hdrline" x="24" y="96">both keep height at O(log n); they disagree about how much work to spend keeping it there</text>
+  <g transform="translate(0,0.4)">
   <text x="50" y="160" font-size="13" font-weight="700" fill="#38bdf8">AVL - the four rebalance cases</text>
   <rect x="50" y="184" width="62" height="42" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
   <text x="81.0" y="205.0" font-size="14" font-weight="600" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">LL</text>
@@ -71,5 +72,6 @@
   <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 11 / 18</text>
+  </g>
 
 </svg>

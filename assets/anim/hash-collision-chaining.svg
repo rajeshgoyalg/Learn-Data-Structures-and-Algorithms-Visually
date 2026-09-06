@@ -45,7 +45,8 @@
   <rect x="0.75" y="0.75" width="878.5" height="448.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Hash collision - separate chaining</text>
   <text class="sub" x="24" y="54">Same bucket, different keys: hang them in a list and keep going</text>
-  <text class="lbl-l" x="24" y="96">two different keys can hash to the same index - that is a collision, not a bug. Chaining hangs both off one bucket.</text>
+  <text class="lbl-l hdrline" x="24" y="96">two different keys can hash to the same index - that is a collision, not a bug. Chaining hangs both off one bucket.</text>
+  <g transform="translate(0,0.4)">
   <rect x="120" y="130" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
   <text class="idx" x="104" y="147.0" style="font-size:12">0</text>
   <rect x="120" y="172" width="150" height="34" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="1.4" opacity="0.7"/>
@@ -80,5 +81,6 @@
   <text class="lbl-l" x="316" y="185.0" style="fill:#94a3b8">all three hash to index 2</text>
   <text class="lbl-l" x="24" y="380" style="fill:#94a3b8">short chains keep lookups at O(1). If the table gets crowded, chains grow and lookups drift toward O(n).</text>
   <text id="lf" class="step" x="24" y="408">load factor = entries / buckets  ->  above ~0.75, resize and rehash</text>
+  </g>
 
 </svg>

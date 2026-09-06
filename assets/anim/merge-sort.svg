@@ -41,6 +41,8 @@
   <rect x="0.75" y="0.75" width="758.5" height="460.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Merge sort</text>
   <text class="sub" x="24" y="54">Split until sorting is trivial, then merge upwards</text>
+  <text class="lbl-l hdrline" x="24" y="96">divide and conquer: a problem too big to sort becomes many problems too small to be wrong</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <rect x="272" y="150" width="44" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/><text x="294" y="167" font-size="14" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">38</text>
     <rect x="326" y="150" width="44" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/><text x="348" y="167" font-size="14" fill="#38bdf8" text-anchor="middle" dominant-baseline="middle">27</text>
@@ -89,7 +91,7 @@
     <rect x="434" y="360" width="44" height="34" rx="4" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/><text x="456" y="377" font-size="14" fill="#34d399" text-anchor="middle" dominant-baseline="middle">43</text>
     <text class="step" x="24" y="124">merge the two sorted halves into one sorted array. log n levels, O(n) work per level -> O(n log n).</text>
   </g>
-  <text class="lbl-l" x="24" y="96">divide and conquer: a problem too big to sort becomes many problems too small to be wrong</text>
   <text class="lbl-l" x="24" y="432" style="fill:#94a3b8">O(n log n) guaranteed in every case and stable, but it needs O(n) extra space for the merge buffer</text>
+  </g>
 
 </svg>

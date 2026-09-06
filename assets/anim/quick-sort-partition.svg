@@ -43,6 +43,8 @@
   <rect x="0.75" y="0.75" width="698.5" height="394.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Quicksort - partition</text>
   <text class="sub" x="24" y="54">One pivot, two piles: everything smaller left, everything larger right</text>
+  <text class="lbl-l hdrline" x="24" y="96">partition around a pivot: smaller on the left, larger on the right. The pivot never moves again.</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <g opacity="1"><rect x="110" y="210" width="58" height="52" rx="5" fill="#0f2438" stroke="#38bdf8" stroke-width="2"/><text x="139.0" y="236.0" font-size="16" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">38</text></g>
     <text x="139.0" y="278" font-size="10" fill="#64748b" text-anchor="middle">0</text>
@@ -118,13 +120,13 @@
     <text x="519.0" y="278" font-size="10" fill="#64748b" text-anchor="middle">5</text>
     <text class="step" x="24" y="150">recurse on the left part and the right part - each is a smaller independent problem</text>
   </g>
-  <text class="lbl-l" x="24" y="96">partition around a pivot: smaller on the left, larger on the right. The pivot never moves again.</text>
-  <text class="lbl-l" x="24" y="330" style="fill:#94a3b8">O(n log n) average and in place, but O(n^2) if the pivot is always the smallest or largest - which is why real implementations randomise it.</text>
+  <text class="lbl-l" x="24" y="330" style="fill:#94a3b8"><tspan x="24" dy="0">O(n log n) average and in place, but O(n^2) if the pivot is always the smallest or largest - which</tspan><tspan x="24" dy="17">is why real implementations randomise it.</tspan></text>
   <rect x="24" y="356" width="11" height="11" rx="2" fill="#fbbf24"/>
   <text class="lbl-l" x="41" y="362">pivot</text>
   <rect x="82.0" y="356" width="11" height="11" rx="2" fill="#fb7185"/>
   <text class="lbl-l" x="99.0" y="362">smaller than pivot</text>
   <rect x="223.2" y="356" width="11" height="11" rx="2" fill="#34d399"/>
   <text class="lbl-l" x="240.2" y="362">final position</text>
+  </g>
 
 </svg>

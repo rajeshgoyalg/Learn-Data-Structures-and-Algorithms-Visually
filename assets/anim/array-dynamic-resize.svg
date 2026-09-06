@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" role="img" aria-label="Animation: a full dynamic array allocates a double-size block and copies its elements across">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 385" width="720" height="385" role="img" aria-label="Animation: a full dynamic array allocates a double-size block and copies its elements across">
   <title>Animation: a full dynamic array allocates a double-size block and copies its elements across</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -43,12 +43,13 @@
   @keyframes af{0%{opacity:0} 68%{opacity:0} 76%{opacity:1} 94%{opacity:1} 99%{opacity:0}}
 
   </style>
-  <rect x="0" y="0" width="720" height="380" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="720" height="380" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="718.5" height="378.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="720" height="385" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="720" height="385" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="718.5" height="383.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Dynamic array - growing</text>
   <text class="sub" x="24" y="54">A full array does not stretch. It is replaced by a bigger one.</text>
-  <text class="lbl-l" x="24" y="96">capacity 4 is full  ->  allocate 8, copy everything across, free the old block</text>
+  <text class="lbl-l hdrline" x="24" y="96">capacity 4 is full  ->  allocate 8, copy everything across, free the old block</text>
+  <g transform="translate(0,0.4)">
   <text class="lbl-l" x="48" y="136" style="fill:#94a3b8">old block (cap 4)</text>
   <g id="o0" class="old">
     <rect class="cell" x="48" y="150" width="52" height="48"/>
@@ -83,6 +84,7 @@
   <path id="cp1" class="cp" d="M140 206 L140 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
   <path id="cp2" class="cp" d="M206 206 L206 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
   <path id="cp3" class="cp" d="M272 206 L272 250" marker-end="url(#arg)" style="fill:none;stroke:#34d399;stroke-width:2"/>
-  <text id="amort" class="step" x="440" y="344">O(n) once, but amortised O(1) per append</text>
+  <text id="amort" class="step" x="440" y="344"><tspan x="440" dy="0">O(n) once, but amortised O(1) per</tspan><tspan x="440" dy="18">append</tspan></text>
+  </g>
 
 </svg>

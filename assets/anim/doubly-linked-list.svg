@@ -35,7 +35,8 @@
   <rect x="0.75" y="0.75" width="778.5" height="338.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Doubly linked list</text>
   <text class="sub" x="24" y="54">Two pointers per node buys you reverse traversal and O(1) deletion by reference</text>
-  <text class="lbl-l" x="24" y="96">every node stores prev and next, so the walk works in both directions - at the cost of one extra pointer per node</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">every node stores prev and next, so the walk works in both directions - at the cost of one extra pointer per</tspan><tspan x="24" dy="17">node</tspan></text>
+  <g transform="translate(0,17.4)">
   <g>
     <rect class="cell" x="60" y="170" width="116" height="54"/>
     <line x1="90" y1="170" x2="90" y2="224" stroke="#38bdf8" stroke-width="1.2" opacity="0.7"/>
@@ -83,5 +84,6 @@
   <text class="lbl-l" x="92.6" y="292">prev</text>
   <rect x="127.19999999999999" y="286" width="11" height="11" rx="2" fill="#fbbf24"/>
   <text class="lbl-l" x="144.2" y="292">cursor</text>
+  </g>
 
 </svg>

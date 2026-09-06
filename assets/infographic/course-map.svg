@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="938.5" height="658.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">The whole course on one sheet</text>
   <text class="sub" x="24" y="54">Four structure families, one algorithms row, eighteen modules</text>
-  <text class="lbl-l" x="24" y="96">the whole course on one sheet - eighteen modules, four families, one recommended path through them</text>
+  <text class="lbl-l hdrline" x="24" y="96">the whole course on one sheet - eighteen modules, four families, one recommended path through them</text>
+  <g transform="translate(0,0.4)">
   <text x="60" y="176" font-size="12" font-weight="700" fill="#38bdf8">LINEAR</text>
   <path d="M60 184 L240 184" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <rect x="60" y="196" width="180" height="36" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
@@ -81,5 +82,6 @@
   <text x="210.0" y="525.0" font-size="12" font-weight="600" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle">01 Foundations - start here</text>
   <path d="M370 525 L410 525" stroke="#94a3b8" stroke-width="1.6" fill="none" marker-end="url(#ar)"/>
   <text x="424" y="525" font-size="12" fill="#94a3b8" dominant-baseline="middle">then left to right across the families above, then the algorithms row</text>
+  </g>
 
 </svg>

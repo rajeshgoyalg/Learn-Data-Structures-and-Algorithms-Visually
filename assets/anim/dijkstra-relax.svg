@@ -43,6 +43,8 @@
   <rect x="0.75" y="0.75" width="778.5" height="554.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Dijkstra - relaxing edges</text>
   <text class="sub" x="24" y="54">Cheapest first, not nearest first: a greedy choice that provably holds</text>
+  <text class="lbl-l hdrline" x="24" y="96">edges now have costs, so fewest hops no longer means cheapest. Always settle the nearest unsettled node next.</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <line x1="142.2" y1="278.5" x2="247.8" y2="223.5" stroke="#fbbf24" stroke-width="3.0" opacity="1"/>
     <text x="201.0" y="262.5" font-size="12" fill="#fbbf24" text-anchor="middle" dominant-baseline="middle">4</text>
@@ -218,7 +220,6 @@
     <text x="590" y="259" font-size="12" fill="#34d399" text-anchor="middle">11</text>
     <text class="step" x="24" y="118">D would give G 13 and F would give 12 - both lose. Shortest path A-C-E-G, total cost 11.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">edges now have costs, so fewest hops no longer means cheapest. Always settle the nearest unsettled node next.</text>
   <text class="lbl-l" x="24" y="492" style="fill:#94a3b8">a settled distance is final - which is exactly why Dijkstra breaks on negative edge weights</text>
   <rect x="24" y="518" width="11" height="11" rx="2" fill="#fbbf24"/>
   <text class="lbl-l" x="41" y="524">being relaxed</text>
@@ -226,5 +227,6 @@
   <text class="lbl-l" x="150.2" y="524">settled / on the best path</text>
   <rect x="325.6" y="518" width="11" height="11" rx="2" fill="#94a3b8"/>
   <text class="lbl-l" x="342.6" y="524">current best estimate</text>
+  </g>
 
 </svg>

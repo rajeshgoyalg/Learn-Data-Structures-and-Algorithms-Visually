@@ -41,6 +41,8 @@
   <rect x="0.75" y="0.75" width="818.5" height="506.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Min-heap - extract-min and sift down</text>
   <text class="sub" x="24" y="54">The manager leaves; the last hire takes the chair and sinks to their real level</text>
+  <text class="lbl-l hdrline" x="24" y="96">removing the minimum is not removing a node - it is replacing the root and letting it sink back into place</text>
+  <g transform="translate(0,0.4)">
   <g id="fr0" class="frm">
     <line x1="409.5" y1="188.4" x2="300.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
     <line x1="450.5" y1="188.4" x2="559.5" y2="243.6" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -131,7 +133,7 @@
     <rect x="426" y="398" width="48" height="34" rx="4" fill="#0f2438" stroke="#38bdf8" stroke-width="1.6"/><text x="450" y="416" font-size="14" fill="#e2e8f0" text-anchor="middle" dominant-baseline="middle"></text><text x="450" y="446" font-size="10" fill="#64748b" text-anchor="middle">6</text>
     <text class="step" x="24" y="132">12 &gt; smaller child 5  ->  sink. Heap restored in log n steps.</text>
   </g>
-  <text class="lbl-l" x="24" y="96">removing the minimum is not removing a node - it is replacing the root and letting it sink back into place</text>
   <text class="lbl-l" x="24" y="480" style="fill:#94a3b8">peek O(1)  -  extract-min O(log n)  -  insert O(log n)  -  build-heap from n items O(n)</text>
+  </g>
 
 </svg>

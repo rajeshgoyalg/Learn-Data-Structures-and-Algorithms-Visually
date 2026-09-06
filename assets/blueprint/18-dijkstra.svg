@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Dijkstra - anatomy</text>
   <text class="sub" x="24" y="54">Two tables, one priority queue, one repeated move</text>
-  <text class="lbl-l" x="24" y="96">Dijkstra keeps two tables and one priority queue, and repeats a single move until the queue empties</text>
+  <text class="lbl-l hdrline" x="24" y="96">Dijkstra keeps two tables and one priority queue, and repeats a single move until the queue empties</text>
+  <g transform="translate(0,0.4)">
   <rect x="50" y="165" width="250" height="100" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
   <text x="66" y="192" font-size="12" font-weight="700" fill="#fbbf24">dist[v]</text>
   <text x="66" y="214" font-size="11" fill="#94a3b8">best known cost from the source</text>
@@ -65,5 +66,6 @@
   <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 18 / 18</text>
+  </g>
 
 </svg>

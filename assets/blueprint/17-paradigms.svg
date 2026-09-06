@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="938.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Greedy, divide and conquer, dynamic programming</text>
   <text class="sub" x="24" y="54">Three strategies and the question that picks between them</text>
-  <text class="lbl-l" x="24" y="96">three strategies for problems too big to attack directly - the trick is recognising which one your problem admits</text>
+  <text class="lbl-l hdrline" x="24" y="96">three strategies for problems too big to attack directly - the trick is recognising which one your problem admits</text>
+  <g transform="translate(0,0.4)">
   <rect x="50" y="160" width="250" height="210" rx="6" fill="#0f2438" stroke="#38bdf8" stroke-width="1.8"/>
   <text x="66" y="190" font-size="13" font-weight="700" fill="#38bdf8">DIVIDE &amp; CONQUER</text>
   <text x="66" y="218" font-size="11" fill="#94a3b8">split into INDEPENDENT subproblems</text>
@@ -47,7 +48,7 @@
   <text x="366" y="308" font-size="11" fill="#94a3b8">cost: trades memory for time</text>
   <rect x="650" y="160" width="250" height="210" rx="6" fill="#0f2438" stroke="#fbbf24" stroke-width="1.8"/>
   <text x="666" y="190" font-size="13" font-weight="700" fill="#fbbf24">GREEDY</text>
-  <text x="666" y="218" font-size="11" fill="#94a3b8">take the best local choice, never revisit</text>
+  <text x="666" y="218" font-size="11" fill="#94a3b8"><tspan x="666" dy="0">take the best local choice, never</tspan><tspan x="666" dy="17.0">revisit</tspan></text>
   <text x="666" y="248" font-size="11" fill="#94a3b8">no cache, no backtracking</text>
   <text x="666" y="278" font-size="11" fill="#94a3b8">coin change, Huffman, Dijkstra</text>
   <text x="666" y="308" font-size="11" fill="#94a3b8">cost: fastest - when it is even correct</text>
@@ -65,5 +66,6 @@
   <text x="630" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="630" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="816" y="564" font-size="10" fill="#fbbf24">SHEET 17 / 18</text>
+  </g>
 
 </svg>

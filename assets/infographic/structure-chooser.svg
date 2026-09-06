@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="938.5" height="698.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Which structure?</text>
   <text class="sub" x="24" y="54">Nine questions, nine answers - the decision table before the theory</text>
-  <text class="lbl-l" x="24" y="96">start from the question your code actually asks most often - that single question picks the structure</text>
+  <text class="lbl-l hdrline" x="24" y="96">start from the question your code actually asks most often - that single question picks the structure</text>
+  <g transform="translate(0,0.4)">
   <text x="50" y="176" font-size="12" fill="#e2e8f0">"is this value present?"</text>
   <path d="M410 172 L444 172" stroke="#34d399" stroke-width="1.6" fill="none" marker-end="url(#arg)" opacity="0.8"/>
   <rect x="456" y="156" width="210" height="32" rx="6" fill="#0f2438" stroke="#34d399" stroke-width="1.8"/>
@@ -81,5 +82,6 @@
   <text x="50" y="626" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">WHEN TWO FIT</text>
   <path d="M50 634 L890 634" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="656" font-size="12" fill="#94a3b8">prefer the one whose worst case you can live with, not the one with the better average</text>
+  </g>
 
 </svg>

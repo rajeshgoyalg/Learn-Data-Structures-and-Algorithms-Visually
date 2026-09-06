@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Heap - anatomy</text>
   <text class="sub" x="24" y="54">A complete tree that lives inside a flat array</text>
-  <text class="lbl-l" x="24" y="96">a heap is a complete binary tree with one rule - and because it is complete, it needs no pointers at all</text>
+  <text class="lbl-l hdrline" x="24" y="96">a heap is a complete binary tree with one rule - and because it is complete, it needs no pointers at all</text>
+  <g transform="translate(0,0.4)">
   <line x1="281.4" y1="203.5" x2="213.6" y2="252.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
   <line x1="318.6" y1="203.5" x2="386.4" y2="252.5" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
   <line x1="181.9" y1="284.9" x2="155.6" y2="323.1" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -86,5 +87,6 @@
   <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 09 / 18</text>
+  </g>
 
 </svg>

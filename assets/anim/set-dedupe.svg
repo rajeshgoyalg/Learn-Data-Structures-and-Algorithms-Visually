@@ -61,7 +61,8 @@
   <rect x="0.75" y="0.75" width="838.5" height="398.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Set - membership and de-duplication</text>
   <text class="sub" x="24" y="54">A guest list: your name is on it or it is not, and adding it twice changes nothing</text>
-  <text class="lbl-l" x="24" y="96">a set answers exactly one question: have I seen this before? Duplicates are refused at the door.</text>
+  <text class="lbl-l hdrline" x="24" y="96">a set answers exactly one question: have I seen this before? Duplicates are refused at the door.</text>
+  <g transform="translate(0,0.4)">
   <rect x="430" y="130" width="330" height="190" rx="12" fill="#0d2230" stroke="#38bdf8" stroke-width="2" stroke-dasharray="8 6"/>
   <text class="lbl" x="595.0" y="116" style="fill:#38bdf8">the set (no duplicates, no order)</text>
   <g id="m0" class="mem"><circle cx="490" cy="194" r="27" fill="#0f2438" stroke="#34d399" stroke-width="2"/><text class="val" x="490" y="195" style="fill:#34d399">7</text></g>
@@ -79,5 +80,6 @@
   <g id="s4" class="inc"><circle cx="100" cy="200" r="24" fill="#0f2438" stroke="#fb7185" stroke-width="2"/><text class="val" x="100" y="201" style="fill:#fb7185">3</text></g>
   <text id="v4" class="verdict step" x="156" y="262" style="fill:#fb7185">already present - rejected</text>
   <text class="lbl-l" x="24" y="360" style="fill:#94a3b8">membership test is O(1) on average - a set is a hash table that stores keys and nothing else</text>
+  </g>
 
 </svg>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 456" width="820" height="456" role="img" aria-label="Animation: an AVL tree performing a right rotation to restore balance">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 482" width="820" height="482" role="img" aria-label="Animation: an AVL tree performing a right rotation to restore balance">
   <title>Animation: an AVL tree performing a right rotation to restore balance</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -34,11 +34,13 @@
   @keyframes fk2{0%{opacity:0} 58.66%{opacity:0} 58.666666666666664%{opacity:1} 100%{opacity:1}}
 
   </style>
-  <rect x="0" y="0" width="820" height="456" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="820" height="456" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="818.5" height="454.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="820" height="482" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="820" height="482" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="818.5" height="480.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">AVL tree - rotation</text>
   <text class="sub" x="24" y="54">The tree straightens its own spine before it can lean too far</text>
+  <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">balance factor = height(left) - height(right). AVL keeps it in (-1, 0, 1) at every node, rotating the moment it</tspan><tspan x="24" dy="17">drifts.</tspan></text>
+  <g transform="translate(0,17.4)">
   <g id="fr0" class="frm">
     <line x1="401.2" y1="199.2" x2="318.8" y2="256.8" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
     <line x1="286.6" y1="288.7" x2="253.4" y2="335.3" stroke="#38bdf8" stroke-width="1.6" opacity="0.8"/>
@@ -70,7 +72,7 @@
     <text x="570" y="186" font-size="13" fill="#34d399">balanced: height 2, not 3</text>
     <text class="step" x="24" y="134">20 becomes the root. Same values, same ordering, one level shallower - and searches stay O(log n).</text>
   </g>
-  <text class="lbl-l" x="24" y="96">balance factor = height(left) - height(right). AVL keeps it in (-1, 0, 1) at every node, rotating the moment it drifts.</text>
-  <text class="lbl-l" x="24" y="426" style="fill:#94a3b8">four cases: LL and RR need one rotation, LR and RL need two. Every rotation is O(1) and touches at most three pointers.</text>
+  <text class="lbl-l" x="24" y="426" style="fill:#94a3b8"><tspan x="24" dy="0">four cases: LL and RR need one rotation, LR and RL need two. Every rotation is O(1) and touches at most three</tspan><tspan x="24" dy="17">pointers.</tspan></text>
+  </g>
 
 </svg>

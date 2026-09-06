@@ -32,7 +32,8 @@
   <rect x="0.75" y="0.75" width="878.5" height="488.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Hash table - key to bucket</text>
   <text class="sub" x="24" y="54">A cloakroom ticket: the ticket number is computed from the coat, not searched for</text>
-  <text class="lbl-l" x="24" y="96">the key itself is not the address - a hash function turns it into one, in constant time</text>
+  <text class="lbl-l hdrline" x="24" y="96">the key itself is not the address - a hash function turns it into one, in constant time</text>
+  <g transform="translate(0,0.4)">
   <rect x="250" y="190" width="190" height="66" rx="8" fill="#10263c" stroke="#c084fc" stroke-width="2"/>
   <text class="val" x="345.0" y="216" style="fill:#c084fc;font-size:14">hash(key)</text>
   <text class="lbl" x="345.0" y="238" style="fill:#94a3b8">mod 8  ->  bucket index</text>
@@ -80,5 +81,6 @@
   <text class="lbl-l" x="150.2" y="466">hash function</text>
   <rect x="242.39999999999998" y="460" width="11" height="11" rx="2" fill="#38bdf8"/>
   <text class="lbl-l" x="259.4" y="466">bucket array</text>
+  </g>
 
 </svg>

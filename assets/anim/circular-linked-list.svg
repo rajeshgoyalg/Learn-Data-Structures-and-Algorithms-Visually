@@ -33,7 +33,8 @@
   <rect x="0.75" y="0.75" width="758.5" height="438.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Circular linked list</text>
   <text class="sub" x="24" y="54">Round-robin scheduling, turn order, a playlist on repeat</text>
-  <text class="lbl-l" x="24" y="96">the tail points back at the head, so there is no null - the walk never ends, it only comes round again</text>
+  <text class="lbl-l hdrline" x="24" y="96">the tail points back at the head, so there is no null - the walk never ends, it only comes round again</text>
+  <g transform="translate(0,0.4)">
   <circle cx="380" cy="248" r="100" fill="none" stroke="#38bdf8" stroke-width="1.3" opacity="0.35" stroke-dasharray="5 6"/>
   <path d="M407.1 153.8 Q 438.0 147.5 446.6 176.1" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
   <path d="M475.1 224.4 Q 496.0 248.0 475.6 269.7" stroke="#38bdf8" stroke-width="1.8" fill="none" marker-end="url(#ar)" opacity="0.85"/>
@@ -59,5 +60,6 @@
   </circle>
   <text class="lbl-l" x="380" y="240" style="fill:#94a3b8">no null</text>
   <text class="lbl-l" x="380" y="260" style="fill:#94a3b8">terminator</text>
+  </g>
 
 </svg>
