@@ -75,11 +75,11 @@
   </g>
   <text class="lbl-l" x="770" y="231.0" style="fill:#94a3b8">bucket 3</text>
   <text class="lbl-l" x="24" y="438" style="fill:#94a3b8">same key in, same bucket out, every time: lookup, insert and delete are O(1) on average</text>
-  <rect x="24" y="460" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="24" y="460" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="41" y="466">key in flight</text>
-  <rect x="133.2" y="460" width="11" height="11" rx="2" fill="#c084fc"/>
+  <rect class="swatch" x="133.2" y="460" width="11" height="11" rx="2" style="fill:#c084fc"/>
   <text class="lbl-l" x="150.2" y="466">hash function</text>
-  <rect x="242.39999999999998" y="460" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="242.39999999999998" y="460" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="259.4" y="466">bucket array</text>
   </g>
 

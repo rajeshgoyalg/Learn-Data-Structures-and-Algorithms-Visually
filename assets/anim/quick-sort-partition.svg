@@ -139,11 +139,11 @@
     <text class="step" x="24" y="150">everything left of 70 is smaller, everything right is larger - recurse on each side</text>
   </g>
   <text class="lbl-l" x="24" y="330" style="fill:#94a3b8"><tspan x="24" dy="0">O(n log n) average and in place, but O(n^2) if the pivot is always the smallest or largest - which</tspan><tspan x="24" dy="17">is why real implementations randomise it.</tspan></text>
-  <rect x="24" y="366" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="24" y="383" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="41" y="389">pivot</text>
-  <rect x="82.0" y="366" width="11" height="11" rx="2" fill="#c084fc"/>
+  <rect class="swatch" x="82.0" y="383" width="11" height="11" rx="2" style="fill:#c084fc"/>
   <text class="lbl-l" x="99.0" y="389">smaller than the pivot</text>
-  <rect x="248.8" y="366" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="248.8" y="383" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="265.8" y="389">final position</text>
   </g>
 

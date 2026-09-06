@@ -130,11 +130,11 @@
     <text x="150" y="491" font-size="13" fill="#94a3b8">(empty)</text>
     <text class="step" x="24" y="118">G is reached on ring 3 - and because BFS expands by distance, that path is the shortest in edges</text>
   </g>
-  <rect x="24" y="540" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="24" y="540" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="41" y="546">in the queue / current ring</text>
-  <rect x="222.8" y="540" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="222.8" y="540" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="239.8" y="546">visited</text>
-  <rect x="293.6" y="540" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="293.6" y="540" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="310.6" y="546">not reached yet</text>
   </g>
 

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 700" width="880" height="700" role="img" aria-label="Complexity - the growth ladder">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 680" width="880" height="680" role="img" aria-label="Complexity - the growth ladder">
   <title>Complexity - the growth ladder</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="880" height="700" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="880" height="700" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="878.5" height="698.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="880" height="680" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="680" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="678.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Complexity - the growth ladder</text>
   <text class="sub" x="24" y="54">Every structure in this repo is a bet about which row of this table your workload lands in</text>
   <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">complexity describes the SHAPE of the growth curve, not the speed on your laptop - constants and hardware are deliberately</tspan><tspan x="24" dy="17">thrown away</tspan></text>
@@ -70,11 +70,11 @@
   <text x="40" y="530" font-size="12" fill="#94a3b8">1. count the operation that dominates - usually a comparison, a swap or a visit</text>
   <text x="40" y="551" font-size="12" fill="#94a3b8">2. drop constants and lower-order terms: 3n^2 + 90n + 7 is simply O(n^2)</text>
   <text x="40" y="572" font-size="12" fill="#94a3b8">3. state which case you mean - best, average or worst - and the space cost separately</text>
+  </g>
   <rect x="558" y="598" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M558 624 L858 624 M744 624 L744 660" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="570" y="615" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="570" y="644" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="756" y="644" font-size="10" fill="#fbbf24">SHEET 01 / 18</text>
-  </g>
 
 </svg>

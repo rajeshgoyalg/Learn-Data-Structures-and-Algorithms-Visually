@@ -75,9 +75,9 @@
   <path id="bypass" d="M284.0 170 C 302 100, 450 100, 486 189.0" stroke="#34d399" stroke-width="2.2" fill="none" marker-end="url(#arg)"/>
   <text id="bl" class="step" x="318" y="112" style="fill:#34d399">B.next = C.next</text>
   <text id="gone" class="step" x="348" y="258" style="fill:#fb7185">freed</text>
-  <rect x="24" y="294" width="11" height="11" rx="2" fill="#fb7185"/>
+  <rect class="swatch" x="24" y="294" width="11" height="11" rx="2" style="fill:#fb7185"/>
   <text class="lbl-l" x="41" y="300">removed</text>
-  <rect x="94.80000000000001" y="294" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="94.80000000000001" y="294" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="111.80000000000001" y="300">new link</text>
   </g>
 

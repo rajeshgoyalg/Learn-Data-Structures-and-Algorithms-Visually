@@ -59,11 +59,11 @@
   <g id="p0" class="pl"><rect class="cell" x="262" y="166" width="166" height="40" style="stroke:#fbbf24"/><text class="val" x="345.0" y="187.0" style="fill:#fbbf24">D</text></g>
   <g id="p1" class="pl"><rect class="cell" x="262" y="120" width="166" height="40" style="stroke:#fbbf24"/><text class="val" x="345.0" y="141.0" style="fill:#fbbf24">E</text></g>
   <g id="tp"><path d="M492 232 L452 232" stroke="#34d399" stroke-width="2.2" fill="none" marker-end="url(#arg)"/><text class="lbl-l" x="498" y="232" style="fill:#34d399">top</text></g>
-  <rect x="24" y="144" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="24" y="144" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="41" y="150">resting</text>
-  <rect x="94.80000000000001" y="144" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="94.80000000000001" y="144" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="111.80000000000001" y="150">moving</text>
-  <rect x="159.20000000000002" y="144" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="159.20000000000002" y="144" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="176.20000000000002" y="150">top pointer</text>
   <text id="cap0" class="step cap" x="24" y="396">push D</text>
   <text id="cap1" class="step cap" x="24" y="396">push E</text>

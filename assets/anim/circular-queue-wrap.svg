@@ -83,11 +83,11 @@
   <text class="lbl" x="390" y="244" style="fill:#94a3b8">capacity 8</text>
   <text class="lbl" x="390" y="264" style="fill:#94a3b8">never resized</text>
   <text id="wrap" class="step" x="390" y="292" style="text-anchor:middle">rear: 7 -&gt; 0 (wrap)</text>
-  <rect x="24" y="464" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="24" y="464" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="41" y="470">already queued</text>
-  <rect x="139.60000000000002" y="464" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="139.60000000000002" y="464" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="156.60000000000002" y="470">rear pointer / newly filled</text>
-  <rect x="338.40000000000003" y="464" width="11" height="11" rx="2" fill="#94a3b8"/>
+  <rect class="swatch" x="338.40000000000003" y="464" width="11" height="11" rx="2" style="fill:#94a3b8"/>
   <text class="lbl-l" x="355.40000000000003" y="470">free slot</text>
   </g>
 

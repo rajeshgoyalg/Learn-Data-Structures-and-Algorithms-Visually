@@ -56,11 +56,11 @@
   <text x="60" y="490" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">OFF-BY-ONE TRAP</text>
   <path d="M60 498 L820 498" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="60" y="520" font-size="12" fill="#94a3b8">use mid = lo + (hi - lo) / 2, never (lo + hi) / 2 - the latter can overflow on large ranges</text>
+  </g>
   <rect x="558" y="478" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M558 504 L858 504 M744 504 L744 540" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="570" y="495" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="570" y="524" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="756" y="524" font-size="10" fill="#fbbf24">SHEET 14 / 18</text>
-  </g>
 
 </svg>

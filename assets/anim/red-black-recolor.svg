@@ -82,11 +82,11 @@
     <text class="step" x="24" y="134"><tspan x="24" dy="0">the fix is recolouring first (repaint parent and uncle black, grandparent red) and rotating only if</tspan><tspan x="24" dy="18">recolouring is not enough</tspan></text>
   </g>
   <text class="lbl-l" x="24" y="466" style="fill:#94a3b8"><tspan x="24" dy="0">rules: root black - no red node has a red child - every path from a node to its leaves holds the same number of black</tspan><tspan x="24" dy="17">nodes</tspan></text>
-  <rect x="24" y="454" width="11" height="11" rx="2" fill="#fb7185"/>
+  <rect class="swatch" x="24" y="507" width="11" height="11" rx="2" style="fill:#fb7185"/>
   <text class="lbl-l" x="41" y="513">red node</text>
-  <rect x="101.2" y="454" width="11" height="11" rx="2" fill="#111f30"/>
+  <rect class="swatch" x="101.2" y="507" width="11" height="11" rx="2" style="fill:#111f30"/>
   <text class="lbl-l" x="118.2" y="513">black node</text>
-  <rect x="191.2" y="454" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="191.2" y="507" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="208.2" y="513">being repaired</text>
   </g>
 

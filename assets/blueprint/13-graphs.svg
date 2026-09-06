@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 680" width="900" height="680" role="img" aria-label="Graph - taxonomy and storage">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660" width="900" height="660" role="img" aria-label="Graph - taxonomy and storage">
   <title>Graph - taxonomy and storage</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="900" height="680" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="900" height="680" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="898.5" height="678.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="660" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="658.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Graph - taxonomy and storage</text>
   <text class="sub" x="24" y="54">Nodes and edges with no rules attached - and two very different ways to write them down</text>
   <text class="lbl-l hdrline" x="24" y="96"><tspan x="24" dy="0">a graph is the most general structure here: nodes plus edges, with no constraint on shape. Every tree is a graph; almost no graph</tspan><tspan x="24" dy="17">is a tree.</tspan></text>
@@ -61,11 +61,11 @@
   <path d="M50 548 L850 548" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="570" font-size="12" fill="#94a3b8">BFS (queue)  - visits by distance in edges; finds the shortest unweighted path; O(V+E)</text>
   <text x="50" y="591" font-size="12" fill="#94a3b8">DFS (stack)  - dives deep then backtracks; used for cycle detection, topological sort, components; O(V+E)</text>
+  </g>
   <rect x="578" y="578" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M578 604 L878 604 M764 604 L764 640" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="590" y="595" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="624" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="624" font-size="10" fill="#fbbf24">SHEET 13 / 18</text>
-  </g>
 
 </svg>

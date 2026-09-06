@@ -132,11 +132,11 @@
     <text class="step" x="24" y="128">type 't' - a double ring marks the end of a real word</text>
   </g>
   <text class="lbl-l" x="24" y="444" style="fill:#94a3b8"><tspan x="24" dy="0">lookup costs O(L) in the length of the word, not O(n) in the number of words - which is why autocomplete uses</tspan><tspan x="24" dy="17">one</tspan></text>
-  <rect x="24" y="468" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="24" y="485" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="41" y="491">matched prefix</text>
-  <rect x="139.60000000000002" y="468" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="139.60000000000002" y="485" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="156.60000000000002" y="491">current letter</text>
-  <rect x="255.20000000000005" y="468" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="255.20000000000005" y="485" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="272.20000000000005" y="491">unexplored branch</text>
   </g>
 

@@ -210,9 +210,9 @@
     <text class="step" x="24" y="122"><tspan x="24" dy="0">from column 1 the search completes: all four queens stand safely. Backtracking = DFS that</tspan><tspan x="24" dy="18">undoes its moves.</tspan></text>
   </g>
   <text class="lbl-l" x="24" y="472" style="fill:#94a3b8"><tspan x="24" dy="0">brute force explores every arrangement. Backtracking abandons a branch the instant it becomes</tspan><tspan x="24" dy="17">illegal, which is what makes it tractable.</tspan></text>
-  <rect x="24" y="442" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="24" y="513" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="41" y="519">placed safely</text>
-  <rect x="133.2" y="442" width="11" height="11" rx="2" fill="#fb7185"/>
+  <rect class="swatch" x="133.2" y="513" width="11" height="11" rx="2" style="fill:#fb7185"/>
   <text class="lbl-l" x="150.2" y="519">attacked / rejected</text>
   </g>
 

@@ -137,13 +137,13 @@
   <rect x="792" y="502" width="110" height="44" rx="4" fill="#fb7185" fill-opacity="0.16" stroke="#fb7185" stroke-width="1.2" stroke-opacity="0.55"/>
   <text x="848.0" y="525.0" font-size="13" font-weight="600" fill="#fb7185" text-anchor="middle" dominant-baseline="middle">O(n)</text>
   <text x="210" y="578" font-size="11" fill="#94a3b8"><tspan x="210" dy="0">* amortised, or given a reference to the position - see the module for the exact condition. L = length of</tspan><tspan x="210" dy="17.0">the key.</tspan></text>
-  <rect x="210" y="600" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="210" y="617" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="227" y="623">cheap</text>
-  <rect x="268.0" y="600" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="268.0" y="617" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="285.0" y="623">depends on key length</text>
-  <rect x="428.4" y="600" width="11" height="11" rx="2" fill="#fb7185"/>
+  <rect class="swatch" x="428.4" y="617" width="11" height="11" rx="2" style="fill:#fb7185"/>
   <text class="lbl-l" x="445.4" y="623">linear - avoid on the hot path</text>
-  <rect x="646.4" y="600" width="11" height="11" rx="2" fill="#334155"/>
+  <rect class="swatch" x="646.4" y="617" width="11" height="11" rx="2" style="fill:#334155"/>
   <text class="lbl-l" x="663.4" y="623">not supported</text>
   </g>
 

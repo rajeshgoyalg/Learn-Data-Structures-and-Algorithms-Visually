@@ -54,11 +54,11 @@
   <text x="50" y="540" font-size="12" font-weight="700" fill="#38bdf8" letter-spacing="1">THE COSTS NOBODY MENTIONS</text>
   <path d="M50 548 L870 548" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="570" font-size="12" fill="#94a3b8">space is O(depth), because every paused frame is real memory - deep recursion overflows the stack</text>
+  </g>
   <rect x="578" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M578 544 L878 544 M764 544 L764 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="590" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="564" font-size="10" fill="#fbbf24">SHEET 16 / 18</text>
-  </g>
 
 </svg>

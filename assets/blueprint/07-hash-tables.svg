@@ -65,11 +65,11 @@
   <text x="50" y="516" font-size="12" fill="#94a3b8">insert / lookup / delete   O(1) average, O(n) worst case when every key collides</text>
   <text x="50" y="537" font-size="12" fill="#94a3b8">no ordering whatsoever - if you need sorted keys or range queries, use a balanced tree instead</text>
   <text x="50" y="558" font-size="12" fill="#94a3b8">a bad or adversarial hash function turns the whole structure into one long linked list</text>
+  </g>
   <rect x="578" y="558" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M578 584 L878 584 M764 584 L764 620" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="590" y="575" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="590" y="604" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="776" y="604" font-size="10" fill="#fbbf24">SHEET 07 / 18</text>
-  </g>
 
 </svg>

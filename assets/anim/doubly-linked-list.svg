@@ -78,11 +78,11 @@
   <text class="lbl-l" x="30" y="186" style="fill:#94a3b8">null</text>
   <text class="lbl-l" x="652" y="186" style="fill:#94a3b8">null</text>
   <rect id="cur2" x="55" y="165" width="126" height="64" rx="7" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
-  <rect x="24" y="286" width="11" height="11" rx="2" fill="#38bdf8"/>
+  <rect class="swatch" x="24" y="286" width="11" height="11" rx="2" style="fill:#38bdf8"/>
   <text class="lbl-l" x="41" y="292">next</text>
-  <rect x="75.6" y="286" width="11" height="11" rx="2" fill="#c084fc"/>
+  <rect class="swatch" x="75.6" y="286" width="11" height="11" rx="2" style="fill:#c084fc"/>
   <text class="lbl-l" x="92.6" y="292">prev</text>
-  <rect x="127.19999999999999" y="286" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="127.19999999999999" y="286" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="144.2" y="292">cursor</text>
   </g>
 

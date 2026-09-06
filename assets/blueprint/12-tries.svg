@@ -82,11 +82,11 @@
   <path d="M50 508 L850 508" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="530" font-size="12" fill="#94a3b8">autocomplete, spell-checking, IP routing tables, dictionary and word-game engines</text>
   <text x="50" y="551" font-size="12" fill="#94a3b8">if you only ever need exact-match lookup and never prefixes, a hash table is smaller and faster</text>
+  </g>
   <rect x="558" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M558 544 L858 544 M744 544 L744 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="570" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
   <text x="570" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
   <text x="756" y="564" font-size="10" fill="#fbbf24">SHEET 12 / 18</text>
-  </g>
 
 </svg>

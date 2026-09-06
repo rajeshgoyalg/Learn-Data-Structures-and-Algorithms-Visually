@@ -72,9 +72,9 @@
   <path id="beam" class="beam" d="M468 104 L468 140" marker-end="url(#ara)" style="stroke:#fbbf24;stroke-width:2.5"/>
   <rect id="ring" x="434" y="146" width="68" height="62" rx="6" fill="none" stroke="#34d399" stroke-width="2.5"/>
   <text id="out" class="step" x="468" y="242" style="text-anchor:middle">found 55 in O(1)</text>
-  <rect x="24" y="272" width="11" height="11" rx="2" fill="#fbbf24"/>
+  <rect class="swatch" x="24" y="272" width="11" height="11" rx="2" style="fill:#fbbf24"/>
   <text class="lbl-l" x="41" y="278">cursor</text>
-  <rect x="88.4" y="272" width="11" height="11" rx="2" fill="#34d399"/>
+  <rect class="swatch" x="88.4" y="272" width="11" height="11" rx="2" style="fill:#34d399"/>
   <text class="lbl-l" x="105.4" y="278">resolved</text>
 
 </svg>
