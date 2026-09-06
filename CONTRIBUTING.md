@@ -89,6 +89,20 @@ Then open `index.html` and confirm your animation actually plays and does not co
 
 ---
 
+## A note for forkers
+
+`index.html` links to the module docs using absolute `github.com/.../blob/main/docs/...` URLs, not relative paths. That is deliberate: GitHub Pages serves a `.md` file as raw `text/markdown`, so a relative link from the gallery would show unrendered markdown — pipe tables, literal `**` and all. The blob URL renders properly.
+
+The cost is that a fork's gallery still links to the upstream repo. If you fork this, run:
+
+```bash
+sed -i '' 's|github.com/rajeshgoyalg/Learn-Data-Structures-and-Algorithms-Visually|github.com/YOUR-USER/YOUR-REPO|g' index.html
+```
+
+The relative links inside `README.md` and `docs/*.md` are correct as they are — those are only ever read on github.com, where relative markdown links resolve and render.
+
+---
+
 ## Adding a new module
 
 1. Write `docs/NN-name.md` using the eleven-block template.
