@@ -76,68 +76,76 @@ flowchart LR
 
 ---
 
-## ⚙️ The algorithm
+## ⚙️ Operations
 
-**Relaxation — this single `if` is the whole algorithm.**
+**Relaxation — this single comparison is the whole algorithm.**
 
-```text
-if dist[u] + weight(u, v) < dist[v] then
-    dist[v] ← dist[u] + weight(u, v)         a cheaper route to v exists
-    prev[v] ← u                              remember how we got there
-end
+<!-- py:ops_dijkstra:relax -->
+```python
+def relax(dist: dict, prev: dict, u: Hashable, v: Hashable, weight: float) -> bool:
+    """The whole algorithm is this one comparison.
+
+    'Does going via u beat the best route to v that I already know?'
+    """
+    if dist[u] + weight < dist[v]:
+        dist[v] = dist[u] + weight        # a cheaper route to v exists
+        prev[v] = u                       # remember how we got there
+        return True
+    return False
 ```
+<!-- /py -->
 
 "Relaxing" an edge means: *does going via `u` beat the best route to `v` I already know?* Everything else is bookkeeping to make sure each edge gets relaxed at the right time.
 
 **The full algorithm.**
 
-```text
-function dijkstra(graph, source)
-    for each vertex v in graph do
-        dist[v] ← ∞
-        prev[v] ← null
-    end
-    dist[source] ← 0
+<!-- py:ops_dijkstra:dijkstra -->
+```python
+def dijkstra(adj: dict, source: Hashable) -> tuple[dict, dict]:
+    """Cheapest first, not nearest first.
 
-    PQ ← priority queue containing (0, source)
-    settled ← empty set
+    Pulling the cheapest unsettled node makes its distance final: any other
+    route runs through a node already at least as expensive, and non-negative
+    edges cannot reduce a total. One negative edge and that argument
+    collapses - it will not error, it will quietly return a wrong answer.
+    """
+    if any(w < 0 for u in adj for _, w in adj[u]):
+        raise ValueError("Dijkstra requires non-negative weights")
 
-    while PQ is not empty do
-        (d, u) ← extractMin(PQ)                  the cheapest unsettled node
+    dist = {v: INFINITY for v in adj}
+    prev: dict = {v: None for v in adj}
+    dist[source] = 0.0
+    settled = set()
+    pq = [(0.0, source)]
 
-        if u in settled then continue end        a stale queue entry — skip it
-        add u to settled                         dist[u] is now FINAL
-
-        for each edge (u, v, w) in graph do
-            if v in settled then continue end
-
-            if dist[u] + w < dist[v] then
-                dist[v] ← dist[u] + w
-                prev[v] ← u
-                insert (dist[v], v) into PQ      the old entry for v is now stale
-            end
-        end
-    end
-
+    while pq:
+        d, u = heapq.heappop(pq)          # the cheapest unsettled node
+        if u in settled:
+            continue                      # a stale entry: skip it
+        settled.add(u)                    # dist[u] is now FINAL
+        for v, w in adj.get(u, []):
+            if v not in settled and relax(dist, prev, u, v, w):
+                heapq.heappush(pq, (dist[v], v))
     return dist, prev
 ```
+<!-- /py -->
 
-> **Why "stale entries" instead of updating the queue?** A binary heap cannot cheaply find and update an arbitrary element. The standard trick is to push a *new* entry with the better distance and simply skip any entry whose node is already settled. It is simpler, and the extra entries are bounded by `E`.
+> **Why "stale entries" instead of updating the queue?** A binary heap cannot cheaply find and update an arbitrary element. The standard trick is to push a *new* entry with the better distance and skip any entry whose node is already settled. It is simpler, and the extra entries are bounded by `E`.
 
 **Reconstructing the actual path — this is what `prev` is for.**
 
-```text
-function path(prev, target)
-    route ← empty list
-    node ← target
-
-    while node ≠ null do
-        prepend node to route
-        node ← prev[node]                        walk backwards to the source
-    end
-
-    return route
+<!-- py:ops_dijkstra:path_to -->
+```python
+def path_to(prev: dict, target: Hashable) -> list:
+    """dist gives you the cost; only prev gives you the route."""
+    out = []
+    node: Optional[Hashable] = target
+    while node is not None:
+        out.append(node)
+        node = prev.get(node)
+    return out[::-1]                      # walk backwards, then reverse
 ```
+<!-- /py -->
 
 `dist` tells you the *cost*; only `prev` tells you the *route*. Forgetting to maintain it is the most common way to end up with a correct number and no answer.
 
@@ -156,59 +164,7 @@ function path(prev, target)
 
 Shortest path: **A → C → E → G**, cost **11**. Note it uses three edges, while `A → B → D → G` also uses three but costs 13 — BFS could have returned either.
 
-<!-- python:examples/graphs.py:dijkstra,path_to -->
-#### 🐍 Python implementation
-
-`dist` gives you the cost; only `prev` gives you the route:
-
-<details open><summary><i>fold away</i></summary>
-
-```python
-def dijkstra(graph: Graph, source: Hashable) -> tuple[dict, dict]:
-    """Cheapest first, not nearest first.
-
-    Pulling the cheapest unsettled node makes its distance final: any other
-    route runs through a node that is already at least as expensive, and
-    non-negative edges cannot reduce a total. One negative edge and that
-    argument collapses -- use Bellman-Ford instead.
-    """
-    if any(w < 0 for u in graph.adj for _, w in graph.adj[u]):
-        raise ValueError("Dijkstra requires non-negative weights")
-
-    dist: dict[Hashable, float] = {v: INFINITY for v in graph.adj}
-    prev: dict[Hashable, Optional[Hashable]] = {v: None for v in graph.adj}
-    dist[source] = 0.0
-    settled: set[Hashable] = set()
-    pq: list[tuple[float, Hashable]] = [(0.0, source)]
-
-    while pq:
-        d, u = heapq.heappop(pq)
-        if u in settled:
-            continue                         # a stale entry: skip it
-        settled.add(u)                       # dist[u] is now FINAL
-        for v, w in graph.adj[u]:
-            if v in settled:
-                continue
-            if d + w < dist[v]:              # the relaxation step IS the algorithm
-                dist[v] = d + w
-                prev[v] = u
-                heapq.heappush(pq, (dist[v], v))
-    return dist, prev
-
-
-def path_to(prev: dict, target: Hashable) -> list[Hashable]:
-    """dist tells you the cost; only prev tells you the route."""
-    out: list[Hashable] = []
-    node: Optional[Hashable] = target
-    while node is not None:
-        out.append(node)
-        node = prev.get(node)
-    return out[::-1]
-```
-
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

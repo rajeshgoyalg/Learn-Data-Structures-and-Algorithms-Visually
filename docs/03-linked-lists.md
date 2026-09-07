@@ -82,164 +82,125 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Traverse — the operation you cannot avoid.**
+A node is a payload plus a pointer. Nothing else:
 
-```text
-function traverse(head)
-    current ← head
-    while current ≠ null do
-        visit(current.data)
-        current ← current.next          the only way to move
-    end
-```
-
-**Get the k-th element — deliberately shown, because it is the weakness.**
-
-```text
-function get(head, k)
-    current ← head
-    for i ← 0 to k-1 do
-        if current = null then error "out of range" end
-        current ← current.next
-    end
-    return current.data                 k hops. No arithmetic can shorten this.
-```
-
-**Insert after a node you already hold — the operation you use a linked list for.**
-
-```text
-function insertAfter(node, value)
-    fresh ← new Node(value)
-    fresh.next ← node.next              1. the new node adopts the rest of the list
-    node.next  ← fresh                  2. the predecessor adopts the new node
-                                        two writes, no shifting, O(1)
-```
-
-> **Order matters.** Do step 2 first and you have overwritten `node.next` — the rest of the list is now unreachable and leaked.
-
-**Insert at the head — the cheapest insertion of all.**
-
-```text
-function prepend(head, value)
-    fresh ← new Node(value)
-    fresh.next ← head
-    return fresh                        the new head
-```
-
-**Delete — the node is never erased, only bypassed.**
-
-```text
-function deleteAfter(node)
-    victim ← node.next
-    if victim = null then return end
-    node.next ← victim.next             route around it
-    free(victim)                        the node is now unreachable
-```
-
-**Reverse — the classic interview question, and a genuine test of the model.**
-
-```text
-function reverse(head)
-    previous ← null
-    current  ← head
-    while current ≠ null do
-        following ← current.next        save it, you are about to destroy it
-        current.next ← previous         flip the arrow
-        previous ← current              shuffle both pointers forward
-        current  ← following
-    end
-    return previous                     the old tail is the new head
-```
-
-<!-- python:examples/linear.py:Node,SinglyLinkedList -->
-#### 🐍 Python implementation
-
-Note the order of the two writes in `insert_after` — reverse them and the tail is leaked:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:nodes:Node -->
 ```python
 class Node:
     """A singly linked list node: one payload, one pointer."""
-
     __slots__ = ("value", "next")
 
     def __init__(self, value: Any, next: Optional["Node"] = None) -> None:
         self.value = value
         self.next = next
+```
+<!-- /py -->
 
+**Traverse — the operation you cannot avoid.**
 
-class SinglyLinkedList:
-    def __init__(self, values: Optional[list[Any]] = None) -> None:
-        self.head: Optional[Node] = None
-        for v in reversed(values or []):
-            self.prepend(v)
+<!-- py:ops_linked_list:traverse -->
+```python
+def traverse(head: Optional[Node]) -> list[Any]:
+    """Following `next` is the only way to move. O(n)."""
+    out = []
+    current = head
+    while current is not None:
+        out.append(current.value)
+        current = current.next            # the only way forward
+    return out
+```
+<!-- /py -->
 
-    def prepend(self, value: Any) -> Node:
-        """The cheapest insertion there is: two writes, always O(1)."""
-        self.head = Node(value, self.head)
-        return self.head
+**Get the k-th element — shown deliberately, because it is the weakness.**
 
-    @staticmethod
-    def insert_after(node: Node, value: Any) -> Node:
-        """O(1) once you hold `node`. Order matters: adopt the tail FIRST."""
-        fresh = Node(value)
-        fresh.next = node.next        # 1. the new node adopts the rest
-        node.next = fresh             # 2. the predecessor adopts the new node
-        return fresh
-
-    @staticmethod
-    def delete_after(node: Node) -> Optional[Any]:
-        """Nothing is erased -- the node is routed around and becomes garbage."""
-        victim = node.next
-        if victim is None:
-            return None
-        node.next = victim.next
-        return victim.value
-
-    def get(self, k: int) -> Any:
-        """O(n): there is no index arithmetic here, only k hops."""
-        current = self.head
-        for _ in range(k):
-            if current is None:
-                raise IndexError("out of range")
-            current = current.next
+<!-- py:ops_linked_list:get -->
+```python
+def get(head: Optional[Node], k: int) -> Any:
+    """Reach position k. There is no address arithmetic here - only k hops."""
+    current = head
+    for _ in range(k):
         if current is None:
             raise IndexError("out of range")
-        return current.value
-
-    def reverse(self) -> None:
-        """Three pointers: flipping a link destroys the only route onwards."""
-        previous, current = None, self.head
-        while current is not None:
-            following = current.next     # save it before you overwrite it
-            current.next = previous      # flip the arrow
-            previous, current = current, following
-        self.head = previous             # the old tail is the new head
-
-    def has_cycle(self) -> bool:
-        """Floyd's tortoise and hare: O(n) time, O(1) space."""
-        slow = fast = self.head
-        while fast is not None and fast.next is not None:
-            slow = slow.next             # type: ignore[union-attr]
-            fast = fast.next.next
-            if slow is fast:
-                return True
-        return False
-
-    def to_list(self) -> list[Any]:
-        out, seen = [], set()
-        current = self.head
-        while current is not None and id(current) not in seen:
-            seen.add(id(current))
-            out.append(current.value)
-            current = current.next
-        return out
+        current = current.next
+    if current is None:
+        raise IndexError("out of range")
+    return current.value                  # k hops: O(n), never O(1)
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+There is no formula that jumps to position `k`. This is the single biggest practical difference from an array.
+
+**Insert after a node you already hold — the operation you use a linked list for.**
+
+<!-- py:ops_linked_list:insert_after -->
+```python
+def insert_after(node: Node, value: Any) -> Node:
+    """Two writes, and nothing shifts. O(1) once you hold `node`."""
+    fresh = Node(value)
+    fresh.next = node.next                # 1. the new node adopts the rest
+    node.next = fresh                     # 2. the predecessor adopts the new node
+    return fresh                          # reverse these two and the tail is lost
+```
+<!-- /py -->
+
+> **Order matters.** Do the second write first and you have overwritten `node.next` — the rest of the list is now unreachable and leaked.
+
+**Insert at the head — the cheapest insertion of all.**
+
+<!-- py:ops_linked_list:prepend -->
+```python
+def prepend(head: Optional[Node], value: Any) -> Node:
+    """The cheapest insertion there is. Returns the new head."""
+    return Node(value, head)
+```
+<!-- /py -->
+
+**Delete — the node is never erased, only bypassed.**
+
+<!-- py:ops_linked_list:delete_after -->
+```python
+def delete_after(node: Node) -> Optional[Any]:
+    """Nothing is erased - the node is routed around and becomes unreachable."""
+    victim = node.next
+    if victim is None:
+        return None
+    node.next = victim.next               # route around it
+    return victim.value
+```
+<!-- /py -->
+
+**Reverse — the classic interview question, and a genuine test of the model.**
+
+<!-- py:ops_linked_list:reverse -->
+```python
+def reverse(head: Optional[Node]) -> Optional[Node]:
+    """Three pointers, because flipping a link destroys the way onwards."""
+    previous, current = None, head
+    while current is not None:
+        following = current.next          # save it before you overwrite it
+        current.next = previous           # flip the arrow
+        previous, current = current, following
+    return previous                       # the old tail is the new head
+```
+<!-- /py -->
+
+**Detect a cycle — Floyd's tortoise and hare.**
+
+<!-- py:ops_linked_list:has_cycle -->
+```python
+def has_cycle(head: Optional[Node]) -> bool:
+    """Floyd's tortoise and hare. O(n) time, O(1) space."""
+    slow = fast = head
+    while fast is not None and fast.next is not None:
+        slow = slow.next                  # one step
+        fast = fast.next.next             # two steps
+        if slow is fast:
+            return True                   # they can only meet inside a loop
+    return False
+```
+<!-- /py -->
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

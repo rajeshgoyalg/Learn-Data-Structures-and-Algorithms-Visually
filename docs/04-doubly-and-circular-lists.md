@@ -71,152 +71,108 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Doubly linked — insert after a node. Four writes instead of two.**
+The doubly linked node pays one extra pointer per node:
 
-```text
-function insertAfter(node, value)
-    fresh ← new Node(value)
-
-    fresh.next ← node.next
-    fresh.prev ← node
-    if node.next ≠ null then
-        node.next.prev ← fresh          the successor must learn about it too
-    end
-    node.next ← fresh
-```
-
-**Doubly linked — delete, given nothing but the node itself.**
-
-```text
-function delete(node)
-    if node.prev ≠ null then
-        node.prev.next ← node.next
-    else
-        head ← node.next                it was the head
-    end
-
-    if node.next ≠ null then
-        node.next.prev ← node.prev
-    else
-        tail ← node.prev                it was the tail
-    end
-
-    free(node)                          O(1) — no search, no predecessor hunt
-```
-
-> **This is the whole reason doubly linked lists exist.** In a singly linked list, deleting a node you hold a reference to requires finding its predecessor: `O(n)`. Here it is `O(1)`, which is what makes an LRU cache work.
-
-**Circular — traverse, with the stop condition that matters.**
-
-```text
-function traverseOnce(head)
-    if head = null then return end
-
-    current ← head
-    repeat
-        visit(current.data)
-        current ← current.next
-    until current = head                NOT "until current = null" — there is no null
-```
-
-> **The classic bug:** writing `while current ≠ null` on a circular list. It never terminates. The terminator is *"I am back where I started"*, not *"I have run out of nodes"*.
-
-**Circular — round-robin scheduling, the canonical use.**
-
-```text
-function nextTurn(currentPlayer)
-    return currentPlayer.next           always valid, never null, wraps for free
-```
-
-<!-- python:examples/linear.py:DoublyLinkedList,CircularLinkedList -->
-#### 🐍 Python implementation
-
-`delete` here is O(1) given nothing but the node, which a singly linked list cannot do:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:nodes:DNode -->
 ```python
-class DoublyLinkedList:
-    def __init__(self, values: Optional[list[Any]] = None) -> None:
-        self.head: Optional[DNode] = None
-        self.tail: Optional[DNode] = None
-        for v in values or []:
-            self.append(v)
+class DNode:
+    """A doubly linked node. The extra pointer buys O(1) delete by reference."""
+    __slots__ = ("value", "prev", "next")
 
-    def append(self, value: Any) -> DNode:
-        node = DNode(value)
-        if self.tail is None:
-            self.head = self.tail = node
-        else:
-            node.prev = self.tail
-            self.tail.next = node
-            self.tail = node
-        return node
-
-    def delete(self, node: DNode) -> Any:
-        """O(1) given nothing but the node itself -- impossible when singly linked."""
-        if node.prev is not None:
-            node.prev.next = node.next
-        else:
-            self.head = node.next
-        if node.next is not None:
-            node.next.prev = node.prev
-        else:
-            self.tail = node.prev
-        node.prev = node.next = None
-        return node.value
-
-    def forward(self) -> list[Any]:
-        out, n = [], self.head
-        while n is not None:
-            out.append(n.value)
-            n = n.next
-        return out
-
-    def backward(self) -> list[Any]:
-        out, n = [], self.tail
-        while n is not None:
-            out.append(n.value)
-            n = n.prev
-        return out
-
-
-class CircularLinkedList:
-    """The tail points back at the head, so there is no null to stop on."""
-
-    def __init__(self, values: Optional[list[Any]] = None) -> None:
-        self.head: Optional[Node] = None
-        for v in values or []:
-            self.append(v)
-
-    def append(self, value: Any) -> Node:
-        node = Node(value)
-        if self.head is None:
-            self.head = node
-            node.next = node
-            return node
-        tail = self.head
-        while tail.next is not self.head:
-            tail = tail.next            # type: ignore[assignment]
-        tail.next = node
-        node.next = self.head
-        return node
-
-    def traverse_once(self) -> list[Any]:
-        """Terminate on 'back where I started', never on None."""
-        if self.head is None:
-            return []
-        out, current = [], self.head
-        while True:
-            out.append(current.value)
-            current = current.next      # type: ignore[assignment]
-            if current is self.head:
-                return out
+    def __init__(self, value: Any) -> None:
+        self.value = value
+        self.prev: Optional["DNode"] = None
+        self.next: Optional["DNode"] = None
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+**Insert after a node — four writes instead of two.**
+
+<!-- py:ops_doubly:insert_after -->
+```python
+def insert_after(node: DNode, value: Any) -> DNode:
+    """Four writes instead of two: the successor must learn about it too."""
+    fresh = DNode(value)
+    fresh.next = node.next
+    fresh.prev = node
+    if node.next is not None:
+        node.next.prev = fresh            # the extra write a singly list skips
+    node.next = fresh
+    return fresh
+```
+<!-- /py -->
+
+**Delete, given nothing but the node itself.**
+
+<!-- py:ops_doubly:delete -->
+```python
+def delete(node: DNode) -> Any:
+    """O(1) given nothing but the node itself.
+
+    In a singly linked list this costs O(n), because finding the predecessor
+    means walking from the head. This is why doubly linked lists exist.
+    """
+    if node.prev is not None:
+        node.prev.next = node.next
+    if node.next is not None:
+        node.next.prev = node.prev
+    node.prev = node.next = None
+    return node.value
+```
+<!-- /py -->
+
+> **This is the whole reason doubly linked lists exist.** In a singly linked list, deleting a node you hold a reference to means finding its predecessor first: `O(n)`. Here it is `O(1)`, which is what makes an LRU cache work.
+
+**Walk backwards — impossible-or-expensive without `prev`.**
+
+<!-- py:ops_doubly:walk_backward -->
+```python
+def walk_backward(tail: Optional[DNode]) -> list[Any]:
+    """Impossible-or-expensive without `prev`."""
+    out = []
+    current = tail
+    while current is not None:
+        out.append(current.value)
+        current = current.prev
+    return out
+```
+<!-- /py -->
+
+**Circular: traverse once, with the stop condition that matters.**
+
+<!-- py:ops_doubly:traverse_once -->
+```python
+def traverse_once(head: Optional[Node]) -> list[Any]:
+    """A circular list has no null, so terminate on 'back where I started'.
+
+    Writing `while current is not None` here never terminates - the classic
+    bug when a linear list is made circular.
+    """
+    if head is None:
+        return []
+    out = []
+    current = head
+    while True:
+        out.append(current.value)
+        current = current.next
+        if current is head:               # NOT `is None` - there is no null
+            return out
+```
+<!-- /py -->
+
+> **The classic bug:** writing `while current is not None` on a circular list. It never terminates. The terminator is *"I am back where I started"*, not *"I have run out of nodes"*.
+
+**Circular: round-robin scheduling, the canonical use.**
+
+<!-- py:ops_doubly:next_turn -->
+```python
+def next_turn(current: Node) -> Node:
+    """Round-robin: always valid, never null, wraps for free."""
+    return current.next
+```
+<!-- /py -->
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

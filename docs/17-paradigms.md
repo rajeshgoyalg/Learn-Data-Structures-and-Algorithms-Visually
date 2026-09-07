@@ -75,139 +75,47 @@ flowchart LR
 
 ---
 
-## ⚙️ Divide and conquer
+## ⚙️ Operations
+
+### Divide and conquer
 
 ```text
-function solve(problem)
-    if problem is small enough then
-        return solveDirectly(problem)                   the base case
-    end
+def solve(problem):
+    if small enough:
+        return solve_directly(problem)        the base case
 
-    parts ← divide(problem)                             1. DIVIDE
-    answers ← empty list
-    for each part in parts do
-        append solve(part) to answers                   2. CONQUER
-    end
-    return combine(answers)                             3. COMBINE
+    parts = divide(problem)                   1. DIVIDE
+    answers = [solve(p) for p in parts]       2. CONQUER
+    return combine(answers)                   3. COMBINE
 ```
 
-**The requirement:** the subproblems must be **independent**. Merge sort's two halves know nothing about each other; that is what makes recursing on both safe and non-redundant.
+**The requirement:** the subproblems must be **independent**. Merge sort's two halves know nothing about each other — see [`merge_sort`](15-sorting.md).
 
-**Where the complexity comes from:** splitting in half gives `log n` levels; doing `O(n)` work per level gives `O(n log n)`. That is merge sort, and it is why so many divide-and-conquer algorithms land on the same figure.
+### Dynamic programming
 
----
+The problem it solves, visible in one function:
 
-## ⚙️ Dynamic programming
-
-**The problem it solves — visible in one comparison.**
+<!-- py:ops_paradigms:fib_naive -->
+```python
+def fib_naive(n: int) -> int:
+    """O(2^n): the same subproblems, recomputed independently, forever."""
+    if n <= 1:
+        return n
+    return fib_naive(n - 1) + fib_naive(n - 2)
+```
+<!-- /py -->
 
 ```text
-NAIVE                                       fib(5)
-                                           /      \
-                                     fib(4)        fib(3)      ← recomputed
-                                    /     \        /    \
-                              fib(3)   fib(2)  fib(2)  fib(1)  ← recomputed
-                              /   \
-                        fib(2)   fib(1)                        ← recomputed
-
-O(2ⁿ) calls, and almost all of them recompute a value already known.
+                     fib(5)
+                    /      \
+              fib(4)        fib(3)      <- recomputed
+             /     \        /    \
+       fib(3)   fib(2)  fib(2)  fib(1)  <- recomputed
 ```
 
 **Top-down — memoisation. Write the recursion, then cache it.**
 
-```text
-function fib(n, memo)
-    if n ≤ 1 then return n end
-    if memo has n then return memo[n] end               ← the entire technique
-    memo[n] ← fib(n-1, memo) + fib(n-2, memo)
-    return memo[n]
-```
-
-Two lines added to the naive version take it from `O(2ⁿ)` to `O(n)`. Each distinct subproblem is now computed exactly once.
-
-**Bottom-up — tabulation. No recursion at all.**
-
-```text
-function fib(n)
-    if n ≤ 1 then return n end                          n = 0 has no table[1] to seed
-    table ← array of size n+1
-    table[0] ← 0
-    table[1] ← 1                                        the base cases, seeded
-
-    for i ← 2 to n do
-        table[i] ← table[i-1] + table[i-2]              dependencies already computed
-    end
-
-    return table[n]
-```
-
-And once you see that only the last two entries are ever read, the table collapses:
-
-```text
-function fib(n)                                         O(1) space
-    if n ≤ 1 then return n end                          without this, fib(0) returns 1
-    a ← 0; b ← 1
-    for i ← 2 to n do
-        a, b ← b, a + b
-    end
-    return b
-```
-
-**The two conditions DP requires:**
-
-1. **Overlapping subproblems** — the same subproblem is asked more than once. (No overlap → use divide and conquer; caching would just waste memory.)
-2. **Optimal substructure** — an optimal solution is built from optimal solutions to subproblems. (Without this, caching sub-answers tells you nothing about the whole.)
-
----
-
-## ⚙️ Greedy
-
-```text
-function greedy(problem)
-    solution ← empty
-    while problem is not solved do
-        choice ← the best-looking option right now             never reconsidered
-        add choice to solution
-        reduce problem by choice
-    end
-    return solution
-```
-
-**When it works — coin change with a sensible coin system.**
-
-```text
-coins 25, 10, 5, 1 — make 63
-
-take 25 → 38 left
-take 25 → 13 left
-take 10 →  3 left
-take 1, 1, 1 → 0
-
-six coins, and that is provably optimal for THIS coin system
-```
-
-**When it fails — change one thing.**
-
-```text
-coins 1, 3, 4 — make 6
-
-greedy: 4 + 1 + 1 = three coins
-best:   3 + 3     = two coins
-
-greedy loses. Same algorithm, different coin set, wrong answer.
-```
-
-> **This is the whole lesson.** Greedy correctness is a property of the *problem*, never of the algorithm. Changing the coin denominations broke it without touching a line of code. If you cannot prove the greedy-choice property holds, you must use DP — which considers every combination and cannot be fooled.
-
-**Greedy algorithms that *are* proved correct:** [Dijkstra](18-dijkstra.md) (with non-negative weights), Kruskal's and Prim's minimum spanning trees, Huffman coding, activity selection by earliest finish time.
-
-<!-- python:examples/algorithms.py:fib_memo,fib_table,coin_change_greedy,coin_change_dp -->
-#### 🐍 Python implementation
-
-Greedy and DP on the same problem, so you can see where greedy loses:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_paradigms:fib_memo -->
 ```python
 def fib_memo(n: int, memo: Optional[dict[int, int]] = None) -> int:
     """Top-down DP. Two added lines take this from O(2^n) to O(n)."""
@@ -216,39 +124,73 @@ def fib_memo(n: int, memo: Optional[dict[int, int]] = None) -> int:
     if n <= 1:
         return n
     if n in memo:
-        return memo[n]                       # the entire technique
+        return memo[n]                    # <- the entire technique
     memo[n] = fib_memo(n - 1, memo) + fib_memo(n - 2, memo)
     return memo[n]
+```
+<!-- /py -->
 
+**Bottom-up — tabulation. No recursion at all.**
 
+<!-- py:ops_paradigms:fib_table -->
+```python
 def fib_table(n: int) -> int:
-    """Bottom-up DP: fill in dependency order, no recursion, no stack risk."""
+    """Bottom-up DP: fill in dependency order. No recursion, no stack risk."""
     if n <= 1:
-        return n                             # n = 0 has no table[1] to seed
+        return n                          # n = 0 has no table[1] to seed
     table = [0] * (n + 1)
     table[1] = 1
     for i in range(2, n + 1):
-        table[i] = table[i - 1] + table[i - 2]
+        table[i] = table[i - 1] + table[i - 2]    # one addition, no recursion
     return table[n]
+```
+<!-- /py -->
 
+**And once you see that only the last two entries are ever read:**
 
+<!-- py:ops_paradigms:fib_two_vars -->
+```python
+def fib_two_vars(n: int) -> int:
+    """Only the last two entries are ever read, so the table collapses."""
+    if n <= 1:
+        return n                          # without this, fib(0) returns 1
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+```
+<!-- /py -->
+
+**The two conditions DP requires:** overlapping subproblems (the same subproblem is asked more than once) and optimal substructure (an optimal solution is built from optimal solutions to subproblems).
+
+### Greedy
+
+<!-- py:ops_paradigms:coin_change_greedy -->
+```python
 def coin_change_greedy(target: int, coins: tuple[int, ...] = (25, 10, 5, 1)) -> list[int]:
     """Take the largest coin that fits and never reconsider.
 
     Provably optimal for 1/5/10/25. With 1/3/4 it makes 6 as 4+1+1 when 3+3
-    is better -- greedy correctness is a property of the problem, not the code.
+    is better - greedy correctness is a property of the problem, not the code.
     """
     out: list[int] = []
     remaining = target
     for coin in sorted(coins, reverse=True):
         while remaining >= coin:
-            out.append(coin)
+            out.append(coin)              # never revisited
             remaining -= coin
     return out
+```
+<!-- /py -->
 
+**When it works:** coins 25/10/5/1 making 63 → `25+25+10+1+1+1`, six coins, provably optimal for this coin system.
 
+**When it fails:** change one thing.
+
+<!-- py:ops_paradigms:coin_change_dp -->
+```python
 def coin_change_dp(target: int, coins: tuple[int, ...] = (1, 3, 4)) -> int:
-    """Fewest coins, considering every combination -- so it cannot be fooled."""
+    """Fewest coins, considering every combination - so it cannot be fooled."""
     best = [0] + [float("inf")] * target
     for amount in range(1, target + 1):
         for coin in coins:
@@ -256,10 +198,18 @@ def coin_change_dp(target: int, coins: tuple[int, ...] = (1, 3, 4)) -> int:
                 best[amount] = min(best[amount], best[amount - coin] + 1)
     return int(best[target]) if best[target] != float("inf") else -1
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+```text
+coins 1, 3, 4 - make 6
+
+greedy: 4 + 1 + 1 = three coins
+DP:     3 + 3     = two coins
+```
+
+> **This is the whole lesson.** Greedy correctness is a property of the *problem*, never of the algorithm. Changing the coin denominations broke it without touching a line of code. If you cannot prove the greedy-choice property holds, you must use DP.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

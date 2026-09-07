@@ -6,13 +6,13 @@
 
 A GitHub-native course that teaches data structures the way the video does: one real-world analogy, one animation, then the costs — with the pictures doing the explaining.
 
-Every operation is shown as language-neutral pseudocode **and** as runnable Python that is covered by a 76-test suite.
+Every operation is a small, real Python function — extracted from [`examples/`](examples/) and covered by a 156-test suite.
 
 [![Modules](https://img.shields.io/badge/modules-18-38bdf8?style=flat-square)](docs/)
 [![Animations](https://img.shields.io/badge/animated_SVGs-38-fbbf24?style=flat-square)](assets/anim/)
 [![Blueprints](https://img.shields.io/badge/blueprints-18-c084fc?style=flat-square)](assets/blueprint/)
 [![Flashcards](https://img.shields.io/badge/flashcards-108-34d399?style=flat-square)](docs/flashcards.md)
-[![Tests](https://img.shields.io/badge/tested_Python-76_tests-38bdf8?style=flat-square)](examples/test_examples.py)
+[![Tests](https://img.shields.io/badge/tested_Python-156_tests-38bdf8?style=flat-square)](examples/test_ops.py)
 [![Quiz](https://img.shields.io/badge/quiz-45_questions-fb7185?style=flat-square)](docs/quiz.md)
 [![Verify](https://github.com/rajeshgoyalg/Learn-Data-Structures-and-Algorithms-Visually/actions/workflows/verify.yml/badge.svg)](https://github.com/rajeshgoyalg/Learn-Data-Structures-and-Algorithms-Visually/actions/workflows/verify.yml)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-64748b?style=flat-square)](#no-dependencies)

@@ -83,206 +83,150 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Storage — the choice you make first.**
+The graph is a plain dict: vertex → list of neighbours.
 
 ```text
 ADJACENCY LIST                          ADJACENCY MATRIX
-A: [B, C]                                   A  B  C  D
-B: [D]                                  A [ 0  1  1  0 ]
-C: [D]                                  B [ 0  0  0  1 ]
-D: []                                   C [ 0  0  0  1 ]
+{"A": ["B", "C"],                           A  B  C  D
+ "B": ["D"],                            A [ 0  1  1  0 ]
+ "C": ["D"],                            B [ 0  0  0  1 ]
+ "D": []}                               C [ 0  0  0  1 ]
                                         D [ 0  0  0  0 ]
 
-space   O(V + E)                        space   O(V²)
-"is A adjacent to D?"   O(deg A)        "is A adjacent to D?"   O(1)
+space   O(V + E)                        space   O(V^2)
+"is A next to D?"   O(deg A)            "is A next to D?"   O(1)
 "list A's neighbours"   O(deg A)        "list A's neighbours"   O(V)
 ```
 
-> **Rule of thumb:** real graphs are **sparse** — a social network has millions of users and a few hundred friends each, not millions. The adjacency list is the default; the matrix only wins when the graph is dense or you constantly test individual edges.
+> **Rule of thumb:** real graphs are **sparse** — a social network has millions of users and a few hundred friends each. The adjacency list is the default.
 
 **BFS — the queue *is* the algorithm.**
 
-```text
-function bfs(start)
-    visited ← set containing start          mark on ENQUEUE, not on dequeue
-    Q ← queue containing start
-
-    while Q is not empty do
-        node ← dequeue(Q)
-        visit(node)
-
-        for each neighbour of node do
-            if neighbour not in visited then
-                add neighbour to visited
-                enqueue(Q, neighbour)
-            end
-        end
-    end
-```
-
-> **Mark on enqueue.** If you mark on dequeue instead, a node with two discovered paths gets enqueued twice and processed twice. On a dense graph that is the difference between `O(V+E)` and something much worse.
-
-**DFS — swap the queue for a stack, change nothing else.**
-
-```text
-function dfs(start)
-    visited ← empty set
-    S ← stack containing start
-
-    while S is not empty do
-        node ← pop(S)
-        if node in visited then continue end
-        add node to visited
-        visit(node)
-
-        for each neighbour of node do
-            if neighbour not in visited then push(S, neighbour) end
-        end
-    end
-```
-
-Or recursively, letting the call stack do the work:
-
-```text
-function dfs(node, visited)
-    if node in visited then return end
-    add node to visited
-    visit(node)
-    for each neighbour of node do
-        dfs(neighbour, visited)
-    end
-```
-
-**Shortest path in an *unweighted* graph — BFS gives it for free.**
-
-```text
-function shortestPath(start, target)
-    visited ← set containing start
-    prev ← empty map
-    Q ← queue containing start
-
-    while Q is not empty do
-        node ← dequeue(Q)
-        if node = target then return reconstruct(prev, target) end
-
-        for each neighbour of node do
-            if neighbour not in visited then
-                add neighbour to visited
-                prev[neighbour] ← node
-                enqueue(Q, neighbour)
-            end
-        end
-    end
-    return "unreachable"
-```
-
-Because BFS finishes every node at distance `k` before touching distance `k+1`, the first time it reaches the target it has arrived by a shortest route. **This guarantee evaporates the moment edges have weights** — that is [Dijkstra's](18-dijkstra.md) job.
-
-**Cycle detection in a directed graph — DFS with three colours.**
-
-```text
-function hasCycle(node, state)
-    state[node] ← IN_PROGRESS
-    for each neighbour of node do
-        if state[neighbour] = IN_PROGRESS then return true end      a back edge
-        if state[neighbour] = UNVISITED and hasCycle(neighbour, state) then return true end
-    end
-    state[node] ← DONE
-    return false
-```
-
-Meeting a node that is still `IN_PROGRESS` means you have looped back onto your own current path. Meeting a `DONE` node is fine — that is just a shared subgraph.
-
-<!-- python:examples/graphs.py:Graph,bfs,dfs,has_cycle -->
-#### 🐍 Python implementation
-
-`bfs` and `dfs` differ only in queue versus stack:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_graph:bfs -->
 ```python
-class Graph:
-    """Adjacency list: O(V+E) space, the right default for sparse graphs.
-
-    A matrix would answer 'is u next to v?' in O(1) but cost O(V^2) memory --
-    a million vertices with ten edges each would need 10^12 mostly-zero cells.
-    """
-
-    def __init__(self, directed: bool = False) -> None:
-        self.directed = directed
-        self.adj: dict[Hashable, list[tuple[Hashable, float]]] = {}
-
-    def add_vertex(self, v: Hashable) -> None:
-        self.adj.setdefault(v, [])
-
-    def add_edge(self, u: Hashable, v: Hashable, weight: float = 1.0) -> None:
-        self.add_vertex(u)
-        self.add_vertex(v)
-        self.adj[u].append((v, weight))
-        if not self.directed:
-            self.adj[v].append((u, weight))
-
-    def neighbours(self, v: Hashable) -> list[Hashable]:
-        return [n for n, _ in self.adj.get(v, [])]
-
-    def __len__(self) -> int:
-        return len(self.adj)
-
-
-def bfs(graph: Graph, start: Hashable) -> list[Hashable]:
+def bfs(adj: dict, start: Hashable) -> list:
     """A queue makes it breadth-first: distance k finishes before k+1 begins."""
-    visited = {start}                        # mark on ENQUEUE, not on dequeue,
-    queue = deque([start])                   # or a node enters the queue twice
-    order: list[Hashable] = []
+    visited = {start}                     # mark on ENQUEUE, not on dequeue, or a
+    queue = deque([start])                # node with two routes is queued twice
+    order = []
     while queue:
-        node = queue.popleft()
+        node = queue.popleft()            # FIFO
         order.append(node)
-        for n in graph.neighbours(node):
+        for n in adj.get(node, []):
             if n not in visited:
                 visited.add(n)
                 queue.append(n)
     return order
+```
+<!-- /py -->
 
+> **Mark on enqueue.** If you mark on dequeue instead, a node with two discovered paths gets queued twice and processed twice.
 
-def dfs(graph: Graph, start: Hashable) -> list[Hashable]:
+**DFS — swap the queue for a stack, change nothing else.**
+
+<!-- py:ops_graph:dfs -->
+```python
+def dfs(adj: dict, start: Hashable) -> list:
     """Swap the queue for a stack and the same code goes deep instead of wide."""
-    visited: set[Hashable] = set()
+    visited = set()
     stack = [start]
-    order: list[Hashable] = []
+    order = []
     while stack:
-        node = stack.pop()
+        node = stack.pop()                # LIFO - the only change from bfs
         if node in visited:
             continue
         visited.add(node)
         order.append(node)
-        for n in reversed(graph.neighbours(node)):
+        for n in reversed(adj.get(node, [])):
             if n not in visited:
                 stack.append(n)
     return order
+```
+<!-- /py -->
 
+**Shortest path in an *unweighted* graph — BFS gives it for free.**
 
-def has_cycle(graph: Graph) -> bool:
-    """Three colours. Reaching an IN_PROGRESS node is a back edge into your
-    own active path -- a cycle. A DONE node is harmless shared structure.
+<!-- py:ops_graph:shortest_path_unweighted -->
+```python
+def shortest_path_unweighted(adj: dict, start: Hashable, target: Hashable) -> Optional[list]:
+    """BFS gives the fewest-EDGES path for free.
+
+    The guarantee evaporates the moment edges have weights: a one-edge road
+    of length 400 beats a four-edge route of length 40 by this measure, and
+    loses badly by the real one. That is Dijkstra's job.
     """
-    state: dict[Hashable, int] = {v: UNVISITED for v in graph.adj}
+    if start == target:
+        return [start]
+    visited = {start}
+    prev: dict = {}
+    queue = deque([start])
+    while queue:
+        node = queue.popleft()
+        for n in adj.get(node, []):
+            if n in visited:
+                continue
+            visited.add(n)
+            prev[n] = node
+            if n == target:
+                path = [target]
+                while path[-1] != start:
+                    path.append(prev[path[-1]])
+                return path[::-1]
+            queue.append(n)
+    return None                           # unreachable
+```
+<!-- /py -->
+
+**Cycle detection in a directed graph — DFS with three colours.**
+
+<!-- py:ops_graph:has_cycle -->
+```python
+def has_cycle(adj: dict) -> bool:
+    """Three colours. Reaching an IN_PROGRESS node is a back edge into your
+    own active path - a cycle. A DONE node is harmless shared structure."""
+    state = {v: UNVISITED for v in adj}
 
     def walk(v: Hashable) -> bool:
         state[v] = IN_PROGRESS
-        for n in graph.neighbours(v):
+        for n in adj.get(v, []):
             if state.get(n) == IN_PROGRESS:
                 return True
-            if state.get(n) == UNVISITED and walk(n):
+            if state.get(n, UNVISITED) == UNVISITED and walk(n):
                 return True
         state[v] = DONE
         return False
 
-    return any(state[v] == UNVISITED and walk(v) for v in list(graph.adj))
+    return any(state[v] == UNVISITED and walk(v) for v in list(adj))
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+**Topological sort — a valid dependency order, or `None`.**
+
+<!-- py:ops_graph:topological_sort -->
+```python
+def topological_sort(adj: dict) -> Optional[list]:
+    """A valid dependency order, or None when a cycle makes one impossible.
+
+    That None is your circular-dependency error.
+    """
+    indegree = {v: 0 for v in adj}
+    for u in adj:
+        for v in adj[u]:
+            indegree[v] = indegree.get(v, 0) + 1
+    ready = deque(sorted((v for v, d in indegree.items() if d == 0), key=repr))
+    order = []
+    while ready:
+        v = ready.popleft()
+        order.append(v)
+        for n in adj.get(v, []):
+            indegree[n] -= 1
+            if indegree[n] == 0:
+                ready.append(n)
+    return order if len(order) == len(indegree) else None
+```
+<!-- /py -->
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

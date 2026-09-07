@@ -80,91 +80,57 @@ flowchart LR
 
 **Linear search.**
 
-```text
-function linearSearch(A, target)
-    for i ← 0 to A.length - 1 do
-        if A[i] = target then return i end
-    end
-    return notFound                          n comparisons if it is absent
+<!-- py:ops_search:linear_search -->
+```python
+def linear_search(values: list[Any], target: Any) -> int:
+    """Works on anything, sorted or not. O(n), n/2 comparisons on average."""
+    for i, v in enumerate(values):
+        if v == target:
+            return i
+    return -1                             # n comparisons if it is absent
 ```
+<!-- /py -->
 
 **Binary search — the iterative form, which is the one to memorise.**
 
-```text
-function binarySearch(A, target)             A MUST be sorted
-    lo ← 0
-    hi ← A.length - 1
-
-    while lo ≤ hi do                         ≤, not <: a one-element range is still valid
-        mid ← lo + (hi - lo) / 2             NOT (lo + hi) / 2 — see below
-
-        if A[mid] = target then
-            return mid
-        else if A[mid] < target then
-            lo ← mid + 1                     +1, or you can loop forever
-        else
-            hi ← mid - 1
-        end
-    end
-
-    return notFound
-```
-
-> **Three bugs live in those seven lines.**
-> 1. `mid = (lo + hi) / 2` **overflows** on large arrays in fixed-width integer languages. `lo + (hi - lo) / 2` is arithmetically identical and cannot overflow.
-> 2. `while lo < hi` misses the case where the range has narrowed to exactly one element — which is where the answer usually is.
-> 3. Forgetting the `±1` leaves `lo` or `hi` unchanged when `mid` equals them, and the loop never terminates.
->
-> Binary search is famously easy to describe and famously hard to write correctly. It took decades for the overflow bug to be found in widely-used library implementations.
-
-**The useful variant — first index not less than the target.**
-
-```text
-function lowerBound(A, target)               where target is, or where it would go
-    lo ← 0
-    hi ← A.length                            note: length, not length - 1
-
-    while lo < hi do
-        mid ← lo + (hi - lo) / 2
-        if A[mid] < target then lo ← mid + 1 else hi ← mid end
-    end
-
-    return lo
-```
-
-This is what powers range queries, insertion into a sorted array, and "find the first entry after this timestamp".
-
-<!-- python:examples/algorithms.py:binary_search,lower_bound -->
-#### 🐍 Python implementation
-
-Three classic bugs live in these few lines — the comments mark each one:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_search:binary_search -->
 ```python
 def binary_search(values: list[Any], target: Any) -> int:
     """O(log n), but only on sorted, index-addressable data.
 
-    Three bugs live in these few lines; see the comments.
+    Three classic bugs live in these seven lines - each marked below.
     """
     lo, hi = 0, len(values) - 1
-    while lo <= hi:                          # <=, not <: a one-element range
-        mid = lo + (hi - lo) // 2            # NOT (lo+hi)//2 -- that overflows
-        if values[mid] == target:            # in fixed-width integer languages
+    while lo <= hi:                       # BUG 1: `<` misses a one-element range
+        mid = lo + (hi - lo) // 2         # BUG 2: (lo+hi)//2 overflows in
+        if values[mid] == target:         #         fixed-width integer languages
             return mid
         if values[mid] < target:
-            lo = mid + 1                     # the +/-1 is what shrinks the range;
-        else:                                # without it this loops forever
-            hi = mid - 1
+            lo = mid + 1                  # BUG 3: without the +/-1 the range
+        else:                             #         never shrinks and it loops
+            hi = mid - 1                  #         forever
     return -1
+```
+<!-- /py -->
 
+> **Three bugs live in those seven lines.**
+> 1. `(lo + hi) // 2` **overflows** on large arrays in fixed-width integer languages. `lo + (hi - lo) // 2` is arithmetically identical and cannot overflow. This exact bug survived for years in the Java standard library.
+> 2. `while lo < hi` misses the case where the range has narrowed to exactly one element — which is where the answer usually is.
+> 3. Forgetting the `±1` leaves `lo` or `hi` unchanged when `mid` equals them, and the loop never terminates.
+>
+> Binary search is famously easy to describe and famously hard to write correctly.
 
+**The useful variant — first index not less than the target.**
+
+<!-- py:ops_search:lower_bound -->
+```python
 def lower_bound(values: list[Any], target: Any) -> int:
-    """First index whose value is not less than target -- i.e. where it would go.
+    """First index whose value is not less than target.
 
-    This is what powers range queries and insertion into a sorted array.
+    In other words: where the target is, or where it would go. This is what
+    powers range queries and insertion into a sorted array.
     """
-    lo, hi = 0, len(values)                  # note: len, not len - 1
+    lo, hi = 0, len(values)               # note: len, not len - 1
     while lo < hi:
         mid = lo + (hi - lo) // 2
         if values[mid] < target:
@@ -173,10 +139,11 @@ def lower_bound(values: list[Any], target: Any) -> int:
             hi = mid
     return lo
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+This is what powers range queries, insertion into a sorted array, and "find the first entry after this timestamp".
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

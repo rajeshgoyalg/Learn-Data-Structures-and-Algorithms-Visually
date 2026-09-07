@@ -81,148 +81,95 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Lookup — with chaining.**
+The table is a list of buckets; each bucket is a list of `(key, value)` pairs.
 
-```text
-function get(T, key)
-    index ← hash(key) mod T.capacity            O(1)
-    for each entry in T.buckets[index] do       walk this bucket's chain only
-        if entry.key = key then                 compare the FULL key, not the hash
-            return entry.value
-        end
-    end
-    return notFound
+**The index — compute the address instead of searching for it.**
+
+<!-- py:ops_hash:index_for -->
+```python
+def index_for(key: Any, capacity: int) -> int:
+    """Compute the address instead of searching for it. O(1)."""
+    return hash(key) % capacity           # change capacity and every key moves
 ```
+<!-- /py -->
 
-> **Why compare the full key?** Because a matching index only means the hashes collided. Two different keys legitimately share a bucket, so the key itself is the final authority.
+**Insert or update.**
 
-**Insert — with chaining and a growth check.**
-
-```text
-function put(T, key, value)
-    index ← hash(key) mod T.capacity
-
-    for each entry in T.buckets[index] do
-        if entry.key = key then
-            entry.value ← value                 update, do not duplicate
-            return
-        end
-    end
-
-    append (key, value) to T.buckets[index]
-    T.count ← T.count + 1
-
-    if T.count / T.capacity > 0.75 then
-        resize(T)                               grow and rehash — O(n)
-    end
+<!-- py:ops_hash:put -->
+```python
+def put(buckets: list[list[tuple]], key: Any, value: Any) -> bool:
+    """Insert or update. Returns True if this was a new key."""
+    chain = buckets[index_for(key, len(buckets))]
+    for i, (k, _) in enumerate(chain):
+        if k == key:
+            chain[i] = (key, value)       # update, never duplicate
+            return False
+    chain.append((key, value))            # collisions just extend the chain
+    return True
 ```
+<!-- /py -->
+
+**Lookup.**
+
+<!-- py:ops_hash:get -->
+```python
+def get(buckets: list[list[tuple]], key: Any, default: Any = None) -> Any:
+    """O(1) to find the bucket, then a walk of that chain only."""
+    for k, v in buckets[index_for(key, len(buckets))]:
+        if k == key:                      # compare the FULL key: a matching
+            return v                      # bucket only means the hashes agreed
+    return default
+```
+<!-- /py -->
+
+> **Why compare the full key?** A matching index only means the hashes collided *modulo the capacity* — an enormous number of unrelated keys satisfy that. Skipping the key comparison returns other people's values.
+
+**Delete.**
+
+<!-- py:ops_hash:delete -->
+```python
+def delete(buckets: list[list[tuple]], key: Any) -> bool:
+    chain = buckets[index_for(key, len(buckets))]
+    for i, (k, _) in enumerate(chain):
+        if k == key:
+            chain.pop(i)
+            return True
+    return False
+```
+<!-- /py -->
 
 **Resize — why every key must be recomputed.**
 
-```text
-function resize(T)
-    old ← T.buckets
-    T.capacity ← T.capacity × 2
-    T.buckets ← new array of empty chains
-    T.count ← 0
-
-    for each chain in old do
-        for each entry in chain do
-            put(T, entry.key, entry.value)      index = hash mod capacity, and
-        end                                     capacity just changed — so every
-    end                                         key moves. This is the O(n) cost.
-```
-
-**Open addressing — the other collision policy.**
-
-```text
-function put(T, key, value)                     linear probing
-    index ← hash(key) mod T.capacity
-    while T.slots[index] is occupied and T.slots[index].key ≠ key do
-        index ← (index + 1) mod T.capacity      just try the next slot
-    end
-    T.slots[index] ← (key, value)
-```
-
-> **The deletion trap.** With probing you cannot simply empty a slot — that would break the probe chain for keys that hopped over it. You must mark it as a **tombstone** ("was occupied, keep probing past me"), and periodically clean up.
-
-<!-- python:examples/keyed.py:HashTable -->
-#### 🐍 Python implementation
-
-Separate chaining with a load factor that triggers the rehash:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_hash:resize -->
 ```python
-class HashTable:
-    """Separate chaining, with a load factor that triggers a rehash.
+def resize(buckets: list[list[tuple]]) -> list[list[tuple]]:
+    """Double the table and rehash everything. O(n).
 
-    The index is `hash(key) % capacity`, which is why changing the capacity
-    moves essentially every key and makes a resize O(n).
+    The index is `hash(key) % capacity`, so changing the capacity gives
+    essentially every key a new home. That is why you double rather than
+    grow by one.
     """
-
-    def __init__(self, capacity: int = 8) -> None:
-        self._capacity = max(1, capacity)
-        self._buckets: list[list[tuple[Any, Any]]] = [[] for _ in range(self._capacity)]
-        self._count = 0
-        self.rehashes = 0
-
-    def _index(self, key: Any) -> int:
-        return hash(key) % self._capacity
-
-    def put(self, key: Any, value: Any) -> None:
-        chain = self._buckets[self._index(key)]
-        for i, (k, _) in enumerate(chain):
-            if k == key:
-                chain[i] = (key, value)      # update, never duplicate
-                return
-        chain.append((key, value))
-        self._count += 1
-        if self._count / self._capacity > LOAD_FACTOR_LIMIT:
-            self._resize()
-
-    def get(self, key: Any, default: Any = None) -> Any:
-        for k, v in self._buckets[self._index(key)]:
-            if k == key:                     # compare the FULL key: a matching
-                return v                     # bucket only means the hashes agreed
-        return default
-
-    def delete(self, key: Any) -> bool:
-        chain = self._buckets[self._index(key)]
-        for i, (k, _) in enumerate(chain):
-            if k == key:
-                chain.pop(i)
-                self._count -= 1
-                return True
-        return False
-
-    def __contains__(self, key: Any) -> bool:
-        return any(k == key for k, _ in self._buckets[self._index(key)])
-
-    def __len__(self) -> int:
-        return self._count
-
-    @property
-    def load_factor(self) -> float:
-        return self._count / self._capacity
-
-    def _resize(self) -> None:
-        entries = [pair for chain in self._buckets for pair in chain]
-        self._capacity *= 2
-        self._buckets = [[] for _ in range(self._capacity)]
-        self._count = 0
-        self.rehashes += 1
-        for k, v in entries:
-            self.put(k, v)                   # every key gets a new index
-
-    def items(self) -> Iterator[tuple[Any, Any]]:
-        for chain in self._buckets:
-            yield from chain
+    entries = [pair for chain in buckets for pair in chain]
+    bigger: list[list[tuple]] = [[] for _ in range(len(buckets) * 2)]
+    for k, v in entries:
+        bigger[index_for(k, len(bigger))].append((k, v))
+    return bigger
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+**Load factor — the number that decides when to resize.**
+
+<!-- py:ops_hash:load_factor -->
+```python
+def load_factor(buckets: list[list[tuple]]) -> float:
+    """Above ~0.75 the chains lengthen and O(1) starts to decay."""
+    return sum(len(c) for c in buckets) / len(buckets)
+```
+<!-- /py -->
+
+> **The deletion trap with open addressing.** The other collision policy probes for the next free slot. There you cannot simply empty a slot — that breaks the probe chain for keys that hopped over it. You must mark it as a **tombstone** ("was occupied, keep probing past me") and clean up periodically.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

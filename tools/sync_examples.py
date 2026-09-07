@@ -1,17 +1,25 @@
 #!/usr/bin/env python3
-"""Embed tested Python from examples/ into the module docs.
+"""Refresh the Python snippets in docs/ from the tested code in examples/.
 
-The snippets in docs/ are extracted from examples/ by this script, so they are
-always the code the test suite actually covers. Run it after changing an
-implementation; tools/verify.py fails if a doc block has drifted from its
-source.
+Each snippet is marked in the doc like this:
 
-    python3 tools/sync_examples.py          # rewrite the blocks
+    <!-- py:ops_arrays:insert_at -->
+    ```python
+    ...
+    ```
+    <!-- /py -->
+
+The marker names an `examples/<module>.py` and a top-level function or class.
+This script rewrites the fence from that source, so a snippet in a module is
+always the code the test suite covers. tools/verify.py fails on drift.
+
+    python3 tools/sync_examples.py          # rewrite every marked fence
     python3 tools/sync_examples.py --check  # report drift, change nothing
 """
 from __future__ import annotations
 
 import ast
+import glob
 import os
 import re
 import sys
@@ -19,122 +27,56 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-# Insert before the horizontal rule that closes the Operations section, so the
-# Python sits INSIDE Operations rather than orphaned between it and Complexity.
-ANCHOR_RE = re.compile(r"\n+---\s*\n+(## ⏱️ Complexity)")
-SUMMARY = "🐍 Python implementation"
-
-# doc file -> (source file, symbols to embed, one-line framing)
-MANIFEST: dict[str, tuple[str, list[str], str]] = {
-    "docs/02-arrays.md": ("examples/linear.py", ["DynamicArray"],
-        "A growable array over a fixed block, so the doubling is visible:"),
-    "docs/03-linked-lists.md": ("examples/linear.py", ["Node", "SinglyLinkedList"],
-        "Note the order of the two writes in `insert_after` — reverse them and the tail is leaked:"),
-    "docs/04-doubly-and-circular-lists.md": ("examples/linear.py",
-        ["DoublyLinkedList", "CircularLinkedList"],
-        "`delete` here is O(1) given nothing but the node, which a singly linked list cannot do:"),
-    "docs/05-stacks.md": ("examples/restricted.py", ["Stack", "is_balanced"],
-        "The bracket checker is the canonical application — the stack *is* the nesting:"),
-    "docs/06-queues.md": ("examples/restricted.py",
-        ["CircularQueue", "Deque", "PriorityQueue"],
-        "`(i + 1) % capacity` is the entire difference between a linear and a circular queue:"),
-    "docs/07-hash-tables.md": ("examples/keyed.py", ["HashTable"],
-        "Separate chaining with a load factor that triggers the rehash:"),
-    "docs/08-sets.md": ("examples/keyed.py", ["unique", "intersection"],
-        "The two things a set is actually used for:"),
-    "docs/09-heaps.md": ("examples/hierarchical.py", ["MinHeap", "top_k"],
-        "No pointers anywhere — the tree is complete, so position *is* index:"),
-    "docs/10-binary-search-trees.md": ("examples/hierarchical.py", ["BST"],
-        "All four traversals are one function with the visit line moved:"),
-    "docs/11-balanced-trees.md": ("examples/hierarchical.py", ["AVLTree"],
-        "Subclassing the plain BST, so the only difference is the rebalancing:"),
-    "docs/12-tries.md": ("examples/hierarchical.py", ["Trie"],
-        "`search` and `starts_with` are the same walk with one different final line:"),
-    "docs/13-graphs.md": ("examples/graphs.py", ["Graph", "bfs", "dfs", "has_cycle"],
-        "`bfs` and `dfs` differ only in queue versus stack:"),
-    "docs/14-searching.md": ("examples/algorithms.py", ["binary_search", "lower_bound"],
-        "Three classic bugs live in these few lines — the comments mark each one:"),
-    "docs/15-sorting.md": ("examples/algorithms.py",
-        ["merge_sort", "_merge", "quick_sort", "partition"],
-        "The `<=` in `_merge` is what makes merge sort stable:"),
-    "docs/16-recursion-and-backtracking.md": ("examples/algorithms.py",
-        ["factorial", "solve_n_queens"],
-        "The `placed.pop()` is the whole difference from brute force:"),
-    "docs/17-paradigms.md": ("examples/algorithms.py",
-        ["fib_memo", "fib_table", "coin_change_greedy", "coin_change_dp"],
-        "Greedy and DP on the same problem, so you can see where greedy loses:"),
-    "docs/18-dijkstra.md": ("examples/graphs.py", ["dijkstra", "path_to"],
-        "`dist` gives you the cost; only `prev` gives you the route:"),
-}
+MARKER = re.compile(r"(<!-- py:([\w./]+):(\w+) -->\n)(.*?)(<!-- /py -->)", re.S)
+_cache: dict[str, tuple[str, list[str]]] = {}
 
 
-def extract(source: str, names: list[str]) -> str:
-    """Pull top-level defs/classes out of a module, in manifest order."""
-    text = open(source).read()
-    tree = ast.parse(text)
-    lines = text.splitlines()
-    found: dict[str, str] = {}
-    for node in tree.body:
+def source_of(module: str, symbol: str) -> str:
+    """Return the source text of one top-level def/class in examples/<module>.py."""
+    path = f"examples/{module}.py"
+    if not os.path.exists(path):
+        raise SystemExit(f"no such source: {path}")
+    if path not in _cache:
+        text = open(path).read()
+        _cache[path] = (text, text.splitlines())
+    text, lines = _cache[path]
+    for node in ast.parse(text).body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-            if node.name in names:
+            if node.name == symbol:
                 start = min([node.lineno] + [d.lineno for d in node.decorator_list]) - 1
-                found[node.name] = "\n".join(lines[start:node.end_lineno]).rstrip()
-    missing = [n for n in names if n not in found]
-    if missing:
-        raise SystemExit(f"{source}: no top-level definition for {missing}")
-    return "\n\n\n".join(found[n] for n in names)
-
-
-def block(doc: str, source: str, names: list[str], framing: str) -> str:
-    """Open by default and behind its own heading.
-
-    Collapsed, this rendered as a single 24px line that readers scrolled
-    straight past -- so the Python was effectively invisible. `open` makes it
-    visible, the heading puts it in GitHub's file outline, and it is still a
-    <details> so anyone who wants the pseudocode-only view can fold it away.
-    """
-    code = extract(source, names)
-    return (f"<!-- python:{source}:{','.join(names)} -->\n"
-            f"#### {SUMMARY}\n\n"
-            f"{framing}\n\n"
-            f"<details open><summary><i>fold away</i></summary>\n\n"
-            f"```python\n{code}\n```\n\n"
-            f"Every line above is covered by [`examples/test_examples.py`]"
-            f"(../examples/test_examples.py) — run it with "
-            f"`python3 -m unittest discover -s examples -t .`\n"
-            f"</details>\n<!-- /python -->\n")
-
-
-BLOCK_RE = re.compile(r"<!-- python:.*?<!-- /python -->\n", re.S)
+                return "\n".join(lines[start:node.end_lineno]).rstrip()
+    raise SystemExit(f"{path}: no top-level definition named '{symbol}'")
 
 
 def main() -> int:
     check = "--check" in sys.argv
-    drifted = []
-    for doc, (source, names, framing) in MANIFEST.items():
+    drifted, total = [], 0
+    for doc in sorted(glob.glob("docs/*.md")):
         text = open(doc).read()
-        want = block(doc, source, names, framing)
-        if BLOCK_RE.search(text):
-            new = BLOCK_RE.sub(lambda _: want, text, count=1)
-        else:
-            if not ANCHOR_RE.search(text):
-                raise SystemExit(f"{doc}: no Operations/Complexity boundary to insert at")
-            new = ANCHOR_RE.sub("\n\n" + want.replace("\\", "\\\\") +
-                                "\n---\n\n" + r"\1", text, count=1)
+
+        def repl(m: re.Match) -> str:
+            nonlocal total
+            total += 1
+            code = source_of(m.group(2), m.group(3))
+            return f"{m.group(1)}```python\n{code}\n```\n{m.group(5)}"
+
+        new = MARKER.sub(repl, text)
         if new != text:
             drifted.append(doc)
             if not check:
                 open(doc, "w").write(new)
+
     if check:
         if drifted:
-            print("Python blocks are out of sync with examples/:")
-            for d in drifted:
+            print("Python snippets are out of sync with examples/:")
+            for d in sorted(set(drifted)):
                 print(f"  {d}")
             print("\nRun: python3 tools/sync_examples.py")
             return 1
-        print("All Python blocks match examples/.")
+        print(f"All {total} Python snippets match examples/.")
         return 0
-    print(f"Synced {len(MANIFEST)} modules ({len(drifted)} changed).")
+    print(f"Synced {total} snippets across {len(glob.glob('docs/*.md'))} docs "
+          f"({len(set(drifted))} file(s) changed).")
     return 0
 
 

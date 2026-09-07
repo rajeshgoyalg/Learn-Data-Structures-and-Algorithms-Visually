@@ -76,135 +76,79 @@ flowchart LR
 
 ## ⚙️ Operations
 
+An array here is a fixed-size `store` list plus a `length` — because that is what an array really is: a block of slots, only some of them in use. Keeping the two separate is what makes the shifting and the growth visible.
+
 **Read — the operation arrays exist for.**
 
-```text
-function get(A, i)
-    if i < 0 or i ≥ A.length then error "out of bounds" end
-    return memory[A.base + i × A.itemSize]      one multiply, one add
+<!-- py:ops_arrays:get -->
+```python
+def get(store: list[Any], length: int, i: int) -> Any:
+    """Read: the operation arrays exist for."""
+    if not 0 <= i < length:
+        raise IndexError("out of bounds")
+    return store[i]                       # one address calculation, whatever i is
 ```
+<!-- /py -->
+
+`store[i]` compiles to one multiply and one add on the base address. That is the whole reason it is `O(1)` for any `i`.
 
 **Insert at an index — the operation arrays are bad at.**
 
-```text
-function insertAt(A, i, value)
-    if A.length = A.capacity then grow(A) end
-
-    for j ← A.length down to i+1 do             walk backwards, or you
-        A[j] ← A[j-1]                           overwrite what you have not moved yet
-    end
-
-    A[i] ← value
-    A.length ← A.length + 1
+<!-- py:ops_arrays:insert_at -->
+```python
+def insert_at(store: list[Any], length: int, i: int, value: Any) -> int:
+    """Insert at an index. Returns the new length."""
+    for j in range(length, i, -1):        # walk BACKWARDS: forwards would smear
+        store[j] = store[j - 1]           # one value across the whole tail
+    store[i] = value
+    return length + 1                     # n - i elements moved: O(n)
 ```
+<!-- /py -->
+
+> **Why backwards?** Going forwards, `store[i]` would be copied into `store[i+1]`, then that same value into `store[i+2]` — smearing one value across the tail. `range(length, i, -1)` moves each element into a slot that has already been vacated.
 
 **Delete at an index — the mirror image.**
 
-```text
-function deleteAt(A, i)
-    for j ← i to A.length-2 do
-        A[j] ← A[j+1]                           close the gap
-    end
-    A.length ← A.length - 1
+<!-- py:ops_arrays:delete_at -->
+```python
+def delete_at(store: list[Any], length: int, i: int) -> int:
+    """Delete at an index - the mirror image. Returns the new length."""
+    for j in range(i, length - 1):
+        store[j] = store[j + 1]           # close the gap
+    store[length - 1] = None              # the vacated slot holds nothing
+    return length - 1
 ```
+<!-- /py -->
 
-**Grow — why appending is *amortised* O(1).**
+**Grow — why appending is *amortised* `O(1)`.**
 
-```text
-function grow(A)
-    new ← allocate(A.capacity × 2)              doubling is the important part
-    for j ← 0 to A.length-1 do
-        new[j] ← A[j]
-    end
-    free(A.block)
-    A.block ← new
-    A.capacity ← A.capacity × 2
+<!-- py:ops_arrays:grow -->
+```python
+def grow(store: list[Any], length: int) -> list[Any]:
+    """Grow: why appending is *amortised* O(1). Returns the new store."""
+    bigger = [None] * (len(store) * 2)    # doubling is the important part
+    for j in range(length):
+        bigger[j] = store[j]              # every element is copied: O(n)
+    return bigger                         # the old block is now garbage
 ```
+<!-- /py -->
+
+**Append — puts the two together.**
+
+<!-- py:ops_arrays:append -->
+```python
+def append(store: list[Any], length: int, value: Any) -> tuple[list[Any], int]:
+    """Append, growing first if the block is full."""
+    if length == len(store):
+        store = grow(store, length)
+    store[length] = value
+    return store, length + 1
+```
+<!-- /py -->
 
 > **Why doubling?** Growing by a *constant* (say +1) makes `n` appends cost `O(n²)` in total. Growing by a constant *factor* makes `n` appends cost `O(n)` in total — so each append averages `O(1)` even though one in every `n` is expensive.
 
-<!-- python:examples/linear.py:DynamicArray -->
-#### 🐍 Python implementation
-
-A growable array over a fixed block, so the doubling is visible:
-
-<details open><summary><i>fold away</i></summary>
-
-```python
-class DynamicArray:
-    """A growable array over a fixed-capacity block, to make the doubling visible.
-
-    Python's own `list` already does this; the point here is to show the
-    mechanism that makes `append` amortised O(1).
-    """
-
-    def __init__(self, capacity: int = 4) -> None:
-        self._capacity = max(1, capacity)
-        self._length = 0
-        self._store: list[Any] = [None] * self._capacity
-        self.copies = 0                      # counts elements moved by growth
-
-    def __len__(self) -> int:
-        return self._length
-
-    @property
-    def capacity(self) -> int:
-        return self._capacity
-
-    def __getitem__(self, index: int) -> Any:
-        if not 0 <= index < self._length:
-            raise IndexError("out of bounds")
-        return self._store[index]            # one address calculation: O(1)
-
-    def __setitem__(self, index: int, value: Any) -> None:
-        if not 0 <= index < self._length:
-            raise IndexError("out of bounds")
-        self._store[index] = value
-
-    def append(self, value: Any) -> None:
-        if self._length == self._capacity:
-            self._grow()
-        self._store[self._length] = value
-        self._length += 1
-
-    def insert_at(self, index: int, value: Any) -> None:
-        """O(n): every element from `index` rightwards shifts up one slot."""
-        if not 0 <= index <= self._length:
-            raise IndexError("out of bounds")
-        if self._length == self._capacity:
-            self._grow()
-        for j in range(self._length, index, -1):
-            self._store[j] = self._store[j - 1]      # walk backwards, or you
-        self._store[index] = value                   # smear one value along
-        self._length += 1
-
-    def delete_at(self, index: int) -> Any:
-        """O(n): close the gap by shifting everything after `index` down one."""
-        if not 0 <= index < self._length:
-            raise IndexError("out of bounds")
-        removed = self._store[index]
-        for j in range(index, self._length - 1):
-            self._store[j] = self._store[j + 1]
-        self._length -= 1
-        self._store[self._length] = None
-        return removed
-
-    def _grow(self) -> None:
-        """Double the block and copy across. O(n) once, amortised O(1) per append."""
-        self._capacity *= 2
-        bigger: list[Any] = [None] * self._capacity
-        for j in range(self._length):
-            bigger[j] = self._store[j]
-        self.copies += self._length
-        self._store = bigger
-
-    def __iter__(self) -> Iterator[Any]:
-        return (self._store[i] for i in range(self._length))
-```
-
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py); a fuller class-based version lives in [`examples/linear.py`](../examples/linear.py).
 
 ---
 

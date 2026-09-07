@@ -38,44 +38,33 @@ All three are plain SVG with the animation written in CSS inside the file. There
 
 ---
 
-## The pseudocode dialect
+## The code
 
-Each module explains its operations twice. **Pseudocode first**, because the video it follows teaches the idea rather than the syntax — one dialect is used everywhere:
+Every operation in every module is a **small, real Python function** — not pseudocode, and not a fragment:
 
-```text
-function name(argument, argument)
-    x ← 5                       assignment
-    if condition then
-        ...
-    else
-        ...
-    end
-    while condition do ... end
-    for each item in collection do ... end
-    for i ← 0 to n-1 do ... end
-    return value
-
-A ← B                           A now refers to what B refers to
-A.next ← B                      write to a field
-swap(a, b)                      exchange two values
-null                            "points at nothing"
+```python
+def insert_at(store: list[Any], length: int, i: int, value: Any) -> int:
+    """Insert at an index. Returns the new length."""
+    for j in range(length, i, -1):        # walk BACKWARDS: forwards would smear
+        store[j] = store[j - 1]           # one value across the whole tail
+    store[i] = value
+    return length + 1                     # n - i elements moved: O(n)
 ```
 
-**Indexing is 0-based** throughout, matching every diagram: the first element of a 7-element array is at index `0`, the last at index `6`.
+Three things are true of all 100 of them:
 
-Then a **🐍 Python implementation** block, collapsed so it never interrupts the reading flow:
+- **They run.** They live in [`examples/`](../examples/) and are extracted into each module by `tools/sync_examples.py`, so a snippet cannot drift from its source.
+- **They are tested.** [`examples/test_ops.py`](../examples/test_ops.py) covers every one — 156 tests, stdlib `unittest`, no dependencies, run in CI:
 
-- it is **real, runnable code** — not illustrative fragments
-- it lives in [`examples/`](../examples/) and is extracted into the module by `tools/sync_examples.py`, so the two cannot drift apart
-- every function and class in it is covered by [`examples/test_examples.py`](../examples/test_examples.py) — 76 tests, stdlib `unittest`, run in CI
+  ```bash
+  python3 -m unittest discover -s examples -t .
+  ```
 
-```bash
-python3 -m unittest discover -s examples -t .
-```
+- **The comments carry the teaching.** The `# walk BACKWARDS` above is the point of the function; the code is just what makes it concrete.
 
-So a claim a module makes about its code is a claim something actually checks. Read the pseudocode to understand the idea; open the Python when you want to run it.
+**Indexing is 0-based**, matching every diagram: the first element of a 7-element array is at index `0`, the last at index `6`.
 
----
+A handful of ` ```text ` blocks remain where the thing being shown genuinely is not code — the five red-black rules, the shape of a divide-and-conquer split, an adjacency-list-versus-matrix comparison.
 
 ## The eleven blocks in every module
 
@@ -86,7 +75,7 @@ So a claim a module makes about its code is a claim something actually checks. R
 | 3 | 🧠 **Mental model** | the analogy mapped term-by-term onto the real structure |
 | 4 | 📐 **Blueprint** | the same thing again, but static and fully labelled |
 | 5 | 🗺️ **Mindmap** | the shape of the module, so you know what is coming |
-| 6 | ⚙️ **Operations** | pseudocode, one block per operation, then a collapsible tested Python implementation |
+| 6 | ⚙️ **Operations** | one small tested Python function per operation |
 | 7 | ⏱️ **Complexity** | best / average / worst / space, with the *reason* |
 | 8 | ⚖️ **Trade-offs** | when to reach for it and when not to |
 | 9 | 🃏 **Flashcards** | click to reveal — test yourself before moving on |

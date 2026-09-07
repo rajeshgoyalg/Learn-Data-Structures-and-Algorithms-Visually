@@ -77,101 +77,51 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Array-backed — the common implementation.**
+A stack is a plain list with both other ends declared off-limits. That restriction *is* the data structure.
 
-```text
-function push(S, value)
-    if S.top = S.capacity - 1 then error "overflow" end
-    S.top ← S.top + 1
-    S.items[S.top] ← value
+**Push, pop, peek — all O(1), all at the same end.**
 
-function pop(S)
-    if S.top = -1 then error "underflow" end
-    value ← S.items[S.top]
-    S.top ← S.top - 1                   the value is not erased, just unreachable
-    return value
-
-function peek(S)
-    if S.top = -1 then error "empty" end
-    return S.items[S.top]
-
-function isEmpty(S)
-    return S.top = -1
+<!-- py:ops_stack:push -->
+```python
+def push(stack: list[Any], value: Any) -> None:
+    """Put a value on the top. O(1)."""
+    stack.append(value)
 ```
+<!-- /py -->
 
-`top` starts at `-1` for an empty stack — with 0-based indexing that means "no valid index yet".
-
-**Linked-list-backed — the same thing, without a capacity limit.**
-
-```text
-function push(S, value)
-    fresh ← new Node(value)
-    fresh.next ← S.head
-    S.head ← fresh                      pushing = prepending. Always O(1).
-
-function pop(S)
-    if S.head = null then error "underflow" end
-    value ← S.head.data
-    S.head ← S.head.next
-    return value
+<!-- py:ops_stack:pop -->
+```python
+def pop(stack: list[Any]) -> Any:
+    """Remove and return the top. O(1)."""
+    if not stack:
+        raise IndexError("underflow: pop from an empty stack")
+    return stack.pop()                    # the value is not erased, just unreachable
 ```
+<!-- /py -->
+
+<!-- py:ops_stack:peek -->
+```python
+def peek(stack: list[Any]) -> Any:
+    """Read the top without removing it. O(1)."""
+    if not stack:
+        raise IndexError("empty")
+    return stack[-1]
+```
+<!-- /py -->
+
+<!-- py:ops_stack:is_empty -->
+```python
+def is_empty(stack: list[Any]) -> bool:
+    return not stack
+```
+<!-- /py -->
 
 **The canonical application — balanced bracket checking.**
 
-```text
-function isBalanced(text)
-    S ← empty stack
-
-    for each ch in text do
-        if ch is one of ( [ { then
-            push(S, ch)
-        else if ch is one of ) ] } then
-            if isEmpty(S) then return false end         a closer with nothing open
-            if not matches(pop(S), ch) then return false end
-        end
-    end
-
-    return isEmpty(S)                   anything left open means unbalanced
-```
-
-Every opener you push is a note saying *"remember to close this"*. The stack guarantees you close them in the reverse of the order you opened them — which is precisely what nesting means.
-
-<!-- python:examples/restricted.py:Stack,is_balanced -->
-#### 🐍 Python implementation
-
-The bracket checker is the canonical application — the stack *is* the nesting:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_stack:is_balanced -->
 ```python
-class Stack:
-    """LIFO. Only one end is reachable, and that restriction is the point."""
-
-    def __init__(self) -> None:
-        self._items: list[Any] = []
-
-    def push(self, value: Any) -> None:
-        self._items.append(value)
-
-    def pop(self) -> Any:
-        if not self._items:
-            raise IndexError("underflow: pop from an empty stack")
-        return self._items.pop()
-
-    def peek(self) -> Any:
-        if not self._items:
-            raise IndexError("empty")
-        return self._items[-1]
-
-    def is_empty(self) -> bool:
-        return not self._items
-
-    def __len__(self) -> int:
-        return len(self._items)
-
-
 def is_balanced(text: str) -> bool:
-    """Every opener is a note saying 'remember to close this'.
+    """The canonical application: every opener is a note saying 'close me'.
 
     The stack guarantees they close in the reverse of the order they opened,
     which is exactly what nesting means.
@@ -179,16 +129,19 @@ def is_balanced(text: str) -> bool:
     stack: list[str] = []
     for ch in text:
         if ch in "([{":
-            stack.append(ch)
+            stack.append(ch)              # remember to close this
         elif ch in ")]}":
-            if not stack or stack.pop() != PAIRS[ch]:
-                return False
-    return not stack
+            if not stack:
+                return False              # a closer with nothing open
+            if stack.pop() != PAIRS[ch]:
+                return False              # closed in the wrong order
+    return not stack                      # anything left open is unbalanced
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every opener you push is a note saying *"remember to close this"*. The stack guarantees you close them in the reverse of the order you opened them — which is precisely what nesting means.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

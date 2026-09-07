@@ -83,167 +83,85 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**Linear queue — and the flaw that motivates the circular one.**
+**The plain queue — and the flaw that motivates the circular one.**
 
-```text
-function enqueue(Q, value)
-    if Q.rear = Q.capacity - 1 then error "full" end
-    Q.rear ← Q.rear + 1
-    Q.items[Q.rear] ← value
-
-function dequeue(Q)
-    if Q.front > Q.rear then error "empty" end
-    value ← Q.items[Q.front]
-    Q.front ← Q.front + 1               the slot at the old front is now stranded
-    return value
-```
-
-> **The flaw:** after five enqueues and five dequeues on a capacity-5 queue, `rear` is at the end and the queue reports "full" — while every slot is actually free. The indices marched off the end and never came back.
-
-**Circular queue — the fix is one operator.**
-
-```text
-function enqueue(Q, value)
-    if Q.count = Q.capacity then error "full" end
-    Q.rear ← (Q.rear + 1) mod Q.capacity        ← the whole fix
-    Q.items[Q.rear] ← value
-    Q.count ← Q.count + 1
-
-function dequeue(Q)
-    if Q.count = 0 then error "empty" end
-    value ← Q.items[Q.front]
-    Q.front ← (Q.front + 1) mod Q.capacity
-    Q.count ← Q.count - 1
-    return value
-```
-
-> **Why keep a `count`?** With wraparound, `front = rear` is ambiguous — it means both "empty" and "full". Tracking `count` (or deliberately leaving one slot unused) disambiguates it.
-
-**Deque — four operations, all `O(1)`.**
-
-```text
-function pushFront(D, value)   ...      insert before D.front
-function pushBack(D, value)    ...      insert after D.rear
-function popFront(D)           ...      remove and return D.front
-function popBack(D)            ...      remove and return D.rear
-```
-
-Use `pushBack` + `popFront` and you have a queue. Use `pushBack` + `popBack` and you have a stack. A deque is a superset of both.
-
-**Priority queue — the interface, backed by a [heap](09-heaps.md).**
-
-```text
-function insert(PQ, value, priority)
-    add to the heap, then sift up                O(log n)
-
-function extractMin(PQ)
-    take the root, move the last leaf to the root, sift down     O(log n)
-
-function peek(PQ)
-    return the root                              O(1)
-```
-
-<!-- python:examples/restricted.py:CircularQueue,Deque,PriorityQueue -->
-#### 🐍 Python implementation
-
-`(i + 1) % capacity` is the entire difference between a linear and a circular queue:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_queue:enqueue -->
 ```python
-class CircularQueue:
-    """Fixed capacity. `(i + 1) % capacity` is the whole difference from linear."""
-
-    def __init__(self, capacity: int) -> None:
-        if capacity < 1:
-            raise ValueError("capacity must be positive")
-        self.capacity = capacity
-        self._slots: list[Any] = [None] * capacity
-        self._front = 0
-        self._rear = -1
-        self._count = 0                      # front == rear is ambiguous without this
-
-    def enqueue(self, value: Any) -> None:
-        if self._count == self.capacity:
-            raise OverflowError("full")
-        self._rear = (self._rear + 1) % self.capacity
-        self._slots[self._rear] = value
-        self._count += 1
-
-    def dequeue(self) -> Any:
-        if self._count == 0:
-            raise IndexError("empty")
-        value = self._slots[self._front]
-        self._slots[self._front] = None
-        self._front = (self._front + 1) % self.capacity
-        self._count -= 1
-        return value
-
-    def __len__(self) -> int:
-        return self._count
-
-    @property
-    def is_full(self) -> bool:
-        return self._count == self.capacity
-
-
-class Deque:
-    """A stack and a queue at once: all four operations are O(1)."""
-
-    def __init__(self) -> None:
-        self._items: list[Any] = []
-
-    def push_front(self, value: Any) -> None:
-        self._items.insert(0, value)
-
-    def push_back(self, value: Any) -> None:
-        self._items.append(value)
-
-    def pop_front(self) -> Any:
-        if not self._items:
-            raise IndexError("empty")
-        return self._items.pop(0)
-
-    def pop_back(self) -> Any:
-        if not self._items:
-            raise IndexError("empty")
-        return self._items.pop()
-
-    def __len__(self) -> int:
-        return len(self._items)
-
-
-class PriorityQueue:
-    """Order of service is decided by a key, not by arrival.
-
-    The counter breaks ties by arrival order and keeps unorderable payloads
-    from ever being compared.
-    """
-
-    def __init__(self) -> None:
-        self._heap: list[tuple[Any, int, Any]] = []
-        self._tie = itertools.count()
-
-    def insert(self, value: Any, priority: Any) -> None:
-        heapq.heappush(self._heap, (priority, next(self._tie), value))   # O(log n)
-
-    def extract_min(self) -> Any:
-        if not self._heap:
-            raise IndexError("empty")
-        return heapq.heappop(self._heap)[2]                              # O(log n)
-
-    def peek(self) -> Any:
-        if not self._heap:
-            raise IndexError("empty")
-        return self._heap[0][2]                                          # O(1)
-
-    def __len__(self) -> int:
-        return len(self._heap)
+def enqueue(queue: list[Any], value: Any) -> None:
+    """Join at the back. O(1)."""
+    queue.append(value)
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+<!-- py:ops_queue:dequeue -->
+```python
+def dequeue(queue: list[Any]) -> Any:
+    """Served from the front. O(1) on a deque or linked list."""
+    if not queue:
+        raise IndexError("empty")
+    return queue.pop(0)
+```
+<!-- /py -->
+
+> **The flaw in an array-backed version:** if `front` and `rear` only ever increase, then after five enqueues and five dequeues on a capacity-5 queue, `rear` is at the end and the queue reports "full" — while every slot is actually free. The indices marched off the end and never came back.
+
+**The circular queue — the fix is one operator.**
+
+<!-- py:ops_queue:circular_enqueue -->
+```python
+def circular_enqueue(slots: list[Any], rear: int, count: int, value: Any) -> tuple[int, int]:
+    """The modulo is the entire difference from a linear queue.
+
+    Returns the new (rear, count).
+    """
+    capacity = len(slots)
+    if count == capacity:
+        raise OverflowError("full")
+    rear = (rear + 1) % capacity          # <- the whole fix: wrap instead of run off
+    slots[rear] = value
+    return rear, count + 1
+```
+<!-- /py -->
+
+<!-- py:ops_queue:circular_dequeue -->
+```python
+def circular_dequeue(slots: list[Any], front: int, count: int) -> tuple[Any, int, int]:
+    """Returns (value, new front, new count)."""
+    if count == 0:
+        raise IndexError("empty")
+    value = slots[front]
+    slots[front] = None
+    front = (front + 1) % len(slots)      # freed slots get reused
+    return value, front, count - 1
+```
+<!-- /py -->
+
+> **Why keep a `count`?** With wraparound, `front == rear` is ambiguous — it means both "empty" and "full". Tracking `count` (or deliberately leaving one slot unused) disambiguates it.
+
+**The priority queue — backed by a [heap](09-heaps.md).**
+
+<!-- py:ops_queue:pq_insert -->
+```python
+def pq_insert(heap: list[tuple], value: Any, priority: Any, tie: itertools.count) -> None:
+    """O(log n). The tie counter keeps arrival order for equal priorities and
+    stops unorderable payloads from ever being compared."""
+    heapq.heappush(heap, (priority, next(tie), value))
+```
+<!-- /py -->
+
+<!-- py:ops_queue:pq_extract_min -->
+```python
+def pq_extract_min(heap: list[tuple]) -> Any:
+    """The most urgent item, regardless of when it arrived. O(log n)."""
+    if not heap:
+        raise IndexError("empty")
+    return heapq.heappop(heap)[2]
+```
+<!-- /py -->
+
+A **deque** needs no new code: use `push_back` + `pop_front` and you have a queue; `push_back` + `pop_back` and you have a stack. It is a superset of both.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

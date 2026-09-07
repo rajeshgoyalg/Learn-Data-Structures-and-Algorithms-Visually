@@ -75,167 +75,133 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**The node.**
+A node stores **no letter of its own** — its identity comes entirely from the path taken to reach it:
 
-```text
-Node:
-    children      map from character → Node
-    isEndOfWord   boolean
+<!-- py:nodes:TrieNode -->
+```python
+class TrieNode:
+    """A trie node stores no letter of its own - the path to it is the prefix."""
+    __slots__ = ("children", "is_end")
+
+    def __init__(self) -> None:
+        self.children: dict[str, "TrieNode"] = {}
+        self.is_end = False
 ```
-
-The node stores **no letter of its own**. Its identity comes entirely from the path taken to reach it.
+<!-- /py -->
 
 **Insert.**
 
-```text
-function insert(root, word)
-    node ← root
-    for each ch in word do
-        if node.children has no ch then
-            node.children[ch] ← new Node()      only create what does not exist
-        end
-        node ← node.children[ch]
-    end
-    node.isEndOfWord ← true                     the flag is the whole point
+<!-- py:ops_trie:insert -->
+```python
+def insert(root: TrieNode, word: str) -> None:
+    """Creates only the nodes that do not exist yet.
+
+    Inserting "car" when "cat" is already stored adds exactly one node.
+    """
+    node = root
+    for ch in word:
+        if ch not in node.children:
+            node.children[ch] = TrieNode()
+        node = node.children[ch]
+    node.is_end = True                    # the flag is what makes it a word
 ```
+<!-- /py -->
 
 Inserting "car" after "cat" creates exactly **one** new node — the `r`. The `c` and `a` were already there and are simply reused.
 
-**Search vs startsWith — the same walk, one different final line.**
+**The walk both lookups share.**
 
-```text
-function search(root, word)
-    node ← walk(root, word)
-    return node ≠ null and node.isEndOfWord      "ca" walks fine but is not a word
-
-function startsWith(root, prefix)
-    node ← walk(root, prefix)
-    return node ≠ null                           reaching the node is enough
-
-function walk(node, s)
-    for each ch in s do
-        if node.children has no ch then return null end
-        node ← node.children[ch]
-    end
+<!-- py:ops_trie:walk -->
+```python
+def walk(root: TrieNode, s: str) -> Optional[TrieNode]:
+    """Follow one edge per character. O(L), whatever the word count."""
+    node = root
+    for ch in s:
+        if ch not in node.children:
+            return None
+        node = node.children[ch]
     return node
 ```
+<!-- /py -->
 
-> **This one-line difference is the whole feature.** A hash table can answer `search`. Only a trie can answer `startsWith` without scanning everything.
+**Search vs starts_with — the same walk, one different final line.**
+
+<!-- py:ops_trie:search -->
+```python
+def search(root: TrieNode, word: str) -> bool:
+    """Reaching the node is not enough - it must be marked as a word end."""
+    node = walk(root, word)
+    return node is not None and node.is_end
+```
+<!-- /py -->
+
+<!-- py:ops_trie:starts_with -->
+```python
+def starts_with(root: TrieNode, prefix: str) -> bool:
+    """The same walk, one different final line. This is the whole feature -
+    a hash table cannot answer it without scanning every key."""
+    return walk(root, prefix) is not None
+```
+<!-- /py -->
+
+> **This one-line difference is the whole feature.** A hash table can answer `search`. Only a trie can answer `starts_with` without scanning everything.
 
 **Autocomplete — walk to the prefix, then harvest the subtree.**
 
-```text
-function autocomplete(root, prefix)
-    node ← walk(root, prefix)
-    if node = null then return empty list end
+<!-- py:ops_trie:autocomplete -->
+```python
+def autocomplete(root: TrieNode, prefix: str) -> list[str]:
+    """O(L) to reach the prefix, then a walk of only that subtree.
 
-    results ← empty list
-    collect(node, prefix, results)
-    return results
+    Every word in that subtree starts with the prefix by construction, so no
+    non-matching word is ever visited.
+    """
+    node = walk(root, prefix)
+    if node is None:
+        return []
+    out: list[str] = []
 
-function collect(node, sofar, results)
-    if node.isEndOfWord then append sofar to results end
-    for each (ch, child) in node.children do
-        collect(child, sofar + ch, results)      a DFS over the subtree
-    end
+    def collect(n: TrieNode, so_far: str) -> None:
+        if n.is_end:
+            out.append(so_far)
+        for ch, child in sorted(n.children.items()):
+            collect(child, so_far + ch)
+
+    collect(node, prefix)
+    return out
 ```
-
-`O(L)` to reach the prefix, then `O(size of that subtree)` to list the matches — you never touch a word that does not start with the prefix.
+<!-- /py -->
 
 **Delete — the subtle one.**
 
-```text
-function delete(node, word, depth)
-    if depth = length(word) then
-        node.isEndOfWord ← false                 unmark, do not unlink
-    else
-        ch ← word[depth]
-        delete(node.children[ch], word, depth + 1)
-    end
-
-    prune this node only if:
-        it has no children, AND
-        it is not the end of some other word      ← "car" must survive deleting "cart"
-```
-
-<!-- python:examples/hierarchical.py:Trie -->
-#### 🐍 Python implementation
-
-`search` and `starts_with` are the same walk with one different final line:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_trie:delete -->
 ```python
-class Trie:
-    """Letters live on the edges; a node is just 'the prefix you have spelled'.
+def delete(root: TrieNode, word: str) -> bool:
+    """Unset the flag, then drop any node nothing else needs.
 
-    Lookup is O(L) in the key length and independent of how many words are
-    stored -- which is why autocomplete uses one.
+    Returns True if the word was present. Deleting "cart" must not remove the
+    c-a-r chain, because "car" still needs it - so a node is only dropped when
+    it has no children AND is not itself the end of a word.
     """
+    node = walk(root, word)
+    if node is None or not node.is_end:
+        return False                      # never stored: nothing to do
+    node.is_end = False                   # the word is gone from the trie
 
-    def __init__(self, words: Optional[list[str]] = None) -> None:
-        self.root = TrieNode()
-        for w in words or []:
-            self.insert(w)
+    path = [root]                         # every node on the way down
+    for ch in word:
+        path.append(path[-1].children[ch])
 
-    def insert(self, word: str) -> None:
-        node = self.root
-        for ch in word:
-            node = node.children.setdefault(ch, TrieNode())   # create only what
-        node.is_end = True                                     # does not exist
-
-    def _walk(self, s: str) -> Optional[TrieNode]:
-        node = self.root
-        for ch in s:
-            node = node.children.get(ch)                       # type: ignore[assignment]
-            if node is None:
-                return None
-        return node
-
-    def search(self, word: str) -> bool:
-        node = self._walk(word)
-        return node is not None and node.is_end                # the flag decides
-
-    def starts_with(self, prefix: str) -> bool:
-        return self._walk(prefix) is not None                  # reaching it is enough
-
-    def autocomplete(self, prefix: str) -> list[str]:
-        """O(L) to the prefix node, then a walk of only that subtree."""
-        node = self._walk(prefix)
-        if node is None:
-            return []
-        out: list[str] = []
-
-        def collect(n: TrieNode, so_far: str) -> None:
-            if n.is_end:
-                out.append(so_far)
-            for ch, child in sorted(n.children.items()):
-                collect(child, so_far + ch)
-        collect(node, prefix)
-        return out
-
-    def delete(self, word: str) -> bool:
-        """Unset the flag; prune a node only if nothing else needs it."""
-        def prune(node: TrieNode, depth: int) -> bool:
-            if depth == len(word):
-                if not node.is_end:
-                    return False
-                node.is_end = False
-                return not node.children
-            ch = word[depth]
-            child = node.children.get(ch)
-            if child is None:
-                return False
-            if prune(child, depth + 1):
-                del node.children[ch]
-                return not node.children and not node.is_end
-            return False
-        return prune(self.root, 0)
+    for depth in range(len(word), 0, -1):
+        child = path[depth]
+        if child.children or child.is_end:
+            break                         # something still needs this node
+        del path[depth - 1].children[word[depth - 1]]
+    return True
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

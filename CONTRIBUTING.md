@@ -44,20 +44,32 @@ Every loop also holds at its first and last frame so a reader can take in the st
 
 **GitHub does not render Mermaid `mindmap` diagrams.** Mindmaps in this repo are written as `flowchart LR` with `classDef` styling, which renders everywhere. Do not "fix" them to `mindmap` syntax — it will silently produce a broken code block on GitHub.
 
-### 6. Pseudocode explains; Python runs
+### 6. Operations are real Python, extracted from tested code
 
-Every operation is shown twice. The **pseudocode** is the explanation and stays language-neutral — the dialect is defined in [`docs/00-how-to-read-this.md`](docs/00-how-to-read-this.md): `←` for assignment, `function`/`end`, `for each … in`, 0-based indexing.
-
-The **Python** is real code and lives in [`examples/`](examples/), never written directly into a module. `tools/sync_examples.py` extracts it into the doc between `<!-- python:... -->` markers:
+Every operation in a module is a **small Python function**, never pseudocode and never a fragment. Write it in [`examples/`](examples/) — never directly into a module — and let the sync tool place it:
 
 ```bash
-python3 tools/sync_examples.py          # after changing an implementation
+python3 tools/sync_examples.py          # rewrite every marked fence
 python3 tools/sync_examples.py --check  # report drift only
 ```
 
-`tools/verify.py` fails if a doc block has drifted from its source, if a snippet is not valid Python, or if the test suite does not pass. So **edit `examples/`, then re-sync** — hand-editing a `python` block in a module will be caught and reverted.
+A doc marks each snippet with the source it came from:
 
-Anything you add to `examples/` needs a test in `examples/test_examples.py`. Untested code in a teaching repo is worse than no code.
+```markdown
+<!-- py:ops_arrays:insert_at -->
+```python
+...
+```
+<!-- /py -->
+```
+
+`tools/verify.py` fails if a fence has drifted from its source, if a snippet is not valid Python, or if the tests do not pass. So **edit `examples/`, then re-sync** — hand-editing a fence in a module will be caught.
+
+Anything you add needs a test in [`examples/test_ops.py`](examples/test_ops.py). Untested code in a teaching repo is worse than no code: writing these tests found a real bug in the trie `delete`, whose return value meant "a node was pruned" rather than "the word was removed".
+
+Keep the teaching in the comments. `# walk BACKWARDS: forwards would smear` is the reason the function is in the repo; the code is just what makes it concrete.
+
+Use ` ```text ` only when the thing genuinely is not code — the red-black rules, a structural sketch, a side-by-side comparison.
 
 ### 7. Every module has the same eleven blocks
 
@@ -82,7 +94,7 @@ frames at once, internal links and anchors, the eleven-block module template,
 unsupported Mermaid `mindmap` blocks, unclosed `<details>`, duplicate
 flashcards, stated counts drifting from reality, orphaned assets, and gallery
 links reverting to raw markdown. The last three cover the Python: every
-snippet parses, no snippet has drifted from `examples/`, and the 76-test
+snippet parses, no snippet has drifted from `examples/`, and the 156-test
 suite passes.
 
 The text-overflow check models the monospace advance at `0.60 × font-size` —

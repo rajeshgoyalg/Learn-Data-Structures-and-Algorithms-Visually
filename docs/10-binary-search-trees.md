@@ -80,224 +80,166 @@ flowchart LR
 
 ## ⚙️ Operations
 
+A node holds a value and two children:
+
+<!-- py:nodes:TreeNode -->
+```python
+class TreeNode:
+    """A binary tree node. `height` is only used by the AVL functions."""
+    __slots__ = ("value", "left", "right", "height")
+
+    def __init__(self, value: Any) -> None:
+        self.value = value
+        self.left: Optional["TreeNode"] = None
+        self.right: Optional["TreeNode"] = None
+        self.height = 1
+```
+<!-- /py -->
+
 **Search.**
 
-```text
-function search(node, target)
-    while node ≠ null do
-        if target = node.value then return node
-        else if target < node.value then node ← node.left       discard the right subtree
-        else                            node ← node.right       discard the left subtree
-        end
-    end
-    return notFound
+<!-- py:ops_bst:search -->
+```python
+def search(root: Optional[TreeNode], target: Any) -> bool:
+    """Every comparison discards an entire subtree, unexamined."""
+    node = root
+    while node is not None:
+        if target == node.value:
+            return True
+        node = node.left if target < node.value else node.right
+    return False                          # you fell off the tree: not present
 ```
+<!-- /py -->
 
 Every iteration throws away a subtree **without inspecting a single node in it**. That is where the `log n` comes from.
 
 **Insert — the same walk, ending in a plant.**
 
-```text
-function insert(node, value)
-    if node = null then return new Node(value) end       you fell off: this is the slot
-
-    if value < node.value then
-        node.left  ← insert(node.left, value)
-    else if value > node.value then
-        node.right ← insert(node.right, value)
-    end                                                  equal: ignore, or count duplicates
-
-    return node
+<!-- py:ops_bst:insert -->
+```python
+def insert(node: Optional[TreeNode], value: Any) -> TreeNode:
+    """A failed search that plants a node where it ran out of tree."""
+    if node is None:
+        return TreeNode(value)            # this empty slot is its home
+    if value < node.value:
+        node.left = insert(node.left, value)
+    elif value > node.value:
+        node.right = insert(node.right, value)
+    return node                           # equal values are ignored
 ```
+<!-- /py -->
 
-A new value **never displaces an existing node**. It walks down until it runs off the tree, and that empty position is its home.
+**Minimum and maximum.**
+
+<!-- py:ops_bst:minimum -->
+```python
+def minimum(node: TreeNode) -> Any:
+    """The leftmost node. O(height)."""
+    while node.left is not None:
+        node = node.left
+    return node.value
+```
+<!-- /py -->
+
+<!-- py:ops_bst:maximum -->
+```python
+def maximum(node: TreeNode) -> Any:
+    while node.right is not None:
+        node = node.right
+    return node.value
+```
+<!-- /py -->
 
 **Delete — three cases, and only the third is interesting.**
 
-```text
-function delete(node, value)
-    if node = null then return null end
-
-    if value < node.value then
-        node.left ← delete(node.left, value)
-    else if value > node.value then
-        node.right ← delete(node.right, value)
-    else
-        CASE 1 — no children:
-            return null                                  just drop it
-
-        CASE 2 — one child:
-            return that child                            splice it in
-
-        CASE 3 — two children:
-            successor ← minimum(node.right)              smallest value larger than this one
-            node.value ← successor.value                 overwrite in place
-            node.right ← delete(node.right, successor.value)
-    end
+<!-- py:ops_bst:delete -->
+```python
+def delete(node: Optional[TreeNode], value: Any) -> Optional[TreeNode]:
+    """Three cases, and only the third is interesting."""
+    if node is None:
+        return None
+    if value < node.value:
+        node.left = delete(node.left, value)
+    elif value > node.value:
+        node.right = delete(node.right, value)
+    else:
+        if node.left is None:
+            return node.right             # no children, or a right child only
+        if node.right is None:
+            return node.left              # a left child only
+        successor = node.right            # two children: the in-order successor
+        while successor.left is not None:
+            successor = successor.left    # is the smallest value larger than this
+        node.value = successor.value      # one, so the invariant survives
+        node.right = delete(node.right, successor.value)
     return node
 ```
+<!-- /py -->
 
-> **Why the in-order successor?** It is the only value that can sit in that position without breaking the invariant: it is larger than everything in the left subtree (it is in the right one) and smaller than everything else in the right subtree (it is the minimum there). The predecessor — the maximum of the left subtree — works symmetrically.
+> **Why the in-order successor?** It is the only value that can sit in that position without breaking the invariant: larger than everything in the left subtree (it is in the right one) and smaller than everything else in the right subtree (it is the minimum there).
 
-**Traversals — one function, three different placements of one line.**
+**Traversals — one shape, the visit in three different positions.**
 
-```text
-function inOrder(node)                  LEFT, node, RIGHT  →  sorted output
-    if node = null then return end
-    inOrder(node.left)
-    visit(node)
-    inOrder(node.right)
-
-function preOrder(node)                 node, LEFT, RIGHT  →  copy / serialise
-    if node = null then return end
-    visit(node)
-    preOrder(node.left)
-    preOrder(node.right)
-
-function postOrder(node)                LEFT, RIGHT, node  →  free / evaluate
-    if node = null then return end
-    postOrder(node.left)
-    postOrder(node.right)
-    visit(node)
+<!-- py:ops_bst:in_order -->
+```python
+def in_order(node: Optional[TreeNode]) -> list[Any]:
+    """LEFT, node, RIGHT -> sorted output, for any valid BST."""
+    if node is None:
+        return []
+    return in_order(node.left) + [node.value] + in_order(node.right)
 ```
+<!-- /py -->
+
+<!-- py:ops_bst:pre_order -->
+```python
+def pre_order(node: Optional[TreeNode]) -> list[Any]:
+    """node, LEFT, RIGHT -> serialise or copy a tree."""
+    if node is None:
+        return []
+    return [node.value] + pre_order(node.left) + pre_order(node.right)
+```
+<!-- /py -->
+
+<!-- py:ops_bst:post_order -->
+```python
+def post_order(node: Optional[TreeNode]) -> list[Any]:
+    """LEFT, RIGHT, node -> free a tree, or evaluate an expression."""
+    if node is None:
+        return []
+    return post_order(node.left) + post_order(node.right) + [node.value]
+```
+<!-- /py -->
+
+<!-- py:ops_bst:level_order -->
+```python
+def level_order(root: Optional[TreeNode]) -> list[Any]:
+    """Row by row. The only traversal that needs an explicit queue."""
+    if root is None:
+        return []
+    out, queue = [], [root]
+    while queue:
+        node = queue.pop(0)
+        out.append(node.value)
+        queue.extend(n for n in (node.left, node.right) if n is not None)
+    return out
+```
+<!-- /py -->
 
 ![Four traversal orders](../assets/infographic/traversal-orders.svg)
 
-<!-- python:examples/hierarchical.py:BST -->
-#### 🐍 Python implementation
+**Height — because every complexity in this module is really this number.**
 
-All four traversals are one function with the visit line moved:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_bst:height -->
 ```python
-class BST:
-    """Every value in the left subtree is smaller, every value on the right larger.
-
-    The claim is about whole subtrees, which is what licenses discarding a
-    branch without inspecting it.
-    """
-
-    def __init__(self, values: Optional[list[Any]] = None) -> None:
-        self.root: Optional[TreeNode] = None
-        for v in values or []:
-            self.insert(v)
-
-    def search(self, target: Any) -> bool:
-        node = self.root
-        while node is not None:
-            if target == node.value:
-                return True
-            node = node.left if target < node.value else node.right
-        return False
-
-    def insert(self, value: Any) -> None:
-        self.root = self._insert(self.root, value)
-
-    def _insert(self, node: Optional[TreeNode], value: Any) -> TreeNode:
-        if node is None:
-            return TreeNode(value)           # you fell off the tree: plant here
-        if value < node.value:
-            node.left = self._insert(node.left, value)
-        elif value > node.value:
-            node.right = self._insert(node.right, value)
-        return node                          # equal values are ignored
-
-    def delete(self, value: Any) -> None:
-        self.root = self._delete(self.root, value)
-
-    def _delete(self, node: Optional[TreeNode], value: Any) -> Optional[TreeNode]:
-        if node is None:
-            return None
-        if value < node.value:
-            node.left = self._delete(node.left, value)
-        elif value > node.value:
-            node.right = self._delete(node.right, value)
-        else:
-            if node.left is None:
-                return node.right            # no children, or only a right one
-            if node.right is None:
-                return node.left
-            successor = node.right           # two children: take the in-order
-            while successor.left is not None:
-                successor = successor.left   # successor -- the only value that
-            node.value = successor.value     # keeps the invariant intact
-            node.right = self._delete(node.right, successor.value)
-        return node
-
-    def minimum(self) -> Any:
-        node = self.root
-        if node is None:
-            raise IndexError("empty")
-        while node.left is not None:
-            node = node.left
-        return node.value
-
-    def maximum(self) -> Any:
-        node = self.root
-        if node is None:
-            raise IndexError("empty")
-        while node.right is not None:
-            node = node.right
-        return node.value
-
-    def height(self) -> int:
-        def h(n: Optional[TreeNode]) -> int:
-            return 0 if n is None else 1 + max(h(n.left), h(n.right))
-        return h(self.root)
-
-    # --- traversals: one function, the visit line in three positions ---
-    def in_order(self) -> list[Any]:
-        out: list[Any] = []
-
-        def walk(n: Optional[TreeNode]) -> None:
-            if n is None:
-                return
-            walk(n.left)
-            out.append(n.value)              # LEFT, node, RIGHT -> sorted output
-            walk(n.right)
-        walk(self.root)
-        return out
-
-    def pre_order(self) -> list[Any]:
-        out: list[Any] = []
-
-        def walk(n: Optional[TreeNode]) -> None:
-            if n is None:
-                return
-            out.append(n.value)              # node, LEFT, RIGHT -> serialise
-            walk(n.left)
-            walk(n.right)
-        walk(self.root)
-        return out
-
-    def post_order(self) -> list[Any]:
-        out: list[Any] = []
-
-        def walk(n: Optional[TreeNode]) -> None:
-            if n is None:
-                return
-            walk(n.left)
-            walk(n.right)
-            out.append(n.value)              # LEFT, RIGHT, node -> free / evaluate
-        walk(self.root)
-        return out
-
-    def level_order(self) -> list[Any]:
-        """The only one that needs an explicit queue rather than the call stack."""
-        if self.root is None:
-            return []
-        out, queue = [], [self.root]
-        while queue:
-            node = queue.pop(0)
-            out.append(node.value)
-            queue.extend(n for n in (node.left, node.right) if n is not None)
-        return out
+def height(node: Optional[TreeNode]) -> int:
+    """Every complexity in this module is really this number."""
+    if node is None:
+        return 0
+    return 1 + max(height(node.left), height(node.right))
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

@@ -78,92 +78,9 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**The core three — a hash table with the value column deleted.**
-
-```text
-function add(S, x)
-    index ← hash(x) mod S.capacity
-    if x is already in bucket index then return end      already present: do nothing
-    append x to bucket index
-    S.count ← S.count + 1
-
-function contains(S, x)
-    index ← hash(x) mod S.capacity
-    return x is in bucket index
-
-function remove(S, x)
-    index ← hash(x) mod S.capacity
-    delete x from bucket index if present
-```
-
-**Set algebra — note which side you iterate.**
-
-```text
-function union(A, B)
-    R ← copy of A
-    for each x in B do add(R, x) end            O(|A| + |B|)
-    return R
-
-function intersection(A, B)
-    R ← empty set
-    for each x in the SMALLER of A, B do        iterate the small one, probe the big one
-        if contains(other, x) then add(R, x) end
-    end
-    return R                                    O(min(|A|, |B|))
-
-function difference(A, B)                       A \ B
-    R ← empty set
-    for each x in A do
-        if not contains(B, x) then add(R, x) end
-    end
-    return R                                    O(|A|)
-```
-
-> **Iterate the smaller, probe the larger.** Both are `O(1)` per probe, so the loop count is what decides the cost. Getting this backwards on a 10-element set against a 10-million-element set is a 1,000,000× mistake.
-
 **The single most common real use — de-duplication.**
 
-```text
-function unique(list)
-    seen ← empty set
-    result ← empty list
-
-    for each x in list do
-        if not contains(seen, x) then
-            add(seen, x)
-            append x to result                  preserves first-seen order
-        end
-    end
-
-    return result                               O(n), versus O(n²) with nested loops
-```
-
-**The second most common — "have I been here before?"**
-
-```text
-function bfs(start)
-    visited ← empty set                         without this, a cyclic graph loops forever
-    Q ← queue containing start
-    add(visited, start)
-
-    while Q is not empty do
-        node ← dequeue(Q)
-        for each neighbour of node do
-            if not contains(visited, neighbour) then
-                add(visited, neighbour)
-                enqueue(Q, neighbour)
-            end
-        end
-    end
-```
-
-<!-- python:examples/keyed.py:unique,intersection -->
-#### 🐍 Python implementation
-
-The two things a set is actually used for:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_sets:unique -->
 ```python
 def unique(values: list[Any]) -> list[Any]:
     """De-duplicate in O(n), preserving first-seen order.
@@ -174,25 +91,76 @@ def unique(values: list[Any]) -> list[Any]:
     seen: set[Any] = set()
     out: list[Any] = []
     for v in values:
-        if v not in seen:                    # O(1) average
+        if v not in seen:                 # O(1) average
             seen.add(v)
             out.append(v)
     return out
+```
+<!-- /py -->
 
+**Set algebra — note which side you iterate.**
 
+<!-- py:ops_sets:intersection -->
+```python
 def intersection(a: set[Any], b: set[Any]) -> set[Any]:
     """Iterate the SMALLER set and probe the larger one.
 
-    Each probe is O(1), so the loop count is the entire cost:
-    O(min(|a|, |b|)) rather than O(max(|a|, |b|)).
+    Each probe is O(1), so the loop count is the entire cost: O(min(|a|,|b|))
+    rather than O(max(|a|,|b|)). Getting this backwards on a 10-element set
+    against a 10-million-element one is a millionfold waste.
     """
     small, large = (a, b) if len(a) <= len(b) else (b, a)
     return {x for x in small if x in large}
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+> **Iterate the smaller, probe the larger.** Both are `O(1)` per probe, so the loop count is what decides the cost.
+
+<!-- py:ops_sets:union -->
+```python
+def union(a: set[Any], b: set[Any]) -> set[Any]:
+    """Everything in either. O(|a| + |b|)."""
+    out = set(a)
+    for x in b:
+        out.add(x)                        # adding something already there is a no-op
+    return out
+```
+<!-- /py -->
+
+<!-- py:ops_sets:difference -->
+```python
+def difference(a: set[Any], b: set[Any]) -> set[Any]:
+    """In a but not b. O(|a|)."""
+    return {x for x in a if x not in b}
+```
+<!-- /py -->
+
+**The second most common use — "have I been here before?"**
+
+<!-- py:ops_sets:seen_before -->
+```python
+def seen_before(start: Any, neighbours_of) -> list[Any]:
+    """The other everyday use: 'have I been here?' during a traversal.
+
+    Without the set, a cyclic graph loops forever.
+    """
+    visited = {start}
+    queue = [start]
+    order = []
+    while queue:
+        node = queue.pop(0)
+        order.append(node)
+        for n in neighbours_of(node):
+            if n not in visited:
+                visited.add(n)
+                queue.append(n)
+    return order
+```
+<!-- /py -->
+
+Without the `visited` set, a cyclic graph makes this loop forever. The set turns an infinite walk into an `O(V+E)` traversal.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

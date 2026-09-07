@@ -77,124 +77,33 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**The template every recursive function fits.**
+**All three required parts, in four lines.**
 
-```text
-function solve(problem)
-    if problem is small enough then          1. BASE CASE
-        return the answer directly
-    end
-
-    smaller ← reduce(problem)                3. PROGRESS — must strictly shrink
-    return combine(solve(smaller))           2. RECURSIVE CASE
+<!-- py:ops_recursion:factorial -->
+```python
+def factorial(n: int) -> int:
+    """All three required parts in four lines."""
+    if n <= 1:
+        return 1                          # 1. BASE CASE: returns without recursing
+    return n * factorial(n - 1)           # 2. RECURSIVE CASE, 3. n-1 is PROGRESS
 ```
-
-Miss part 1 and it never stops. Miss part 3 and it never stops *even with* a base case, because it never reaches it.
-
-**Factorial — the smallest complete example.**
-
-```text
-function factorial(n)
-    if n ≤ 1 then return 1 end               base case
-    return n × factorial(n - 1)              recursive case, n-1 is progress
-```
+<!-- /py -->
 
 The call `factorial(4)` builds four stack frames before a single multiplication happens. Then `1`, `2`, `6`, `24` come back up.
 
-**Tree traversal — where recursion is genuinely the clearest code.**
-
-```text
-function inOrder(node)
-    if node = null then return end           base case: an empty tree
-    inOrder(node.left)                       each subtree is a smaller instance
-    visit(node)
-    inOrder(node.right)
-```
-
-Writing this iteratively requires you to build and manage the stack yourself. Here the base case is simply "the tree ran out", and progress is guaranteed because subtrees are strictly smaller.
-
 **Backtracking — recursion plus one extra line.**
 
-```text
-function backtrack(state)
-    if state is a complete solution then
-        record(state)
-        return
-    end
-
-    for each candidate move from state do
-        if not legal(state, move) then continue end     ← the pruning happens HERE
-
-        apply(state, move)                              choose
-        backtrack(state)                                explore
-        undo(state, move)                               ← UNCHOOSE. This is backtracking.
-    end
-```
-
-> **The `undo` line is the entire difference from brute force.** Brute force enumerates every arrangement and tests each one. Backtracking abandons a partial arrangement the instant it becomes illegal — discarding every completion of it, unexamined. For 8 queens that is the difference between 4,426,165,368 arrangements and about 2,000 explored states.
-
-**N queens — the canonical instance.**
-
-```text
-function placeQueens(board, row)
-    if row = board.size then return true end            all rows filled: solved
-
-    for col ← 0 to board.size - 1 do
-        if isSafe(board, row, col) then
-            board[row] ← col                            place
-            if placeQueens(board, row + 1) then return true end
-            board[row] ← empty                          remove — try the next column
-        end
-    end
-
-    return false                                        no legal column: tell the caller
-```
-
-Returning `false` is what causes the *caller's* loop to advance to its next column — that is the backtrack step propagating upward.
-
-**Converting recursion to iteration.**
-
-```text
-tail recursion — the recursive call is the last thing done:
-
-    function sumTo(n, acc)                      function sumTo(n)
-        if n = 0 then return acc end                acc ← 0
-        return sumTo(n - 1, acc + n)      →         while n > 0 do
-                                                        acc ← acc + n; n ← n - 1
-                                                    end
-                                                    return acc
-
-general recursion — build the stack yourself:
-
-    push the initial state
-    while the stack is not empty do
-        pop a state, process it, push its sub-states
-    end
-```
-
-<!-- python:examples/algorithms.py:factorial,solve_n_queens -->
-#### 🐍 Python implementation
-
-The `placed.pop()` is the whole difference from brute force:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_recursion:solve_n_queens -->
 ```python
-def factorial(n: int) -> int:
-    """Base case, recursive case, and progress -- all three are required."""
-    if n <= 1:
-        return 1                             # base case: returns without recursing
-    return n * factorial(n - 1)              # n-1 is the progress
-
-
 def solve_n_queens(n: int = 4) -> list[list[int]]:
     """Backtracking: choose, recurse, and UNDO when the branch cannot work.
 
-    The undo is the whole difference from brute force -- it abandons every
-    completion of an illegal prefix without ever generating them.
+    The undo is the whole difference from brute force - it abandons every
+    completion of an illegal prefix without ever generating them. For 8
+    queens that is ~2,000 explored states instead of 4.4 billion.
     """
     solutions: list[list[int]] = []
-    placed: list[int] = []                   # placed[row] = column
+    placed: list[int] = []                # placed[row] = column
 
     def safe(row: int, col: int) -> bool:
         return all(c != col and abs(r - row) != abs(c - col)
@@ -206,17 +115,36 @@ def solve_n_queens(n: int = 4) -> list[list[int]]:
             return
         for col in range(n):
             if safe(row, col):
-                placed.append(col)           # choose
-                place(row + 1)               # explore
-                placed.pop()                 # UNCHOOSE -- this is backtracking
+                placed.append(col)        # CHOOSE
+                place(row + 1)            # EXPLORE
+                placed.pop()              # UNCHOOSE - this is backtracking
 
     place(0)
     return solutions
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+> **The `placed.pop()` is the entire difference from brute force.** Brute force enumerates every arrangement and tests each one. Backtracking abandons a partial arrangement the instant it becomes illegal — discarding every completion of it, unexamined.
+
+**Converting recursion to iteration.**
+
+```text
+tail recursion - the recursive call is the last thing done:
+
+    def sum_to(n, acc=0):                 def sum_to(n):
+        if n == 0: return acc                 acc = 0
+        return sum_to(n - 1, acc + n)  ->     while n > 0:
+                                                  acc += n; n -= 1
+                                              return acc
+
+general recursion - build the stack yourself:
+
+    push the initial state
+    while the stack is not empty:
+        pop a state, process it, push its sub-states
+```
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

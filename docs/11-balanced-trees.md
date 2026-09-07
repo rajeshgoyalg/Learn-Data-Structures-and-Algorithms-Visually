@@ -77,45 +77,84 @@ flowchart LR
 
 **Rotation — the primitive both trees are built from.**
 
-```text
-function rotateRight(y)
-    x ← y.left
-    T ← x.right                     the subtree that must change parents
-
-    x.right ← y                     x becomes the new root of this subtree
-    y.left  ← T                     T is larger than x, smaller than y — still legal
-
-    updateHeight(y)                 order matters: y is now BELOW x
-    updateHeight(x)
-    return x                        the caller must adopt the new subtree root
+<!-- py:ops_avl:rotate_right -->
+```python
+def rotate_right(y: TreeNode) -> TreeNode:
+    """Three pointer writes, O(1), and the BST invariant cannot break:
+    the subtree that changes parents was already between y and x in value."""
+    x = y.left
+    t = x.right                           # t is > x and < y, so it stays legal
+    x.right = y
+    y.left = t
+    update_height(y)                      # order matters: y is now BELOW x
+    update_height(x)
+    return x                              # the caller must adopt the new root
 ```
+<!-- /py -->
 
-Three pointer writes, `O(1)`, and the BST invariant is preserved: `T` was between `x` and `y` before the rotation, and it still is after.
-
-**AVL — insert, then rebalance on the way back up.**
-
-```text
-function insert(node, value)
-    node ← ordinary BST insert
-    updateHeight(node)
-    balance ← height(node.left) − height(node.right)
-
-    LL: balance > 1  and value < node.left.value
-        return rotateRight(node)
-
-    RR: balance < -1 and value > node.right.value
-        return rotateLeft(node)
-
-    LR: balance > 1  and value > node.left.value
-        node.left ← rotateLeft(node.left)           straighten the zig-zag first
-        return rotateRight(node)
-
-    RL: balance < -1 and value < node.right.value
-        node.right ← rotateRight(node.right)
-        return rotateLeft(node)
-
-    return node                                     already balanced
+<!-- py:ops_avl:rotate_left -->
+```python
+def rotate_left(x: TreeNode) -> TreeNode:
+    y = x.right
+    t = y.left
+    y.left = x
+    x.right = t
+    update_height(x)
+    update_height(y)
+    return y
 ```
+<!-- /py -->
+
+Three pointer writes, `O(1)`, and the BST invariant is preserved: `t` was between `x` and `y` in value before the rotation, and it still is after.
+
+**The balance factor — the number that triggers everything.**
+
+<!-- py:ops_avl:balance_factor -->
+```python
+def balance_factor(node: TreeNode) -> int:
+    """height(left) - height(right). AVL keeps this in -1, 0 or +1."""
+    return node_height(node.left) - node_height(node.right)
+```
+<!-- /py -->
+
+<!-- py:ops_avl:update_height -->
+```python
+def update_height(node: TreeNode) -> None:
+    node.height = 1 + max(node_height(node.left), node_height(node.right))
+```
+<!-- /py -->
+
+**Insert — an ordinary BST insert, then rebalance on the way back up.**
+
+<!-- py:ops_avl:insert -->
+```python
+def insert(node: Optional[TreeNode], value: Any) -> TreeNode:
+    """Ordinary BST insert, then rebalance on the way back up."""
+    if node is None:
+        return TreeNode(value)
+    if value < node.value:
+        node.left = insert(node.left, value)
+    elif value > node.value:
+        node.right = insert(node.right, value)
+    else:
+        return node
+
+    update_height(node)
+    balance = balance_factor(node)
+
+    if balance > 1 and value < node.left.value:        # LL: one right rotation
+        return rotate_right(node)
+    if balance < -1 and value > node.right.value:      # RR: one left rotation
+        return rotate_left(node)
+    if balance > 1:                                    # LR: straighten, then rotate
+        node.left = rotate_left(node.left)
+        return rotate_right(node)
+    if balance < -1:                                   # RL: the mirror image
+        node.right = rotate_right(node.right)
+        return rotate_left(node)
+    return node                                        # already balanced
+```
+<!-- /py -->
 
 > **Why do LR and RL need two rotations?** A single rotation only straightens a *straight* lean. A zig-zag has to be converted into a straight lean first, and then rotated — hence two.
 
@@ -125,101 +164,29 @@ function insert(node, value)
 1. every node is red or black
 2. the root is black
 3. all null leaves count as black
-4. a red node never has a red child          ← violated by insertion
+4. a red node never has a red child          <- violated by insertion
 5. every path from a node to its leaves passes the same number of black nodes
 ```
 
 ```text
-function insertFix(node)
-    while node.parent is RED do
-        uncle ← the sibling of node.parent
+while node.parent is RED:
+    uncle = the sibling of node.parent
 
-        CASE A — uncle is RED:
-            recolour parent and uncle BLACK, grandparent RED
-            node ← grandparent                  push the problem up, no rotation
-            continue
+    CASE A - uncle is RED:
+        recolour parent and uncle BLACK, grandparent RED
+        node = grandparent          push the problem up, no rotation
+        continue
 
-        CASE B — uncle is BLACK:
-            rotate around the grandparent, then recolour
-            done                                at most 2 rotations, ever
-    end
-    root.colour ← BLACK                         rule 2, restored unconditionally
+    CASE B - uncle is BLACK:
+        rotate around the grandparent, then recolour
+        done                        at most 2 rotations, ever
+
+root.colour = BLACK                 rule 2, restored unconditionally
 ```
 
-> **Why do new nodes arrive red?** Because inserting a black node would immediately break rule 5 on every path through it. A red node breaks only rule 4, and only if its parent is also red — a much cheaper, more local problem to fix.
+> **Why do new nodes arrive red?** Inserting a black node would immediately break rule 5 on every path through it. A red node breaks only rule 4, and only if its parent is also red — a much cheaper, more local problem to fix.
 
-<!-- python:examples/hierarchical.py:AVLTree -->
-#### 🐍 Python implementation
-
-Subclassing the plain BST, so the only difference is the rebalancing:
-
-<details open><summary><i>fold away</i></summary>
-
-```python
-class AVLTree(BST):
-    """A BST that rotates the moment a balance factor reaches +/-2.
-
-    Guarantees O(log n) whatever order the data arrives in -- which a plain
-    BST does not, because sorted input degenerates it into a linked list.
-    """
-
-    @staticmethod
-    def _h(node: Optional[TreeNode]) -> int:
-        return 0 if node is None else node.height
-
-    def _balance(self, node: TreeNode) -> int:
-        return self._h(node.left) - self._h(node.right)
-
-    def _update(self, node: TreeNode) -> None:
-        node.height = 1 + max(self._h(node.left), self._h(node.right))
-
-    def _rotate_right(self, y: TreeNode) -> TreeNode:
-        x = y.left
-        assert x is not None
-        t = x.right                          # t is larger than x, smaller than y,
-        x.right, y.left = y, t               # so it is still legal where it lands
-        self._update(y)                      # order matters: y is now BELOW x
-        self._update(x)
-        return x
-
-    def _rotate_left(self, x: TreeNode) -> TreeNode:
-        y = x.right
-        assert y is not None
-        t = y.left
-        y.left, x.right = x, t
-        self._update(x)
-        self._update(y)
-        return y
-
-    def _insert(self, node: Optional[TreeNode], value: Any) -> TreeNode:
-        if node is None:
-            return TreeNode(value)
-        if value < node.value:
-            node.left = self._insert(node.left, value)
-        elif value > node.value:
-            node.right = self._insert(node.right, value)
-        else:
-            return node
-
-        self._update(node)
-        balance = self._balance(node)
-
-        if balance > 1 and value < node.left.value:        # LL
-            return self._rotate_right(node)
-        if balance < -1 and value > node.right.value:      # RR
-            return self._rotate_left(node)
-        if balance > 1:                                    # LR: straighten first
-            node.left = self._rotate_left(node.left)
-            return self._rotate_right(node)
-        if balance < -1:                                   # RL
-            node.right = self._rotate_right(node.right)
-            return self._rotate_left(node)
-        return node
-```
-
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+The AVL functions above are covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

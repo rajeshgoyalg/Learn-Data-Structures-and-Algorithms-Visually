@@ -93,137 +93,90 @@ flowchart LR
 
 ### Bubble sort — the one you learn and then never use
 
-```text
-function bubbleSort(A)
-    for pass ← 0 to A.length - 2 do
-        swapped ← false
-
-        for i ← 0 to A.length - 2 - pass do          the tail is already sorted
-            if A[i] > A[i+1] then
-                swap(A[i], A[i+1])
-                swapped ← true
-            end
-        end
-
-        if not swapped then return end               already sorted: O(n) best case
-    end
+<!-- py:ops_sort:bubble_sort -->
+```python
+def bubble_sort(values: list[Any]) -> list[Any]:
+    """O(n^2), stable, in place. The flag is what makes the best case O(n)."""
+    a = list(values)
+    for end in range(len(a) - 1, 0, -1):
+        swapped = False
+        for i in range(end):              # the tail is already sorted
+            if a[i] > a[i + 1]:
+                a[i], a[i + 1] = a[i + 1], a[i]
+                swapped = True
+        if not swapped:
+            return a                      # already sorted: O(n)
+    return a
 ```
+<!-- /py -->
 
 Each pass floats the largest remaining value to the end, like a bubble rising. The `swapped` flag is the only thing that makes its best case `O(n)`.
 
 ### Selection sort — the fewest writes of any of them
 
-```text
-function selectionSort(A)
-    for i ← 0 to A.length - 2 do
-        minIndex ← i
+<!-- py:ops_sort:selection_sort -->
+```python
+def selection_sort(values: list[Any]) -> list[Any]:
+    """Always O(n^2) comparisons, but only O(n) writes.
 
-        for j ← i+1 to A.length - 1 do
-            if A[j] < A[minIndex] then minIndex ← j end
-        end
-
-        swap(A[i], A[minIndex])                      exactly ONE swap per pass
-    end
+    That matters when a write costs far more than a read.
+    """
+    a = list(values)
+    for i in range(len(a) - 1):
+        smallest = i
+        for j in range(i + 1, len(a)):
+            if a[j] < a[smallest]:
+                smallest = j
+        a[i], a[smallest] = a[smallest], a[i]     # exactly one swap per pass
+    return a
 ```
-
-Always `O(n²)` comparisons — there is no early exit — but only `O(n)` writes. That matters when a write is far more expensive than a read (flash memory, or huge records).
+<!-- /py -->
 
 ### Insertion sort — the one real libraries still use
 
-```text
-function insertionSort(A)
-    for i ← 1 to A.length - 1 do
-        key ← A[i]
-        j ← i - 1
+<!-- py:ops_sort:insertion_sort -->
+```python
+def insertion_sort(values: list[Any]) -> list[Any]:
+    """O(n) on nearly-sorted input, stable, in place.
 
-        while j ≥ 0 and A[j] > key do
-            A[j+1] ← A[j]                            slide right to make room
-            j ← j - 1
-        end
-
-        A[j+1] ← key
-    end
+    Which is why real library sorts fall back to it for short runs.
+    """
+    a = list(values)
+    for i in range(1, len(a)):
+        key = a[i]
+        j = i - 1
+        while j >= 0 and a[j] > key:
+            a[j + 1] = a[j]               # slide right to make room
+            j -= 1
+        a[j + 1] = key
+    return a
 ```
+<!-- /py -->
 
-If the array is already sorted the inner `while` never runs: `O(n)`. It is **adaptive**, **stable** and **in place**, which is why nearly every production sort switches to it once a partition gets small.
+If the list is already sorted the inner `while` never runs: `O(n)`. It is **adaptive**, **stable** and **in place**, which is why nearly every production sort switches to it once a partition gets small.
 
 ### Merge sort — the guaranteed one
 
-```text
-function mergeSort(A)
-    if A.length ≤ 1 then return A end                a single element is sorted
-
-    mid   ← A.length / 2
-    left  ← mergeSort(A[0 .. mid-1])
-    right ← mergeSort(A[mid .. end])
-    return merge(left, right)
-
-function merge(L, R)
-    result ← empty
-    i ← 0; j ← 0
-
-    while i < L.length and j < R.length do
-        if L[i] ≤ R[j] then                          ≤ , not < : this is what makes it STABLE
-            append L[i] to result; i ← i + 1
-        else
-            append R[j] to result; j ← j + 1
-        end
-    end
-
-    append the remainder of L and of R
-    return result
-```
-
-`log n` levels of splitting, `O(n)` work merging each level → `O(n log n)`, **always**. The price is the `O(n)` merge buffer.
-
-### Quicksort — the fastest in practice, with a caveat
-
-```text
-function quickSort(A, lo, hi)
-    if lo ≥ hi then return end
-    p ← partition(A, lo, hi)
-    quickSort(A, lo, p - 1)                          the pivot itself is already final
-    quickSort(A, p + 1, hi)
-
-function partition(A, lo, hi)                        Lomuto scheme
-    pivot ← A[hi]
-    i ← lo - 1                                       boundary of the "smaller" region
-
-    for j ← lo to hi - 1 do
-        if A[j] ≤ pivot then
-            i ← i + 1
-            swap(A[i], A[j])
-        end
-    end
-
-    swap(A[i+1], A[hi])                              drop the pivot into the boundary
-    return i + 1
-```
-
-> **Why quicksort has an `O(n²)` worst case:** if the pivot is always the smallest or largest element, one partition is empty and the other has `n-1` elements — recursion depth `n` instead of `log n`. Feeding an already-sorted array to a last-element pivot does exactly this. **Randomising the pivot** (or median-of-three) makes that input astronomically unlikely, which is why real implementations always do it.
-
-<!-- python:examples/algorithms.py:merge_sort,_merge,quick_sort,partition -->
-#### 🐍 Python implementation
-
-The `<=` in `_merge` is what makes merge sort stable:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_sort:merge_sort -->
 ```python
 def merge_sort(values: list[Any]) -> list[Any]:
-    """O(n log n) guaranteed in every case, and stable -- at O(n) extra space."""
+    """O(n log n) guaranteed in every case, and stable - at O(n) extra space."""
     if len(values) <= 1:
-        return list(values)                  # a single element is sorted
+        return list(values)               # a single element is sorted
     mid = len(values) // 2
-    return _merge(merge_sort(values[:mid]), merge_sort(values[mid:]))
+    return merge(merge_sort(values[:mid]), merge_sort(values[mid:]))
+```
+<!-- /py -->
 
-
-def _merge(left: list[Any], right: list[Any]) -> list[Any]:
+<!-- py:ops_sort:merge -->
+```python
+def merge(left: list[Any], right: list[Any]) -> list[Any]:
+    """Always take the smaller front element."""
     out: list[Any] = []
     i = j = 0
     while i < len(left) and j < len(right):
-        if left[i] <= right[j]:              # <=, not <: this is what makes
-            out.append(left[i])              # merge sort STABLE
+        if left[i] <= right[j]:           # <=, not <: THIS is what makes
+            out.append(left[i])           # merge sort stable
             i += 1
         else:
             out.append(right[j])
@@ -231,14 +184,15 @@ def _merge(left: list[Any], right: list[Any]) -> list[Any]:
     out.extend(left[i:])
     out.extend(right[j:])
     return out
+```
+<!-- /py -->
 
+`log n` levels of splitting, `O(n)` work merging each level → `O(n log n)`, **always**. The price is the `O(n)` buffer.
 
-def quick_sort(values: list[Any]) -> list[Any]:
-    a = list(values)
-    _quick(a, 0, len(a) - 1)
-    return a
+### Quicksort — the fastest in practice, with a caveat
 
-
+<!-- py:ops_sort:partition -->
+```python
 def partition(a: list[Any], lo: int, hi: int) -> int:
     """Lomuto. Everything <= the pivot is swapped to the front as it is met.
 
@@ -246,18 +200,37 @@ def partition(a: list[Any], lo: int, hi: int) -> int:
     why real implementations randomise the choice.
     """
     pivot = a[hi]
-    i = lo - 1                               # boundary of the "smaller" region
+    i = lo - 1                            # boundary of the "smaller" region
     for j in range(lo, hi):
         if a[j] <= pivot:
             i += 1
             a[i], a[j] = a[j], a[i]
-    a[i + 1], a[hi] = a[hi], a[i + 1]        # drop the pivot into the boundary
-    return i + 1
+    a[i + 1], a[hi] = a[hi], a[i + 1]     # drop the pivot into the boundary
+    return i + 1                          # and it never moves again
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+<!-- py:ops_sort:quick_sort -->
+```python
+def quick_sort(values: list[Any]) -> list[Any]:
+    """O(n log n) average, in place, but O(n^2) on a bad pivot."""
+    a = list(values)
+
+    def recurse(lo: int, hi: int) -> None:
+        if lo >= hi:
+            return
+        p = partition(a, lo, hi)
+        recurse(lo, p - 1)                # the pivot itself is already final
+        recurse(p + 1, hi)
+
+    recurse(0, len(a) - 1)
+    return a
+```
+<!-- /py -->
+
+> **Why quicksort has an `O(n²)` worst case:** if the pivot is always the smallest or largest element, one partition is empty and the other has `n-1` elements — recursion depth `n` instead of `log n`. Feeding an already-sorted list to a last-element pivot does exactly this. **Randomising the pivot** makes that input astronomically unlikely, which is why real implementations always do it.
+
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

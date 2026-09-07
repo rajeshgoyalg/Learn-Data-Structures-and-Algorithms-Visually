@@ -87,163 +87,136 @@ flowchart LR
 
 **The index arithmetic — this is why a heap needs no pointers.**
 
-```text
-parent(i) = (i - 1) / 2          integer division
-left(i)   = 2i + 1
-right(i)  = 2i + 2
+<!-- py:ops_heap:parent -->
+```python
+def parent(i: int) -> int:
+    return (i - 1) // 2                   # because the tree is COMPLETE,
 ```
+<!-- /py -->
 
-Because the tree is complete, level-order position *is* array index. There are no gaps to account for.
+<!-- py:ops_heap:left -->
+```python
+def left(i: int) -> int:
+    return 2 * i + 1                      # level-order position IS the index,
+```
+<!-- /py -->
+
+<!-- py:ops_heap:right -->
+```python
+def right(i: int) -> int:
+    return 2 * i + 2                      # so navigation is pure arithmetic
+```
+<!-- /py -->
+
+**Sift up — climb until nobody above you is smaller.**
+
+<!-- py:ops_heap:sift_up -->
+```python
+def sift_up(heap: list[Any], i: int) -> None:
+    """Climb while you are smaller than your parent. At most log n swaps."""
+    while i > 0 and heap[i] < heap[parent(i)]:
+        heap[i], heap[parent(i)] = heap[parent(i)], heap[i]
+        i = parent(i)
+```
+<!-- /py -->
+
+**Sift down — sink until nobody below you is smaller.**
+
+<!-- py:ops_heap:sift_down -->
+```python
+def sift_down(heap: list[Any], i: int) -> None:
+    """Sink while a child is smaller than you."""
+    n = len(heap)
+    while True:
+        smallest = i
+        if left(i) < n and heap[left(i)] < heap[smallest]:
+            smallest = left(i)
+        if right(i) < n and heap[right(i)] < heap[smallest]:
+            smallest = right(i)           # swap with the SMALLER child, or the
+        if smallest == i:                 # other child ends up under a bigger key
+            return
+        heap[i], heap[smallest] = heap[smallest], heap[i]
+        i = smallest
+```
+<!-- /py -->
+
+> **Why swap with the *smaller* child?** The promoted child becomes the parent of the other one. Only the smaller of the two is guaranteed to be ≤ its new sibling, so choosing the larger would immediately violate the heap property on the other branch.
 
 **Insert — place at the end, then climb.**
 
-```text
-function insert(H, value)
-    H[H.size] ← value                       the next free leaf keeps the tree complete
-    H.size ← H.size + 1
-    siftUp(H, H.size - 1)
-
-function siftUp(H, i)
-    while i > 0 and H[i] < H[parent(i)] do
-        swap(H[i], H[parent(i)])
-        i ← parent(i)                       at most log n swaps — the height
-    end
+<!-- py:ops_heap:insert -->
+```python
+def insert(heap: list[Any], value: Any) -> None:
+    """Place at the next free leaf - the only spot that keeps the tree
+    complete - then climb. O(log n)."""
+    heap.append(value)
+    sift_up(heap, len(heap) - 1)
 ```
+<!-- /py -->
 
 **Extract-min — take the root, patch the hole, then sink.**
 
-```text
-function extractMin(H)
-    if H.size = 0 then error "empty" end
+<!-- py:ops_heap:extract_min -->
+```python
+def extract_min(heap: list[Any]) -> Any:
+    """The root is the answer. Patch the hole with the LAST leaf, then sink.
 
-    minimum ← H[0]                          the answer
-    H[0] ← H[H.size - 1]                    move the LAST LEAF to the root:
-    H.size ← H.size - 1                     the only move that keeps the tree complete
-    siftDown(H, 0)
-    return minimum
-
-function siftDown(H, i)
-    loop
-        smallest ← i
-        if left(i)  < H.size and H[left(i)]  < H[smallest] then smallest ← left(i)  end
-        if right(i) < H.size and H[right(i)] < H[smallest] then smallest ← right(i) end
-        if smallest = i then return end     it is already in the right place
-
-        swap(H[i], H[smallest])
-        i ← smallest                        follow it down
-    end
+    Moving the last leaf up is the only removal that cannot leave a gap in
+    the middle of a complete tree.
+    """
+    if not heap:
+        raise IndexError("empty")
+    smallest = heap[0]
+    last = heap.pop()
+    if heap:
+        heap[0] = last
+        sift_down(heap, 0)
+    return smallest
 ```
+<!-- /py -->
 
-> **Why swap with the *smaller* child?** Swapping with the larger one would put the larger child above the smaller one — violating the heap property on the other side. Only the smaller child is guaranteed to be a legal new parent for both.
+**Peek — the whole point of a heap.**
+
+<!-- py:ops_heap:peek -->
+```python
+def peek(heap: list[Any]) -> Any:
+    """O(1), by the heap property."""
+    if not heap:
+        raise IndexError("empty")
+    return heap[0]
+```
+<!-- /py -->
 
 **Build-heap — `O(n)`, and the reason is worth knowing.**
 
-```text
-function buildHeap(A)
-    for i ← (A.length / 2) - 1 down to 0 do     every node above the leaf row
-        siftDown(A, i)                          leaves are already valid heaps
-    end
-```
+<!-- py:ops_heap:build_heap -->
+```python
+def build_heap(values: list[Any]) -> list[Any]:
+    """O(n), not O(n log n).
 
-> **Why is this `O(n)` and not `O(n log n)`?** Because `siftDown` costs the *height below* the node, and almost all nodes are near the bottom. Half the nodes are leaves and cost 0, a quarter cost 1, an eighth cost 2… The sum converges to `2n`. Only the single root pays the full `log n`.
+    sift_down costs the height BELOW a node, and the tree is bottom-heavy:
+    half the nodes are leaves and cost nothing, a quarter cost 1, an eighth
+    cost 2. The series converges to 2n.
+    """
+    heap = list(values)
+    for i in range(len(heap) // 2 - 1, -1, -1):
+        sift_down(heap, i)
+    return heap
+```
+<!-- /py -->
 
 **Heapsort — a heap's other job.**
 
-```text
-function heapsort(A)
-    buildHeap(A)                                O(n), max-heap
-    for i ← A.length - 1 down to 1 do
-        swap(A[0], A[i])                        largest goes to its final slot
-        A.heapSize ← A.heapSize - 1
-        siftDown(A, 0)                          O(log n) each
-    end                                         O(n log n) total, O(1) extra space
-```
-
-<!-- python:examples/hierarchical.py:MinHeap,top_k -->
-#### 🐍 Python implementation
-
-No pointers anywhere — the tree is complete, so position *is* index:
-
-<details open><summary><i>fold away</i></summary>
-
+<!-- py:ops_heap:heapsort -->
 ```python
-class MinHeap:
-    """A complete binary tree stored in a flat list -- no pointers at all.
-
-    The heap property is local (parent <= both children) yet globally
-    guarantees the minimum sits at index 0. Siblings are unordered: a heap is
-    NOT sorted and NOT a search tree.
-    """
-
-    def __init__(self, values: Optional[list[Any]] = None) -> None:
-        self._a: list[Any] = list(values or [])
-        if self._a:
-            self.build()
-
-    def __len__(self) -> int:
-        return len(self._a)
-
-    def peek(self) -> Any:
-        if not self._a:
-            raise IndexError("empty")
-        return self._a[0]                                # O(1), by the property
-
-    def insert(self, value: Any) -> None:
-        self._a.append(value)                            # the next free leaf
-        self._sift_up(len(self._a) - 1)                   # keeps it complete
-
-    def extract_min(self) -> Any:
-        if not self._a:
-            raise IndexError("empty")
-        smallest = self._a[0]
-        last = self._a.pop()
-        if self._a:
-            self._a[0] = last                            # the last leaf is the
-            self._sift_down(0)                           # only gap-free removal
-        return smallest
-
-    def build(self) -> None:
-        """O(n), not O(n log n): most nodes sift down almost no distance."""
-        for i in range(len(self._a) // 2 - 1, -1, -1):
-            self._sift_down(i)
-
-    def _sift_up(self, i: int) -> None:
-        while i > 0 and self._a[i] < self._a[parent(i)]:
-            self._a[i], self._a[parent(i)] = self._a[parent(i)], self._a[i]
-            i = parent(i)                                # at most log n swaps
-
-    def _sift_down(self, i: int) -> None:
-        n = len(self._a)
-        while True:
-            smallest = i
-            if left(i) < n and self._a[left(i)] < self._a[smallest]:
-                smallest = left(i)
-            if right(i) < n and self._a[right(i)] < self._a[smallest]:
-                smallest = right(i)          # swap with the SMALLER child, or the
-            if smallest == i:                # other one ends up under a bigger key
-                return
-            self._a[i], self._a[smallest] = self._a[smallest], self._a[i]
-            i = smallest
-
-    def as_list(self) -> list[Any]:
-        return list(self._a)
-
-
-def top_k(stream: Iterator[Any], k: int) -> list[Any]:
-    """Largest k of a stream in O(n log k) time and O(k) memory."""
-    heap = MinHeap()
-    for value in stream:
-        if len(heap) < k:
-            heap.insert(value)
-        elif k > 0 and value > heap.peek():
-            heap.extract_min()
-            heap.insert(value)
-    return sorted(heap.as_list(), reverse=True)
+def heapsort(values: list[Any]) -> list[Any]:
+    """O(n log n) time in O(1) extra space - but not stable."""
+    heap = build_heap(values)
+    return [extract_min(heap) for _ in range(len(heap))]
 ```
+<!-- /py -->
 
-Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
-</details>
-<!-- /python -->
+Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 
