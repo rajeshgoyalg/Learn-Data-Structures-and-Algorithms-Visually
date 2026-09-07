@@ -6,7 +6,7 @@
 
 A GitHub-native course that teaches data structures the way the video does: one real-world analogy, one animation, then the costs — with the pictures doing the explaining.
 
-Every operation is a small, real Python function — extracted from [`examples/`](examples/) and covered by a 156-test suite.
+Every operation is shown twice — **pseudocode** for the idea, then **Python** you can run, extracted from [`examples/`](examples/) and covered by a 156-test suite.
 
 [![Modules](https://img.shields.io/badge/modules-18-38bdf8?style=flat-square)](docs/)
 [![Animations](https://img.shields.io/badge/animated_SVGs-38-fbbf24?style=flat-square)](assets/anim/)
@@ -244,7 +244,7 @@ This repo has no build step, no package manager, no JavaScript and no external a
 - Mermaid diagrams use `flowchart` syntax, which GitHub renders natively.
 - Clone it and open `index.html` in any browser — or just read the markdown.
 
-Twenty repository invariants are checked by `tools/verify.py` (stdlib only, no install) and run in CI on every push — see [CONTRIBUTING](CONTRIBUTING.md).
+Twenty-one repository invariants are checked by `tools/verify.py` (stdlib only, no install) and run in CI on every push — see [CONTRIBUTING](CONTRIBUTING.md).
 
 ```bash
 git clone <this-repo>

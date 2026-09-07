@@ -87,6 +87,12 @@ flowchart LR
 
 **The index arithmetic — this is why a heap needs no pointers.**
 
+```text
+parent(i) = (i - 1) / 2          integer division
+left(i)   = 2i + 1
+right(i)  = 2i + 2
+```
+
 <!-- py:ops_heap:parent -->
 ```python
 def parent(i: int) -> int:
@@ -108,7 +114,17 @@ def right(i: int) -> int:
 ```
 <!-- /py -->
 
+Because the tree is complete, level-order position *is* array index. There are no gaps to account for.
+
 **Sift up — climb until nobody above you is smaller.**
+
+```text
+function siftUp(H, i)
+    while i > 0 and H[i] < H[parent(i)] do
+        swap(H[i], H[parent(i)])
+        i ← parent(i)                       at most log n swaps — the height
+    end
+```
 
 <!-- py:ops_heap:sift_up -->
 ```python
@@ -121,6 +137,19 @@ def sift_up(heap: list[Any], i: int) -> None:
 <!-- /py -->
 
 **Sift down — sink until nobody below you is smaller.**
+
+```text
+function siftDown(H, i)
+    loop
+        smallest ← i
+        if left(i)  < H.size and H[left(i)]  < H[smallest] then smallest ← left(i)  end
+        if right(i) < H.size and H[right(i)] < H[smallest] then smallest ← right(i) end
+        if smallest = i then return end     it is already in the right place
+
+        swap(H[i], H[smallest])
+        i ← smallest                        follow it down
+    end
+```
 
 <!-- py:ops_heap:sift_down -->
 ```python
@@ -142,7 +171,14 @@ def sift_down(heap: list[Any], i: int) -> None:
 
 > **Why swap with the *smaller* child?** The promoted child becomes the parent of the other one. Only the smaller of the two is guaranteed to be ≤ its new sibling, so choosing the larger would immediately violate the heap property on the other branch.
 
-**Insert — place at the end, then climb.**
+**Insert — place at the next free leaf, then climb.**
+
+```text
+function insert(H, value)
+    H[H.size] ← value                       the next free leaf keeps the tree complete
+    H.size ← H.size + 1
+    siftUp(H, H.size - 1)
+```
 
 <!-- py:ops_heap:insert -->
 ```python
@@ -155,6 +191,17 @@ def insert(heap: list[Any], value: Any) -> None:
 <!-- /py -->
 
 **Extract-min — take the root, patch the hole, then sink.**
+
+```text
+function extractMin(H)
+    if H.size = 0 then error "empty" end
+
+    minimum ← H[0]                          the answer
+    H[0] ← H[H.size - 1]                    move the LAST LEAF to the root:
+    H.size ← H.size - 1                     the only move that keeps the tree complete
+    siftDown(H, 0)
+    return minimum
+```
 
 <!-- py:ops_heap:extract_min -->
 ```python
@@ -177,6 +224,12 @@ def extract_min(heap: list[Any]) -> Any:
 
 **Peek — the whole point of a heap.**
 
+```text
+function peek(H)
+    if H.size = 0 then error "empty" end
+    return H[0]                             O(1), by the heap property
+```
+
 <!-- py:ops_heap:peek -->
 ```python
 def peek(heap: list[Any]) -> Any:
@@ -188,6 +241,13 @@ def peek(heap: list[Any]) -> Any:
 <!-- /py -->
 
 **Build-heap — `O(n)`, and the reason is worth knowing.**
+
+```text
+function buildHeap(A)
+    for i ← (A.length / 2) - 1 down to 0 do     every node above the leaf row
+        siftDown(A, i)                          leaves are already valid heaps
+    end
+```
 
 <!-- py:ops_heap:build_heap -->
 ```python
@@ -205,7 +265,17 @@ def build_heap(values: list[Any]) -> list[Any]:
 ```
 <!-- /py -->
 
+> **Why is this `O(n)` and not `O(n log n)`?** Because `siftDown` costs the *height below* the node, and almost all nodes are near the bottom. Half the nodes are leaves and cost 0, a quarter cost 1, an eighth cost 2… The sum converges to `2n`. Only the single root pays the full `log n`.
+
 **Heapsort — a heap's other job.**
+
+```text
+function heapsort(A)
+    buildHeap(A)                                O(n)
+    repeat n times:
+        extract the minimum and append it        O(log n) each
+                                                 O(n log n) total
+```
 
 <!-- py:ops_heap:heapsort -->
 ```python
@@ -216,7 +286,7 @@ def heapsort(values: list[Any]) -> list[Any]:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

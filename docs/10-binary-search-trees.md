@@ -98,6 +98,17 @@ class TreeNode:
 
 **Search.**
 
+```text
+function search(node, target)
+    while node ≠ null do
+        if target = node.value then return node
+        else if target < node.value then node ← node.left       discard the right subtree
+        else                            node ← node.right       discard the left subtree
+        end
+    end
+    return notFound
+```
+
 <!-- py:ops_bst:search -->
 ```python
 def search(root: Optional[TreeNode], target: Any) -> bool:
@@ -115,6 +126,19 @@ Every iteration throws away a subtree **without inspecting a single node in it**
 
 **Insert — the same walk, ending in a plant.**
 
+```text
+function insert(node, value)
+    if node = null then return new Node(value) end       you fell off: this is the slot
+
+    if value < node.value then
+        node.left  ← insert(node.left, value)
+    else if value > node.value then
+        node.right ← insert(node.right, value)
+    end                                                  equal: ignore, or count duplicates
+
+    return node
+```
+
 <!-- py:ops_bst:insert -->
 ```python
 def insert(node: Optional[TreeNode], value: Any) -> TreeNode:
@@ -129,7 +153,15 @@ def insert(node: Optional[TreeNode], value: Any) -> TreeNode:
 ```
 <!-- /py -->
 
+A new value **never displaces an existing node**. It walks down until it runs off the tree, and that empty position is its home.
+
 **Minimum and maximum.**
+
+```text
+function minimum(node)                  the leftmost node
+    while node.left ≠ null do node ← node.left end
+    return node.value
+```
 
 <!-- py:ops_bst:minimum -->
 ```python
@@ -151,6 +183,29 @@ def maximum(node: TreeNode) -> Any:
 <!-- /py -->
 
 **Delete — three cases, and only the third is interesting.**
+
+```text
+function delete(node, value)
+    if node = null then return null end
+
+    if value < node.value then
+        node.left ← delete(node.left, value)
+    else if value > node.value then
+        node.right ← delete(node.right, value)
+    else
+        CASE 1 — no children:
+            return null                                  just drop it
+
+        CASE 2 — one child:
+            return that child                            splice it in
+
+        CASE 3 — two children:
+            successor ← minimum(node.right)              smallest value larger than this one
+            node.value ← successor.value                 overwrite in place
+            node.right ← delete(node.right, successor.value)
+    end
+    return node
+```
 
 <!-- py:ops_bst:delete -->
 ```python
@@ -176,9 +231,29 @@ def delete(node: Optional[TreeNode], value: Any) -> Optional[TreeNode]:
 ```
 <!-- /py -->
 
-> **Why the in-order successor?** It is the only value that can sit in that position without breaking the invariant: larger than everything in the left subtree (it is in the right one) and smaller than everything else in the right subtree (it is the minimum there).
+> **Why the in-order successor?** It is the only value that can sit in that position without breaking the invariant: larger than everything in the left subtree (it is in the right one) and smaller than everything else in the right subtree (it is the minimum there). The predecessor — the maximum of the left subtree — works symmetrically.
 
-**Traversals — one shape, the visit in three different positions.**
+**Traversals — one shape, the visit line in three different places.**
+
+```text
+function inOrder(node)                  LEFT, node, RIGHT  →  sorted output
+    if node = null then return end
+    inOrder(node.left)
+    visit(node)
+    inOrder(node.right)
+
+function preOrder(node)                 node, LEFT, RIGHT  →  copy / serialise
+    if node = null then return end
+    visit(node)
+    preOrder(node.left)
+    preOrder(node.right)
+
+function postOrder(node)                LEFT, RIGHT, node  →  free / evaluate
+    if node = null then return end
+    postOrder(node.left)
+    postOrder(node.right)
+    visit(node)
+```
 
 <!-- py:ops_bst:in_order -->
 ```python
@@ -210,6 +285,18 @@ def post_order(node: Optional[TreeNode]) -> list[Any]:
 ```
 <!-- /py -->
 
+**Level-order — the only one that needs an explicit queue.**
+
+```text
+function levelOrder(root)
+    Q ← queue containing root
+    while Q is not empty do
+        node ← dequeue(Q)
+        visit(node)
+        enqueue each non-null child of node
+    end
+```
+
 <!-- py:ops_bst:level_order -->
 ```python
 def level_order(root: Optional[TreeNode]) -> list[Any]:
@@ -239,7 +326,7 @@ def height(node: Optional[TreeNode]) -> int:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

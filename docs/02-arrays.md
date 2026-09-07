@@ -76,9 +76,15 @@ flowchart LR
 
 ## ⚙️ Operations
 
-An array here is a fixed-size `store` list plus a `length` — because that is what an array really is: a block of slots, only some of them in use. Keeping the two separate is what makes the shifting and the growth visible.
+Each operation is shown twice: the **idea** as language-neutral pseudocode, then the **code** as a small Python function you can run. An array here is a fixed-size `store` plus a `length` — because that is what an array really is: a block of slots, only some of them in use.
 
 **Read — the operation arrays exist for.**
+
+```text
+function get(A, i)
+    if i < 0 or i ≥ A.length then error "out of bounds" end
+    return memory[A.base + i × A.itemSize]      one multiply, one add
+```
 
 <!-- py:ops_arrays:get -->
 ```python
@@ -90,9 +96,21 @@ def get(store: list[Any], length: int, i: int) -> Any:
 ```
 <!-- /py -->
 
-`store[i]` compiles to one multiply and one add on the base address. That is the whole reason it is `O(1)` for any `i`.
+`store[i]` compiles to that same multiply-and-add on the base address. That is the whole reason it is `O(1)` for any `i`.
 
 **Insert at an index — the operation arrays are bad at.**
+
+```text
+function insertAt(A, i, value)
+    if A.length = A.capacity then grow(A) end
+
+    for j ← A.length down to i+1 do             walk backwards, or you
+        A[j] ← A[j-1]                           overwrite what you have not moved yet
+    end
+
+    A[i] ← value
+    A.length ← A.length + 1
+```
 
 <!-- py:ops_arrays:insert_at -->
 ```python
@@ -109,6 +127,14 @@ def insert_at(store: list[Any], length: int, i: int, value: Any) -> int:
 
 **Delete at an index — the mirror image.**
 
+```text
+function deleteAt(A, i)
+    for j ← i to A.length-2 do
+        A[j] ← A[j+1]                           close the gap
+    end
+    A.length ← A.length - 1
+```
+
 <!-- py:ops_arrays:delete_at -->
 ```python
 def delete_at(store: list[Any], length: int, i: int) -> int:
@@ -121,6 +147,17 @@ def delete_at(store: list[Any], length: int, i: int) -> int:
 <!-- /py -->
 
 **Grow — why appending is *amortised* `O(1)`.**
+
+```text
+function grow(A)
+    new ← allocate(A.capacity × 2)              doubling is the important part
+    for j ← 0 to A.length-1 do
+        new[j] ← A[j]
+    end
+    free(A.block)
+    A.block ← new
+    A.capacity ← A.capacity × 2
+```
 
 <!-- py:ops_arrays:grow -->
 ```python
@@ -135,6 +172,13 @@ def grow(store: list[Any], length: int) -> list[Any]:
 
 **Append — puts the two together.**
 
+```text
+function append(A, value)
+    if A.length = A.capacity then grow(A) end
+    A[A.length] ← value
+    A.length ← A.length + 1
+```
+
 <!-- py:ops_arrays:append -->
 ```python
 def append(store: list[Any], length: int, value: Any) -> tuple[list[Any], int]:
@@ -148,7 +192,7 @@ def append(store: list[Any], length: int, value: Any) -> tuple[list[Any], int]:
 
 > **Why doubling?** Growing by a *constant* (say +1) makes `n` appends cost `O(n²)` in total. Growing by a constant *factor* makes `n` appends cost `O(n)` in total — so each append averages `O(1)` even though one in every `n` is expensive.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py); a fuller class-based version lives in [`examples/linear.py`](../examples/linear.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py); a fuller class-based version lives in [`examples/linear.py`](../examples/linear.py).
 
 ---
 

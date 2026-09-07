@@ -38,9 +38,27 @@ All three are plain SVG with the animation written in CSS inside the file. There
 
 ---
 
-## The code
+## The code — twice, on purpose
 
-Every operation in every module is a **small, real Python function** — not pseudocode, and not a fragment:
+Every operation is shown **first as pseudocode, then as Python**. They do different jobs.
+
+The **pseudocode** states the idea with no language in the way. It is the same dialect throughout:
+
+```text
+function insertAt(A, i, value)
+    if A.length = A.capacity then grow(A) end
+
+    for j ← A.length down to i+1 do             walk backwards, or you
+        A[j] ← A[j-1]                           overwrite what you have not moved yet
+    end
+
+    A[i] ← value
+    A.length ← A.length + 1
+```
+
+`←` is assignment, `≠` and `≥` are comparisons, `mod` is remainder, and the right-hand column is commentary rather than code.
+
+The **Python** is the same operation you can actually run:
 
 ```python
 def insert_at(store: list[Any], length: int, i: int, value: Any) -> int:
@@ -51,7 +69,9 @@ def insert_at(store: list[Any], length: int, i: int, value: Any) -> int:
     return length + 1                     # n - i elements moved: O(n)
 ```
 
-Three things are true of all 100 of them:
+Read the pseudocode to understand *what* happens; read the Python when you want to run it, step it in a debugger, or copy it. Skipping either is fine — they say the same thing.
+
+Three things are true of all 100 Python functions:
 
 - **They run.** They live in [`examples/`](../examples/) and are extracted into each module by `tools/sync_examples.py`, so a snippet cannot drift from its source.
 - **They are tested.** [`examples/test_ops.py`](../examples/test_ops.py) covers every one — 156 tests, stdlib `unittest`, no dependencies, run in CI:
@@ -60,11 +80,9 @@ Three things are true of all 100 of them:
   python3 -m unittest discover -s examples -t .
   ```
 
-- **The comments carry the teaching.** The `# walk BACKWARDS` above is the point of the function; the code is just what makes it concrete.
+- **The comments carry the teaching.** `# walk BACKWARDS` is the point of the function; the code is what makes it concrete.
 
-**Indexing is 0-based**, matching every diagram: the first element of a 7-element array is at index `0`, the last at index `6`.
-
-A handful of ` ```text ` blocks remain where the thing being shown genuinely is not code — the five red-black rules, the shape of a divide-and-conquer split, an adjacency-list-versus-matrix comparison.
+**Indexing is 0-based** in both notations, matching every diagram: the first element of a 7-element array is at index `0`, the last at index `6`.
 
 ## The eleven blocks in every module
 
@@ -75,7 +93,7 @@ A handful of ` ```text ` blocks remain where the thing being shown genuinely is 
 | 3 | 🧠 **Mental model** | the analogy mapped term-by-term onto the real structure |
 | 4 | 📐 **Blueprint** | the same thing again, but static and fully labelled |
 | 5 | 🗺️ **Mindmap** | the shape of the module, so you know what is coming |
-| 6 | ⚙️ **Operations** | one small tested Python function per operation |
+| 6 | ⚙️ **Operations** | each operation twice: pseudocode for the idea, then a tested Python function |
 | 7 | ⏱️ **Complexity** | best / average / worst / space, with the *reason* |
 | 8 | ⚖️ **Trade-offs** | when to reach for it and when not to |
 | 9 | 🃏 **Flashcards** | click to reveal — test yourself before moving on |

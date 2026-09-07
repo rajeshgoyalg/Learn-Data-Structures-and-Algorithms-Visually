@@ -44,16 +44,18 @@ Every loop also holds at its first and last frame so a reader can take in the st
 
 **GitHub does not render Mermaid `mindmap` diagrams.** Mindmaps in this repo are written as `flowchart LR` with `classDef` styling, which renders everywhere. Do not "fix" them to `mindmap` syntax — it will silently produce a broken code block on GitHub.
 
-### 6. Operations are real Python, extracted from tested code
+### 6. Every operation is shown twice: pseudocode, then Python
 
-Every operation in a module is a **small Python function**, never pseudocode and never a fragment. Write it in [`examples/`](examples/) — never directly into a module — and let the sync tool place it:
+The **pseudocode** states the idea with no language in the way, in one dialect across all 18 modules — `←` for assignment, `function`/`end`, `for each … in`, 0-based indexing. Write it by hand, directly in the module.
+
+The **Python** is the same operation, runnable. Write it in [`examples/`](examples/) — never directly into a module — and let the sync tool place it:
 
 ```bash
 python3 tools/sync_examples.py          # rewrite every marked fence
 python3 tools/sync_examples.py --check  # report drift only
 ```
 
-A doc marks each snippet with the source it came from:
+A doc marks each Python snippet with the source it came from:
 
 ```markdown
 <!-- py:ops_arrays:insert_at -->
@@ -63,13 +65,15 @@ A doc marks each snippet with the source it came from:
 <!-- /py -->
 ```
 
-`tools/verify.py` fails if a fence has drifted from its source, if a snippet is not valid Python, or if the tests do not pass. So **edit `examples/`, then re-sync** — hand-editing a fence in a module will be caught.
+`tools/verify.py` fails if a fence has drifted from its source, if a snippet is not valid Python, if an Operations section has Python but no pseudocode, or if the tests do not pass. So **edit `examples/`, then re-sync** — hand-editing a Python fence in a module will be caught.
+
+Node and type definitions (`Node`, `TreeNode`, …) are exempt from the pairing rule: they are data, not algorithms.
 
 Anything you add needs a test in [`examples/test_ops.py`](examples/test_ops.py). Untested code in a teaching repo is worse than no code: writing these tests found a real bug in the trie `delete`, whose return value meant "a node was pruned" rather than "the word was removed".
 
 Keep the teaching in the comments. `# walk BACKWARDS: forwards would smear` is the reason the function is in the repo; the code is just what makes it concrete.
 
-Use ` ```text ` only when the thing genuinely is not code — the red-black rules, a structural sketch, a side-by-side comparison.
+Use ` ```text ` for pseudocode, and for the few places where the content genuinely is not code at all — the red-black rules, a structural sketch, a side-by-side comparison.
 
 ### 7. Every module has the same eleven blocks
 
@@ -83,7 +87,7 @@ Analogy → animation → mental model → blueprint → mindmap → operations 
 python3 tools/verify.py
 ```
 
-Twenty checks, stdlib only — no install, no build step. CI runs the identical
+Twenty-one checks, stdlib only — no install, no build step. CI runs the identical
 file on every push and pull request, so a green local run means a green PR.
 
 It covers: SVG well-formedness, no `<script>` and no external references, the
@@ -93,7 +97,8 @@ title block, frame animations showing two
 frames at once, internal links and anchors, the eleven-block module template,
 unsupported Mermaid `mindmap` blocks, unclosed `<details>`, duplicate
 flashcards, stated counts drifting from reality, orphaned assets, and gallery
-links reverting to raw markdown. The last three cover the Python: every
+links reverting to raw markdown. The last four cover the code: every
+operation pairs pseudocode with Python: every
 snippet parses, no snippet has drifted from `examples/`, and the 156-test
 suite passes.
 

@@ -80,6 +80,14 @@ flowchart LR
 
 **Linear search.**
 
+```text
+function linearSearch(A, target)
+    for i ← 0 to A.length - 1 do
+        if A[i] = target then return i end
+    end
+    return notFound                          n comparisons if it is absent
+```
+
 <!-- py:ops_search:linear_search -->
 ```python
 def linear_search(values: list[Any], target: Any) -> int:
@@ -92,6 +100,26 @@ def linear_search(values: list[Any], target: Any) -> int:
 <!-- /py -->
 
 **Binary search — the iterative form, which is the one to memorise.**
+
+```text
+function binarySearch(A, target)             A MUST be sorted
+    lo ← 0
+    hi ← A.length - 1
+
+    while lo ≤ hi do                         ≤, not <: a one-element range is still valid
+        mid ← lo + (hi - lo) / 2             NOT (lo + hi) / 2 — see below
+
+        if A[mid] = target then
+            return mid
+        else if A[mid] < target then
+            lo ← mid + 1                     +1, or you can loop forever
+        else
+            hi ← mid - 1
+        end
+    end
+
+    return notFound
+```
 
 <!-- py:ops_search:binary_search -->
 ```python
@@ -114,13 +142,26 @@ def binary_search(values: list[Any], target: Any) -> int:
 <!-- /py -->
 
 > **Three bugs live in those seven lines.**
-> 1. `(lo + hi) // 2` **overflows** on large arrays in fixed-width integer languages. `lo + (hi - lo) // 2` is arithmetically identical and cannot overflow. This exact bug survived for years in the Java standard library.
+> 1. `mid = (lo + hi) / 2` **overflows** on large arrays in fixed-width integer languages. `lo + (hi - lo) / 2` is arithmetically identical and cannot overflow. This exact bug survived for years in the Java standard library.
 > 2. `while lo < hi` misses the case where the range has narrowed to exactly one element — which is where the answer usually is.
 > 3. Forgetting the `±1` leaves `lo` or `hi` unchanged when `mid` equals them, and the loop never terminates.
 >
 > Binary search is famously easy to describe and famously hard to write correctly.
 
 **The useful variant — first index not less than the target.**
+
+```text
+function lowerBound(A, target)               where target is, or where it would go
+    lo ← 0
+    hi ← A.length                            note: length, not length - 1
+
+    while lo < hi do
+        mid ← lo + (hi - lo) / 2
+        if A[mid] < target then lo ← mid + 1 else hi ← mid end
+    end
+
+    return lo
+```
 
 <!-- py:ops_search:lower_bound -->
 ```python
@@ -143,7 +184,7 @@ def lower_bound(values: list[Any], target: Any) -> int:
 
 This is what powers range queries, insertion into a sorted array, and "find the first entry after this timestamp".
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

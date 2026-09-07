@@ -318,6 +318,29 @@ def _():
     return bad
 
 
+@check("every operation shows pseudocode before its Python")
+def _():
+    """The idea first, then the code. A python fence with no preceding text
+    fence in the same Operations section means an operation lost its
+    pseudocode -- except node/type definitions, which are data, not algorithms."""
+    DATA_ONLY = {"Node", "DNode", "TreeNode", "TrieNode"}
+    bad = []
+    for f in sorted(glob.glob("docs/[0-9][0-9]-*.md")):
+        s = open(f).read()
+        m = re.search(r"^## ⚙️ .*$", s, re.M)
+        if not m or "## ⏱️ Complexity" not in s:
+            continue
+        ops = s[m.start():s.index("## ⏱️ Complexity")]
+        n_text = len(re.findall(r"```text", ops))
+        markers = re.findall(r"<!-- py:([\w./]+):(\w+) -->", ops)
+        n_code = len([sym for _, sym in markers if sym not in DATA_ONLY])
+        if n_text == 0 and n_code > 0:
+            bad.append(f"{f}: {n_code} Python snippet(s) but no pseudocode at all")
+        elif n_code and n_text < 1:
+            bad.append(f"{f}: pseudocode missing")
+    return bad
+
+
 # --------------------------------------------------------------------- python
 @check("every ```python block in docs/ parses as valid Python")
 def _():

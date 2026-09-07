@@ -83,7 +83,14 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**The plain queue — and the flaw that motivates the circular one.**
+**The plain queue — join at the back, be served from the front.**
+
+```text
+function enqueue(Q, value)
+    if Q.rear = Q.capacity - 1 then error "full" end
+    Q.rear ← Q.rear + 1
+    Q.items[Q.rear] ← value
+```
 
 <!-- py:ops_queue:enqueue -->
 ```python
@@ -92,6 +99,14 @@ def enqueue(queue: list[Any], value: Any) -> None:
     queue.append(value)
 ```
 <!-- /py -->
+
+```text
+function dequeue(Q)
+    if Q.front > Q.rear then error "empty" end
+    value ← Q.items[Q.front]
+    Q.front ← Q.front + 1               the slot at the old front is now stranded
+    return value
+```
 
 <!-- py:ops_queue:dequeue -->
 ```python
@@ -103,9 +118,17 @@ def dequeue(queue: list[Any]) -> Any:
 ```
 <!-- /py -->
 
-> **The flaw in an array-backed version:** if `front` and `rear` only ever increase, then after five enqueues and five dequeues on a capacity-5 queue, `rear` is at the end and the queue reports "full" — while every slot is actually free. The indices marched off the end and never came back.
+> **The flaw in the array-backed version:** after five enqueues and five dequeues on a capacity-5 queue, `rear` is at the end and the queue reports "full" — while every slot is actually free. The indices marched off the end and never came back.
 
 **The circular queue — the fix is one operator.**
+
+```text
+function enqueue(Q, value)
+    if Q.count = Q.capacity then error "full" end
+    Q.rear ← (Q.rear + 1) mod Q.capacity        ← the whole fix
+    Q.items[Q.rear] ← value
+    Q.count ← Q.count + 1
+```
 
 <!-- py:ops_queue:circular_enqueue -->
 ```python
@@ -123,6 +146,15 @@ def circular_enqueue(slots: list[Any], rear: int, count: int, value: Any) -> tup
 ```
 <!-- /py -->
 
+```text
+function dequeue(Q)
+    if Q.count = 0 then error "empty" end
+    value ← Q.items[Q.front]
+    Q.front ← (Q.front + 1) mod Q.capacity
+    Q.count ← Q.count - 1
+    return value
+```
+
 <!-- py:ops_queue:circular_dequeue -->
 ```python
 def circular_dequeue(slots: list[Any], front: int, count: int) -> tuple[Any, int, int]:
@@ -136,9 +168,14 @@ def circular_dequeue(slots: list[Any], front: int, count: int) -> tuple[Any, int
 ```
 <!-- /py -->
 
-> **Why keep a `count`?** With wraparound, `front == rear` is ambiguous — it means both "empty" and "full". Tracking `count` (or deliberately leaving one slot unused) disambiguates it.
+> **Why keep a `count`?** With wraparound, `front = rear` is ambiguous — it means both "empty" and "full". Tracking `count` (or deliberately leaving one slot unused) disambiguates it.
 
 **The priority queue — backed by a [heap](09-heaps.md).**
+
+```text
+function insert(PQ, value, priority)
+    add to the heap, then sift up                O(log n)
+```
 
 <!-- py:ops_queue:pq_insert -->
 ```python
@@ -148,6 +185,11 @@ def pq_insert(heap: list[tuple], value: Any, priority: Any, tie: itertools.count
     heapq.heappush(heap, (priority, next(tie), value))
 ```
 <!-- /py -->
+
+```text
+function extractMin(PQ)
+    take the root, move the last leaf to the root, sift down     O(log n)
+```
 
 <!-- py:ops_queue:pq_extract_min -->
 ```python
@@ -159,9 +201,18 @@ def pq_extract_min(heap: list[tuple]) -> Any:
 ```
 <!-- /py -->
 
-A **deque** needs no new code: use `push_back` + `pop_front` and you have a queue; `push_back` + `pop_back` and you have a stack. It is a superset of both.
+**Deque — four operations, all `O(1)`.**
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+```text
+function pushFront(D, value)   ...      insert before D.front
+function pushBack(D, value)    ...      insert after D.rear
+function popFront(D)           ...      remove and return D.front
+function popBack(D)            ...      remove and return D.rear
+```
+
+Use `pushBack` + `popFront` and you have a queue. Use `pushBack` + `popBack` and you have a stack. A deque is a superset of both, so it needs no new code.
+
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

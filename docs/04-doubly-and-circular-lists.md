@@ -88,6 +88,18 @@ class DNode:
 
 **Insert after a node — four writes instead of two.**
 
+```text
+function insertAfter(node, value)
+    fresh ← new Node(value)
+
+    fresh.next ← node.next
+    fresh.prev ← node
+    if node.next ≠ null then
+        node.next.prev ← fresh          the successor must learn about it too
+    end
+    node.next ← fresh
+```
+
 <!-- py:ops_doubly:insert_after -->
 ```python
 def insert_after(node: DNode, value: Any) -> DNode:
@@ -103,6 +115,23 @@ def insert_after(node: DNode, value: Any) -> DNode:
 <!-- /py -->
 
 **Delete, given nothing but the node itself.**
+
+```text
+function delete(node)
+    if node.prev ≠ null then
+        node.prev.next ← node.next
+    else
+        head ← node.next                it was the head
+    end
+
+    if node.next ≠ null then
+        node.next.prev ← node.prev
+    else
+        tail ← node.prev                it was the tail
+    end
+
+    free(node)                          O(1) — no search, no predecessor hunt
+```
 
 <!-- py:ops_doubly:delete -->
 ```python
@@ -125,6 +154,15 @@ def delete(node: DNode) -> Any:
 
 **Walk backwards — impossible-or-expensive without `prev`.**
 
+```text
+function walkBackward(tail)
+    current ← tail
+    while current ≠ null do
+        visit(current.data)
+        current ← current.prev
+    end
+```
+
 <!-- py:ops_doubly:walk_backward -->
 ```python
 def walk_backward(tail: Optional[DNode]) -> list[Any]:
@@ -139,6 +177,17 @@ def walk_backward(tail: Optional[DNode]) -> list[Any]:
 <!-- /py -->
 
 **Circular: traverse once, with the stop condition that matters.**
+
+```text
+function traverseOnce(head)
+    if head = null then return end
+
+    current ← head
+    repeat
+        visit(current.data)
+        current ← current.next
+    until current = head                NOT "until current = null" — there is no null
+```
 
 <!-- py:ops_doubly:traverse_once -->
 ```python
@@ -160,9 +209,14 @@ def traverse_once(head: Optional[Node]) -> list[Any]:
 ```
 <!-- /py -->
 
-> **The classic bug:** writing `while current is not None` on a circular list. It never terminates. The terminator is *"I am back where I started"*, not *"I have run out of nodes"*.
+> **The classic bug:** writing `while current ≠ null` on a circular list. It never terminates. The terminator is *"I am back where I started"*, not *"I have run out of nodes"*.
 
 **Circular: round-robin scheduling, the canonical use.**
+
+```text
+function nextTurn(currentPlayer)
+    return currentPlayer.next           always valid, never null, wraps for free
+```
 
 <!-- py:ops_doubly:next_turn -->
 ```python
@@ -172,7 +226,7 @@ def next_turn(current: Node) -> Node:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

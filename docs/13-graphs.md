@@ -83,24 +83,42 @@ flowchart LR
 
 ## ⚙️ Operations
 
-The graph is a plain dict: vertex → list of neighbours.
+**Storage — the choice you make first.**
 
 ```text
 ADJACENCY LIST                          ADJACENCY MATRIX
-{"A": ["B", "C"],                           A  B  C  D
- "B": ["D"],                            A [ 0  1  1  0 ]
- "C": ["D"],                            B [ 0  0  0  1 ]
- "D": []}                               C [ 0  0  0  1 ]
+A: [B, C]                                   A  B  C  D
+B: [D]                                  A [ 0  1  1  0 ]
+C: [D]                                  B [ 0  0  0  1 ]
+D: []                                   C [ 0  0  0  1 ]
                                         D [ 0  0  0  0 ]
 
-space   O(V + E)                        space   O(V^2)
-"is A next to D?"   O(deg A)            "is A next to D?"   O(1)
+space   O(V + E)                        space   O(V²)
+"is A adjacent to D?"   O(deg A)        "is A adjacent to D?"   O(1)
 "list A's neighbours"   O(deg A)        "list A's neighbours"   O(V)
 ```
 
-> **Rule of thumb:** real graphs are **sparse** — a social network has millions of users and a few hundred friends each. The adjacency list is the default.
+> **Rule of thumb:** real graphs are **sparse** — a social network has millions of users and a few hundred friends each, not millions. The adjacency list is the default; the matrix only wins when the graph is dense or you constantly test individual edges.
 
 **BFS — the queue *is* the algorithm.**
+
+```text
+function bfs(start)
+    visited ← set containing start          mark on ENQUEUE, not on dequeue
+    Q ← queue containing start
+
+    while Q is not empty do
+        node ← dequeue(Q)
+        visit(node)
+
+        for each neighbour of node do
+            if neighbour not in visited then
+                add neighbour to visited
+                enqueue(Q, neighbour)
+            end
+        end
+    end
+```
 
 <!-- py:ops_graph:bfs -->
 ```python
@@ -120,9 +138,26 @@ def bfs(adj: dict, start: Hashable) -> list:
 ```
 <!-- /py -->
 
-> **Mark on enqueue.** If you mark on dequeue instead, a node with two discovered paths gets queued twice and processed twice.
+> **Mark on enqueue.** If you mark on dequeue instead, a node with two discovered paths gets enqueued twice and processed twice. On a dense graph that is the difference between `O(V+E)` and something much worse.
 
 **DFS — swap the queue for a stack, change nothing else.**
+
+```text
+function dfs(start)
+    visited ← empty set
+    S ← stack containing start
+
+    while S is not empty do
+        node ← pop(S)
+        if node in visited then continue end
+        add node to visited
+        visit(node)
+
+        for each neighbour of node do
+            if neighbour not in visited then push(S, neighbour) end
+        end
+    end
+```
 
 <!-- py:ops_graph:dfs -->
 ```python
@@ -145,6 +180,26 @@ def dfs(adj: dict, start: Hashable) -> list:
 <!-- /py -->
 
 **Shortest path in an *unweighted* graph — BFS gives it for free.**
+
+```text
+function shortestPath(start, target)
+    visited ← set containing start
+    prev ← empty map
+    Q ← queue containing start
+
+    while Q is not empty do
+        node ← dequeue(Q)
+        for each neighbour of node do
+            if neighbour not in visited then
+                add neighbour to visited
+                prev[neighbour] ← node
+                if neighbour = target then return reconstruct(prev, target) end
+                enqueue(Q, neighbour)
+            end
+        end
+    end
+    return "unreachable"
+```
 
 <!-- py:ops_graph:shortest_path_unweighted -->
 ```python
@@ -177,7 +232,20 @@ def shortest_path_unweighted(adj: dict, start: Hashable, target: Hashable) -> Op
 ```
 <!-- /py -->
 
+Because BFS finishes every node at distance `k` before touching distance `k+1`, the first time it reaches the target it has arrived by a shortest route. **This guarantee evaporates the moment edges have weights** — that is [Dijkstra's](18-dijkstra.md) job.
+
 **Cycle detection in a directed graph — DFS with three colours.**
+
+```text
+function hasCycle(node, state)
+    state[node] ← IN_PROGRESS
+    for each neighbour of node do
+        if state[neighbour] = IN_PROGRESS then return true end      a back edge
+        if state[neighbour] = UNVISITED and hasCycle(neighbour, state) then return true end
+    end
+    state[node] ← DONE
+    return false
+```
 
 <!-- py:ops_graph:has_cycle -->
 ```python
@@ -200,7 +268,26 @@ def has_cycle(adj: dict) -> bool:
 ```
 <!-- /py -->
 
-**Topological sort — a valid dependency order, or `None`.**
+Meeting a node that is still `IN_PROGRESS` means you have looped back onto your own current path. Meeting a `DONE` node is fine — that is just a shared subgraph.
+
+**Topological sort — a valid dependency order, or nothing.**
+
+```text
+function topologicalSort(G)
+    compute the in-degree of every vertex
+    ready ← every vertex with in-degree 0
+
+    while ready is not empty do
+        v ← remove one from ready
+        append v to the order
+        for each neighbour n of v do
+            decrement in-degree of n
+            if it reaches 0 then add n to ready end
+        end
+    end
+
+    if the order is shorter than V then there is a cycle: no valid order exists
+```
 
 <!-- py:ops_graph:topological_sort -->
 ```python
@@ -226,7 +313,9 @@ def topological_sort(adj: dict) -> Optional[list]:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+That `None` is your circular-dependency error.
+
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

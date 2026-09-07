@@ -85,6 +85,10 @@ The table is a list of buckets; each bucket is a list of `(key, value)` pairs.
 
 **The index — compute the address instead of searching for it.**
 
+```text
+index ← hash(key) mod capacity          O(1), and it is the whole idea
+```
+
 <!-- py:ops_hash:index_for -->
 ```python
 def index_for(key: Any, capacity: int) -> int:
@@ -94,6 +98,25 @@ def index_for(key: Any, capacity: int) -> int:
 <!-- /py -->
 
 **Insert or update.**
+
+```text
+function put(T, key, value)
+    index ← hash(key) mod T.capacity
+
+    for each entry in T.buckets[index] do
+        if entry.key = key then
+            entry.value ← value                 update, do not duplicate
+            return
+        end
+    end
+
+    append (key, value) to T.buckets[index]
+    T.count ← T.count + 1
+
+    if T.count / T.capacity > 0.75 then
+        resize(T)                               grow and rehash — O(n)
+    end
+```
 
 <!-- py:ops_hash:put -->
 ```python
@@ -111,6 +134,17 @@ def put(buckets: list[list[tuple]], key: Any, value: Any) -> bool:
 
 **Lookup.**
 
+```text
+function get(T, key)
+    index ← hash(key) mod T.capacity            O(1)
+    for each entry in T.buckets[index] do       walk this bucket's chain only
+        if entry.key = key then                 compare the FULL key, not the hash
+            return entry.value
+        end
+    end
+    return notFound
+```
+
 <!-- py:ops_hash:get -->
 ```python
 def get(buckets: list[list[tuple]], key: Any, default: Any = None) -> Any:
@@ -126,6 +160,12 @@ def get(buckets: list[list[tuple]], key: Any, default: Any = None) -> Any:
 
 **Delete.**
 
+```text
+function delete(T, key)
+    index ← hash(key) mod T.capacity
+    remove the entry with this key from T.buckets[index], if present
+```
+
 <!-- py:ops_hash:delete -->
 ```python
 def delete(buckets: list[list[tuple]], key: Any) -> bool:
@@ -139,6 +179,19 @@ def delete(buckets: list[list[tuple]], key: Any) -> bool:
 <!-- /py -->
 
 **Resize — why every key must be recomputed.**
+
+```text
+function resize(T)
+    old ← T.buckets
+    T.capacity ← T.capacity × 2
+    T.buckets ← new array of empty chains
+
+    for each chain in old do
+        for each entry in chain do
+            put(T, entry.key, entry.value)      index = hash mod capacity, and
+        end                                     capacity just changed — so every
+    end                                         key moves. This is the O(n) cost.
+```
 
 <!-- py:ops_hash:resize -->
 ```python
@@ -159,6 +212,10 @@ def resize(buckets: list[list[tuple]]) -> list[list[tuple]]:
 
 **Load factor — the number that decides when to resize.**
 
+```text
+loadFactor ← T.count / T.capacity       above ~0.75, chains lengthen fast
+```
+
 <!-- py:ops_hash:load_factor -->
 ```python
 def load_factor(buckets: list[list[tuple]]) -> float:
@@ -167,9 +224,9 @@ def load_factor(buckets: list[list[tuple]]) -> float:
 ```
 <!-- /py -->
 
-> **The deletion trap with open addressing.** The other collision policy probes for the next free slot. There you cannot simply empty a slot — that breaks the probe chain for keys that hopped over it. You must mark it as a **tombstone** ("was occupied, keep probing past me") and clean up periodically.
+> **Open addressing — the other collision policy.** Instead of a chain per bucket, probe for the next free slot: `index ← (index + 1) mod capacity`. Cache-friendly and pointer-free, but **deletion needs tombstones** — emptying a slot outright breaks the probe chain for keys that hopped over it.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

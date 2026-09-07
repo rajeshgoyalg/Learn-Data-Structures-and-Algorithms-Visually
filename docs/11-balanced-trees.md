@@ -77,6 +77,19 @@ flowchart LR
 
 **Rotation — the primitive both trees are built from.**
 
+```text
+function rotateRight(y)
+    x ← y.left
+    T ← x.right                     the subtree that must change parents
+
+    x.right ← y                     x becomes the new root of this subtree
+    y.left  ← T                     T is larger than x, smaller than y — still legal
+
+    updateHeight(y)                 order matters: y is now BELOW x
+    updateHeight(x)
+    return x                        the caller must adopt the new subtree root
+```
+
 <!-- py:ops_avl:rotate_right -->
 ```python
 def rotate_right(y: TreeNode) -> TreeNode:
@@ -105,9 +118,13 @@ def rotate_left(x: TreeNode) -> TreeNode:
 ```
 <!-- /py -->
 
-Three pointer writes, `O(1)`, and the BST invariant is preserved: `t` was between `x` and `y` in value before the rotation, and it still is after.
+Three pointer writes, `O(1)`, and the BST invariant is preserved: `T` was between `x` and `y` in value before the rotation, and it still is after.
 
 **The balance factor — the number that triggers everything.**
+
+```text
+balance(node) = height(node.left) − height(node.right)      must stay in −1, 0, +1
+```
 
 <!-- py:ops_avl:balance_factor -->
 ```python
@@ -124,7 +141,30 @@ def update_height(node: TreeNode) -> None:
 ```
 <!-- /py -->
 
-**Insert — an ordinary BST insert, then rebalance on the way back up.**
+**AVL insert — an ordinary BST insert, then rebalance on the way back up.**
+
+```text
+function insert(node, value)
+    node ← ordinary BST insert
+    updateHeight(node)
+    balance ← height(node.left) − height(node.right)
+
+    LL: balance > 1  and value < node.left.value
+        return rotateRight(node)
+
+    RR: balance < -1 and value > node.right.value
+        return rotateLeft(node)
+
+    LR: balance > 1  and value > node.left.value
+        node.left ← rotateLeft(node.left)           straighten the zig-zag first
+        return rotateRight(node)
+
+    RL: balance < -1 and value < node.right.value
+        node.right ← rotateRight(node.right)
+        return rotateLeft(node)
+
+    return node                                     already balanced
+```
 
 <!-- py:ops_avl:insert -->
 ```python
@@ -164,24 +204,25 @@ def insert(node: Optional[TreeNode], value: Any) -> TreeNode:
 1. every node is red or black
 2. the root is black
 3. all null leaves count as black
-4. a red node never has a red child          <- violated by insertion
+4. a red node never has a red child          ← violated by insertion
 5. every path from a node to its leaves passes the same number of black nodes
 ```
 
 ```text
-while node.parent is RED:
-    uncle = the sibling of node.parent
+function insertFix(node)
+    while node.parent is RED do
+        uncle ← the sibling of node.parent
 
-    CASE A - uncle is RED:
-        recolour parent and uncle BLACK, grandparent RED
-        node = grandparent          push the problem up, no rotation
-        continue
+        CASE A — uncle is RED:
+            recolour parent and uncle BLACK, grandparent RED
+            node ← grandparent                  push the problem up, no rotation
+            continue
 
-    CASE B - uncle is BLACK:
-        rotate around the grandparent, then recolour
-        done                        at most 2 rotations, ever
-
-root.colour = BLACK                 rule 2, restored unconditionally
+        CASE B — uncle is BLACK:
+            rotate around the grandparent, then recolour
+            done                                at most 2 rotations, ever
+    end
+    root.colour ← BLACK                         rule 2, restored unconditionally
 ```
 
 > **Why do new nodes arrive red?** Inserting a black node would immediately break rule 5 on every path through it. A red node breaks only rule 4, and only if its parent is also red — a much cheaper, more local problem to fix.

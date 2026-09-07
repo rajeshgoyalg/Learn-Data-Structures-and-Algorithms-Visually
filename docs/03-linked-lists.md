@@ -98,6 +98,15 @@ class Node:
 
 **Traverse — the operation you cannot avoid.**
 
+```text
+function traverse(head)
+    current ← head
+    while current ≠ null do
+        visit(current.data)
+        current ← current.next          the only way to move
+    end
+```
+
 <!-- py:ops_linked_list:traverse -->
 ```python
 def traverse(head: Optional[Node]) -> list[Any]:
@@ -111,7 +120,17 @@ def traverse(head: Optional[Node]) -> list[Any]:
 ```
 <!-- /py -->
 
-**Get the k-th element — shown deliberately, because it is the weakness.**
+**Get the k-th element — deliberately shown, because it is the weakness.**
+
+```text
+function get(head, k)
+    current ← head
+    for i ← 0 to k-1 do
+        if current = null then error "out of range" end
+        current ← current.next
+    end
+    return current.data                 k hops. No arithmetic can shorten this.
+```
 
 <!-- py:ops_linked_list:get -->
 ```python
@@ -132,6 +151,14 @@ There is no formula that jumps to position `k`. This is the single biggest pract
 
 **Insert after a node you already hold — the operation you use a linked list for.**
 
+```text
+function insertAfter(node, value)
+    fresh ← new Node(value)
+    fresh.next ← node.next              1. the new node adopts the rest of the list
+    node.next  ← fresh                  2. the predecessor adopts the new node
+                                        two writes, no shifting, O(1)
+```
+
 <!-- py:ops_linked_list:insert_after -->
 ```python
 def insert_after(node: Node, value: Any) -> Node:
@@ -143,9 +170,16 @@ def insert_after(node: Node, value: Any) -> Node:
 ```
 <!-- /py -->
 
-> **Order matters.** Do the second write first and you have overwritten `node.next` — the rest of the list is now unreachable and leaked.
+> **Order matters.** Do step 2 first and you have overwritten `node.next` — the rest of the list is now unreachable and leaked.
 
 **Insert at the head — the cheapest insertion of all.**
+
+```text
+function prepend(head, value)
+    fresh ← new Node(value)
+    fresh.next ← head
+    return fresh                        the new head
+```
 
 <!-- py:ops_linked_list:prepend -->
 ```python
@@ -156,6 +190,14 @@ def prepend(head: Optional[Node], value: Any) -> Node:
 <!-- /py -->
 
 **Delete — the node is never erased, only bypassed.**
+
+```text
+function deleteAfter(node)
+    victim ← node.next
+    if victim = null then return end
+    node.next ← victim.next             route around it
+    free(victim)                        the node is now unreachable
+```
 
 <!-- py:ops_linked_list:delete_after -->
 ```python
@@ -170,6 +212,19 @@ def delete_after(node: Node) -> Optional[Any]:
 <!-- /py -->
 
 **Reverse — the classic interview question, and a genuine test of the model.**
+
+```text
+function reverse(head)
+    previous ← null
+    current  ← head
+    while current ≠ null do
+        following ← current.next        save it, you are about to destroy it
+        current.next ← previous         flip the arrow
+        previous ← current              shuffle both pointers forward
+        current  ← following
+    end
+    return previous                     the old tail is the new head
+```
 
 <!-- py:ops_linked_list:reverse -->
 ```python
@@ -186,6 +241,18 @@ def reverse(head: Optional[Node]) -> Optional[Node]:
 
 **Detect a cycle — Floyd's tortoise and hare.**
 
+```text
+function hasCycle(head)
+    slow ← head
+    fast ← head
+    while fast ≠ null and fast.next ≠ null do
+        slow ← slow.next                one step
+        fast ← fast.next.next           two steps
+        if slow = fast then return true end
+    end
+    return false                        they can only meet inside a loop
+```
+
 <!-- py:ops_linked_list:has_cycle -->
 ```python
 def has_cycle(head: Optional[Node]) -> bool:
@@ -200,7 +267,7 @@ def has_cycle(head: Optional[Node]) -> bool:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

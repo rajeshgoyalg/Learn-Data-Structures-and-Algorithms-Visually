@@ -91,7 +91,25 @@ flowchart LR
 
 ## ⚙️ The five algorithms
 
+Each one is shown twice: the **idea** as pseudocode, then the **code** as a runnable Python function.
+
 ### Bubble sort — the one you learn and then never use
+
+```text
+function bubbleSort(A)
+    for pass ← 0 to A.length - 2 do
+        swapped ← false
+
+        for i ← 0 to A.length - 2 - pass do          the tail is already sorted
+            if A[i] > A[i+1] then
+                swap(A[i], A[i+1])
+                swapped ← true
+            end
+        end
+
+        if not swapped then return end               already sorted: O(n) best case
+    end
+```
 
 <!-- py:ops_sort:bubble_sort -->
 ```python
@@ -114,6 +132,19 @@ Each pass floats the largest remaining value to the end, like a bubble rising. T
 
 ### Selection sort — the fewest writes of any of them
 
+```text
+function selectionSort(A)
+    for i ← 0 to A.length - 2 do
+        minIndex ← i
+
+        for j ← i+1 to A.length - 1 do
+            if A[j] < A[minIndex] then minIndex ← j end
+        end
+
+        swap(A[i], A[minIndex])                      exactly ONE swap per pass
+    end
+```
+
 <!-- py:ops_sort:selection_sort -->
 ```python
 def selection_sort(values: list[Any]) -> list[Any]:
@@ -132,7 +163,24 @@ def selection_sort(values: list[Any]) -> list[Any]:
 ```
 <!-- /py -->
 
+Always `O(n²)` comparisons — there is no early exit — but only `O(n)` writes. That matters when a write is far more expensive than a read (flash memory, or huge records).
+
 ### Insertion sort — the one real libraries still use
+
+```text
+function insertionSort(A)
+    for i ← 1 to A.length - 1 do
+        key ← A[i]
+        j ← i - 1
+
+        while j ≥ 0 and A[j] > key do
+            A[j+1] ← A[j]                            slide right to make room
+            j ← j - 1
+        end
+
+        A[j+1] ← key
+    end
+```
 
 <!-- py:ops_sort:insertion_sort -->
 ```python
@@ -157,6 +205,16 @@ If the list is already sorted the inner `while` never runs: `O(n)`. It is **adap
 
 ### Merge sort — the guaranteed one
 
+```text
+function mergeSort(A)
+    if A.length ≤ 1 then return A end                a single element is sorted
+
+    mid   ← A.length / 2
+    left  ← mergeSort(A[0 .. mid-1])
+    right ← mergeSort(A[mid .. end])
+    return merge(left, right)
+```
+
 <!-- py:ops_sort:merge_sort -->
 ```python
 def merge_sort(values: list[Any]) -> list[Any]:
@@ -167,6 +225,23 @@ def merge_sort(values: list[Any]) -> list[Any]:
     return merge(merge_sort(values[:mid]), merge_sort(values[mid:]))
 ```
 <!-- /py -->
+
+```text
+function merge(L, R)
+    result ← empty
+    i ← 0; j ← 0
+
+    while i < L.length and j < R.length do
+        if L[i] ≤ R[j] then                          ≤ , not < : this is what makes it STABLE
+            append L[i] to result; i ← i + 1
+        else
+            append R[j] to result; j ← j + 1
+        end
+    end
+
+    append the remainder of L and of R
+    return result
+```
 
 <!-- py:ops_sort:merge -->
 ```python
@@ -187,9 +262,25 @@ def merge(left: list[Any], right: list[Any]) -> list[Any]:
 ```
 <!-- /py -->
 
-`log n` levels of splitting, `O(n)` work merging each level → `O(n log n)`, **always**. The price is the `O(n)` buffer.
+`log n` levels of splitting, `O(n)` work merging each level → `O(n log n)`, **always**. The price is the `O(n)` merge buffer.
 
 ### Quicksort — the fastest in practice, with a caveat
+
+```text
+function partition(A, lo, hi)                        Lomuto scheme
+    pivot ← A[hi]
+    i ← lo - 1                                       boundary of the "smaller" region
+
+    for j ← lo to hi - 1 do
+        if A[j] ≤ pivot then
+            i ← i + 1
+            swap(A[i], A[j])
+        end
+    end
+
+    swap(A[i+1], A[hi])                              drop the pivot into the boundary
+    return i + 1
+```
 
 <!-- py:ops_sort:partition -->
 ```python
@@ -210,6 +301,14 @@ def partition(a: list[Any], lo: int, hi: int) -> int:
 ```
 <!-- /py -->
 
+```text
+function quickSort(A, lo, hi)
+    if lo ≥ hi then return end
+    p ← partition(A, lo, hi)
+    quickSort(A, lo, p - 1)                          the pivot itself is already final
+    quickSort(A, p + 1, hi)
+```
+
 <!-- py:ops_sort:quick_sort -->
 ```python
 def quick_sort(values: list[Any]) -> list[Any]:
@@ -228,9 +327,9 @@ def quick_sort(values: list[Any]) -> list[Any]:
 ```
 <!-- /py -->
 
-> **Why quicksort has an `O(n²)` worst case:** if the pivot is always the smallest or largest element, one partition is empty and the other has `n-1` elements — recursion depth `n` instead of `log n`. Feeding an already-sorted list to a last-element pivot does exactly this. **Randomising the pivot** makes that input astronomically unlikely, which is why real implementations always do it.
+> **Why quicksort has an `O(n²)` worst case:** if the pivot is always the smallest or largest element, one partition is empty and the other has `n-1` elements — recursion depth `n` instead of `log n`. Feeding an already-sorted list to a last-element pivot does exactly this. **Randomising the pivot** (or median-of-three) makes that input astronomically unlikely, which is why real implementations always do it.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

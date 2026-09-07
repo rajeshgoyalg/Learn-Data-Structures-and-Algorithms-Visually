@@ -80,6 +80,21 @@ flowchart LR
 
 **The single most common real use — de-duplication.**
 
+```text
+function unique(list)
+    seen ← empty set
+    result ← empty list
+
+    for each x in list do
+        if not contains(seen, x) then
+            add(seen, x)
+            append x to result                  preserves first-seen order
+        end
+    end
+
+    return result                               O(n), versus O(n²) with nested loops
+```
+
 <!-- py:ops_sets:unique -->
 ```python
 def unique(values: list[Any]) -> list[Any]:
@@ -100,6 +115,15 @@ def unique(values: list[Any]) -> list[Any]:
 
 **Set algebra — note which side you iterate.**
 
+```text
+function intersection(A, B)
+    R ← empty set
+    for each x in the SMALLER of A, B do        iterate the small one, probe the big one
+        if contains(other, x) then add(R, x) end
+    end
+    return R                                    O(min(|A|, |B|))
+```
+
 <!-- py:ops_sets:intersection -->
 ```python
 def intersection(a: set[Any], b: set[Any]) -> set[Any]:
@@ -114,7 +138,14 @@ def intersection(a: set[Any], b: set[Any]) -> set[Any]:
 ```
 <!-- /py -->
 
-> **Iterate the smaller, probe the larger.** Both are `O(1)` per probe, so the loop count is what decides the cost.
+> **Iterate the smaller, probe the larger.** Both are `O(1)` per probe, so the loop count is what decides the cost. Getting this backwards on a 10-element set against a 10-million-element set is a 1,000,000× mistake.
+
+```text
+function union(A, B)
+    R ← copy of A
+    for each x in B do add(R, x) end            O(|A| + |B|)
+    return R
+```
 
 <!-- py:ops_sets:union -->
 ```python
@@ -127,6 +158,15 @@ def union(a: set[Any], b: set[Any]) -> set[Any]:
 ```
 <!-- /py -->
 
+```text
+function difference(A, B)                       A \ B
+    R ← empty set
+    for each x in A do
+        if not contains(B, x) then add(R, x) end
+    end
+    return R                                    O(|A|)
+```
+
 <!-- py:ops_sets:difference -->
 ```python
 def difference(a: set[Any], b: set[Any]) -> set[Any]:
@@ -136,6 +176,23 @@ def difference(a: set[Any], b: set[Any]) -> set[Any]:
 <!-- /py -->
 
 **The second most common use — "have I been here before?"**
+
+```text
+function bfs(start)
+    visited ← empty set                         without this, a cyclic graph loops forever
+    Q ← queue containing start
+    add(visited, start)
+
+    while Q is not empty do
+        node ← dequeue(Q)
+        for each neighbour of node do
+            if not contains(visited, neighbour) then
+                add(visited, neighbour)
+                enqueue(Q, neighbour)
+            end
+        end
+    end
+```
 
 <!-- py:ops_sets:seen_before -->
 ```python
@@ -160,7 +217,9 @@ def seen_before(start: Any, neighbours_of) -> list[Any]:
 
 Without the `visited` set, a cyclic graph makes this loop forever. The set turns an infinite walk into an `O(V+E)` traversal.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+> **The core three** — `add`, `contains` and `remove` — are a hash table with the value column deleted, so they are `O(1)` on average and are covered in [module 07](07-hash-tables.md).
+
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

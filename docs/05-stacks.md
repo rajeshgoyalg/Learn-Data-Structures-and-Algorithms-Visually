@@ -77,9 +77,16 @@ flowchart LR
 
 ## ⚙️ Operations
 
-A stack is a plain list with both other ends declared off-limits. That restriction *is* the data structure.
+Each operation is shown twice: the **idea** as pseudocode, then the **code** as a runnable Python function.
 
-**Push, pop, peek — all O(1), all at the same end.**
+**Push — put a value on the top.**
+
+```text
+function push(S, value)
+    if S.top = S.capacity - 1 then error "overflow" end
+    S.top ← S.top + 1
+    S.items[S.top] ← value
+```
 
 <!-- py:ops_stack:push -->
 ```python
@@ -88,6 +95,16 @@ def push(stack: list[Any], value: Any) -> None:
     stack.append(value)
 ```
 <!-- /py -->
+
+**Pop — remove and return the top.**
+
+```text
+function pop(S)
+    if S.top = -1 then error "underflow" end
+    value ← S.items[S.top]
+    S.top ← S.top - 1                   the value is not erased, just unreachable
+    return value
+```
 
 <!-- py:ops_stack:pop -->
 ```python
@@ -99,6 +116,16 @@ def pop(stack: list[Any]) -> Any:
 ```
 <!-- /py -->
 
+In the pseudocode `top` starts at `-1` for an empty stack — with 0-based indexing that means "no valid index yet". Python's `list` tracks that for us.
+
+**Peek — read the top without removing it.**
+
+```text
+function peek(S)
+    if S.top = -1 then error "empty" end
+    return S.items[S.top]
+```
+
 <!-- py:ops_stack:peek -->
 ```python
 def peek(stack: list[Any]) -> Any:
@@ -109,6 +136,13 @@ def peek(stack: list[Any]) -> Any:
 ```
 <!-- /py -->
 
+**isEmpty.**
+
+```text
+function isEmpty(S)
+    return S.top = -1
+```
+
 <!-- py:ops_stack:is_empty -->
 ```python
 def is_empty(stack: list[Any]) -> bool:
@@ -117,6 +151,22 @@ def is_empty(stack: list[Any]) -> bool:
 <!-- /py -->
 
 **The canonical application — balanced bracket checking.**
+
+```text
+function isBalanced(text)
+    S ← empty stack
+
+    for each ch in text do
+        if ch is one of ( [ { then
+            push(S, ch)
+        else if ch is one of ) ] } then
+            if isEmpty(S) then return false end         a closer with nothing open
+            if not matches(pop(S), ch) then return false end
+        end
+    end
+
+    return isEmpty(S)                   anything left open means unbalanced
+```
 
 <!-- py:ops_stack:is_balanced -->
 ```python
@@ -141,7 +191,9 @@ def is_balanced(text: str) -> bool:
 
 Every opener you push is a note saying *"remember to close this"*. The stack guarantees you close them in the reverse of the order you opened them — which is precisely what nesting means.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+> **A linked-list-backed stack** is the same two operations without a capacity limit: `push` prepends to the head, `pop` advances it. Both stay `O(1)`.
+
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

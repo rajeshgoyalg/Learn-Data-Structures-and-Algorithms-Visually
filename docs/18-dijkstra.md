@@ -76,9 +76,16 @@ flowchart LR
 
 ---
 
-## ⚙️ Operations
+## ⚙️ The algorithm
 
-**Relaxation — this single comparison is the whole algorithm.**
+**Relaxation — this single `if` is the whole algorithm.**
+
+```text
+if dist[u] + weight(u, v) < dist[v] then
+    dist[v] ← dist[u] + weight(u, v)         a cheaper route to v exists
+    prev[v] ← u                              remember how we got there
+end
+```
 
 <!-- py:ops_dijkstra:relax -->
 ```python
@@ -98,6 +105,37 @@ def relax(dist: dict, prev: dict, u: Hashable, v: Hashable, weight: float) -> bo
 "Relaxing" an edge means: *does going via `u` beat the best route to `v` I already know?* Everything else is bookkeeping to make sure each edge gets relaxed at the right time.
 
 **The full algorithm.**
+
+```text
+function dijkstra(graph, source)
+    for each vertex v in graph do
+        dist[v] ← ∞
+        prev[v] ← null
+    end
+    dist[source] ← 0
+
+    PQ ← priority queue containing (0, source)
+    settled ← empty set
+
+    while PQ is not empty do
+        (d, u) ← extractMin(PQ)                  the cheapest unsettled node
+
+        if u in settled then continue end        a stale queue entry — skip it
+        add u to settled                         dist[u] is now FINAL
+
+        for each edge (u, v, w) in graph do
+            if v in settled then continue end
+
+            if dist[u] + w < dist[v] then
+                dist[v] ← dist[u] + w
+                prev[v] ← u
+                insert (dist[v], v) into PQ      the old entry for v is now stale
+            end
+        end
+    end
+
+    return dist, prev
+```
 
 <!-- py:ops_dijkstra:dijkstra -->
 ```python
@@ -130,9 +168,22 @@ def dijkstra(adj: dict, source: Hashable) -> tuple[dict, dict]:
 ```
 <!-- /py -->
 
-> **Why "stale entries" instead of updating the queue?** A binary heap cannot cheaply find and update an arbitrary element. The standard trick is to push a *new* entry with the better distance and skip any entry whose node is already settled. It is simpler, and the extra entries are bounded by `E`.
+> **Why "stale entries" instead of updating the queue?** A binary heap cannot cheaply find and update an arbitrary element. The standard trick is to push a *new* entry with the better distance and simply skip any entry whose node is already settled. It is simpler, and the extra entries are bounded by `E`.
 
 **Reconstructing the actual path — this is what `prev` is for.**
+
+```text
+function path(prev, target)
+    route ← empty list
+    node ← target
+
+    while node ≠ null do
+        prepend node to route
+        node ← prev[node]                        walk backwards to the source
+    end
+
+    return route
+```
 
 <!-- py:ops_dijkstra:path_to -->
 ```python
@@ -164,7 +215,7 @@ def path_to(prev: dict, target: Hashable) -> list:
 
 Shortest path: **A → C → E → G**, cost **11**. Note it uses three edges, while `A → B → D → G` also uses three but costs 13 — BFS could have returned either.
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

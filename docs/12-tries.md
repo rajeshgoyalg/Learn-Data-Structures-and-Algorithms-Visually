@@ -75,7 +75,13 @@ flowchart LR
 
 ## ⚙️ Operations
 
-A node stores **no letter of its own** — its identity comes entirely from the path taken to reach it:
+**The node** stores no letter of its own — its identity comes entirely from the path taken to reach it.
+
+```text
+Node:
+    children      map from character → Node
+    isEndOfWord   boolean
+```
 
 <!-- py:nodes:TrieNode -->
 ```python
@@ -90,6 +96,18 @@ class TrieNode:
 <!-- /py -->
 
 **Insert.**
+
+```text
+function insert(root, word)
+    node ← root
+    for each ch in word do
+        if node.children has no ch then
+            node.children[ch] ← new Node()      only create what does not exist
+        end
+        node ← node.children[ch]
+    end
+    node.isEndOfWord ← true                     the flag is the whole point
+```
 
 <!-- py:ops_trie:insert -->
 ```python
@@ -111,6 +129,15 @@ Inserting "car" after "cat" creates exactly **one** new node — the `r`. The `c
 
 **The walk both lookups share.**
 
+```text
+function walk(node, s)
+    for each ch in s do
+        if node.children has no ch then return null end
+        node ← node.children[ch]
+    end
+    return node
+```
+
 <!-- py:ops_trie:walk -->
 ```python
 def walk(root: TrieNode, s: str) -> Optional[TrieNode]:
@@ -124,7 +151,17 @@ def walk(root: TrieNode, s: str) -> Optional[TrieNode]:
 ```
 <!-- /py -->
 
-**Search vs starts_with — the same walk, one different final line.**
+**Search vs startsWith — the same walk, one different final line.**
+
+```text
+function search(root, word)
+    node ← walk(root, word)
+    return node ≠ null and node.isEndOfWord      "ca" walks fine but is not a word
+
+function startsWith(root, prefix)
+    node ← walk(root, prefix)
+    return node ≠ null                           reaching the node is enough
+```
 
 <!-- py:ops_trie:search -->
 ```python
@@ -147,6 +184,22 @@ def starts_with(root: TrieNode, prefix: str) -> bool:
 > **This one-line difference is the whole feature.** A hash table can answer `search`. Only a trie can answer `starts_with` without scanning everything.
 
 **Autocomplete — walk to the prefix, then harvest the subtree.**
+
+```text
+function autocomplete(root, prefix)
+    node ← walk(root, prefix)
+    if node = null then return empty list end
+
+    results ← empty list
+    collect(node, prefix, results)
+    return results
+
+function collect(node, sofar, results)
+    if node.isEndOfWord then append sofar to results end
+    for each (ch, child) in node.children do
+        collect(child, sofar + ch, results)      a DFS over the subtree
+    end
+```
 
 <!-- py:ops_trie:autocomplete -->
 ```python
@@ -173,6 +226,17 @@ def autocomplete(root: TrieNode, prefix: str) -> list[str]:
 <!-- /py -->
 
 **Delete — the subtle one.**
+
+```text
+function delete(root, word)
+    node ← walk(root, word)
+    if node = null or not node.isEndOfWord then return false end
+    node.isEndOfWord ← false                     unmark, do not unlink
+
+    walking back up, prune a node only if:
+        it has no children, AND
+        it is not the end of some other word     ← "car" must survive deleting "cart"
+```
 
 <!-- py:ops_trie:delete -->
 ```python
@@ -201,7 +265,7 @@ def delete(root: TrieNode, word: str) -> bool:
 ```
 <!-- /py -->
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 

@@ -115,6 +115,14 @@ def fib_naive(n: int) -> int:
 
 **Top-down — memoisation. Write the recursion, then cache it.**
 
+```text
+function fib(n, memo)
+    if n ≤ 1 then return n end
+    if memo has n then return memo[n] end     ← the entire technique
+    memo[n] ← fib(n-1, memo) + fib(n-2, memo)
+    return memo[n]
+```
+
 <!-- py:ops_paradigms:fib_memo -->
 ```python
 def fib_memo(n: int, memo: Optional[dict[int, int]] = None) -> int:
@@ -131,6 +139,19 @@ def fib_memo(n: int, memo: Optional[dict[int, int]] = None) -> int:
 <!-- /py -->
 
 **Bottom-up — tabulation. No recursion at all.**
+
+```text
+function fib(n)
+    table ← array of size n+1
+    table[0] ← 0
+    table[1] ← 1                             the base cases, seeded
+
+    for i ← 2 to n do
+        table[i] ← table[i-1] + table[i-2]   dependencies already computed
+    end
+
+    return table[n]
+```
 
 <!-- py:ops_paradigms:fib_table -->
 ```python
@@ -165,6 +186,17 @@ def fib_two_vars(n: int) -> int:
 
 ### Greedy
 
+```text
+function greedy(target, coins)
+    solution ← empty
+    while target > 0 do
+        c ← the largest coin ≤ target        never reconsidered
+        append c to solution
+        target ← target - c
+    end
+    return solution
+```
+
 <!-- py:ops_paradigms:coin_change_greedy -->
 ```python
 def coin_change_greedy(target: int, coins: tuple[int, ...] = (25, 10, 5, 1)) -> list[int]:
@@ -186,6 +218,20 @@ def coin_change_greedy(target: int, coins: tuple[int, ...] = (25, 10, 5, 1)) -> 
 **When it works:** coins 25/10/5/1 making 63 → `25+25+10+1+1+1`, six coins, provably optimal for this coin system.
 
 **When it fails:** change one thing.
+
+```text
+function fewestCoins(target, coins)
+    best[0] ← 0
+    best[1..target] ← ∞
+
+    for amount ← 1 to target do
+        for each coin ≤ amount do
+            best[amount] ← min(best[amount], best[amount - coin] + 1)
+        end
+    end
+
+    return best[target]                      considers every combination
+```
 
 <!-- py:ops_paradigms:coin_change_dp -->
 ```python

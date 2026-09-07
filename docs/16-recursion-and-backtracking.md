@@ -77,7 +77,27 @@ flowchart LR
 
 ## ⚙️ Operations
 
-**All three required parts, in four lines.**
+**The template every recursive function fits.**
+
+```text
+function solve(problem)
+    if problem is small enough then          1. BASE CASE
+        return the answer directly
+    end
+
+    smaller ← reduce(problem)                3. PROGRESS — must strictly shrink
+    return combine(solve(smaller))           2. RECURSIVE CASE
+```
+
+Miss part 1 and it never stops. Miss part 3 and it never stops *even with* a base case, because it never reaches it.
+
+**Factorial — the smallest complete example.**
+
+```text
+function factorial(n)
+    if n ≤ 1 then return 1 end               base case
+    return n × factorial(n - 1)              recursive case, n-1 is progress
+```
 
 <!-- py:ops_recursion:factorial -->
 ```python
@@ -91,7 +111,52 @@ def factorial(n: int) -> int:
 
 The call `factorial(4)` builds four stack frames before a single multiplication happens. Then `1`, `2`, `6`, `24` come back up.
 
+**Tree traversal — where recursion is genuinely the clearest code.**
+
+```text
+function inOrder(node)
+    if node = null then return end           base case: an empty tree
+    inOrder(node.left)                       each subtree is a smaller instance
+    visit(node)
+    inOrder(node.right)
+```
+
+The Python for this lives in [module 10](10-binary-search-trees.md#️-operations). Writing it iteratively means building and managing the stack yourself; here the base case is simply "the tree ran out", and progress is guaranteed because subtrees are strictly smaller.
+
 **Backtracking — recursion plus one extra line.**
+
+```text
+function backtrack(state)
+    if state is a complete solution then
+        record(state)
+        return
+    end
+
+    for each candidate move from state do
+        if not legal(state, move) then continue end     ← the pruning happens HERE
+
+        apply(state, move)                              choose
+        backtrack(state)                                explore
+        undo(state, move)                               ← UNCHOOSE. This is backtracking.
+    end
+```
+
+> **The `undo` line is the entire difference from brute force.** Brute force enumerates every arrangement and tests each one. Backtracking abandons a partial arrangement the instant it becomes illegal — discarding every completion of it, unexamined. For 8 queens that is the difference between 4,426,165,368 arrangements and about 2,000 explored states.
+
+**N queens — the canonical instance.**
+
+```text
+function placeQueens(board, row)
+    if row = board.size then record a solution; return end
+
+    for col ← 0 to board.size - 1 do
+        if isSafe(board, row, col) then
+            board[row] ← col                            choose
+            placeQueens(board, row + 1)                 explore
+            board[row] ← empty                          UNCHOOSE
+        end
+    end
+```
 
 <!-- py:ops_recursion:solve_n_queens -->
 ```python
@@ -124,12 +189,10 @@ def solve_n_queens(n: int = 4) -> list[list[int]]:
 ```
 <!-- /py -->
 
-> **The `placed.pop()` is the entire difference from brute force.** Brute force enumerates every arrangement and tests each one. Backtracking abandons a partial arrangement the instant it becomes illegal — discarding every completion of it, unexamined.
-
 **Converting recursion to iteration.**
 
 ```text
-tail recursion - the recursive call is the last thing done:
+tail recursion — the recursive call is the last thing done:
 
     def sum_to(n, acc=0):                 def sum_to(n):
         if n == 0: return acc                 acc = 0
@@ -137,14 +200,14 @@ tail recursion - the recursive call is the last thing done:
                                                   acc += n; n -= 1
                                               return acc
 
-general recursion - build the stack yourself:
+general recursion — build the stack yourself:
 
     push the initial state
     while the stack is not empty:
         pop a state, process it, push its sub-states
 ```
 
-Every function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
+Every Python function above is covered by [`examples/test_ops.py`](../examples/test_ops.py).
 
 ---
 
