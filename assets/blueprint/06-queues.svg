@@ -53,8 +53,8 @@
   </g>
   <rect x="578" y="578" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
   <path d="M578 604 L878 604 M764 604 L764 640" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
-  <text x="590" y="595" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
-  <text x="590" y="624" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
-  <text x="776" y="624" font-size="10" fill="#fbbf24">SHEET 06 / 18</text>
+  <text class="tb" x="590" y="595" font-weight="700" style="fill:#e2e8f0;font-size:12">VISUAL DSA / BLUEPRINT</text>
+  <text class="tb" x="590" y="624" style="fill:#94a3b8;font-size:10">SCALE CONCEPTUAL</text>
+  <text class="tb" x="776" y="624" style="fill:#fbbf24;font-size:10">SHEET 06 / 18</text>
 
 </svg>

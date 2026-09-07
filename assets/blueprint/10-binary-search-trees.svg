@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="Binary search tree - anatomy">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 666" width="900" height="666" role="img" aria-label="Binary search tree - anatomy">
   <title>Binary search tree - anatomy</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="900" height="666" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="666" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="664.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Binary search tree - anatomy</text>
   <text class="sub" x="24" y="54">An ordering invariant that halves the problem at every step</text>
   <text class="lbl-l hdrline" x="24" y="96">the BST invariant is local but its effect is global: it holds at every node, so a whole subtree can be discarded in one comparison</text>
@@ -73,10 +73,10 @@
   <text x="50" y="550" font-size="12" fill="#94a3b8">leaf: remove it.   one child: splice the child in.</text>
   <text x="50" y="571" font-size="12" fill="#94a3b8">two children: replace it with its in-order successor (the smallest value in the right subtree)</text>
   </g>
-  <rect x="578" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
-  <path d="M578 564 L878 564 M764 564 L764 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
-  <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
-  <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
-  <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 10 / 18</text>
+  <rect x="578" y="584" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 610 L878 610 M764 610 L764 646" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text class="tb" x="590" y="601" font-weight="700" style="fill:#e2e8f0;font-size:12">VISUAL DSA / BLUEPRINT</text>
+  <text class="tb" x="590" y="630" style="fill:#94a3b8;font-size:10">SCALE CONCEPTUAL</text>
+  <text class="tb" x="776" y="630" style="fill:#fbbf24;font-size:10">SHEET 10 / 18</text>
 
 </svg>

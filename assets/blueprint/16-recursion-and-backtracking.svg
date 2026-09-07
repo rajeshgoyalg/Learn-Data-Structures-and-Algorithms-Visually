@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-label="Recursion - the three required parts">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 665" width="900" height="665" role="img" aria-label="Recursion - the three required parts">
   <title>Recursion - the three required parts</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="900" height="600" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="900" height="600" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="898.5" height="598.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="900" height="665" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="665" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="663.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Recursion - the three required parts</text>
   <text class="sub" x="24" y="54">Base case, recursive case, and measurable progress</text>
   <text class="lbl-l hdrline" x="24" y="96">every correct recursive function has exactly three parts - if one is missing, it either loops forever or returns the wrong answer</text>
@@ -55,10 +55,10 @@
   <path d="M50 548 L870 548" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="570" font-size="12" fill="#94a3b8">space is O(depth), because every paused frame is real memory - deep recursion overflows the stack</text>
   </g>
-  <rect x="578" y="518" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
-  <path d="M578 544 L878 544 M764 544 L764 580" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
-  <text x="590" y="535" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
-  <text x="590" y="564" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
-  <text x="776" y="564" font-size="10" fill="#fbbf24">SHEET 16 / 18</text>
+  <rect x="578" y="583" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 609 L878 609 M764 609 L764 645" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text class="tb" x="590" y="600" font-weight="700" style="fill:#e2e8f0;font-size:12">VISUAL DSA / BLUEPRINT</text>
+  <text class="tb" x="590" y="629" style="fill:#94a3b8;font-size:10">SCALE CONCEPTUAL</text>
+  <text class="tb" x="776" y="629" style="fill:#fbbf24;font-size:10">SHEET 16 / 18</text>
 
 </svg>

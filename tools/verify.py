@@ -279,6 +279,45 @@ def _():
 
 
 
+@check("no blueprint text runs under the title block")
+def _():
+    bad = []
+    for f in sorted(glob.glob("assets/blueprint/*.svg")):
+        s = open(f).read()
+        m = re.search(r'viewBox="0 0 (\d+) (\d+)"', s)
+        if not m:
+            continue
+        W, H = int(m.group(1)), int(m.group(2))
+        box = (W - 322, H - 82, W - 22, H - 20)
+        for attrs, inner in re.findall(r"<text([^>]*)>(.*?)</text>", s, re.S):
+            cls = (re.search(r'class="([^"]*)"', attrs) or [None, ""])[1]
+            if "tb" in cls.split():
+                continue                      # the block's own labels belong there
+            anchor = (re.search(r'text-anchor="([^"]*)"', attrs) or [None, None])[1]
+            if anchor is None:
+                anchor = "middle" if any(c in CLASS_MID for c in cls.split()) else "start"
+            if anchor != "start":
+                continue
+            xm = re.search(r'\sx="([\d.-]+)"', attrs)
+            ym = re.search(r'\sy="([\d.-]+)"', attrs)
+            if not (xm and ym):
+                continue
+            x, y = float(xm.group(1)), float(ym.group(1))
+            fsm = re.search(r'font-size="?([\d.]+)', attrs)
+            fs = float(fsm.group(1)) if fsm else next(
+                (v for k, v in CLASS_FS.items() if k in cls.split()), 12)
+            lines = re.findall(r"<tspan[^>]*>(.*?)</tspan>", inner, re.S) or [inner]
+            for i, ln in enumerate(lines):
+                t = re.sub(r"<[^>]+>", "", ln)
+                if not t.strip():
+                    continue
+                yy = y + i * (fs + 6)
+                if (x + len(t) * CHAR_W * fs > box[0] and x < box[2]
+                        and yy + fs * 0.4 > box[1] and yy - fs * 0.8 < box[3]):
+                    bad.append(f'{f}: "{t.strip()[:42]}"')
+    return bad
+
+
 # --------------------------------------------------------------------- python
 @check("every ```python block in docs/ parses as valid Python")
 def _():

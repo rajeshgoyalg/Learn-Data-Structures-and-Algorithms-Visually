@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" role="img" aria-label="Searching - the decision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 615" width="880" height="615" role="img" aria-label="Searching - the decision">
   <title>Searching - the decision</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="880" height="560" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="880" height="560" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="878.5" height="558.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="880" height="615" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="880" height="615" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="878.5" height="613.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Searching - the decision</text>
   <text class="sub" x="24" y="54">Sorted or not is the whole question</text>
   <text class="lbl-l hdrline" x="24" y="96">only two questions matter before you search: is the data sorted, and how many times will you search it?</text>
@@ -57,10 +57,10 @@
   <path d="M60 498 L820 498" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="60" y="520" font-size="12" fill="#94a3b8">use mid = lo + (hi - lo) / 2, never (lo + hi) / 2 - the latter can overflow on large ranges</text>
   </g>
-  <rect x="558" y="478" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
-  <path d="M558 504 L858 504 M744 504 L744 540" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
-  <text x="570" y="495" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
-  <text x="570" y="524" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
-  <text x="756" y="524" font-size="10" fill="#fbbf24">SHEET 14 / 18</text>
+  <rect x="558" y="533" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M558 559 L858 559 M744 559 L744 595" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text class="tb" x="570" y="550" font-weight="700" style="fill:#e2e8f0;font-size:12">VISUAL DSA / BLUEPRINT</text>
+  <text class="tb" x="570" y="579" style="fill:#94a3b8;font-size:10">SCALE CONCEPTUAL</text>
+  <text class="tb" x="756" y="579" style="fill:#fbbf24;font-size:10">SHEET 14 / 18</text>
 
 </svg>

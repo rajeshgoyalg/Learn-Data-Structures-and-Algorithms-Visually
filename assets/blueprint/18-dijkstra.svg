@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" width="900" height="620" role="img" aria-label="Dijkstra - anatomy">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 675" width="900" height="675" role="img" aria-label="Dijkstra - anatomy">
   <title>Dijkstra - anatomy</title>
   <defs>
     <pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -27,9 +27,9 @@
   .edge{stroke:#38bdf8;stroke-width:1.6;fill:none}
 
   </style>
-  <rect x="0" y="0" width="900" height="620" rx="14" fill="#0b1c2c"/>
-  <rect x="0" y="0" width="900" height="620" rx="14" fill="url(#g)"/>
-  <rect x="0.75" y="0.75" width="898.5" height="618.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
+  <rect x="0" y="0" width="900" height="675" rx="14" fill="#0b1c2c"/>
+  <rect x="0" y="0" width="900" height="675" rx="14" fill="url(#g)"/>
+  <rect x="0.75" y="0.75" width="898.5" height="673.5" rx="13.5" fill="none" stroke="#38bdf8" stroke-width="1.5" opacity="0.35"/>
   <text class="title" x="24" y="34">Dijkstra - anatomy</text>
   <text class="sub" x="24" y="54">Two tables, one priority queue, one repeated move</text>
   <text class="lbl-l hdrline" x="24" y="96">Dijkstra keeps two tables and one priority queue, and repeats a single move until the queue empties</text>
@@ -62,10 +62,10 @@
   <path d="M50 558 L850 558" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
   <text x="50" y="580" font-size="12" fill="#94a3b8">O((V + E) log V) with a binary heap - the log V is the heap operation on every settle and every relax</text>
   </g>
-  <rect x="578" y="538" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
-  <path d="M578 564 L878 564 M764 564 L764 600" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
-  <text x="590" y="555" font-size="12" font-weight="700" fill="#e2e8f0">VISUAL DSA / BLUEPRINT</text>
-  <text x="590" y="584" font-size="10" fill="#94a3b8">SCALE CONCEPTUAL</text>
-  <text x="776" y="584" font-size="10" fill="#fbbf24">SHEET 18 / 18</text>
+  <rect x="578" y="593" width="300" height="62" rx="4" fill="#0a1826" stroke="#38bdf8" stroke-width="1.2" opacity="0.95"/>
+  <path d="M578 619 L878 619 M764 619 L764 655" stroke="#38bdf8" stroke-width="1" opacity="0.45"/>
+  <text class="tb" x="590" y="610" font-weight="700" style="fill:#e2e8f0;font-size:12">VISUAL DSA / BLUEPRINT</text>
+  <text class="tb" x="590" y="639" style="fill:#94a3b8;font-size:10">SCALE CONCEPTUAL</text>
+  <text class="tb" x="776" y="639" style="fill:#fbbf24;font-size:10">SHEET 18 / 18</text>
 
 </svg>
