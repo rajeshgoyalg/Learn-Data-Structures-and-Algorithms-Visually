@@ -130,6 +130,96 @@ function nextTurn(currentPlayer)
 
 ---
 
+<!-- python:examples/linear.py:DoublyLinkedList,CircularLinkedList -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+`delete` here is O(1) given nothing but the node, which a singly linked list cannot do:
+
+```python
+class DoublyLinkedList:
+    def __init__(self, values: Optional[list[Any]] = None) -> None:
+        self.head: Optional[DNode] = None
+        self.tail: Optional[DNode] = None
+        for v in values or []:
+            self.append(v)
+
+    def append(self, value: Any) -> DNode:
+        node = DNode(value)
+        if self.tail is None:
+            self.head = self.tail = node
+        else:
+            node.prev = self.tail
+            self.tail.next = node
+            self.tail = node
+        return node
+
+    def delete(self, node: DNode) -> Any:
+        """O(1) given nothing but the node itself -- impossible when singly linked."""
+        if node.prev is not None:
+            node.prev.next = node.next
+        else:
+            self.head = node.next
+        if node.next is not None:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+        node.prev = node.next = None
+        return node.value
+
+    def forward(self) -> list[Any]:
+        out, n = [], self.head
+        while n is not None:
+            out.append(n.value)
+            n = n.next
+        return out
+
+    def backward(self) -> list[Any]:
+        out, n = [], self.tail
+        while n is not None:
+            out.append(n.value)
+            n = n.prev
+        return out
+
+
+class CircularLinkedList:
+    """The tail points back at the head, so there is no null to stop on."""
+
+    def __init__(self, values: Optional[list[Any]] = None) -> None:
+        self.head: Optional[Node] = None
+        for v in values or []:
+            self.append(v)
+
+    def append(self, value: Any) -> Node:
+        node = Node(value)
+        if self.head is None:
+            self.head = node
+            node.next = node
+            return node
+        tail = self.head
+        while tail.next is not self.head:
+            tail = tail.next            # type: ignore[assignment]
+        tail.next = node
+        node.next = self.head
+        return node
+
+    def traverse_once(self) -> list[Any]:
+        """Terminate on 'back where I started', never on None."""
+        if self.head is None:
+            return []
+        out, current = [], self.head
+        while True:
+            out.append(current.value)
+            current = current.next      # type: ignore[assignment]
+            if current is self.head:
+                return out
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Singly | Doubly | Note |

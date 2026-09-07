@@ -165,6 +165,142 @@ function postOrder(node)                LEFT, RIGHT, node  →  free / evaluate
 
 ---
 
+<!-- python:examples/hierarchical.py:BST -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+All four traversals are one function with the visit line moved:
+
+```python
+class BST:
+    """Every value in the left subtree is smaller, every value on the right larger.
+
+    The claim is about whole subtrees, which is what licenses discarding a
+    branch without inspecting it.
+    """
+
+    def __init__(self, values: Optional[list[Any]] = None) -> None:
+        self.root: Optional[TreeNode] = None
+        for v in values or []:
+            self.insert(v)
+
+    def search(self, target: Any) -> bool:
+        node = self.root
+        while node is not None:
+            if target == node.value:
+                return True
+            node = node.left if target < node.value else node.right
+        return False
+
+    def insert(self, value: Any) -> None:
+        self.root = self._insert(self.root, value)
+
+    def _insert(self, node: Optional[TreeNode], value: Any) -> TreeNode:
+        if node is None:
+            return TreeNode(value)           # you fell off the tree: plant here
+        if value < node.value:
+            node.left = self._insert(node.left, value)
+        elif value > node.value:
+            node.right = self._insert(node.right, value)
+        return node                          # equal values are ignored
+
+    def delete(self, value: Any) -> None:
+        self.root = self._delete(self.root, value)
+
+    def _delete(self, node: Optional[TreeNode], value: Any) -> Optional[TreeNode]:
+        if node is None:
+            return None
+        if value < node.value:
+            node.left = self._delete(node.left, value)
+        elif value > node.value:
+            node.right = self._delete(node.right, value)
+        else:
+            if node.left is None:
+                return node.right            # no children, or only a right one
+            if node.right is None:
+                return node.left
+            successor = node.right           # two children: take the in-order
+            while successor.left is not None:
+                successor = successor.left   # successor -- the only value that
+            node.value = successor.value     # keeps the invariant intact
+            node.right = self._delete(node.right, successor.value)
+        return node
+
+    def minimum(self) -> Any:
+        node = self.root
+        if node is None:
+            raise IndexError("empty")
+        while node.left is not None:
+            node = node.left
+        return node.value
+
+    def maximum(self) -> Any:
+        node = self.root
+        if node is None:
+            raise IndexError("empty")
+        while node.right is not None:
+            node = node.right
+        return node.value
+
+    def height(self) -> int:
+        def h(n: Optional[TreeNode]) -> int:
+            return 0 if n is None else 1 + max(h(n.left), h(n.right))
+        return h(self.root)
+
+    # --- traversals: one function, the visit line in three positions ---
+    def in_order(self) -> list[Any]:
+        out: list[Any] = []
+
+        def walk(n: Optional[TreeNode]) -> None:
+            if n is None:
+                return
+            walk(n.left)
+            out.append(n.value)              # LEFT, node, RIGHT -> sorted output
+            walk(n.right)
+        walk(self.root)
+        return out
+
+    def pre_order(self) -> list[Any]:
+        out: list[Any] = []
+
+        def walk(n: Optional[TreeNode]) -> None:
+            if n is None:
+                return
+            out.append(n.value)              # node, LEFT, RIGHT -> serialise
+            walk(n.left)
+            walk(n.right)
+        walk(self.root)
+        return out
+
+    def post_order(self) -> list[Any]:
+        out: list[Any] = []
+
+        def walk(n: Optional[TreeNode]) -> None:
+            if n is None:
+                return
+            walk(n.left)
+            walk(n.right)
+            out.append(n.value)              # LEFT, RIGHT, node -> free / evaluate
+        walk(self.root)
+        return out
+
+    def level_order(self) -> list[Any]:
+        """The only one that needs an explicit queue rather than the call stack."""
+        if self.root is None:
+            return []
+        out, queue = [], [self.root]
+        while queue:
+            node = queue.pop(0)
+            out.append(node.value)
+            queue.extend(n for n in (node.left, node.right) if n is not None)
+        return out
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Balanced | Degenerate | Why |

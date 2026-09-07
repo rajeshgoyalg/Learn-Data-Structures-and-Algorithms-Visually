@@ -148,6 +148,84 @@ function put(T, key, value)                     linear probing
 
 ---
 
+<!-- python:examples/keyed.py:HashTable -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+Separate chaining with a load factor that triggers the rehash:
+
+```python
+class HashTable:
+    """Separate chaining, with a load factor that triggers a rehash.
+
+    The index is `hash(key) % capacity`, which is why changing the capacity
+    moves essentially every key and makes a resize O(n).
+    """
+
+    def __init__(self, capacity: int = 8) -> None:
+        self._capacity = max(1, capacity)
+        self._buckets: list[list[tuple[Any, Any]]] = [[] for _ in range(self._capacity)]
+        self._count = 0
+        self.rehashes = 0
+
+    def _index(self, key: Any) -> int:
+        return hash(key) % self._capacity
+
+    def put(self, key: Any, value: Any) -> None:
+        chain = self._buckets[self._index(key)]
+        for i, (k, _) in enumerate(chain):
+            if k == key:
+                chain[i] = (key, value)      # update, never duplicate
+                return
+        chain.append((key, value))
+        self._count += 1
+        if self._count / self._capacity > LOAD_FACTOR_LIMIT:
+            self._resize()
+
+    def get(self, key: Any, default: Any = None) -> Any:
+        for k, v in self._buckets[self._index(key)]:
+            if k == key:                     # compare the FULL key: a matching
+                return v                     # bucket only means the hashes agreed
+        return default
+
+    def delete(self, key: Any) -> bool:
+        chain = self._buckets[self._index(key)]
+        for i, (k, _) in enumerate(chain):
+            if k == key:
+                chain.pop(i)
+                self._count -= 1
+                return True
+        return False
+
+    def __contains__(self, key: Any) -> bool:
+        return any(k == key for k, _ in self._buckets[self._index(key)])
+
+    def __len__(self) -> int:
+        return self._count
+
+    @property
+    def load_factor(self) -> float:
+        return self._count / self._capacity
+
+    def _resize(self) -> None:
+        entries = [pair for chain in self._buckets for pair in chain]
+        self._capacity *= 2
+        self._buckets = [[] for _ in range(self._capacity)]
+        self._count = 0
+        self.rehashes += 1
+        for k, v in entries:
+            self.put(k, v)                   # every key gets a new index
+
+    def items(self) -> Iterator[tuple[Any, Any]]:
+        for chain in self._buckets:
+            yield from chain
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Average | Worst | Why the worst case |

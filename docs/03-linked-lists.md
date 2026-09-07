@@ -153,6 +153,96 @@ function reverse(head)
 
 ---
 
+<!-- python:examples/linear.py:Node,SinglyLinkedList -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+Note the order of the two writes in `insert_after` — reverse them and the tail is leaked:
+
+```python
+class Node:
+    """A singly linked list node: one payload, one pointer."""
+
+    __slots__ = ("value", "next")
+
+    def __init__(self, value: Any, next: Optional["Node"] = None) -> None:
+        self.value = value
+        self.next = next
+
+
+class SinglyLinkedList:
+    def __init__(self, values: Optional[list[Any]] = None) -> None:
+        self.head: Optional[Node] = None
+        for v in reversed(values or []):
+            self.prepend(v)
+
+    def prepend(self, value: Any) -> Node:
+        """The cheapest insertion there is: two writes, always O(1)."""
+        self.head = Node(value, self.head)
+        return self.head
+
+    @staticmethod
+    def insert_after(node: Node, value: Any) -> Node:
+        """O(1) once you hold `node`. Order matters: adopt the tail FIRST."""
+        fresh = Node(value)
+        fresh.next = node.next        # 1. the new node adopts the rest
+        node.next = fresh             # 2. the predecessor adopts the new node
+        return fresh
+
+    @staticmethod
+    def delete_after(node: Node) -> Optional[Any]:
+        """Nothing is erased -- the node is routed around and becomes garbage."""
+        victim = node.next
+        if victim is None:
+            return None
+        node.next = victim.next
+        return victim.value
+
+    def get(self, k: int) -> Any:
+        """O(n): there is no index arithmetic here, only k hops."""
+        current = self.head
+        for _ in range(k):
+            if current is None:
+                raise IndexError("out of range")
+            current = current.next
+        if current is None:
+            raise IndexError("out of range")
+        return current.value
+
+    def reverse(self) -> None:
+        """Three pointers: flipping a link destroys the only route onwards."""
+        previous, current = None, self.head
+        while current is not None:
+            following = current.next     # save it before you overwrite it
+            current.next = previous      # flip the arrow
+            previous, current = current, following
+        self.head = previous             # the old tail is the new head
+
+    def has_cycle(self) -> bool:
+        """Floyd's tortoise and hare: O(n) time, O(1) space."""
+        slow = fast = self.head
+        while fast is not None and fast.next is not None:
+            slow = slow.next             # type: ignore[union-attr]
+            fast = fast.next.next
+            if slow is fast:
+                return True
+        return False
+
+    def to_list(self) -> list[Any]:
+        out, seen = [], set()
+        current = self.head
+        while current is not None and id(current) not in seen:
+            seen.add(id(current))
+            out.append(current.value)
+            current = current.next
+        return out
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Best | Average | Worst | Why |

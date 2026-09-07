@@ -138,6 +138,60 @@ Every opener you push is a note saying *"remember to close this"*. The stack gua
 
 ---
 
+<!-- python:examples/restricted.py:Stack,is_balanced -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+The bracket checker is the canonical application — the stack *is* the nesting:
+
+```python
+class Stack:
+    """LIFO. Only one end is reachable, and that restriction is the point."""
+
+    def __init__(self) -> None:
+        self._items: list[Any] = []
+
+    def push(self, value: Any) -> None:
+        self._items.append(value)
+
+    def pop(self) -> Any:
+        if not self._items:
+            raise IndexError("underflow: pop from an empty stack")
+        return self._items.pop()
+
+    def peek(self) -> Any:
+        if not self._items:
+            raise IndexError("empty")
+        return self._items[-1]
+
+    def is_empty(self) -> bool:
+        return not self._items
+
+    def __len__(self) -> int:
+        return len(self._items)
+
+
+def is_balanced(text: str) -> bool:
+    """Every opener is a note saying 'remember to close this'.
+
+    The stack guarantees they close in the reverse of the order they opened,
+    which is exactly what nesting means.
+    """
+    stack: list[str] = []
+    for ch in text:
+        if ch in "([{":
+            stack.append(ch)
+        elif ch in ")]}":
+            if not stack or stack.pop() != PAIRS[ch]:
+                return False
+    return not stack
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Time | Space | Why |

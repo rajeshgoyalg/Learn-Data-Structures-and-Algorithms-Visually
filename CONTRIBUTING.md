@@ -44,9 +44,20 @@ Every loop also holds at its first and last frame so a reader can take in the st
 
 **GitHub does not render Mermaid `mindmap` diagrams.** Mindmaps in this repo are written as `flowchart LR` with `classDef` styling, which renders everywhere. Do not "fix" them to `mindmap` syntax — it will silently produce a broken code block on GitHub.
 
-### 6. Pseudocode only
+### 6. Pseudocode explains; Python runs
 
-No real programming language anywhere in `docs/`. The dialect is defined in [`docs/00-how-to-read-this.md`](docs/00-how-to-read-this.md): `←` for assignment, `function`/`end`, `for each … in`, 0-based indexing. Keeping it language-neutral is the point — the video teaches the idea, not the syntax.
+Every operation is shown twice. The **pseudocode** is the explanation and stays language-neutral — the dialect is defined in [`docs/00-how-to-read-this.md`](docs/00-how-to-read-this.md): `←` for assignment, `function`/`end`, `for each … in`, 0-based indexing.
+
+The **Python** is real code and lives in [`examples/`](examples/), never written directly into a module. `tools/sync_examples.py` extracts it into the doc between `<!-- python:... -->` markers:
+
+```bash
+python3 tools/sync_examples.py          # after changing an implementation
+python3 tools/sync_examples.py --check  # report drift only
+```
+
+`tools/verify.py` fails if a doc block has drifted from its source, if a snippet is not valid Python, or if the test suite does not pass. So **edit `examples/`, then re-sync** — hand-editing a `python` block in a module will be caught and reverted.
+
+Anything you add to `examples/` needs a test in `examples/test_examples.py`. Untested code in a teaching repo is worse than no code.
 
 ### 7. Every module has the same eleven blocks
 
@@ -60,7 +71,7 @@ Analogy → animation → mental model → blueprint → mindmap → operations 
 python3 tools/verify.py
 ```
 
-Sixteen checks, stdlib only — no install, no build step. CI runs the identical
+Nineteen checks, stdlib only — no install, no build step. CI runs the identical
 file on every push and pull request, so a green local run means a green PR.
 
 It covers: SVG well-formedness, no `<script>` and no external references, the
@@ -69,7 +80,9 @@ swatch alignment, blueprint title-block anchoring, frame animations showing two
 frames at once, internal links and anchors, the eleven-block module template,
 unsupported Mermaid `mindmap` blocks, unclosed `<details>`, duplicate
 flashcards, stated counts drifting from reality, orphaned assets, and gallery
-links reverting to raw markdown.
+links reverting to raw markdown. The last three cover the Python: every
+snippet parses, no snippet has drifted from `examples/`, and the 76-test
+suite passes.
 
 The text-overflow check models the monospace advance at `0.60 × font-size` —
 the same estimate the generator wraps with — so it catches text that never went

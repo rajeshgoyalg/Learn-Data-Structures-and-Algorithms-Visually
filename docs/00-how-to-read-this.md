@@ -40,7 +40,7 @@ All three are plain SVG with the animation written in CSS inside the file. There
 
 ## The pseudocode dialect
 
-This repo uses **no real programming language on purpose** — the video it follows teaches the idea, not the syntax. One dialect is used everywhere:
+Each module explains its operations twice. **Pseudocode first**, because the video it follows teaches the idea rather than the syntax — one dialect is used everywhere:
 
 ```text
 function name(argument, argument)
@@ -63,6 +63,18 @@ null                            "points at nothing"
 
 **Indexing is 0-based** throughout, matching every diagram: the first element of a 7-element array is at index `0`, the last at index `6`.
 
+Then a **🐍 Python implementation** block, collapsed so it never interrupts the reading flow:
+
+- it is **real, runnable code** — not illustrative fragments
+- it lives in [`examples/`](../examples/) and is extracted into the module by `tools/sync_examples.py`, so the two cannot drift apart
+- every function and class in it is covered by [`examples/test_examples.py`](../examples/test_examples.py) — 76 tests, stdlib `unittest`, run in CI
+
+```bash
+python3 -m unittest discover -s examples -t .
+```
+
+So a claim a module makes about its code is a claim something actually checks. Read the pseudocode to understand the idea; open the Python when you want to run it.
+
 ---
 
 ## The eleven blocks in every module
@@ -74,7 +86,7 @@ null                            "points at nothing"
 | 3 | 🧠 **Mental model** | the analogy mapped term-by-term onto the real structure |
 | 4 | 📐 **Blueprint** | the same thing again, but static and fully labelled |
 | 5 | 🗺️ **Mindmap** | the shape of the module, so you know what is coming |
-| 6 | ⚙️ **Operations** | pseudocode, one block per operation |
+| 6 | ⚙️ **Operations** | pseudocode, one block per operation, then a collapsible tested Python implementation |
 | 7 | ⏱️ **Complexity** | best / average / worst / space, with the *reason* |
 | 8 | ⚖️ **Trade-offs** | when to reach for it and when not to |
 | 9 | 🃏 **Flashcards** | click to reveal — test yourself before moving on |

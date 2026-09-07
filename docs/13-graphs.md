@@ -195,6 +195,97 @@ Meeting a node that is still `IN_PROGRESS` means you have looped back onto your 
 
 ---
 
+<!-- python:examples/graphs.py:Graph,bfs,dfs,has_cycle -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+`bfs` and `dfs` differ only in queue versus stack:
+
+```python
+class Graph:
+    """Adjacency list: O(V+E) space, the right default for sparse graphs.
+
+    A matrix would answer 'is u next to v?' in O(1) but cost O(V^2) memory --
+    a million vertices with ten edges each would need 10^12 mostly-zero cells.
+    """
+
+    def __init__(self, directed: bool = False) -> None:
+        self.directed = directed
+        self.adj: dict[Hashable, list[tuple[Hashable, float]]] = {}
+
+    def add_vertex(self, v: Hashable) -> None:
+        self.adj.setdefault(v, [])
+
+    def add_edge(self, u: Hashable, v: Hashable, weight: float = 1.0) -> None:
+        self.add_vertex(u)
+        self.add_vertex(v)
+        self.adj[u].append((v, weight))
+        if not self.directed:
+            self.adj[v].append((u, weight))
+
+    def neighbours(self, v: Hashable) -> list[Hashable]:
+        return [n for n, _ in self.adj.get(v, [])]
+
+    def __len__(self) -> int:
+        return len(self.adj)
+
+
+def bfs(graph: Graph, start: Hashable) -> list[Hashable]:
+    """A queue makes it breadth-first: distance k finishes before k+1 begins."""
+    visited = {start}                        # mark on ENQUEUE, not on dequeue,
+    queue = deque([start])                   # or a node enters the queue twice
+    order: list[Hashable] = []
+    while queue:
+        node = queue.popleft()
+        order.append(node)
+        for n in graph.neighbours(node):
+            if n not in visited:
+                visited.add(n)
+                queue.append(n)
+    return order
+
+
+def dfs(graph: Graph, start: Hashable) -> list[Hashable]:
+    """Swap the queue for a stack and the same code goes deep instead of wide."""
+    visited: set[Hashable] = set()
+    stack = [start]
+    order: list[Hashable] = []
+    while stack:
+        node = stack.pop()
+        if node in visited:
+            continue
+        visited.add(node)
+        order.append(node)
+        for n in reversed(graph.neighbours(node)):
+            if n not in visited:
+                stack.append(n)
+    return order
+
+
+def has_cycle(graph: Graph) -> bool:
+    """Three colours. Reaching an IN_PROGRESS node is a back edge into your
+    own active path -- a cycle. A DONE node is harmless shared structure.
+    """
+    state: dict[Hashable, int] = {v: UNVISITED for v in graph.adj}
+
+    def walk(v: Hashable) -> bool:
+        state[v] = IN_PROGRESS
+        for n in graph.neighbours(v):
+            if state.get(n) == IN_PROGRESS:
+                return True
+            if state.get(n) == UNVISITED and walk(n):
+                return True
+        state[v] = DONE
+        return False
+
+    return any(state[v] == UNVISITED and walk(v) for v in list(graph.adj))
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 `V` = vertices, `E` = edges.

@@ -150,6 +150,79 @@ function insertFix(node)
 
 ---
 
+<!-- python:examples/hierarchical.py:AVLTree -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+Subclassing the plain BST, so the only difference is the rebalancing:
+
+```python
+class AVLTree(BST):
+    """A BST that rotates the moment a balance factor reaches +/-2.
+
+    Guarantees O(log n) whatever order the data arrives in -- which a plain
+    BST does not, because sorted input degenerates it into a linked list.
+    """
+
+    @staticmethod
+    def _h(node: Optional[TreeNode]) -> int:
+        return 0 if node is None else node.height
+
+    def _balance(self, node: TreeNode) -> int:
+        return self._h(node.left) - self._h(node.right)
+
+    def _update(self, node: TreeNode) -> None:
+        node.height = 1 + max(self._h(node.left), self._h(node.right))
+
+    def _rotate_right(self, y: TreeNode) -> TreeNode:
+        x = y.left
+        assert x is not None
+        t = x.right                          # t is larger than x, smaller than y,
+        x.right, y.left = y, t               # so it is still legal where it lands
+        self._update(y)                      # order matters: y is now BELOW x
+        self._update(x)
+        return x
+
+    def _rotate_left(self, x: TreeNode) -> TreeNode:
+        y = x.right
+        assert y is not None
+        t = y.left
+        y.left, x.right = x, t
+        self._update(x)
+        self._update(y)
+        return y
+
+    def _insert(self, node: Optional[TreeNode], value: Any) -> TreeNode:
+        if node is None:
+            return TreeNode(value)
+        if value < node.value:
+            node.left = self._insert(node.left, value)
+        elif value > node.value:
+            node.right = self._insert(node.right, value)
+        else:
+            return node
+
+        self._update(node)
+        balance = self._balance(node)
+
+        if balance > 1 and value < node.left.value:        # LL
+            return self._rotate_right(node)
+        if balance < -1 and value > node.right.value:      # RR
+            return self._rotate_left(node)
+        if balance > 1:                                    # LR: straighten first
+            node.left = self._rotate_left(node.left)
+            return self._rotate_right(node)
+        if balance < -1:                                   # RL
+            node.right = self._rotate_right(node.right)
+            return self._rotate_left(node)
+        return node
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | AVL | Red-black | Plain BST (worst) |

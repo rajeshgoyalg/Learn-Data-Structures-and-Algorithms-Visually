@@ -160,6 +160,85 @@ function delete(node, word, depth)
 
 ---
 
+<!-- python:examples/hierarchical.py:Trie -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+`search` and `starts_with` are the same walk with one different final line:
+
+```python
+class Trie:
+    """Letters live on the edges; a node is just 'the prefix you have spelled'.
+
+    Lookup is O(L) in the key length and independent of how many words are
+    stored -- which is why autocomplete uses one.
+    """
+
+    def __init__(self, words: Optional[list[str]] = None) -> None:
+        self.root = TrieNode()
+        for w in words or []:
+            self.insert(w)
+
+    def insert(self, word: str) -> None:
+        node = self.root
+        for ch in word:
+            node = node.children.setdefault(ch, TrieNode())   # create only what
+        node.is_end = True                                     # does not exist
+
+    def _walk(self, s: str) -> Optional[TrieNode]:
+        node = self.root
+        for ch in s:
+            node = node.children.get(ch)                       # type: ignore[assignment]
+            if node is None:
+                return None
+        return node
+
+    def search(self, word: str) -> bool:
+        node = self._walk(word)
+        return node is not None and node.is_end                # the flag decides
+
+    def starts_with(self, prefix: str) -> bool:
+        return self._walk(prefix) is not None                  # reaching it is enough
+
+    def autocomplete(self, prefix: str) -> list[str]:
+        """O(L) to the prefix node, then a walk of only that subtree."""
+        node = self._walk(prefix)
+        if node is None:
+            return []
+        out: list[str] = []
+
+        def collect(n: TrieNode, so_far: str) -> None:
+            if n.is_end:
+                out.append(so_far)
+            for ch, child in sorted(n.children.items()):
+                collect(child, so_far + ch)
+        collect(node, prefix)
+        return out
+
+    def delete(self, word: str) -> bool:
+        """Unset the flag; prune a node only if nothing else needs it."""
+        def prune(node: TrieNode, depth: int) -> bool:
+            if depth == len(word):
+                if not node.is_end:
+                    return False
+                node.is_end = False
+                return not node.children
+            ch = word[depth]
+            child = node.children.get(ch)
+            if child is None:
+                return False
+            if prune(child, depth + 1):
+                del node.children[ch]
+                return not node.children and not node.is_end
+            return False
+        return prune(self.root, 0)
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 `L` = length of the key. `n` = number of stored words. `A` = alphabet size.

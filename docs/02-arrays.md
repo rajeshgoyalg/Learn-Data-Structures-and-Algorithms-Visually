@@ -125,6 +125,89 @@ function grow(A)
 
 ---
 
+<!-- python:examples/linear.py:DynamicArray -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+A growable array over a fixed block, so the doubling is visible:
+
+```python
+class DynamicArray:
+    """A growable array over a fixed-capacity block, to make the doubling visible.
+
+    Python's own `list` already does this; the point here is to show the
+    mechanism that makes `append` amortised O(1).
+    """
+
+    def __init__(self, capacity: int = 4) -> None:
+        self._capacity = max(1, capacity)
+        self._length = 0
+        self._store: list[Any] = [None] * self._capacity
+        self.copies = 0                      # counts elements moved by growth
+
+    def __len__(self) -> int:
+        return self._length
+
+    @property
+    def capacity(self) -> int:
+        return self._capacity
+
+    def __getitem__(self, index: int) -> Any:
+        if not 0 <= index < self._length:
+            raise IndexError("out of bounds")
+        return self._store[index]            # one address calculation: O(1)
+
+    def __setitem__(self, index: int, value: Any) -> None:
+        if not 0 <= index < self._length:
+            raise IndexError("out of bounds")
+        self._store[index] = value
+
+    def append(self, value: Any) -> None:
+        if self._length == self._capacity:
+            self._grow()
+        self._store[self._length] = value
+        self._length += 1
+
+    def insert_at(self, index: int, value: Any) -> None:
+        """O(n): every element from `index` rightwards shifts up one slot."""
+        if not 0 <= index <= self._length:
+            raise IndexError("out of bounds")
+        if self._length == self._capacity:
+            self._grow()
+        for j in range(self._length, index, -1):
+            self._store[j] = self._store[j - 1]      # walk backwards, or you
+        self._store[index] = value                   # smear one value along
+        self._length += 1
+
+    def delete_at(self, index: int) -> Any:
+        """O(n): close the gap by shifting everything after `index` down one."""
+        if not 0 <= index < self._length:
+            raise IndexError("out of bounds")
+        removed = self._store[index]
+        for j in range(index, self._length - 1):
+            self._store[j] = self._store[j + 1]
+        self._length -= 1
+        self._store[self._length] = None
+        return removed
+
+    def _grow(self) -> None:
+        """Double the block and copy across. O(n) once, amortised O(1) per append."""
+        self._capacity *= 2
+        bigger: list[Any] = [None] * self._capacity
+        for j in range(self._length):
+            bigger[j] = self._store[j]
+        self.copies += self._length
+        self._store = bigger
+
+    def __iter__(self) -> Iterator[Any]:
+        return (self._store[i] for i in range(self._length))
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Best | Average | Worst | Why |

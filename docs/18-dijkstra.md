@@ -158,6 +158,60 @@ Shortest path: **A → C → E → G**, cost **11**. Note it uses three edges, w
 
 ---
 
+<!-- python:examples/graphs.py:dijkstra,path_to -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+`dist` gives you the cost; only `prev` gives you the route:
+
+```python
+def dijkstra(graph: Graph, source: Hashable) -> tuple[dict, dict]:
+    """Cheapest first, not nearest first.
+
+    Pulling the cheapest unsettled node makes its distance final: any other
+    route runs through a node that is already at least as expensive, and
+    non-negative edges cannot reduce a total. One negative edge and that
+    argument collapses -- use Bellman-Ford instead.
+    """
+    if any(w < 0 for u in graph.adj for _, w in graph.adj[u]):
+        raise ValueError("Dijkstra requires non-negative weights")
+
+    dist: dict[Hashable, float] = {v: INFINITY for v in graph.adj}
+    prev: dict[Hashable, Optional[Hashable]] = {v: None for v in graph.adj}
+    dist[source] = 0.0
+    settled: set[Hashable] = set()
+    pq: list[tuple[float, Hashable]] = [(0.0, source)]
+
+    while pq:
+        d, u = heapq.heappop(pq)
+        if u in settled:
+            continue                         # a stale entry: skip it
+        settled.add(u)                       # dist[u] is now FINAL
+        for v, w in graph.adj[u]:
+            if v in settled:
+                continue
+            if d + w < dist[v]:              # the relaxation step IS the algorithm
+                dist[v] = d + w
+                prev[v] = u
+                heapq.heappush(pq, (dist[v], v))
+    return dist, prev
+
+
+def path_to(prev: dict, target: Hashable) -> list[Hashable]:
+    """dist tells you the cost; only prev tells you the route."""
+    out: list[Hashable] = []
+    node: Optional[Hashable] = target
+    while node is not None:
+        out.append(node)
+        node = prev.get(node)
+    return out[::-1]
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Priority queue | Time | When |

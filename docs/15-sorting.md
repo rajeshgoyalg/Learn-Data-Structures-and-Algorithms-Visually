@@ -204,6 +204,63 @@ function partition(A, lo, hi)                        Lomuto scheme
 
 ---
 
+<!-- python:examples/algorithms.py:merge_sort,_merge,quick_sort,partition -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+The `<=` in `_merge` is what makes merge sort stable:
+
+```python
+def merge_sort(values: list[Any]) -> list[Any]:
+    """O(n log n) guaranteed in every case, and stable -- at O(n) extra space."""
+    if len(values) <= 1:
+        return list(values)                  # a single element is sorted
+    mid = len(values) // 2
+    return _merge(merge_sort(values[:mid]), merge_sort(values[mid:]))
+
+
+def _merge(left: list[Any], right: list[Any]) -> list[Any]:
+    out: list[Any] = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:              # <=, not <: this is what makes
+            out.append(left[i])              # merge sort STABLE
+            i += 1
+        else:
+            out.append(right[j])
+            j += 1
+    out.extend(left[i:])
+    out.extend(right[j:])
+    return out
+
+
+def quick_sort(values: list[Any]) -> list[Any]:
+    a = list(values)
+    _quick(a, 0, len(a) - 1)
+    return a
+
+
+def partition(a: list[Any], lo: int, hi: int) -> int:
+    """Lomuto. Everything <= the pivot is swapped to the front as it is met.
+
+    A last-element pivot on sorted input is the O(n^2) worst case, which is
+    why real implementations randomise the choice.
+    """
+    pivot = a[hi]
+    i = lo - 1                               # boundary of the "smaller" region
+    for j in range(lo, hi):
+        if a[j] <= pivot:
+            i += 1
+            a[i], a[j] = a[j], a[i]
+    a[i + 1], a[hi] = a[hi], a[i + 1]        # drop the pivot into the boundary
+    return i + 1
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Algorithm | Best | Average | Worst | Space | Stable | Adaptive |

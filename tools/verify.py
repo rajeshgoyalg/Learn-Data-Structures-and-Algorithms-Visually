@@ -278,6 +278,51 @@ def _():
             for t in re.findall(r'href="(docs/[^"]+\.md)"', open("index.html").read())]
 
 
+
+# --------------------------------------------------------------------- python
+@check("every ```python block in docs/ parses as valid Python")
+def _():
+    import ast as _ast
+    bad = []
+    for f in sorted(glob.glob("docs/*.md")):
+        for i, code in enumerate(re.findall(r"```python\n(.*?)```", open(f).read(), re.S), 1):
+            try:
+                _ast.parse(code)
+            except SyntaxError as e:
+                bad.append(f"{f} block {i}: line {e.lineno}: {e.msg}")
+    return bad
+
+
+@check("embedded Python still matches examples/ (no drift)")
+def _():
+    import subprocess
+    r = subprocess.run([sys.executable, "tools/sync_examples.py", "--check"],
+                       capture_output=True, text=True)
+    if r.returncode == 0:
+        return []
+    return [ln.strip() for ln in r.stdout.splitlines() if ln.strip()]
+
+
+@check("the examples test suite passes")
+def _():
+    import subprocess
+    # -B and a cleared cache: bytecode is invalidated on mtime+size, so an edit
+    # that keeps the file the same size (swapping < for >, say) can otherwise be
+    # masked by a stale .pyc. Cost is a few milliseconds.
+    import shutil
+    shutil.rmtree("examples/__pycache__", ignore_errors=True)
+    r = subprocess.run([sys.executable, "-B", "-m", "unittest", "discover",
+                        "-s", "examples", "-t", "."],
+                       capture_output=True, text=True,
+                       env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"})
+    if r.returncode == 0:
+        tail = [ln for ln in r.stderr.splitlines() if ln.startswith("Ran ")]
+        print(f"          {tail[0] if tail else 'passed'}")
+        return []
+    return [ln for ln in r.stderr.splitlines()
+            if ln.startswith(("FAIL", "ERROR", "AssertionError"))][:10]
+
+
 # ----------------------------------------------------------------------- exit
 print()
 if FAILURES:

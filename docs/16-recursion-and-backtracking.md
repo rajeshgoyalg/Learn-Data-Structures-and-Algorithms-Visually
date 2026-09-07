@@ -174,6 +174,52 @@ general recursion — build the stack yourself:
 
 ---
 
+<!-- python:examples/algorithms.py:factorial,solve_n_queens -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+The `placed.pop()` is the whole difference from brute force:
+
+```python
+def factorial(n: int) -> int:
+    """Base case, recursive case, and progress -- all three are required."""
+    if n <= 1:
+        return 1                             # base case: returns without recursing
+    return n * factorial(n - 1)              # n-1 is the progress
+
+
+def solve_n_queens(n: int = 4) -> list[list[int]]:
+    """Backtracking: choose, recurse, and UNDO when the branch cannot work.
+
+    The undo is the whole difference from brute force -- it abandons every
+    completion of an illegal prefix without ever generating them.
+    """
+    solutions: list[list[int]] = []
+    placed: list[int] = []                   # placed[row] = column
+
+    def safe(row: int, col: int) -> bool:
+        return all(c != col and abs(r - row) != abs(c - col)
+                   for r, c in enumerate(placed))
+
+    def place(row: int) -> None:
+        if row == n:
+            solutions.append(placed.copy())
+            return
+        for col in range(n):
+            if safe(row, col):
+                placed.append(col)           # choose
+                place(row + 1)               # explore
+                placed.pop()                 # UNCHOOSE -- this is backtracking
+
+    place(0)
+    return solutions
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Function | Time | Space | Note |

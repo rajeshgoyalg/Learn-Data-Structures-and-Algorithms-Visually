@@ -159,6 +159,43 @@ function bfs(start)
 
 ---
 
+<!-- python:examples/keyed.py:unique,intersection -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+The two things a set is actually used for:
+
+```python
+def unique(values: list[Any]) -> list[Any]:
+    """De-duplicate in O(n), preserving first-seen order.
+
+    The nested-loop alternative is O(n^2): at n = 10,000 that is 10^8
+    comparisons against 10^4.
+    """
+    seen: set[Any] = set()
+    out: list[Any] = []
+    for v in values:
+        if v not in seen:                    # O(1) average
+            seen.add(v)
+            out.append(v)
+    return out
+
+
+def intersection(a: set[Any], b: set[Any]) -> set[Any]:
+    """Iterate the SMALLER set and probe the larger one.
+
+    Each probe is O(1), so the loop count is the entire cost:
+    O(min(|a|, |b|)) rather than O(max(|a|, |b|)).
+    """
+    small, large = (a, b) if len(a) <= len(b) else (b, a)
+    return {x for x in small if x in large}
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Hash set | Sorted set (tree) | Bitset |

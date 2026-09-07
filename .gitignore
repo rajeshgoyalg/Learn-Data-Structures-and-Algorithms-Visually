@@ -7,6 +7,10 @@ Thumbs.db
 .idea/
 *.swp
 
+# Python
+__pycache__/
+*.py[cod]
+
 # Local preview servers / scratch
 .cache/
 node_modules/

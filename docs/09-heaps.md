@@ -161,6 +161,92 @@ function heapsort(A)
 
 ---
 
+<!-- python:examples/hierarchical.py:MinHeap,top_k -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+No pointers anywhere — the tree is complete, so position *is* index:
+
+```python
+class MinHeap:
+    """A complete binary tree stored in a flat list -- no pointers at all.
+
+    The heap property is local (parent <= both children) yet globally
+    guarantees the minimum sits at index 0. Siblings are unordered: a heap is
+    NOT sorted and NOT a search tree.
+    """
+
+    def __init__(self, values: Optional[list[Any]] = None) -> None:
+        self._a: list[Any] = list(values or [])
+        if self._a:
+            self.build()
+
+    def __len__(self) -> int:
+        return len(self._a)
+
+    def peek(self) -> Any:
+        if not self._a:
+            raise IndexError("empty")
+        return self._a[0]                                # O(1), by the property
+
+    def insert(self, value: Any) -> None:
+        self._a.append(value)                            # the next free leaf
+        self._sift_up(len(self._a) - 1)                   # keeps it complete
+
+    def extract_min(self) -> Any:
+        if not self._a:
+            raise IndexError("empty")
+        smallest = self._a[0]
+        last = self._a.pop()
+        if self._a:
+            self._a[0] = last                            # the last leaf is the
+            self._sift_down(0)                           # only gap-free removal
+        return smallest
+
+    def build(self) -> None:
+        """O(n), not O(n log n): most nodes sift down almost no distance."""
+        for i in range(len(self._a) // 2 - 1, -1, -1):
+            self._sift_down(i)
+
+    def _sift_up(self, i: int) -> None:
+        while i > 0 and self._a[i] < self._a[parent(i)]:
+            self._a[i], self._a[parent(i)] = self._a[parent(i)], self._a[i]
+            i = parent(i)                                # at most log n swaps
+
+    def _sift_down(self, i: int) -> None:
+        n = len(self._a)
+        while True:
+            smallest = i
+            if left(i) < n and self._a[left(i)] < self._a[smallest]:
+                smallest = left(i)
+            if right(i) < n and self._a[right(i)] < self._a[smallest]:
+                smallest = right(i)          # swap with the SMALLER child, or the
+            if smallest == i:                # other one ends up under a bigger key
+                return
+            self._a[i], self._a[smallest] = self._a[smallest], self._a[i]
+            i = smallest
+
+    def as_list(self) -> list[Any]:
+        return list(self._a)
+
+
+def top_k(stream: Iterator[Any], k: int) -> list[Any]:
+    """Largest k of a stream in O(n log k) time and O(k) memory."""
+    heap = MinHeap()
+    for value in stream:
+        if len(heap) < k:
+            heap.insert(value)
+        elif k > 0 and value > heap.peek():
+            heap.extract_min()
+            heap.insert(value)
+    return sorted(heap.as_list(), reverse=True)
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Operation | Time | Why |

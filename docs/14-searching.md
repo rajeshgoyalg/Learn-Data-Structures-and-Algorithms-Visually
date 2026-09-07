@@ -136,6 +136,50 @@ This is what powers range queries, insertion into a sorted array, and "find the 
 
 ---
 
+<!-- python:examples/algorithms.py:binary_search,lower_bound -->
+<details><summary><b>🐍 Python implementation</b></summary>
+
+Three classic bugs live in these few lines — the comments mark each one:
+
+```python
+def binary_search(values: list[Any], target: Any) -> int:
+    """O(log n), but only on sorted, index-addressable data.
+
+    Three bugs live in these few lines; see the comments.
+    """
+    lo, hi = 0, len(values) - 1
+    while lo <= hi:                          # <=, not <: a one-element range
+        mid = lo + (hi - lo) // 2            # NOT (lo+hi)//2 -- that overflows
+        if values[mid] == target:            # in fixed-width integer languages
+            return mid
+        if values[mid] < target:
+            lo = mid + 1                     # the +/-1 is what shrinks the range;
+        else:                                # without it this loops forever
+            hi = mid - 1
+    return -1
+
+
+def lower_bound(values: list[Any], target: Any) -> int:
+    """First index whose value is not less than target -- i.e. where it would go.
+
+    This is what powers range queries and insertion into a sorted array.
+    """
+    lo, hi = 0, len(values)                  # note: len, not len - 1
+    while lo < hi:
+        mid = lo + (hi - lo) // 2
+        if values[mid] < target:
+            lo = mid + 1
+        else:
+            hi = mid
+    return lo
+```
+
+Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+</details>
+<!-- /python -->
+
+---
+
 ## ⏱️ Complexity
 
 | Algorithm | Best | Average | Worst | Space | Requires |

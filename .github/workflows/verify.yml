@@ -22,5 +22,8 @@ jobs:
       # tools/verify.py is stdlib-only on purpose: no pip install, no lockfile,
       # nothing to keep up to date. The repo has no build step and this keeps it
       # that way - the checker only reads files.
+      - name: Run the examples test suite
+        run: python3 -m unittest discover -s examples -t . -v
+
       - name: Run repository checks
         run: python3 tools/verify.py
