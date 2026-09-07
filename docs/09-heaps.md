@@ -159,12 +159,12 @@ function heapsort(A)
     end                                         O(n log n) total, O(1) extra space
 ```
 
----
-
 <!-- python:examples/hierarchical.py:MinHeap,top_k -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 No pointers anywhere — the tree is complete, so position *is* index:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class MinHeap:
@@ -241,7 +241,7 @@ def top_k(stream: Iterator[Any], k: int) -> list[Any]:
     return sorted(heap.as_list(), reverse=True)
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

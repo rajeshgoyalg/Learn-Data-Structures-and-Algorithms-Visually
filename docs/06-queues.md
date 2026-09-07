@@ -143,12 +143,12 @@ function peek(PQ)
     return the root                              O(1)
 ```
 
----
-
 <!-- python:examples/restricted.py:CircularQueue,Deque,PriorityQueue -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 `(i + 1) % capacity` is the entire difference between a linear and a circular queue:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class CircularQueue:
@@ -241,7 +241,7 @@ class PriorityQueue:
         return len(self._heap)
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

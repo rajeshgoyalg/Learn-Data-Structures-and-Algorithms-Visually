@@ -151,12 +151,12 @@ function reverse(head)
     return previous                     the old tail is the new head
 ```
 
----
-
 <!-- python:examples/linear.py:Node,SinglyLinkedList -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 Note the order of the two writes in `insert_after` — reverse them and the tail is leaked:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class Node:
@@ -237,7 +237,7 @@ class SinglyLinkedList:
         return out
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

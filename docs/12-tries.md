@@ -158,12 +158,12 @@ function delete(node, word, depth)
         it is not the end of some other word      ← "car" must survive deleting "cart"
 ```
 
----
-
 <!-- python:examples/hierarchical.py:Trie -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 `search` and `starts_with` are the same walk with one different final line:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class Trie:
@@ -233,7 +233,7 @@ class Trie:
         return prune(self.root, 0)
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

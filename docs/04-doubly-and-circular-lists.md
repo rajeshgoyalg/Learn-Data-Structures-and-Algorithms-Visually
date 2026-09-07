@@ -128,12 +128,12 @@ function nextTurn(currentPlayer)
     return currentPlayer.next           always valid, never null, wraps for free
 ```
 
----
-
 <!-- python:examples/linear.py:DoublyLinkedList,CircularLinkedList -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 `delete` here is O(1) given nothing but the node, which a singly linked list cannot do:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class DoublyLinkedList:
@@ -214,7 +214,7 @@ class CircularLinkedList:
                 return out
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

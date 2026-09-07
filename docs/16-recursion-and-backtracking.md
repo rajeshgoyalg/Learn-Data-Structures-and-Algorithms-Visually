@@ -172,12 +172,12 @@ general recursion — build the stack yourself:
     end
 ```
 
----
-
 <!-- python:examples/algorithms.py:factorial,solve_n_queens -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 The `placed.pop()` is the whole difference from brute force:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def factorial(n: int) -> int:
@@ -214,7 +214,7 @@ def solve_n_queens(n: int = 4) -> list[list[int]]:
     return solutions
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

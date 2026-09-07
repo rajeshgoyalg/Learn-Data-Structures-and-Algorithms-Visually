@@ -19,7 +19,9 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 
-ANCHOR = "## ⏱️ Complexity"
+# Insert before the horizontal rule that closes the Operations section, so the
+# Python sits INSIDE Operations rather than orphaned between it and Complexity.
+ANCHOR_RE = re.compile(r"\n+---\s*\n+(## ⏱️ Complexity)")
 SUMMARY = "🐍 Python implementation"
 
 # doc file -> (source file, symbols to embed, one-line framing)
@@ -84,13 +86,22 @@ def extract(source: str, names: list[str]) -> str:
 
 
 def block(doc: str, source: str, names: list[str], framing: str) -> str:
+    """Open by default and behind its own heading.
+
+    Collapsed, this rendered as a single 24px line that readers scrolled
+    straight past -- so the Python was effectively invisible. `open` makes it
+    visible, the heading puts it in GitHub's file outline, and it is still a
+    <details> so anyone who wants the pseudocode-only view can fold it away.
+    """
     code = extract(source, names)
     return (f"<!-- python:{source}:{','.join(names)} -->\n"
-            f"<details><summary><b>{SUMMARY}</b></summary>\n\n"
+            f"#### {SUMMARY}\n\n"
             f"{framing}\n\n"
+            f"<details open><summary><i>fold away</i></summary>\n\n"
             f"```python\n{code}\n```\n\n"
-            f"Tested in [`examples/test_examples.py`](../{source.replace('.py', '')}"
-            f"_test_link). Run the suite with `python3 -m unittest discover -s examples -t .`\n"
+            f"Every line above is covered by [`examples/test_examples.py`]"
+            f"(../examples/test_examples.py) — run it with "
+            f"`python3 -m unittest discover -s examples -t .`\n"
             f"</details>\n<!-- /python -->\n")
 
 
@@ -103,15 +114,13 @@ def main() -> int:
     for doc, (source, names, framing) in MANIFEST.items():
         text = open(doc).read()
         want = block(doc, source, names, framing)
-        # normalise the tested-in line: it is generated, keep it simple
-        want = want.replace(f"../{source.replace('.py', '')}_test_link",
-                            "../examples/test_examples.py")
         if BLOCK_RE.search(text):
             new = BLOCK_RE.sub(lambda _: want, text, count=1)
         else:
-            if ANCHOR not in text:
-                raise SystemExit(f"{doc}: no '{ANCHOR}' heading to insert before")
-            new = text.replace(ANCHOR, want + "\n---\n\n" + ANCHOR, 1)
+            if not ANCHOR_RE.search(text):
+                raise SystemExit(f"{doc}: no Operations/Complexity boundary to insert at")
+            new = ANCHOR_RE.sub("\n\n" + want.replace("\\", "\\\\") +
+                                "\n---\n\n" + r"\1", text, count=1)
         if new != text:
             drifted.append(doc)
             if not check:

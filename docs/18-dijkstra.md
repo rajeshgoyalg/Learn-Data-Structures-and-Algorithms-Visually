@@ -156,12 +156,12 @@ function path(prev, target)
 
 Shortest path: **A → C → E → G**, cost **11**. Note it uses three edges, while `A → B → D → G` also uses three but costs 13 — BFS could have returned either.
 
----
-
 <!-- python:examples/graphs.py:dijkstra,path_to -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 `dist` gives you the cost; only `prev` gives you the route:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def dijkstra(graph: Graph, source: Hashable) -> tuple[dict, dict]:
@@ -206,7 +206,7 @@ def path_to(prev: dict, target: Hashable) -> list[Hashable]:
     return out[::-1]
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

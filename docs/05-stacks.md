@@ -136,12 +136,12 @@ function isBalanced(text)
 
 Every opener you push is a note saying *"remember to close this"*. The stack guarantees you close them in the reverse of the order you opened them — which is precisely what nesting means.
 
----
-
 <!-- python:examples/restricted.py:Stack,is_balanced -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 The bracket checker is the canonical application — the stack *is* the nesting:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class Stack:
@@ -186,7 +186,7 @@ def is_balanced(text: str) -> bool:
     return not stack
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

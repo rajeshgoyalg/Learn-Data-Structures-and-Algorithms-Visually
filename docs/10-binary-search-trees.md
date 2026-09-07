@@ -163,12 +163,12 @@ function postOrder(node)                LEFT, RIGHT, node  →  free / evaluate
 
 ![Four traversal orders](../assets/infographic/traversal-orders.svg)
 
----
-
 <!-- python:examples/hierarchical.py:BST -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 All four traversals are one function with the visit line moved:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class BST:
@@ -295,7 +295,7 @@ class BST:
         return out
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

@@ -146,12 +146,12 @@ function put(T, key, value)                     linear probing
 
 > **The deletion trap.** With probing you cannot simply empty a slot — that would break the probe chain for keys that hopped over it. You must mark it as a **tombstone** ("was occupied, keep probing past me"), and periodically clean up.
 
----
-
 <!-- python:examples/keyed.py:HashTable -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 Separate chaining with a load factor that triggers the rehash:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class HashTable:
@@ -220,7 +220,7 @@ class HashTable:
             yield from chain
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

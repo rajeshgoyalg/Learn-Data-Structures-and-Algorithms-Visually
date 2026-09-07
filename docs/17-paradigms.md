@@ -201,12 +201,12 @@ greedy loses. Same algorithm, different coin set, wrong answer.
 
 **Greedy algorithms that *are* proved correct:** [Dijkstra](18-dijkstra.md) (with non-negative weights), Kruskal's and Prim's minimum spanning trees, Huffman coding, activity selection by earliest finish time.
 
----
-
 <!-- python:examples/algorithms.py:fib_memo,fib_table,coin_change_greedy,coin_change_dp -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 Greedy and DP on the same problem, so you can see where greedy loses:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def fib_memo(n: int, memo: Optional[dict[int, int]] = None) -> int:
@@ -257,7 +257,7 @@ def coin_change_dp(target: int, coins: tuple[int, ...] = (1, 3, 4)) -> int:
     return int(best[target]) if best[target] != float("inf") else -1
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

@@ -193,12 +193,12 @@ function hasCycle(node, state)
 
 Meeting a node that is still `IN_PROGRESS` means you have looped back onto your own current path. Meeting a `DONE` node is fine — that is just a shared subgraph.
 
----
-
 <!-- python:examples/graphs.py:Graph,bfs,dfs,has_cycle -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 `bfs` and `dfs` differ only in queue versus stack:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class Graph:
@@ -280,7 +280,7 @@ def has_cycle(graph: Graph) -> bool:
     return any(state[v] == UNVISITED and walk(v) for v in list(graph.adj))
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

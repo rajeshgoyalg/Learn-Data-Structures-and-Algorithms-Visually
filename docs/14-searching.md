@@ -134,12 +134,12 @@ function lowerBound(A, target)               where target is, or where it would 
 
 This is what powers range queries, insertion into a sorted array, and "find the first entry after this timestamp".
 
----
-
 <!-- python:examples/algorithms.py:binary_search,lower_bound -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 Three classic bugs live in these few lines — the comments mark each one:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def binary_search(values: list[Any], target: Any) -> int:
@@ -174,7 +174,7 @@ def lower_bound(values: list[Any], target: Any) -> int:
     return lo
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

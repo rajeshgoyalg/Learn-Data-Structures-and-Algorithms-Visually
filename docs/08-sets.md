@@ -157,12 +157,12 @@ function bfs(start)
     end
 ```
 
----
-
 <!-- python:examples/keyed.py:unique,intersection -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 The two things a set is actually used for:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def unique(values: list[Any]) -> list[Any]:
@@ -190,7 +190,7 @@ def intersection(a: set[Any], b: set[Any]) -> set[Any]:
     return {x for x in small if x in large}
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

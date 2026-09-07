@@ -148,12 +148,12 @@ function insertFix(node)
 
 > **Why do new nodes arrive red?** Because inserting a black node would immediately break rule 5 on every path through it. A red node breaks only rule 4, and only if its parent is also red — a much cheaper, more local problem to fix.
 
----
-
 <!-- python:examples/hierarchical.py:AVLTree -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 Subclassing the plain BST, so the only difference is the rebalancing:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class AVLTree(BST):
@@ -217,7 +217,7 @@ class AVLTree(BST):
         return node
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

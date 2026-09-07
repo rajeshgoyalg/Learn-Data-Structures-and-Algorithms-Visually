@@ -202,12 +202,12 @@ function partition(A, lo, hi)                        Lomuto scheme
 
 > **Why quicksort has an `O(n²)` worst case:** if the pivot is always the smallest or largest element, one partition is empty and the other has `n-1` elements — recursion depth `n` instead of `log n`. Feeding an already-sorted array to a last-element pivot does exactly this. **Randomising the pivot** (or median-of-three) makes that input astronomically unlikely, which is why real implementations always do it.
 
----
-
 <!-- python:examples/algorithms.py:merge_sort,_merge,quick_sort,partition -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 The `<=` in `_merge` is what makes merge sort stable:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 def merge_sort(values: list[Any]) -> list[Any]:
@@ -255,7 +255,7 @@ def partition(a: list[Any], lo: int, hi: int) -> int:
     return i + 1
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 

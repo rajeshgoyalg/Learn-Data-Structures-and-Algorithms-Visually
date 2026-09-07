@@ -123,12 +123,12 @@ function grow(A)
 
 > **Why doubling?** Growing by a *constant* (say +1) makes `n` appends cost `O(n²)` in total. Growing by a constant *factor* makes `n` appends cost `O(n)` in total — so each append averages `O(1)` even though one in every `n` is expensive.
 
----
-
 <!-- python:examples/linear.py:DynamicArray -->
-<details><summary><b>🐍 Python implementation</b></summary>
+#### 🐍 Python implementation
 
 A growable array over a fixed block, so the doubling is visible:
+
+<details open><summary><i>fold away</i></summary>
 
 ```python
 class DynamicArray:
@@ -202,7 +202,7 @@ class DynamicArray:
         return (self._store[i] for i in range(self._length))
 ```
 
-Tested in [`examples/test_examples.py`](../examples/test_examples.py). Run the suite with `python3 -m unittest discover -s examples -t .`
+Every line above is covered by [`examples/test_examples.py`](../examples/test_examples.py) — run it with `python3 -m unittest discover -s examples -t .`
 </details>
 <!-- /python -->
 
