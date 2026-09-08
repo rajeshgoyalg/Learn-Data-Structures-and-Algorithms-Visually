@@ -50,17 +50,17 @@ flowchart LR
   A --> V["Variants"]
 
   P --> P1["contiguous memory"]
-  P --> P2["address = base + i × size"]
+  P --> P2["address = base + i×size"]
   P --> P3["O(1) random access"]
-  P --> P4["CPU cache prefetches the next elements"]
+  P --> P4["CPU cache prefetching"]
 
-  C --> C1["insert / delete in middle shifts — O(n)"]
+  C --> C1["insert in middle — O(n)"]
   C --> C2["fixed capacity"]
-  C --> C3["resize = allocate + copy — O(n)"]
+  C --> C3["resize = copy — O(n)"]
 
-  V --> V1["static array — capacity fixed at creation"]
-  V --> V2["dynamic array — doubles on demand, amortised O(1) append"]
-  V --> V3["multi-dimensional — still one flat block underneath"]
+  V --> V1["static — fixed capacity"]
+  V --> V2["dynamic — amortised O(1)"]
+  V --> V3["2D — one flat block"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef good fill:#0f2438,stroke:#34d399,color:#34d399

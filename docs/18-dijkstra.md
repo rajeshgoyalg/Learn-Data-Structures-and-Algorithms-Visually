@@ -44,23 +44,23 @@ flowchart LR
   D --> W["Why it works"]
   D --> A["When it does not"]
 
-  S --> S1["dist[v] — best known cost"]
-  S --> S2["prev[v] — how we got there"]
-  S --> S3["priority queue of unsettled nodes"]
+  S --> S1["dist[v] — best cost"]
+  S --> S2["prev[v] — the route"]
+  S --> S3["PQ of unsettled nodes"]
   S --> S4["settled set"]
 
-  L --> L1["pull the cheapest unsettled node"]
+  L --> L1["pull the cheapest node"]
   L --> L2["relax each of its edges"]
-  L --> L3["repeat until the queue empties"]
+  L --> L3["repeat until PQ empty"]
 
   W --> W1["non-negative weights"]
-  W --> W2["so the cheapest unsettled distance is final"]
-  W --> W3["a greedy choice that is provably safe"]
+  W --> W2["cheapest is thus final"]
+  W --> W3["greedy, provably safe"]
 
-  A --> A1["negative weights → Bellman-Ford"]
-  A --> A2["all pairs → Floyd-Warshall"]
-  A --> A3["a good heuristic exists → A*"]
-  A --> A4["unweighted → plain BFS is enough"]
+  A --> A1["negative → Bellman-Ford"]
+  A --> A2["all pairs → Floyd-W"]
+  A --> A3["heuristic exists → A*"]
+  A --> A4["unweighted → use BFS"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef s fill:#0f2438,stroke:#c084fc,color:#c084fc

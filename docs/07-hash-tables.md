@@ -48,22 +48,22 @@ flowchart LR
   H --> C["Collisions"]
   H --> R["Resizing"]
 
-  F --> F1["deterministic — same key, same index"]
-  F --> F2["uniform — scatters similar keys apart"]
-  F --> F3["fast — O(1) in the key size"]
+  F --> F1["deterministic — same idx"]
+  F --> F2["uniform — scatters keys"]
+  F --> F3["fast — O(1) in key size"]
 
-  B --> B1["index = hash mod capacity"]
+  B --> B1["index = hash % capacity"]
   B --> B2["stores key AND value"]
-  B --> B3["capacity is usually a power of two or a prime"]
+  B --> B3["capacity: 2^k or prime"]
 
-  C --> C1["separate chaining — a list per bucket"]
-  C --> C2["open addressing — probe for a free slot"]
-  C --> C3["linear / quadratic probing, double hashing"]
-  C --> C4["deletion needs tombstones when probing"]
+  C --> C1["chaining — list/bucket"]
+  C --> C2["open addressing — probe"]
+  C --> C3["linear / quadratic probe"]
+  C --> C4["delete needs tombstones"]
 
-  R --> R1["load factor = entries / buckets"]
-  R --> R2["above ~0.75, grow and rehash"]
-  R --> R3["rehash is O(n) — every key gets a new index"]
+  R --> R1["load = entries/buckets"]
+  R --> R2["above 0.75 → rehash"]
+  R --> R3["rehash O(n) — all keys"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef f fill:#0f2438,stroke:#c084fc,color:#c084fc

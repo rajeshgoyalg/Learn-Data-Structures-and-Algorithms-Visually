@@ -47,21 +47,21 @@ flowchart LR
   P --> Y["Dynamic programming"]
   P --> G["Greedy"]
 
-  D --> D1["split into INDEPENDENT subproblems"]
+  D --> D1["INDEPENDENT subproblems"]
   D --> D2["solve each, then combine"]
-  D --> D3["merge sort, quicksort, binary search"]
+  D --> D3["merge, quick, binary"]
   D --> D4["typically O(n log n)"]
 
   Y --> Y1["subproblems OVERLAP"]
-  Y --> Y2["needs optimal substructure"]
+  Y --> Y2["optimal substructure"]
   Y --> Y3["top-down = memoisation"]
   Y --> Y4["bottom-up = tabulation"]
   Y --> Y5["trades memory for time"]
 
-  G --> G1["best local choice, never revisited"]
-  G --> G2["needs the greedy-choice property"]
-  G --> G3["coin change, Huffman, Dijkstra, Kruskal"]
-  G --> G4["fastest — when it is correct at all"]
+  G --> G1["best local, no revisit"]
+  G --> G2["needs greedy-choice"]
+  G --> G3["coin change, Huffman"]
+  G --> G4["fastest — when correct"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef d fill:#0f2438,stroke:#38bdf8,color:#38bdf8

@@ -41,7 +41,7 @@ Every operation is shown twice — **pseudocode** for the idea, then **Python** 
 
 ```mermaid
 flowchart TD
-  F["01 · Foundations — complexity"]
+  F["01 · Foundations"]
 
   subgraph LIN["Linear structures"]
     direction LR
@@ -244,7 +244,7 @@ This repo has no build step, no package manager, no JavaScript and no external a
 - Mermaid diagrams use `flowchart` syntax, which GitHub renders natively.
 - Clone it and open `index.html` in any browser — or just read the markdown.
 
-Twenty-one repository invariants are checked by `tools/verify.py` (stdlib only, no install) and run in CI on every push — see [CONTRIBUTING](CONTRIBUTING.md).
+Twenty-two repository invariants are checked by `tools/verify.py` (stdlib only, no install) and run in CI on every push — see [CONTRIBUTING](CONTRIBUTING.md).
 
 ```bash
 git clone <this-repo>

@@ -87,7 +87,7 @@ Analogy → animation → mental model → blueprint → mindmap → operations 
 python3 tools/verify.py
 ```
 
-Twenty-one checks, stdlib only — no install, no build step. CI runs the identical
+Twenty-two checks, stdlib only — no install, no build step. CI runs the identical
 file on every push and pull request, so a green local run means a green PR.
 
 It covers: SVG well-formedness, no `<script>` and no external references, the
@@ -95,7 +95,7 @@ It covers: SVG well-formedness, no `<script>` and no external references, the
 swatch alignment, blueprint title-block anchoring, body text running under a
 title block, frame animations showing two
 frames at once, internal links and anchors, the eleven-block module template,
-unsupported Mermaid `mindmap` blocks, unclosed `<details>`, duplicate
+unsupported Mermaid `mindmap` blocks, over-long Mermaid node labels, unclosed `<details>`, duplicate
 flashcards, stated counts drifting from reality, orphaned assets, and gallery
 links reverting to raw markdown. The last four cover the code: every
 operation pairs pseudocode with Python: every

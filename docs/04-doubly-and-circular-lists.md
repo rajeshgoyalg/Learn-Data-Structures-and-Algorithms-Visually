@@ -43,19 +43,19 @@ flowchart LR
   V --> C["Circular"]
   V --> B["Circular doubly"]
 
-  D --> D1["node = prev + data + next"]
-  D --> D2["traverse in both directions"]
-  D --> D3["O(1) delete given only the node"]
-  D --> D4["cost: one extra pointer per node"]
-  D --> D5["cost: two pointers to fix per edit"]
+  D --> D1["prev + data + next"]
+  D --> D2["traverse both ways"]
+  D --> D3["O(1) delete by node"]
+  D --> D4["cost: +1 pointer/node"]
+  D --> D5["cost: 2 writes per edit"]
 
   C --> C1["tail.next = head"]
   C --> C2["no null terminator"]
-  C --> C3["needs a stop condition or it loops forever"]
-  C --> C4["round-robin, turn order, ring buffers"]
+  C --> C3["needs a stop condition"]
+  C --> C4["round-robin, buffers"]
 
   B --> B1["both at once"]
-  B --> B2["the classic LRU cache backing store"]
+  B --> B2["the LRU cache backbone"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef d fill:#0f2438,stroke:#c084fc,color:#c084fc

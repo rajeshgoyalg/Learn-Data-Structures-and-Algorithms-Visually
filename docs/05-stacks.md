@@ -48,8 +48,8 @@ flowchart LR
   O --> O3["peek — O(1)"]
   O --> O4["isEmpty — O(1)"]
 
-  I --> I1["array + top index — fast, fixed capacity"]
-  I --> I2["linked list, push at head — grows freely"]
+  I --> I1["array — fast, fixed cap"]
+  I --> I2["linked list — unbounded"]
 
   U --> U1["the call stack itself"]
   U --> U2["undo / redo"]
@@ -58,8 +58,8 @@ flowchart LR
   U --> U5["expression evaluation"]
   U --> U6["backtracking"]
 
-  F --> F1["overflow — pushed past capacity"]
-  F --> F2["underflow — popped when empty"]
+  F --> F1["overflow — past capacity"]
+  F --> F2["underflow — pop on empty"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef op fill:#0f2438,stroke:#34d399,color:#34d399

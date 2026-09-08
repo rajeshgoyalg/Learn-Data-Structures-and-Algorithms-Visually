@@ -45,18 +45,18 @@ flowchart LR
   A --> A3["isEndOfWord flag"]
   A --> A4["root = the empty prefix"]
 
-  O --> O1["insert — walk, creating missing edges"]
-  O --> O2["search — walk, then check the flag"]
-  O --> O3["startsWith — walk, do not check the flag"]
-  O --> O4["autocomplete — walk, then collect the subtree"]
+  O --> O1["insert — create edges"]
+  O --> O2["search — check the flag"]
+  O --> O3["startsWith — skip flag"]
+  O --> O4["autocomplete — subtree"]
 
-  C --> C1["time O(L) — independent of word count"]
-  C --> C2["space: one node per character position"]
-  C --> C3["compressed trie / radix tree collapses chains"]
+  C --> C1["O(L), not O(word count)"]
+  C --> C2["space: a node per char"]
+  C --> C3["compressed / radix trie"]
 
-  U --> U1["autocomplete & search suggestions"]
+  U --> U1["autocomplete, suggest"]
   U --> U2["spell checking"]
-  U --> U3["IP routing tables (longest prefix match)"]
+  U --> U3["IP longest-prefix match"]
   U --> U4["word games, dictionaries"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0

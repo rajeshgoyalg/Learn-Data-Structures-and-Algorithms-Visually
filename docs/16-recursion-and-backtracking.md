@@ -45,21 +45,21 @@ flowchart LR
   R --> B["Backtracking"]
   R --> T["Turning it into a loop"]
 
-  P --> P1["1. base case — returns without recursing"]
-  P --> P2["2. recursive case — same problem, smaller"]
-  P --> P3["3. progress — provably approaches the base case"]
+  P --> P1["1. base case, no recurse"]
+  P --> P2["2. same problem, smaller"]
+  P --> P3["3. progress toward base"]
 
-  C --> C1["space O(depth) — frames are real memory"]
-  C --> C2["stack overflow if depth is unbounded"]
-  C --> C3["repeated subproblems → memoise (module 17)"]
+  C --> C1["space O(depth) is real"]
+  C --> C2["unbounded → overflow"]
+  C --> C3["repeats → memoise"]
 
   B --> B1["choose a move"]
   B --> B2["recurse"]
   B --> B3["UNDO if the branch fails"]
-  B --> B4["prunes whole branches unexplored"]
+  B --> B4["prunes whole branches"]
 
-  T --> T1["tail recursion → a while loop"]
-  T --> T2["general recursion → an explicit stack"]
+  T --> T1["tail → a while loop"]
+  T --> T2["general → explicit stack"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef p fill:#0f2438,stroke:#34d399,color:#34d399

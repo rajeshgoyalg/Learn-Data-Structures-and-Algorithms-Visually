@@ -53,13 +53,13 @@ flowchart LR
   A --> A3["difference — A not B"]
   A --> A4["subset test"]
 
-  V --> V1["hash set — O(1), unordered"]
-  V --> V2["sorted set (tree) — O(log n), ordered"]
-  V --> V3["bitset — O(1) with tiny memory for dense small integers"]
+  V --> V1["hash set — O(1)"]
+  V --> V2["sorted set — O(log n)"]
+  V --> V3["bitset — dense integers"]
 
   U --> U1["de-duplication"]
-  U --> U2["seen-before tracking in BFS / DFS"]
-  U --> U3["permission and tag checks"]
+  U --> U2["seen-before in BFS/DFS"]
+  U --> U3["permission / tag checks"]
   U --> U4["cycle detection"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0

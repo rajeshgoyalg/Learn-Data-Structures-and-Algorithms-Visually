@@ -61,21 +61,21 @@ Three words decide between them, and they appear in every table below:
 ```mermaid
 flowchart LR
   S["Sorting"] --> Q["Quadratic — O(n²)"]
-  S --> N["Linearithmic — O(n log n)"]
+  S --> N["O(n log n)"]
   S --> C["The concepts"]
 
   Q --> Q1["Bubble — swap neighbours"]
-  Q --> Q2["Selection — fewest writes"]
-  Q --> Q3["Insertion — best on nearly sorted"]
+  Q --> Q2["Selection — few writes"]
+  Q --> Q3["Insertion — near-sorted"]
 
-  N --> N1["Merge — stable, needs O(n) space"]
-  N --> N2["Quick — in place, O(n²) worst case"]
-  N --> N3["Heap — in place, not stable"]
+  N --> N1["Merge — stable, O(n) sp"]
+  N --> N2["Quick — O(n²) worst"]
+  N --> N3["Heap — in place"]
 
-  C --> C1["stability — equal elements keep their order"]
-  C --> C2["in place — O(1) extra space"]
-  C --> C3["adaptive — faster on nearly sorted input"]
-  C --> C4["O(n log n) is the comparison-sort floor"]
+  C --> C1["stable — keeps order"]
+  C --> C2["in place — O(1) space"]
+  C --> C3["adaptive — nearly sorted"]
+  C --> C4["O(n log n) is the floor"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef q fill:#0f2438,stroke:#fb7185,color:#fb7185

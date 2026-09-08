@@ -55,17 +55,17 @@ flowchart LR
   A --> A1["node = data + next"]
   A --> A2["head — entry point"]
   A --> A3["tail — next is null"]
-  A --> A4["no index arithmetic possible"]
+  A --> A4["no index arithmetic"]
 
   O --> O1["traverse — O(n)"]
-  O --> O2["insert after a known node — O(1)"]
-  O --> O3["delete given the predecessor — O(1)"]
+  O --> O2["insert after node — O(1)"]
+  O --> O3["delete via prev — O(1)"]
   O --> O4["search by value — O(n)"]
 
   T --> T1["+ cheap reshaping"]
   T --> T2["+ grows without copying"]
   T --> T3["− no random access"]
-  T --> T4["− pointer overhead per node"]
+  T --> T4["− pointer per node"]
   T --> T5["− cache-hostile"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0

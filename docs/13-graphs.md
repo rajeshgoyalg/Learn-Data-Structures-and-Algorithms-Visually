@@ -48,24 +48,24 @@ flowchart LR
   G --> T["Traversals"]
   G --> P["Classic problems"]
 
-  K --> K1["undirected — edges go both ways"]
-  K --> K2["directed — edges have a direction"]
-  K --> K3["weighted — edges carry a cost"]
-  K --> K4["cyclic vs acyclic (a DAG)"]
-  K --> K5["connected vs disconnected"]
+  K --> K1["undirected — both ways"]
+  K --> K2["directed — one way"]
+  K --> K3["weighted — edge costs"]
+  K --> K4["cyclic or acyclic (DAG)"]
+  K --> K5["connected or not"]
 
-  S --> S1["adjacency list — O(V+E) space, sparse graphs"]
-  S --> S2["adjacency matrix — O(V²) space, O(1) edge test"]
+  S --> S1["list — O(V+E), sparse"]
+  S --> S2["matrix — O(V²) space"]
 
-  T --> T1["BFS — queue, shortest unweighted path"]
-  T --> T2["DFS — stack or recursion, goes deep"]
-  T --> T3["both O(V+E), both need a visited set"]
+  T --> T1["BFS — queue, shortest"]
+  T --> T2["DFS — stack, goes deep"]
+  T --> T3["both O(V+E) + visited"]
 
-  P --> P1["shortest path — module 18"]
+  P --> P1["shortest path (mod 18)"]
   P --> P2["cycle detection — DFS"]
-  P --> P3["topological sort — DFS on a DAG"]
+  P --> P3["topological sort — DAG"]
   P --> P4["connected components"]
-  P --> P5["minimum spanning tree — Kruskal, Prim"]
+  P --> P5["MST — Kruskal, Prim"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef k fill:#0f2438,stroke:#c084fc,color:#c084fc

@@ -92,7 +92,7 @@ Three things are true of all 100 Python functions:
 | 2 | 🎞️ **Animation** | watch one full loop before reading anything else |
 | 3 | 🧠 **Mental model** | the analogy mapped term-by-term onto the real structure |
 | 4 | 📐 **Blueprint** | the same thing again, but static and fully labelled |
-| 5 | 🗺️ **Mindmap** | the shape of the module, so you know what is coming |
+| 5 | 🗺️ **Mindmap** | the shape of the module, so you know what is coming — labels are kept under 25 characters so the diagram never overflows a narrow screen |
 | 6 | ⚙️ **Operations** | each operation twice: pseudocode for the idea, then a tested Python function |
 | 7 | ⏱️ **Complexity** | best / average / worst / space, with the *reason* |
 | 8 | ⚖️ **Trade-offs** | when to reach for it and when not to |

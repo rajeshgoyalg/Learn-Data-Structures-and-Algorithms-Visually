@@ -50,12 +50,12 @@ flowchart LR
 
   S --> S1["in place — O(1) extra"]
   S --> S2["needs a buffer — O(n)"]
-  S --> S3["recursion depth — O(depth)"]
+  S --> S3["recursion — O(depth)"]
 
   C --> C1["best — the lucky input"]
-  C --> C2["average — the realistic input"]
+  C --> C2["average — realistic"]
   C --> C3["worst — the guarantee"]
-  C --> C4["amortised — the long-run average per operation"]
+  C --> C4["amortised — long-run avg"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef time fill:#0f2438,stroke:#fbbf24,color:#fbbf24

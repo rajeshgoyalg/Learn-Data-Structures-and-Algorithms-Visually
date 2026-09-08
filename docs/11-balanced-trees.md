@@ -44,7 +44,7 @@ flowchart LR
   B --> R["Red-black"]
   B --> W["Why bother"]
 
-  A --> A1["balance factor = height(left) − height(right)"]
+  A --> A1["bf = h(left) − h(right)"]
   A --> A2["must stay in −1, 0, +1"]
   A --> A3["LL → one right rotation"]
   A --> A4["RR → one left rotation"]
@@ -52,14 +52,14 @@ flowchart LR
   A --> A6["RL → right, then left"]
 
   R --> R1["root is black"]
-  R --> R2["no red node has a red child"]
-  R --> R3["equal black-height on every path"]
+  R --> R2["no red child of red"]
+  R --> R3["equal black-height"]
   R --> R4["new nodes arrive red"]
-  R --> R5["recolour first, rotate only if needed"]
+  R --> R5["recolour, then rotate"]
 
-  W --> W1["plain BST degenerates on sorted input"]
-  W --> W2["balanced = guaranteed O(log n)"]
-  W --> W3["rotation is O(1) — 3 pointers"]
+  W --> W1["plain BST degenerates"]
+  W --> W2["guaranteed O(log n)"]
+  W --> W3["rotation O(1) — 3 ptrs"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef a fill:#0f2438,stroke:#fbbf24,color:#fbbf24

@@ -341,6 +341,24 @@ def _():
     return bad
 
 
+MERMAID_LABEL_LIMIT = 24
+
+
+@check("mermaid node labels stay short enough not to wrap")
+def _():
+    """GitHub renders Mermaid in its own iframe and, on a narrow viewport, lets a
+    wide diagram overflow the container rather than scaling it -- so a long label
+    is clipped mid-word. Keeping every label short stops that at any width, and
+    a mindmap node should be a few words anyway. The detail belongs in the prose."""
+    bad = []
+    for f in sorted(glob.glob("docs/*.md")) + ["README.md"]:
+        for block in re.findall(r"```mermaid\n(.*?)```", open(f).read(), re.S):
+            for label in re.findall(r'\["([^"]+)"\]', block):
+                if len(label) > MERMAID_LABEL_LIMIT:
+                    bad.append(f'{f}: {len(label)} chars, limit {MERMAID_LABEL_LIMIT} — "{label}"')
+    return bad
+
+
 # --------------------------------------------------------------------- python
 @check("every ```python block in docs/ parses as valid Python")
 def _():

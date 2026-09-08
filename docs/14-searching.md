@@ -47,20 +47,20 @@ flowchart LR
   L --> L1["works on anything"]
   L --> L2["no preprocessing"]
   L --> L3["O(n), n/2 on average"]
-  L --> L4["the only option on a linked list"]
+  L --> L4["the only linked-list way"]
 
   B --> B1["requires SORTED data"]
   B --> B2["requires random access"]
   B --> B3["O(log n)"]
   B --> B4["mid = lo + (hi − lo)/2"]
 
-  A --> A1["hash table — O(1), no ordering"]
-  A --> A2["BST — O(log n), keeps ordering"]
-  A --> A3["trie — O(L), prefix queries"]
+  A --> A1["hash — O(1), no order"]
+  A --> A2["BST — O(log n), ordered"]
+  A --> A3["trie — O(L), prefixes"]
 
-  D --> D1["one search on unsorted → scan"]
-  D --> D2["many searches → sort once, or index"]
-  D --> D3["exact match only → hash it"]
+  D --> D1["one search → just scan"]
+  D --> D2["many searches → sort"]
+  D --> D3["exact match → hash it"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef l fill:#0f2438,stroke:#fbbf24,color:#fbbf24

@@ -48,21 +48,21 @@ flowchart LR
 
   I --> I1["left subtree < node"]
   I --> I2["right subtree > node"]
-  I --> I3["holds recursively at every node"]
+  I --> I3["holds at every node"]
 
-  O --> O1["search — compare and descend"]
-  O --> O2["insert — a failed search that plants a node"]
+  O --> O1["search — then descend"]
+  O --> O2["insert — a failed search"]
   O --> O3["delete — three cases"]
-  O --> O4["min = leftmost, max = rightmost"]
+  O --> O4["min left, max right"]
 
   T --> T1["in-order → sorted output"]
   T --> T2["pre-order → serialise"]
-  T --> T3["post-order → delete / evaluate"]
-  T --> T4["level-order → BFS, needs a queue"]
+  T --> T3["post-order → free/eval"]
+  T --> T4["level-order → BFS queue"]
 
-  D --> D1["sorted input builds a linked list"]
-  D --> D2["everything degrades to O(n)"]
-  D --> D3["fix: AVL or red-black — module 11"]
+  D --> D1["sorted input → a list"]
+  D --> D2["degrades to O(n)"]
+  D --> D3["fix: AVL / red-black"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef i fill:#0f2438,stroke:#34d399,color:#34d399

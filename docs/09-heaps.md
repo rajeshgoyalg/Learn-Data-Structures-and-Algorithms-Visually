@@ -49,23 +49,23 @@ flowchart LR
   H --> O["Operations"]
   H --> U["Uses"]
 
-  P --> P1["min-heap: parent ≤ children"]
-  P --> P2["max-heap: parent ≥ children"]
-  P --> P3["siblings unordered — NOT a search tree"]
-  P --> P4["tree is complete — filled left to right"]
+  P --> P1["min: parent ≤ children"]
+  P --> P2["max: parent ≥ children"]
+  P --> P3["siblings unordered"]
+  P --> P4["complete — fills L to R"]
 
   A --> A1["parent(i) = (i-1)/2"]
   A --> A2["left(i) = 2i+1"]
   A --> A3["right(i) = 2i+2"]
-  A --> A4["no pointers, perfect cache locality"]
+  A --> A4["no pointers, cache-fast"]
 
   O --> O1["peek — O(1)"]
-  O --> O2["insert + sift up — O(log n)"]
-  O --> O3["extract + sift down — O(log n)"]
-  O --> O4["build-heap from n items — O(n)"]
+  O --> O2["insert — O(log n)"]
+  O --> O3["extract — O(log n)"]
+  O --> O4["build-heap — O(n)"]
 
   U --> U1["priority queue"]
-  U --> U2["heapsort — O(n log n), O(1) space"]
+  U --> U2["heapsort — O(1) space"]
   U --> U3["Dijkstra's next node"]
   U --> U4["top-k / running median"]
 

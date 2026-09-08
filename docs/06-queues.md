@@ -52,20 +52,20 @@ flowchart LR
 
   L --> L1["front + rear indices"]
   L --> L2["FIFO"]
-  L --> L3["problem: front space is stranded"]
+  L --> L3["front space is stranded"]
 
   C --> C1["indices wrap with modulo"]
-  C --> C2["fixed capacity, zero waste"]
-  C --> C3["ring buffers, streaming audio"]
+  C --> C2["fixed cap, no waste"]
+  C --> C3["ring buffers, audio"]
 
   D --> D1["four O(1) operations"]
   D --> D2["is a stack AND a queue"]
   D --> D3["sliding window maxima"]
 
-  P --> P1["ordered by key, not arrival"]
+  P --> P1["ordered by key"]
   P --> P2["backed by a heap"]
-  P --> P3["insert & extract O(log n)"]
-  P --> P4["Dijkstra, schedulers, Huffman"]
+  P --> P3["insert/extract O(log n)"]
+  P --> P4["Dijkstra, schedulers"]
 
   classDef root fill:#0f2438,stroke:#38bdf8,stroke-width:2px,color:#e2e8f0
   classDef a fill:#0f2438,stroke:#38bdf8,color:#38bdf8
